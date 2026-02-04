@@ -101,3 +101,9 @@ InitTestScene*.unity*
 Assets/TutorialInfo.meta
 Assets/.DS_Store
 *.DS_Store
+/My project/Library
+.vscode/settings.json
+.vscode/settings.json
+band-manager.slnx
+My project/Packages/manifest.json
+My project/Packages/packages-lock.json
