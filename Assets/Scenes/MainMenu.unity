@@ -268,7 +268,7 @@ GameObject:
   - component: {fileID: 102794572}
   - component: {fileID: 102794571}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -452,6 +452,74 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 397526801}
   m_CullTransparentMesh: 1
+--- !u!1001 &398018514
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3297572994859277312, guid: d081a3702cb9241398d6a11390596b58, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 909.02655
+      objectReference: {fileID: 0}
+    - target: {fileID: 3297572994859277312, guid: d081a3702cb9241398d6a11390596b58, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 510.66116
+      objectReference: {fileID: 0}
+    - target: {fileID: 3297572994859277312, guid: d081a3702cb9241398d6a11390596b58, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3297572994859277312, guid: d081a3702cb9241398d6a11390596b58, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3297572994859277312, guid: d081a3702cb9241398d6a11390596b58, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3297572994859277312, guid: d081a3702cb9241398d6a11390596b58, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3297572994859277312, guid: d081a3702cb9241398d6a11390596b58, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3297572994859277312, guid: d081a3702cb9241398d6a11390596b58, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3297572994859277312, guid: d081a3702cb9241398d6a11390596b58, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3297572994859277312, guid: d081a3702cb9241398d6a11390596b58, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5001329557745084601, guid: d081a3702cb9241398d6a11390596b58, type: 3}
+      propertyPath: m_Name
+      value: MainMenuUIManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d081a3702cb9241398d6a11390596b58, type: 3}
+--- !u!114 &398018515 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3887363211577759559, guid: d081a3702cb9241398d6a11390596b58, type: 3}
+  m_PrefabInstance: {fileID: 398018514}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 888821645024041f5b8b22b45df479e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MainMenuUIManager
 --- !u!1 &523486019
 GameObject:
   m_ObjectHideFlags: 0
@@ -511,8 +579,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Band Manager
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 771f3b6acca104e6d9ce6ba018897e3b, type: 2}
-  m_sharedMaterial: {fileID: -7463789139618895971, guid: 771f3b6acca104e6d9ce6ba018897e3b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d95d84e9830d646bf948afeec0c1a737, type: 2}
+  m_sharedMaterial: {fileID: 2208980696650583147, guid: d95d84e9830d646bf948afeec0c1a737, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -536,8 +604,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 68
-  m_fontSizeBase: 68
+  m_fontSize: 80
+  m_fontSizeBase: 80
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0
@@ -671,7 +739,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 597978287}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 398018515}
+        m_TargetAssemblyTypeName: MainMenuUIManager, Assembly-CSharp
+        m_MethodName: GoToScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: ViewBandMember
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &597978287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -890,8 +970,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Play
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 771f3b6acca104e6d9ce6ba018897e3b, type: 2}
-  m_sharedMaterial: {fileID: -7463789139618895971, guid: 771f3b6acca104e6d9ce6ba018897e3b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d95d84e9830d646bf948afeec0c1a737, type: 2}
+  m_sharedMaterial: {fileID: 2208980696650583147, guid: d95d84e9830d646bf948afeec0c1a737, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1765,3 +1845,4 @@ SceneRoots:
   - {fileID: 25196346}
   - {fileID: 1166511677}
   - {fileID: 1552385670}
+  - {fileID: 398018514}
