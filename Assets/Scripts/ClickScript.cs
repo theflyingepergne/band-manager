@@ -1,10 +1,11 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class ClickScript : MonoBehaviour
 {
     InputAction clickAction;
-
+    
     void Start()
     {
         clickAction = InputSystem.actions.FindAction("Click");
@@ -21,13 +22,14 @@ public class ClickScript : MonoBehaviour
         // If we released the click action this frame, check if we hit something
         if (clickAction.WasReleasedThisFrame())
         {
-            if ( hit2D.collider != null)
+            if ( hit2D.collider.TryGetComponent<IClickable>(out IClickable clickable))
             {
-                Debug.Log("Mouse Clicked: " + hit2D.collider.gameObject.name + " at position: " + mousePos);    
-            }
-            else
-            {
-                Debug.Log("Hit nothing at: " + mousePos);
+                clickable.OnClicked();
+            //     Debug.Log("Mouse Clicked: " + hit2D.collider.gameObject.name + " at position: " + mousePos);    
+            // }
+            // else
+            // {
+            //     Debug.Log("Hit nothing at: " + mousePos);
             }
             
         }
