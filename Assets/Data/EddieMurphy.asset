@@ -16,7 +16,7 @@ MonoBehaviour:
   instruments:
   - Vocals
   - Keyboard
-  talentLevel: 1
+  _talentLevel: 4
   memberSprite: {fileID: 5174336243542399400, guid: 4c99eb2b31a671049b05f3e148ec39a1, type: 3}
   genres:
   - Disco

@@ -1,10 +1,10 @@
-using System.Collections.Generic;
-using System.Data.Common;
 using UnityEngine;
+using UnityEngine.UIElements;
+
 
 public class BandMember : MonoBehaviour, IClickable
 {
-    [SerializeField] ScriptableObject bandMemberData;
+    [SerializeField] private BandMemberData bandMemberData;
 
     public void Start()
     {
@@ -15,10 +15,11 @@ public class BandMember : MonoBehaviour, IClickable
 
     public void OnClicked()
     {
-        BandMemberData data = bandMemberData as BandMemberData;
-        // Debug.Log(data.memberName);
-        // Debug.Log(string.Join(", ", data.instruments));
+        BandMemberData data = bandMemberData;
         ViewBandMembersUIManager.Instance.ShowBandMemberDetails(true, data);
     }
+
+    // binding data to the UI
+
 
 }
