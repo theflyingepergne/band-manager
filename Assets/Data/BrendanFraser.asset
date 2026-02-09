@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91446557e6ec6644abfb11fbeb54407a, type: 3}
+  m_Name: BrendanFraser
+  m_EditorClassIdentifier: Assembly-CSharp::BandMemberData
+  memberName: Brendan Fraser
+  instruments:
+  - Guitar
+  - Vocals
+  talentLevel: 2
+  memberSprite: {fileID: 8367519605111941192, guid: b237e5ce08a9bd64885d521516002676, type: 3}
+  genres:
+  - Rock
+  - Folk
+  traits:
+  - Charismatic
+  - Wild
