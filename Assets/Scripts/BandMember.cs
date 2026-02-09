@@ -1,10 +1,10 @@
+using System.Collections.Generic;
 using System.Data.Common;
 using UnityEngine;
 
 public class BandMember : MonoBehaviour, IClickable
 {
     [SerializeField] ScriptableObject bandMemberData;
-
 
     public void Start()
     {
@@ -16,6 +16,8 @@ public class BandMember : MonoBehaviour, IClickable
     public void OnClicked()
     {
         BandMemberData data = bandMemberData as BandMemberData;
-        Debug.Log(data.memberName + " was clicked!");
+        Debug.Log(data.memberName);
+        Debug.Log(string.Join(", ", data.instruments));
     }
+
 }

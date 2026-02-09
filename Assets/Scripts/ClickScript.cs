@@ -11,7 +11,7 @@ public class ClickScript : MonoBehaviour
         clickAction = InputSystem.actions.FindAction("Click");
     }
 
-    void Update()
+    void Update() // see if we clicked on something that implements IClickable
     {
         // Get mouse position in screen coordinates
         Vector2 mousePos = Mouse.current.position.ReadValue();
@@ -24,12 +24,8 @@ public class ClickScript : MonoBehaviour
         {
             if ( hit2D.collider.TryGetComponent<IClickable>(out IClickable clickable))
             {
+                // If the hit object has a collider and an IClickable component, call its OnClicked method
                 clickable.OnClicked();
-            //     Debug.Log("Mouse Clicked: " + hit2D.collider.gameObject.name + " at position: " + mousePos);    
-            // }
-            // else
-            // {
-            //     Debug.Log("Hit nothing at: " + mousePos);
             }
             
         }
