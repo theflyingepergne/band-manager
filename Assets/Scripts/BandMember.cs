@@ -16,8 +16,9 @@ public class BandMember : MonoBehaviour, IClickable
     public void OnClicked()
     {
         BandMemberData data = bandMemberData as BandMemberData;
-        Debug.Log(data.memberName);
-        Debug.Log(string.Join(", ", data.instruments));
+        // Debug.Log(data.memberName);
+        // Debug.Log(string.Join(", ", data.instruments));
+        ViewBandMembersUIManager.Instance.ShowBandMemberDetails(true, data);
     }
 
 }

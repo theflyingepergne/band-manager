@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenuUIManager : MonoBehaviour
+public class MainMenuUIManager : Singleton<MainMenuUIManager>
 {
     public void GoToScene(string sceneName)
     {
