@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BandMemberInfo : MonoBehaviour
+public class BandMember : MonoBehaviour
 {
     [SerializeField] ScriptableObject bandMemberData;
     
@@ -8,6 +8,6 @@ public class BandMemberInfo : MonoBehaviour
     {
         BandMemberData data = bandMemberData as BandMemberData;
         Sprite sprite = data.memberSprite;
-        GetComponent<SpriteRenderer>().sprite = sprite;   
+        GetComponent<SpriteRenderer>().sprite = sprite;
     }
 }

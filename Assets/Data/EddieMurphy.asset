@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 91446557e6ec6644abfb11fbeb54407a, type: 3}
-  m_Name: BrendanFraser
+  m_Name: EddieMurphy
   m_EditorClassIdentifier: Assembly-CSharp::BandMemberData
-  memberName: Brendan Fraser
+  memberName: Eddie Murphy
   instruments:
-  - Guitar
   - Vocals
-  talentLevel: 2
-  memberSprite: {fileID: -3534730902821829773, guid: 537487bec9868f24c961a0ba6ddb9e7b, type: 3}
+  - Keyboard
+  talentLevel: 1
+  memberSprite: {fileID: 5174336243542399400, guid: 4c99eb2b31a671049b05f3e148ec39a1, type: 3}
   genres:
-  - Rock
-  - Folk
+  - Disco
+  - Jazz
   traits:
-  - Charismatic
-  - Wild
-  - Depressed
+  - Gorgeous
+  - Funny
+  - Short Temper
