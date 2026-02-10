@@ -1,3 +1,8 @@
+.root {
+    width: 100%;
+    height: 100%;
+}
+
 .unity-progress-bar__progress {
     background-color: rgb(87, 55, 55);
 }
@@ -37,4 +42,31 @@
 
 .hide {
     display: none;
+}
+
+.button-spacer {
+    margin-bottom: 3px;
+}
+
+.unity-button {
+    background-color: rgba(121, 96, 96, 0.79);
+    padding-top: 20px;
+    padding-right: 50px;
+    padding-bottom: 20px;
+    padding-left: 50px;
+    margin-top: 3px;
+    margin-right: 3px;
+    margin-left: 3px;
+    margin-bottom: 3px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+}
+
+.unity-text-element {
 }

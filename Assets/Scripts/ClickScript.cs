@@ -32,7 +32,7 @@ public class ClickScript : MonoBehaviour
             else
             {
                 // If we didn't hit anything, hide the band member details panel
-                Debug.Log("No collider hit, hiding details panel");
+                // Debug.Log("No collider hit, hiding details panel");
                 ViewBandMemberUIManager.Instance.ShowBandMemberDetails(false);
             }
 
