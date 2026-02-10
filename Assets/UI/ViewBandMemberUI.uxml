@@ -1,0 +1,52 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/UI/StyleSheet.uss?fileID=7433441132597879392&amp;guid=2d39a123698aca448b8fb28920e1105b&amp;type=3#StyleSheet"/>
+    <ui:VisualElement name="Panel" style="flex-grow: 1; justify-content: center; padding-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0;">
+        <ui:VisualElement name="Container" class="container" style="flex-direction: column; flex-wrap: wrap-reverse; align-items: stretch; width: 1200px; align-self: center; height: 900px; align-content: stretch; justify-content: space-between;">
+            <ui:VisualElement name="TitleWrapper" class="wrapper" style="-unity-text-align: upper-left; -unity-background-image-tint-color: rgb(255, 255, 255); padding-top: 20px; padding-right: 50px; padding-bottom: 20px; padding-left: 50px; align-items: center; align-self: center;">
+                <ui:Label text="Viewing Band Members" name="TitleText" class="label" style="font-size: 60px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="DetailsWrapper" data-source-type="BandMemberData, Assembly-CSharp" class="wrapper">
+                <ui:VisualElement name="MemberNameWrapper" class="list-item-wrapper" style="justify-content: center;">
+                    <ui:Label text="Looking at: " class="label list-spacer" style="font-size: 30px; white-space: pre-wrap;"/>
+                    <ui:Label text="PLACEHOLDER" name="MemberNameLabel" class="label list-spacer" style="font-size: 30px;">
+                        <Bindings>
+                            <ui:DataBinding property="text" data-source-path="memberName" binding-mode="ToTarget"/>
+                        </Bindings>
+                    </ui:Label>
+                </ui:VisualElement>
+                <ui:VisualElement name="MemberInstrumentsWrapper" class="list-spacer list-item-wrapper">
+                    <ui:Label text="Instruments: " class="label"/>
+                    <ui:Label text="PLACEHOLDER" name="MemberInstrumentsLabel" class="label">
+                        <Bindings>
+                            <ui:DataBinding property="text" data-source-path="instrumentsDisplay" binding-mode="ToTarget"/>
+                        </Bindings>
+                    </ui:Label>
+                </ui:VisualElement>
+                <ui:VisualElement name="MemberTalentLevelWrapper" class="list-spacer list-item-wrapper">
+                    <ui:Label text="Talent: " name="TalentText" class="label" style="text-overflow: clip; white-space: pre-wrap;"/>
+                    <ui:ProgressBar high-value="10" name="TalentLevelProgressBar" value="4.57" style="flex-grow: 1; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;">
+                        <Bindings>
+                            <ui:DataBinding property="value" data-source-path="talentLevel" binding-mode="ToTarget" data-source-type="BandMemberData, Assembly-CSharp"/>
+                        </Bindings>
+                    </ui:ProgressBar>
+                </ui:VisualElement>
+                <ui:VisualElement name="MemberGenresWrapper" class="list-spacer list-item-wrapper" style="flex-grow: 1;">
+                    <ui:Label text="Genres: " class="label"/>
+                    <ui:Label text="PLACEHOLDER" name="MemberGenresLabel" class="label">
+                        <Bindings>
+                            <ui:DataBinding property="text" data-source-path="genresDisplay" binding-mode="ToTarget"/>
+                        </Bindings>
+                    </ui:Label>
+                </ui:VisualElement>
+                <ui:VisualElement name="MemberTraitsWrapper" class="list-item-wrapper">
+                    <ui:Label text="Traits: " class="label"/>
+                    <ui:Label text="PLACEHOLDER" name="MemberTraitsLabel" class="label">
+                        <Bindings>
+                            <ui:DataBinding property="text" data-source-path="traitsDisplay" binding-mode="ToTarget"/>
+                        </Bindings>
+                    </ui:Label>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

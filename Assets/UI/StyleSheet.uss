@@ -1,3 +1,36 @@
 .unity-progress-bar__progress {
     background-color: rgb(87, 55, 55);
 }
+
+.label {
+    -unity-font-definition: url("project://database/Assets/Fonts/Newshound-Bold.otf?fileID=12800000&guid=7a8e41a3697b64903a243e6100de1cf2&type=3#Newshound-Bold");
+    font-size: 20px;
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+}
+
+.container {
+}
+
+.wrapper {
+    background-color: rgb(0, 0, 0);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding-top: 50px;
+    padding-right: 50px;
+    padding-bottom: 50px;
+    padding-left: 50px;
+}
+
+.unity-progress-bar {
+}
+
+.list-spacer {
+    padding-bottom: 23px;
+}
+
+.list-item-wrapper {
+    flex-direction: row;
+}

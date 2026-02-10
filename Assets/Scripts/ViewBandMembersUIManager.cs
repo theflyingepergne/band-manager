@@ -2,43 +2,27 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class ViewBandMembersUIManager : Singleton<ViewBandMembersUIManager>
+public class ViewBandMemberUIManager : Singleton<ViewBandMemberUIManager>
 {
-    [SerializeField] private GameObject bandMemberDetailsPanel;
-    [SerializeField] private TextMeshProUGUI memberNameText;
-    [SerializeField] private TextMeshProUGUI memberInstrumentText;
-    [SerializeField] private TextMeshProUGUI memberGenreText;
-    [SerializeField] private TextMeshProUGUI memberTraitsText;
-    [SerializeField] private UIDocument talentLevelBar;
+    // [SerializeField] private GameObject bandMemberDetailsPanel;
 
-    private ProgressBar talentLevelProgressBar;
+    [SerializeField] private UIDocument ViewBandMemberUI;
 
-    private void Start()
-    {
-        // talentLevelProgressBar = talentLevelBar.rootVisualElement.Q<ProgressBar>("ProgressBar");
-    }
+    private VisualElement root;
 
     public void ShowBandMemberDetails(bool isActive, BandMemberData data = null)
     {
         // Set the details panel to active and populate it with the data from the BandMemberData
-        bandMemberDetailsPanel.SetActive(isActive);
-        memberNameText.text = "Looking at: " +data.memberName;
-        memberInstrumentText.text = "Instruments: " + string.Join(", ", data.instruments);
-        memberGenreText.text = "Genres: " + string.Join(", ", data.genres);
-        memberTraitsText.text = "Traits: " + string.Join(", ", data.traits);
-
-        // Set the talent level bar value based on the talent level in the data
-        talentLevelProgressBar = talentLevelBar.rootVisualElement.Q<ProgressBar>("ProgressBar");
-        if (talentLevelProgressBar != null)
+        if (data != null)
         {
-            talentLevelProgressBar.value = data.talentLevel;
-            Debug.Log("Talent Level ProgressBar found and data source set.");
-            Debug.Log($"UI Source Set! Member: {data.memberName}, Talent: {data.talentLevel}");
+            root = ViewBandMemberUI.rootVisualElement;
+            root.dataSource = data; // Set the data source for the UI to the BandMemberData
+            // root.Q<Label>("MemberNameLabel").text = data.memberName;
+            // root.Q<Label>("MemberInstrumentsLabel").text =string.Join(", ", data.instruments);
+            // root.Q<Label>("MemberGenresLabel").text = string.Join(", ", data.genres);
+            // root.Q<Label>("MemberTraitsLabel").text = string.Join(", ", data.traits);
+            // root.Q<ProgressBar>("TalentLevelProgressBar").value = data.talentLevel;
         }
-        else
-        {
-            Debug.LogError("Talent Level ProgressBar not found in the UI Document.");
-        }
-        
     }
+
 }

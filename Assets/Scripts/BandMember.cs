@@ -16,10 +16,6 @@ public class BandMember : MonoBehaviour, IClickable
     public void OnClicked()
     {
         BandMemberData data = bandMemberData;
-        ViewBandMembersUIManager.Instance.ShowBandMemberDetails(true, data);
+        ViewBandMemberUIManager.Instance.ShowBandMemberDetails(true, data);
     }
-
-    // binding data to the UI
-
-
 }
