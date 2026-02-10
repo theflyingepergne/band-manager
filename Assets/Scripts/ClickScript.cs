@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class ClickScript : MonoBehaviour
 {
     InputAction clickAction;
-    
+
     void Start()
     {
         clickAction = InputSystem.actions.FindAction("Click");
@@ -22,13 +22,22 @@ public class ClickScript : MonoBehaviour
         // If we released the click action this frame, check if we hit something
         if (clickAction.WasReleasedThisFrame())
         {
-            if ( hit2D.collider.TryGetComponent<IClickable>(out IClickable clickable))
+
+            if (hit2D.collider != null && hit2D.collider.TryGetComponent<IClickable>(out IClickable clickable))
             {
                 // If the hit object has a collider and an IClickable component, call its OnClicked method
                 clickable.OnClicked();
+
             }
-            
+            else
+            {
+                // If we didn't hit anything, hide the band member details panel
+                Debug.Log("No collider hit, hiding details panel");
+                ViewBandMemberUIManager.Instance.ShowBandMemberDetails(false);
+            }
+
         }
+
     }
 }
 
