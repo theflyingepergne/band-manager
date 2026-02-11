@@ -10,16 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 91446557e6ec6644abfb11fbeb54407a, type: 3}
-  m_Name: KevinJames
+  m_Name: BandM_JoannaLumley
   m_EditorClassIdentifier: Assembly-CSharp::BandMemberData
-  memberName: Kevin James
-  instruments: []
-  _talentLevel: 6
-  memberSprite: {fileID: 21300000, guid: b237e5ce08a9bd64885d521516002676, type: 3}
+  memberName: Joanna Lumley
+  instruments:
+  - {fileID: 11400000, guid: cd6d2c9245478814eafdb72255455c18, type: 2}
+  - {fileID: 11400000, guid: e3afe060d6108024bbaa372bae18e4bd, type: 2}
+  _talentLevel: 3
+  memberSprite: {fileID: 21300000, guid: 9f766c9a835ac5743af45f3fb9197d2d, type: 3}
   genres:
-  - Rock
-  - Jazz
+  - Disco
+  - Funk
   traits:
-  - Gorgeous
-  - Obedient
-  - Nervous
+  - Charismatic
+  - Pragmatic
+  - Late

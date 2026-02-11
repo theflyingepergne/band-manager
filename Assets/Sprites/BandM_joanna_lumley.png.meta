@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 4bb1d39d1cce84b47ac3c744952cfb18
+guid: 9f766c9a835ac5743af45f3fb9197d2d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 775957568980619338
-    second: Venue_CBGB_0
+      213: -1528767504129599025
+    second: BandM_joanna_lumley_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Venue_CBGB_0
+      name: BandM_joanna_lumley_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 28
         y: 0
-        width: 512
-        height: 341
+        width: 456
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a409ddb3c41c4ca00800000000000000
-      internalID: 775957568980619338
+      spriteID: fc9d1340e0ab8cae0800000000000000
+      internalID: -1528767504129599025
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Venue_CBGB_0: 775957568980619338
+      BandM_joanna_lumley_0: -1528767504129599025
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

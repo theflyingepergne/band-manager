@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51a2b2e98b7f6a24ea64eb5a6700b9da, type: 3}
+  m_Name: Instr_Drums
+  m_EditorClassIdentifier: Assembly-CSharp::InstrumentData
+  instrumentName: Acoustic Drum Kit
+  instrumentSprite: {fileID: 21300000, guid: deab494ab01843947804d1f6693f537f, type: 3}
+  description: Drums to keep everyone in time and make everyone go insane during
+    practice
+  difficultyLevel: 3
+  genres:
+  - Rock
+  - Jazz
+  instrumentTraits:
+  - Great for rhythm
+  - Bad for solos
+  instrumentType: 

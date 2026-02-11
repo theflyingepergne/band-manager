@@ -12,7 +12,7 @@ public class BandMemberData : ScriptableObject
     public string memberName;
 
     //-- Instruments
-    [SerializeField] private List<string> instruments;
+    [SerializeField] private List<InstrumentData> instruments;
     [CreateProperty]
     public string instrumentsDisplay => (instruments.Count > 0)     // Check if there are more than 0 instruments in the list 
         ? string.Join(", ", instruments)                            // This will allow us to display the instruments in the UI as a comma-separated list
@@ -34,7 +34,9 @@ public class BandMemberData : ScriptableObject
     //-- Genres
     [SerializeField] private List<string> genres;
     [CreateProperty]
-    public string genresDisplay => string.Join(", ", genres);
+    public string genresDisplay => (genres.Count > 0)
+        ? string.Join(", ", genres)
+        : "Versatile";
     
     //-- Traits
     [SerializeField] private List<string> traits;

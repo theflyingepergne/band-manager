@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 4bb1d39d1cce84b47ac3c744952cfb18
+guid: b4e8dc8add8ef794cbf5cad093eaadb7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 775957568980619338
-    second: Venue_CBGB_0
+      213: 7554149356236533524
+    second: placeholder_crowd_01_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Venue_CBGB_0
+      name: placeholder_crowd_01_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 5
         y: 0
-        width: 512
-        height: 341
+        width: 486
+        height: 244
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a409ddb3c41c4ca00800000000000000
-      internalID: 775957568980619338
+      spriteID: 41f69bed0dab5d860800000000000000
+      internalID: 7554149356236533524
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Venue_CBGB_0: 775957568980619338
+      placeholder_crowd_01_0: 7554149356236533524
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

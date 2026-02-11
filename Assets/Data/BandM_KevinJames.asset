@@ -10,18 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 91446557e6ec6644abfb11fbeb54407a, type: 3}
-  m_Name: JoannaLumley
+  m_Name: BandM_KevinJames
   m_EditorClassIdentifier: Assembly-CSharp::BandMemberData
-  memberName: Joanna Lumley
+  memberName: Kevin James
   instruments:
-  - Bass
-  - Bassoon
-  _talentLevel: 3
-  memberSprite: {fileID: 21300000, guid: 2490864c9b0e48d41b696a36b32a4d98, type: 3}
+  - {fileID: 11400000, guid: 70aa6afb1027d3a41875d82e2bae0002, type: 2}
+  _talentLevel: 6
+  memberSprite: {fileID: 21300000, guid: b237e5ce08a9bd64885d521516002676, type: 3}
   genres:
-  - Disco
-  - Funk
+  - Rock
+  - Jazz
   traits:
-  - Charismatic
-  - Pragmatic
-  - Late
+  - Gorgeous
+  - Obedient
+  - Nervous
