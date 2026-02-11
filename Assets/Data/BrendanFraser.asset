@@ -17,7 +17,7 @@ MonoBehaviour:
   - Guitar
   - Vocals
   _talentLevel: 2
-  memberSprite: {fileID: -3534730902821829773, guid: 537487bec9868f24c961a0ba6ddb9e7b, type: 3}
+  memberSprite: {fileID: 21300000, guid: 537487bec9868f24c961a0ba6ddb9e7b, type: 3}
   genres:
   - Rock
   - Folk

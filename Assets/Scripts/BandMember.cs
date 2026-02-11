@@ -1,6 +1,4 @@
 using UnityEngine;
-using UnityEngine.UIElements;
-
 
 public class BandMember : MonoBehaviour, IClickable
 {
@@ -8,7 +6,7 @@ public class BandMember : MonoBehaviour, IClickable
 
     public void Start()
     {
-        BandMemberData data = bandMemberData as BandMemberData;
+        BandMemberData data = bandMemberData;
         Sprite sprite = data.memberSprite;
         GetComponent<SpriteRenderer>().sprite = sprite;
     }

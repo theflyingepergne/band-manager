@@ -4,9 +4,7 @@ using UnityEngine.UIElements;
 
 public class MainMenuUIManager : Singleton<MainMenuUIManager>
 {
-
     [SerializeField] private UIDocument mainMenuUI;
-    
     private Button playButton;
     private Button settingsButton;
     private Button quitButton;
@@ -14,9 +12,8 @@ public class MainMenuUIManager : Singleton<MainMenuUIManager>
     private void Start()
     {
         var root = mainMenuUI.rootVisualElement;
-        root.style.width = new StyleLength(new Length(100, LengthUnit.Percent));
-        root.style.height = new StyleLength(new Length(100, LengthUnit.Percent));
-        
+
+        // Hooking up buttons using strings...
         playButton = mainMenuUI.rootVisualElement.Q<Button>("PlayButton");
         settingsButton = mainMenuUI.rootVisualElement.Q<Button>("SettingsButton");
         quitButton = mainMenuUI.rootVisualElement.Q<Button>("QuitButton");
@@ -28,6 +25,7 @@ public class MainMenuUIManager : Singleton<MainMenuUIManager>
 
     private void OnPlayButtonClicked()
     {
+        // Eventually play actual game but for now load ViewBandMember scene
         SceneManager.LoadScene("ViewBandMember");
     }
 

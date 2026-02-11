@@ -14,6 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ViewBandMember.unity
     guid: 37fec3e2c3ce54951838b001a5c02519
+  - enabled: 1
+    path: Assets/Scenes/PerformGig.unity
+    guid: defc47a6a75921447b31c48eea35e370
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

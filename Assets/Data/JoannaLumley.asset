@@ -17,7 +17,7 @@ MonoBehaviour:
   - Bass
   - Bassoon
   _talentLevel: 3
-  memberSprite: {fileID: 1163713340208533906, guid: 2490864c9b0e48d41b696a36b32a4d98, type: 3}
+  memberSprite: {fileID: 21300000, guid: 2490864c9b0e48d41b696a36b32a4d98, type: 3}
   genres:
   - Disco
   - Funk

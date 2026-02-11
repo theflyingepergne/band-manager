@@ -15,7 +15,7 @@ MonoBehaviour:
   memberName: Kevin James
   instruments: []
   _talentLevel: 6
-  memberSprite: {fileID: 8367519605111941192, guid: b237e5ce08a9bd64885d521516002676, type: 3}
+  memberSprite: {fileID: 21300000, guid: b237e5ce08a9bd64885d521516002676, type: 3}
   genres:
   - Rock
   - Jazz

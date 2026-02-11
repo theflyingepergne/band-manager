@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 2490864c9b0e48d41b696a36b32a4d98
+guid: deab494ab01843947804d1f6693f537f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1163713340208533906
-    second: joanna_lumley_transparent_0
+      213: -7767860644394220215
+    second: Instr_DrumKit_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: joanna_lumley_transparent_0
+      name: Instr_DrumKit_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 284
-        height: 320
+        width: 512
+        height: 462
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 29153870e17562010800000000000000
-      internalID: 1163713340208533906
+      spriteID: 945452a56e3033490800000000000000
+      internalID: -7767860644394220215
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      joanna_lumley_transparent_0: 1163713340208533906
+      Instr_DrumKit_0: -7767860644394220215
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
