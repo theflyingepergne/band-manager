@@ -817,6 +817,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7179775753552049474, guid: 04b8781f6f2781445ab1f925c3e44c9b, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7179775753552049474, guid: 04b8781f6f2781445ab1f925c3e44c9b, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7179775753552049474, guid: 04b8781f6f2781445ab1f925c3e44c9b, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8651972507558242536, guid: 04b8781f6f2781445ab1f925c3e44c9b, type: 3}
       propertyPath: m_Name
       value: BackgroundCanvas
@@ -1107,7 +1119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbb86d753c4753a4cb44f031868f0afa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PerformGigUIManager
-  performGigUI: {fileID: 0}
+  performGigUI: {fileID: 1823287025}
 --- !u!4 &2082406574
 Transform:
   m_ObjectHideFlags: 0

@@ -70,3 +70,9 @@
 
 .unity-text-element {
 }
+
+.unity-label {
+    -unity-font-definition: url("project://database/Assets/Fonts/Newshound-Bold.otf?fileID=12800000&guid=7a8e41a3697b64903a243e6100de1cf2&type=3#Newshound-Bold");
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+}
