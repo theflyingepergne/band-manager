@@ -1340,7 +1340,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6230640552237845678, guid: 488d510ff0902694a91bb858069b6f68, type: 3}
       propertyPath: rows
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6230640552237845678, guid: 488d510ff0902694a91bb858069b6f68, type: 3}
       propertyPath: spacing.x
@@ -1348,7 +1348,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6230640552237845678, guid: 488d510ff0902694a91bb858069b6f68, type: 3}
       propertyPath: spacing.y
-      value: 0.86
+      value: 0.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 6230640552237845678, guid: 488d510ff0902694a91bb858069b6f68, type: 3}
+      propertyPath: crowdMember
+      value: 
+      objectReference: {fileID: 9026602661950908936, guid: 6aa7f90c9cd6cba4c88bdbe118466c74, type: 3}
+    - target: {fileID: 6230640552237845678, guid: 488d510ff0902694a91bb858069b6f68, type: 3}
+      propertyPath: randomOffset.x
+      value: 0.63
       objectReference: {fileID: 0}
     - target: {fileID: 6230640552237845678, guid: 488d510ff0902694a91bb858069b6f68, type: 3}
       propertyPath: crowdMemberPrefab

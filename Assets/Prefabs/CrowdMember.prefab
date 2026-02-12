@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5289944889806806779}
   - component: {fileID: 449417000592952317}
+  - component: {fileID: 3368279176091127656}
   m_Layer: 0
   m_Name: CrowdMember
   m_TagString: Untagged
@@ -91,3 +92,19 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &3368279176091127656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9026602661950908936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb12de6bf7612d64db84d158d3b1c59c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CrowdMember
+  crowdSprites:
+  - {fileID: 21300000, guid: b4e8dc8add8ef794cbf5cad093eaadb7, type: 3}
+  - {fileID: 21300000, guid: bdb0ff7a7adda7444b1fd7cbf908ed87, type: 3}
+  - {fileID: 21300000, guid: c7c1c796aded3694a8f61a26a4619d54, type: 3}
