@@ -14,9 +14,9 @@ public class BandMemberData : ScriptableObject
     //-- Instruments
     [SerializeField] private List<InstrumentData> instruments;
     [CreateProperty]
-    public string instrumentsDisplay => (instruments.Count > 0)     // Check if there are more than 0 instruments in the list 
-        ? string.Join(", ", instruments)                            // This will allow us to display the instruments in the UI as a comma-separated list
-        : "Willing to learn";                                       // If there are no instruments, display "No instruments" in
+    public string instrumentsDisplay => (instruments.Count > 0)                 // Check if there are more than 0 instruments in the list 
+        ? string.Join(", ", instruments.ConvertAll(i => i.instrumentName))     // This will allow us to display the instruments in the UI as a comma-separated list
+        : "Willing to learn";                                                   // If there are no instruments, display "No instruments" in
 
     //-- Talent Level
     [Range(0, 10)]                              // This will allow us to set the talent level in the inspector with a slider from 0 to 10
