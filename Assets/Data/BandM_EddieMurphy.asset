@@ -19,8 +19,8 @@ MonoBehaviour:
   _talentLevel: 4
   memberSprite: {fileID: 21300000, guid: 4c99eb2b31a671049b05f3e148ec39a1, type: 3}
   genres:
-  - Disco
-  - Jazz
+  - {fileID: 11400000, guid: 48e9c2379bfb64b2bbede20232808946, type: 2}
+  - {fileID: 11400000, guid: a7ef8e7ffbfa14b7c80ce20b7b108a69, type: 2}
   traits:
   - Gorgeous
   - Funny

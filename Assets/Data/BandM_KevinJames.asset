@@ -18,8 +18,8 @@ MonoBehaviour:
   _talentLevel: 6
   memberSprite: {fileID: 21300000, guid: b237e5ce08a9bd64885d521516002676, type: 3}
   genres:
-  - Rock
-  - Jazz
+  - {fileID: 11400000, guid: 8571d9608c768432aa2acd7fab5f9e9d, type: 2}
+  - {fileID: 11400000, guid: a7ef8e7ffbfa14b7c80ce20b7b108a69, type: 2}
   traits:
   - Gorgeous
   - Obedient

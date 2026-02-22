@@ -32,10 +32,10 @@ public class BandMemberData : ScriptableObject
     public Sprite memberSprite;
 
     //-- Genres
-    [SerializeField] private List<string> genres;
+    [SerializeField] private List<GenreData> genres;
     [CreateProperty]
     public string genresDisplay => (genres.Count > 0)
-        ? string.Join(", ", genres)
+        ? string.Join(", ", genres.ConvertAll(g => g.genreName))
         : "Versatile";
     
     //-- Traits
