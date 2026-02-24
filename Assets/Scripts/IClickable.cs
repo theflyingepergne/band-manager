@@ -2,5 +2,6 @@ using UnityEngine;
 
 public interface IClickable
 {
-    void OnClicked();   
+    void OnClicked();
+    void OnIsHovering(bool isHovering);
 }

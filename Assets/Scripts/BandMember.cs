@@ -16,4 +16,9 @@ public class BandMember : MonoBehaviour, IClickable
         BandMemberData data = bandMemberData;
         ViewBandMemberUIManager.Instance.ShowBandMemberDetails(true, data);
     }
+
+    public void OnIsHovering(bool isHovering)
+    {
+        
+    }
 }
