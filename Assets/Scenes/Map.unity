@@ -1183,6 +1183,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4050468346600766076, guid: 8415d353543f04d15969d2c6c28cfb48, type: 3}
+      propertyPath: venueData
+      value: 
+      objectReference: {fileID: 11400000, guid: 5e3cd3926f8bf40409643f12021b22d3, type: 2}
     - target: {fileID: 6385204125639116890, guid: 8415d353543f04d15969d2c6c28cfb48, type: 3}
       propertyPath: m_Name
       value: Venue_Icon (5)
@@ -1332,6 +1336,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4050468346600766076, guid: 8415d353543f04d15969d2c6c28cfb48, type: 3}
+      propertyPath: venueData
+      value: 
+      objectReference: {fileID: 11400000, guid: 53eb553f37e094706a09f61e006926f4, type: 2}
     - target: {fileID: 6385204125639116890, guid: 8415d353543f04d15969d2c6c28cfb48, type: 3}
       propertyPath: m_Name
       value: Venue_Icon

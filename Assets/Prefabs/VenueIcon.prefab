@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2690188499081123022}
   - component: {fileID: 8420295975498901130}
   - component: {fileID: 4632699402239964027}
+  - component: {fileID: 4050468346600766076}
   - component: {fileID: 5736712887157657904}
   m_Layer: 0
   m_Name: VenueIcon
@@ -130,6 +131,19 @@ CapsuleCollider2D:
   m_Offset: {x: 0.1, y: 0.02}
   m_Size: {x: 3.84, y: 4.58}
   m_Direction: 0
+--- !u!114 &4050468346600766076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6385204125639116890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b76e8f00ea3942688f4af372ba873d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VenueIcon
+  venueData: {fileID: 11400000, guid: 53eb553f37e094706a09f61e006926f4, type: 2}
 --- !u!114 &5736712887157657904
 MonoBehaviour:
   m_ObjectHideFlags: 0
