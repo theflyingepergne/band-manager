@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2022910204924940938}
   - component: {fileID: 6723696937774599454}
   - component: {fileID: 9172039462748905810}
+  - component: {fileID: 7714012343134507616}
   m_Layer: 6
   m_Name: BandMember
   m_TagString: Untagged
@@ -152,3 +153,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BandMemberInfo
   bandMemberData: {fileID: 11400000, guid: 8d82f51ae66b1644d8ea8f32ef3fc0b3, type: 2}
+--- !u!114 &7714012343134507616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165794384857220249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17c7b7a3b8a2b42eeb6655a3b4267108, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Highlighter
+  highlightedColour: {r: 255, g: 0, b: 0, a: 1}

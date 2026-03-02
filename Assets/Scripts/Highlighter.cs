@@ -1,7 +1,7 @@
 // Add this script to objects that you want to highlight when mousing over
 using UnityEngine;
 
-public class Highlighter : MonoBehaviour, IClickable
+public class Highlighter : MonoBehaviour, IHighlightable
 {
     Color originalColour;
     [SerializeField] Color highlightedColour = new Color(255, 0, 0);
@@ -10,26 +10,19 @@ public class Highlighter : MonoBehaviour, IClickable
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        if (spriteRenderer != null)
-        {
-            Debug.Log("found sprite renderer.");
-        }
-
         originalColour = spriteRenderer.material.color;
-        if (originalColour != null)
-        {
-            Debug.Log("found material.");
-        }
     }
 
     public void OnIsHovering(bool isHovering)
     {
-        spriteRenderer.material.color = isHovering ? highlightedColour : originalColour;
+        // If hovering, change the colour to the highlighted colour, otherwise change it back to the original colour
+        if (isHovering)
+        {
+            spriteRenderer.material.color = highlightedColour;
+        }
+        else
+        {
+            spriteRenderer.material.color = originalColour;
+        }
     }
-
-    public void OnClicked()
-    {
-        Debug.Log("Clicked venue icon.");
-    }
-
 }

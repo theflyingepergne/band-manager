@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class ClickScript : MonoBehaviour
 {
     InputAction clickAction;
+    Collider2D lastHitCollider;
 
     void Start()
     {
@@ -12,40 +13,38 @@ public class ClickScript : MonoBehaviour
 
     void Update()
     {
-        // Get mouse position in screen coordinates
-        Vector2 mousePos = Mouse.current.position.ReadValue();
 
         // Convert mouse position to world coordinates and perform a raycast
+        Vector2 mousePos = Mouse.current.position.ReadValue();
         RaycastHit2D hit2D = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(mousePos), Vector2.zero);
 
-        if(hit2D.collider != null && hit2D.collider.TryGetComponent<IClickable>(out IClickable clickable))
+        // If last collider != current collider, highlight the collider
+        Collider2D current = hit2D.collider;
+        if (current != lastHitCollider)
         {
-            OnAttemptClick(hit2D);
-            OnAttemptHover(hit2D);
-        }
-    }
+            var lastClickable = lastHitCollider?.GetComponent<IHighlightable>();
+            lastClickable?.OnIsHovering(false);
 
-    private void OnAttemptClick(RaycastHit2D hit2D)
-    {
-        // If we released the click action this frame, check if we hit something
+            var currentClickable = current?.GetComponent<IHighlightable>();
+            currentClickable?.OnIsHovering(true);
+
+            lastHitCollider = current;
+        }
+
+        // If we click on a collider, do something
+        // If we click on empty space, hide the band member details
         if (clickAction.WasReleasedThisFrame())
         {
-            hit2D.collider.GetComponent<IClickable>().OnClicked();
-        }
-        else
-        {
-            // If we didn't hit anything, hide the band member details panel
-            // Debug.Log("No collider hit, hiding details panel");
-            ViewBandMemberUIManager.Instance.ShowBandMemberDetails(false);
-        }
-    }
-
-    private void OnAttemptHover(RaycastHit2D hit2D)
-    {
-        if (hit2D.collider != null)
-        {
-            IClickable clickable = hit2D.collider.GetComponent<IClickable>();
-            clickable.OnIsHovering(true);
+            if (current != null)
+            {
+                var clickable = current.GetComponent<IClickable>();
+                clickable?.OnClicked();
+            }
+            else
+            {
+                // Clicked on empty space, hide the band member details
+                ViewBandMemberUIManager.Instance.ShowBandMemberDetails(false, null);
+            }
         }
     }
 }
