@@ -16,7 +16,7 @@ public class PerformGigUIManager : Singleton<PerformGigUIManager>
         for (int i = 0; i < 5; i++)
         {
             Label songLabel = new Label();
-            songLabel.text = (i + 1) + ". Song name " + (i + 1); // Eventually this will be actual songs written by 
+            songLabel.text = (i + 1) + ". Song name " + (i + 1); // Eventually this will be actual songs written by the band
             setlistUI.Add(songLabel);
         }
     }
