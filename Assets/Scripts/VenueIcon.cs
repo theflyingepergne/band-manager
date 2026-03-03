@@ -1,13 +1,13 @@
-using Unity.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class VenueIcon : MonoBehaviour, IClickable
 {
     [SerializeField] private VenueData venueData;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     public void OnClicked()
     {
         Debug.Log("Venue icon clicked: " + venueData.venueName);
+        SceneManager.LoadScene("Venue");
     }
 }
