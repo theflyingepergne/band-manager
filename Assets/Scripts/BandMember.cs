@@ -41,14 +41,16 @@ public class BandMember : MonoBehaviour, IClickable
 
         newSongData.songScore = Random.Range(0f, 100f);
 
+        data.songsWritten.Add(newSongData); // Add the new song to the member's list of songs
+
         WriteSong(newSongData);
     }
 
     public void WriteSong(SongData newSongData)
     {
         Debug.Log(newSongData.songName);
-        Debug.Log("Genres: " + string.Join(", ", newSongData.songGenres.ConvertAll(g => g.genreName)));
-        Debug.Log("Instruments: " + string.Join(", ", newSongData.songInstruments.ConvertAll(i => i.instrumentName)));
+        // Debug.Log("Genres: " + string.Join(", ", newSongData.songGenres.ConvertAll(g => g.genreName)));
+        // Debug.Log("Instruments: " + string.Join(", ", newSongData.songInstruments.ConvertAll(i => i.instrumentName)));
         Debug.Log("Score: " + newSongData.songScore);
     }
 }

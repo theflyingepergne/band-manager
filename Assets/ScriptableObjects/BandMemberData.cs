@@ -42,4 +42,7 @@ public class BandMemberData : ScriptableObject
     [SerializeField] private List<string> traits;
     [CreateProperty]
     public string traitsDisplay => string.Join(", ", traits);
+
+    //-- Songs
+    public List<SongData> songsWritten = new List<SongData>();
 }
