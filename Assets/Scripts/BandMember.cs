@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BandMember : MonoBehaviour, IClickable
 {
-    [SerializeField] private BandMemberData bandMemberData;
+    [SerializeField] public BandMemberData bandMemberData;
 
     public void Start()
     {
@@ -17,9 +17,14 @@ public class BandMember : MonoBehaviour, IClickable
         BandMemberData data = bandMemberData;
         ViewBandMemberUIManager.Instance.ShowBandMemberDetails(true, data);
 
-        // TEST create a new song
+        // TEST: Write a song for this band member when clicked
+        WriteSong(data);
+    }
+
+    public void WriteSong(BandMemberData data)
+    {
         SongData newSongData = ScriptableObject.CreateInstance<SongData>();
-        newSongData.songName = "Kevin's Song";
+        newSongData.songName = $"{data.memberName}'s Song";
 
         // 1. Initialize the lists so they aren't null
         newSongData.songGenres = new List<GenreData>();
@@ -40,17 +45,9 @@ public class BandMember : MonoBehaviour, IClickable
         }
 
         newSongData.songScore = Random.Range(0f, 100f);
-
         data.songsWritten.Add(newSongData); // Add the new song to the member's list of songs
 
-        WriteSong(newSongData);
-    }
-
-    public void WriteSong(SongData newSongData)
-    {
         Debug.Log(newSongData.songName);
-        // Debug.Log("Genres: " + string.Join(", ", newSongData.songGenres.ConvertAll(g => g.genreName)));
-        // Debug.Log("Instruments: " + string.Join(", ", newSongData.songInstruments.ConvertAll(i => i.instrumentName)));
         Debug.Log("Score: " + newSongData.songScore);
     }
 }

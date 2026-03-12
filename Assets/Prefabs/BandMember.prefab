@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7714012343134507616}
   m_Layer: 6
   m_Name: BandMember
-  m_TagString: Untagged
+  m_TagString: BandMember
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
