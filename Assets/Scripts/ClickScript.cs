@@ -43,7 +43,7 @@ public class ClickScript : MonoBehaviour
             else
             {
                 // Clicked on empty space, hide the band member details
-                ViewBandMemberUIManager.Instance.ShowBandMemberDetails(false, null);
+                // ViewBandMemberUIManager.Instance.ShowBandMemberDetails(false, null);
             }
         }
     }
