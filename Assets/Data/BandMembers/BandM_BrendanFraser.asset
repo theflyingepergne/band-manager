@@ -16,7 +16,7 @@ MonoBehaviour:
   instruments:
   - {fileID: 11400000, guid: 598ded0cc8fe84744b909cf44cec4bc6, type: 2}
   - {fileID: 11400000, guid: c551a6b860782f548987801332244ef8, type: 2}
-  _talentLevel: 2
+  _talentLevel: 10
   memberSprite: {fileID: 21300000, guid: 537487bec9868f24c961a0ba6ddb9e7b, type: 3}
   genres:
   - {fileID: 11400000, guid: 8571d9608c768432aa2acd7fab5f9e9d, type: 2}
@@ -25,3 +25,5 @@ MonoBehaviour:
   - Charismatic
   - Wild
   - Depressed
+  songsWritten:
+  - {fileID: 0}

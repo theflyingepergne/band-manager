@@ -13,10 +13,10 @@ public class BandMemberData : ScriptableObject
 
     //-- Instruments
     [SerializeField] public List<InstrumentData> instruments;
-    [CreateProperty]
-    public string instrumentsDisplay => (instruments.Count > 0)                 // Check if there are more than 0 instruments in the list 
-        ? string.Join(", ", instruments.ConvertAll(i => i.instrumentName))      // This will allow us to display the instruments in the UI as a comma-separated list
-        : "Willing to learn";                                                   // If there are no instruments, display "No instruments" in
+    // [CreateProperty]
+    // public string instrumentsDisplay => (instruments.Count > 0)                 // Check if there are more than 0 instruments in the list 
+    //     ? string.Join(", ", instruments.ConvertAll(i => i.instrumentName))      // This will allow us to display the instruments in the UI as a comma-separated list
+    //     : "Willing to learn";                                                   // If there are no instruments, display "No instruments" in
 
     //-- Talent Level
     [Range(0, 10)]                              // This will allow us to set the talent level in the inspector with a slider from 0 to 10
@@ -33,15 +33,13 @@ public class BandMemberData : ScriptableObject
 
     //-- Genres
     [SerializeField] public List<GenreData> genres;
-    [CreateProperty]
-    public string genresDisplay => (genres.Count > 0)
-        ? string.Join(", ", genres.ConvertAll(g => g.genreName))
-        : "Versatile";
+    // [CreateProperty]
+    // public string genresDisplay => (genres.Count > 0)
+    //     ? string.Join(", ", genres.ConvertAll(g => g.genreName))
+    //     : "Versatile";
     
     //-- Traits
-    [SerializeField] private List<string> traits;
-    [CreateProperty]
-    public string traitsDisplay => string.Join(", ", traits);
+    [SerializeField] public List<string> traits;
 
     //-- Songs
     public List<SongData> songsWritten = new List<SongData>();

@@ -25,7 +25,7 @@ public class BandMember : MonoBehaviour, IClickable
         SongData newSongData = ScriptableObject.CreateInstance<SongData>();
         newSongData.songName = $"{data.memberName}'s Song";
 
-        // 1. Initialize the lists so they aren't null
+        // 1. Initialize the lists so they are valid
         newSongData.songGenres = new List<GenreData>();
         newSongData.songInstruments = new List<InstrumentData>();
 

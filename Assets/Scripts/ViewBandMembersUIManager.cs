@@ -1,13 +1,17 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
-using Unity.VisualScripting;
 
 public class ViewBandMemberUIManager : Singleton<ViewBandMemberUIManager>
 {
-    // get reference to the BandMemberDetailsPanel which is a child of the UI Canvas, not using uitoolkit
     [SerializeField] private RectTransform BandMemberDetailsPanel;
+    
     [Header("Band Member Details")]
     [SerializeField] private TMP_Text nameText;
+    [SerializeField] private TMP_Text genresText;
+    [SerializeField] private Image talentBarFillImage;
+    [SerializeField] private TMP_Text instrumentsText;
+    [SerializeField] private TMP_Text traitsText;
 
     void Start()
     {
@@ -17,20 +21,23 @@ public class ViewBandMemberUIManager : Singleton<ViewBandMemberUIManager>
 
     public void ShowBandMemberDetails(bool isActive = false, BandMemberData data = null)
     {
-        // Set the details panel to active and populate it with the data from the BandMemberData
+        // Populate it with the data from the BandMemberData
         if (data != null)
         {
             nameText.text = data.memberName;
+            genresText.text = string.Join(", ", data.genres.ConvertAll(g => g.genreName));
+            talentBarFillImage.fillAmount = data.talentLevel / 10f;
+            instrumentsText.text = string.Join(", ", data.instruments.ConvertAll(i => i.instrumentName));
+            traitsText.text = string.Join(", ", data.traits);
         }
 
+        // Toggle detais panel
         if (isActive)
         {
-            // detailsWrapper.RemoveFromClassList("hide");
             BandMemberDetailsPanel.gameObject.SetActive(true);
         }
         else
         {
-            // detailsWrapper.AddToClassList("hide");
             BandMemberDetailsPanel.gameObject.SetActive(false);
         }
 

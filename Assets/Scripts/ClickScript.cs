@@ -13,7 +13,6 @@ public class ClickScript : MonoBehaviour
 
     void Update()
     {
-
         // Convert mouse position to world coordinates and perform a raycast
         Vector2 mousePos = Mouse.current.position.ReadValue();
         RaycastHit2D hit2D = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(mousePos), Vector2.zero);
@@ -42,8 +41,8 @@ public class ClickScript : MonoBehaviour
             }
             else
             {
-                // Clicked on empty space, hide the band member details
-                // ViewBandMemberUIManager.Instance.ShowBandMemberDetails(false, null);
+                // Clicked on empty space, hide the band member details panel
+                ViewBandMemberUIManager.Instance.ShowBandMemberDetails(false, null);
             }
         }
     }
