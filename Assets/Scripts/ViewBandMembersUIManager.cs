@@ -1,24 +1,27 @@
 using UnityEngine;
+using TMPro;
+using Unity.VisualScripting;
 
-public class ViewBandMemberUIManager : MonoBehaviour
+public class ViewBandMemberUIManager : Singleton<ViewBandMemberUIManager>
 {
     // get reference to the BandMemberDetailsPanel which is a child of the UI Canvas, not using uitoolkit
     [SerializeField] private RectTransform BandMemberDetailsPanel;
-
+    [Header("Band Member Details")]
+    [SerializeField] private TMP_Text nameText;
 
     void Start()
     {
-        // Hide the details panel at the start
+        // Hide the details panel on start
         ShowBandMemberDetails(false);
     }
 
     public void ShowBandMemberDetails(bool isActive = false, BandMemberData data = null)
     {
         // Set the details panel to active and populate it with the data from the BandMemberData
-        // if (data != null)
-        // {
-        //     // root.dataSource = data; // Set the data source for the UI to the BandMemberData
-        // }
+        if (data != null)
+        {
+            nameText.text = data.memberName;
+        }
 
         if (isActive)
         {
