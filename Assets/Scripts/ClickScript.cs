@@ -3,48 +3,39 @@ using UnityEngine.InputSystem;
 
 public class ClickScript : MonoBehaviour
 {
-    InputAction clickAction;
-    Collider2D lastHitCollider;
-
-    void Start()
-    {
-        clickAction = InputSystem.actions.FindAction("Click");
-    }
+    private Collider2D lastHitCollider;
 
     void Update()
     {
-        // Convert mouse position to world coordinates and perform a raycast
+        // Get mouse position
         Vector2 mousePos = Mouse.current.position.ReadValue();
+        
+        // Perform Raycast
         RaycastHit2D hit2D = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(mousePos), Vector2.zero);
-
-        // If last collider != current collider, highlight the collider
         Collider2D current = hit2D.collider;
+
+        // Are we hovering on anything that implements IHighlighter
+        // If what we are hovering over != lastHitCollider
+        // Highlight current and stop highlighting lastHitCollider
         if (current != lastHitCollider)
         {
-            var lastClickable = lastHitCollider?.GetComponent<IHighlightable>();
-            lastClickable?.OnIsHovering(false);
-
-            var currentClickable = current?.GetComponent<IHighlightable>();
-            currentClickable?.OnIsHovering(true);
-
+            lastHitCollider?.GetComponent<IHighlightable>()?.OnIsHovering(false);
+            current?.GetComponent<IHighlightable>()?.OnIsHovering(true);
             lastHitCollider = current;
         }
 
-        // If we click on a collider, do something
-        // If we click on empty space, hide the band member details
-        if (clickAction.WasReleasedThisFrame())
+        // Did we click on anything
+        if (Mouse.current.leftButton.wasReleasedThisFrame)
         {
             if (current != null)
             {
-                var clickable = current.GetComponent<IClickable>();
-                clickable?.OnClicked();
+                current.GetComponent<IClickable>()?.OnClicked();
             }
             else
             {
-                // Clicked on empty space, hide the band member details panel
-                ViewBandMemberUIManager.Instance.ShowBandMemberDetails(false, null);
+                // Reference the Singleton directly here
+                ViewBandMemberUIManager.Instance?.ShowBandMemberDetails(false);
             }
         }
     }
 }
-

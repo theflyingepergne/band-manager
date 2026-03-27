@@ -2,21 +2,12 @@ using UnityEngine;
 
 public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
+    // The static reference that other scripts will call
     public static T Instance { get; private set; }
 
     protected virtual void Awake()
     {
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
+        // Simply set the instance to this object when the scene starts
         Instance = this as T;
-    }
-    
-    protected virtual void OnApplicationQuit()
-    {
-        Instance = null;
-        Destroy(gameObject);
     }
 }

@@ -19,7 +19,7 @@ public class PerformGigUIManager : Singleton<PerformGigUIManager>
         setlistUI = root.Q<ScrollView>("Setlist");
 
         GetBandMembers();
-        PopulateSetlistUI(GetSetlist());
+        // PopulateSetlistUI(GetSetlist());
 
     }
 
