@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public interface IHighlightable
+public interface IHoverable
 {
     void OnIsHovering(bool isHovering);
 }

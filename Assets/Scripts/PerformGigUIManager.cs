@@ -4,8 +4,8 @@ using UnityEngine;
 public class PerformGigUIManager : Singleton<PerformGigUIManager>
 {
     // UI references
-    [SerializeField] private RectTransform songListPanel;
-    [SerializeField] private GameObject songWrapper;
+    [SerializeField] private RectTransform setlistSongList;
+    [SerializeField] private GameObject setlistSongWrapper;
 
     // Band references
     private List<GameObject> bandMembers = new List<GameObject>();
@@ -20,7 +20,6 @@ public class PerformGigUIManager : Singleton<PerformGigUIManager>
     public void GetBandMembers()
     {
         bandMembers.AddRange(GameObject.FindGameObjectsWithTag("BandMember"));
-        // Debug.Log("Found " + bandMembers.Count + " band members in the scene.");
     }
 
     public List<SongEntry> GetSetlist()
@@ -35,7 +34,7 @@ public class PerformGigUIManager : Singleton<PerformGigUIManager>
             if (data.songsWritten.Count > 0)
             {
                 setlist.AddRange(data.songsWritten);
-                Debug.Log("Found " + data.memberName + "'s song");
+                // Debug.Log("Found " + data.memberName + "'s song");
             }
         }
         return setlist;
@@ -44,17 +43,18 @@ public class PerformGigUIManager : Singleton<PerformGigUIManager>
     public void PopulateSetlistPanel(List<SongEntry> songs)
     {
         int i = 0;
-        // Display the setlist in the UI (for now, just show song names)
+
+        // Display the setlist in the UI
         foreach (SongEntry song in songs)
         {
             i++;
 
-            GameObject setlistSongEntry = Instantiate(songWrapper, songListPanel, false);
+            GameObject setlistSongEntry = Instantiate(setlistSongWrapper, setlistSongList, false);
             SongWrapperManager songManager = setlistSongEntry.GetComponentInChildren<SongWrapperManager>();
 
             if (songManager != null)
             {
-                Debug.Log("found song wrapper manager");
+                // Debug.Log("found song wrapper manager");
                 songManager.SetSongNo(i);
                 songManager.SetSongName(song.songName);
             }

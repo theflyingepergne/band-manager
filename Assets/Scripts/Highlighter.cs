@@ -1,7 +1,7 @@
 // Add this script to objects that you want to highlight when mousing over
 using UnityEngine;
 
-public class Highlighter : MonoBehaviour, IHighlightable
+public class Highlighter : MonoBehaviour, IHoverable
 {
     Color originalColour;
     [SerializeField] Color highlightedColour = new Color(255f, 0f, 0f, 125f);
