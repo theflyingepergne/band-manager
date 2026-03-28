@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BandMember : MonoBehaviour, IClickable
@@ -16,37 +15,45 @@ public class BandMember : MonoBehaviour, IClickable
     {
         BandMemberData data = bandMemberData;
         ViewBandMemberUIManager.Instance.ShowBandMemberDetails(true, data);
+        
         // TEST: Write a song for this band member when clicked
-        // WriteSong(data);
+        WriteSong(data);
     }
 
     public void WriteSong(BandMemberData data)
     {
-        SongData newSongData = ScriptableObject.CreateInstance<SongData>();
-        newSongData.songName = $"{data.memberName}'s Song";
+        string newSongName = $"{data.memberName}'s Song";
+        float newSongScore = Random.Range(0f, 100f);
 
-        // 1. Initialize the lists so they are valid
-        newSongData.songGenres = new List<GenreData>();
-        newSongData.songInstruments = new List<InstrumentData>();
+        SongEntry newSongEntry = new SongEntry(newSongName, newSongScore);
 
-        // 2. Pick a random Genre (if the member has any)
-        if (data.genres != null && data.genres.Count > 0)
-        {
-            int randomIndex = Random.Range(0, data.genres.Count);
-            newSongData.songGenres.Add(data.genres[randomIndex]);
-        }
+        // // 1. Initialize the lists so they are valid
+        // newSongData.songGenres = new List<GenreData>();
+        // newSongData.songInstruments = new List<InstrumentData>();
 
-        // 3. Pick a random Instrument (if the member has any)
-        if (data.instruments != null && data.instruments.Count > 0)
-        {
-            int randomIndex = Random.Range(0, data.instruments.Count);
-            newSongData.songInstruments.Add(data.instruments[randomIndex]);
-        }
+        // // 2. Pick a random Genre (if the member has any)
+        // if (data.genres != null && data.genres.Count > 0)
+        // {
+        //     int randomIndex = Random.Range(0, data.genres.Count);
+        //     newSongData.songGenres.Add(data.genres[randomIndex]);
+        // }
 
-        newSongData.songScore = Random.Range(0f, 100f);
-        data.songsWritten.Add(newSongData); // Add the new song to the member's list of songs
+        // // 3. Pick a random Instrument (if the member has any)
+        // if (data.instruments != null && data.instruments.Count > 0)
+        // {
+        //     int randomIndex = Random.Range(0, data.instruments.Count);
+        //     newSongData.songInstruments.Add(data.instruments[randomIndex]);
+        // }
 
-        Debug.Log(newSongData.songName);
-        Debug.Log("Score: " + newSongData.songScore);
+        data.songsWritten.Add(newSongEntry); // Add the new song to the member's list of songs
+
+#if UNITY_EDITOR
+    UnityEditor.EditorUtility.SetDirty(data);
+#endif
+// TODO when save load system is implemented, revisit this
+
+
+        Debug.Log(newSongEntry.songName);
+        Debug.Log("Song score = " + newSongEntry.songScore);
     }
 }

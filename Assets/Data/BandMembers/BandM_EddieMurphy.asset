@@ -26,5 +26,5 @@ MonoBehaviour:
   - Funny
   - Short Temper
   songsWritten:
-  - {fileID: 0}
-  - {fileID: 0}
+  - songName: Eddie Murphy's Song
+    songScore: 20.760477

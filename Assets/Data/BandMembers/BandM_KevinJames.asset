@@ -25,4 +25,5 @@ MonoBehaviour:
   - Obedient
   - Nervous
   songsWritten:
-  - {fileID: 0}
+  - songName: Kevin James's Song
+    songScore: 73.419716

@@ -26,4 +26,5 @@ MonoBehaviour:
   - Wild
   - Depressed
   songsWritten:
-  - {fileID: 0}
+  - songName: Brendan Fraser's Song
+    songScore: 56.60942

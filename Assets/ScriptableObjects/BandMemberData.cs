@@ -34,5 +34,5 @@ public class BandMemberData : ScriptableObject
     [SerializeField] public List<string> traits;
 
     //-- Songs
-    public List<SongData> songsWritten = new List<SongData>();
+    public List<SongEntry> songsWritten = new List<SongEntry>();
 }

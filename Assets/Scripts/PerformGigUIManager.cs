@@ -1,26 +1,20 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class PerformGigUIManager : Singleton<PerformGigUIManager>
 {
     // UI references
-    [SerializeField] private UIDocument performGigUI;
-    private VisualElement root;
-    private VisualElement setlistUI;
+    [SerializeField] private RectTransform songListPanel;
+    [SerializeField] private GameObject songWrapper;
 
     // Band references
     private List<GameObject> bandMembers = new List<GameObject>();
-    private List<SongData> setlist = new List<SongData>();
+    private List<SongEntry> setlist = new List<SongEntry>();
 
     public void Start()
     {
-        root = performGigUI.rootVisualElement;
-        setlistUI = root.Q<ScrollView>("Setlist");
-
         GetBandMembers();
-        // PopulateSetlistUI(GetSetlist());
-
+        PopulateSetlistPanel(GetSetlist());
     }
 
     public void GetBandMembers()
@@ -29,7 +23,7 @@ public class PerformGigUIManager : Singleton<PerformGigUIManager>
         // Debug.Log("Found " + bandMembers.Count + " band members in the scene.");
     }
 
-    public List<SongData> GetSetlist()
+    public List<SongEntry> GetSetlist()
     {
         setlist.Clear();
 
@@ -41,19 +35,33 @@ public class PerformGigUIManager : Singleton<PerformGigUIManager>
             if (data.songsWritten.Count > 0)
             {
                 setlist.AddRange(data.songsWritten);
-                Debug.Log("Found song by " + data.memberName);
+                Debug.Log("Found " + data.memberName + "'s song");
             }
         }
         return setlist;
     }
 
-    public void PopulateSetlistUI(List<SongData> songs)
+    public void PopulateSetlistPanel(List<SongEntry> songs)
     {
+        int i = 0;
         // Display the setlist in the UI (for now, just show song names)
-        foreach (SongData song in songs)
+        foreach (SongEntry song in songs)
         {
-            Label songLabel = new Label(song.songName);
-            setlistUI.Add(songLabel);
+            i++;
+
+            GameObject setlistSongEntry = Instantiate(songWrapper, songListPanel, false);
+            SongWrapperManager songManager = setlistSongEntry.GetComponentInChildren<SongWrapperManager>();
+
+            if (songManager != null)
+            {
+                Debug.Log("found song wrapper manager");
+                songManager.SetSongNo(i);
+                songManager.SetSongName(song.songName);
+            }
+            else
+            {
+                Debug.Log("Couldnt find song wrapper manager for some reason");
+            }
         }
     }
 }
