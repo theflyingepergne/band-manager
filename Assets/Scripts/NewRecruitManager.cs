@@ -9,6 +9,7 @@ public class NewRecruitManager : MonoBehaviour
     [SerializeField] private BandMemberData data;
 
     [Header("UI References")]
+    [SerializeField] private GameObject newRecruitPrefab;
     [SerializeField] private Image recruitSprite;
     [SerializeField] private TMP_Text recruitName;
     [SerializeField] private TMP_Text recruiteInstruments;
@@ -61,6 +62,7 @@ public class NewRecruitManager : MonoBehaviour
 
     public void Dismiss()
     {
+        Destroy(newRecruitPrefab);
         Debug.Log("Dismissed");
     }
 

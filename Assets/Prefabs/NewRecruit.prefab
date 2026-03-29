@@ -334,6 +334,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewRecruitManager
   data: {fileID: 11400000, guid: 5ffe2af8e2066480e9b432d67c5c99c0, type: 2}
+  newRecruitPrefab: {fileID: 8191418455238557507}
   recruitSprite: {fileID: 7954376999068601730}
   recruitName: {fileID: 3122498054526589149}
   recruiteInstruments: {fileID: 4942191743988936387}
