@@ -1,49 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1432375170452499562
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6798999188299232820}
-  - component: {fileID: 2577761660234563324}
-  m_Layer: 0
-  m_Name: NewRecruitManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6798999188299232820
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1432375170452499562}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 21.871002, y: -93.56076, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1415682384081273518}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2577761660234563324
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1432375170452499562}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56009769d0237495192d3bc5a506c730, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NewRecruitManager
 --- !u!1 &1582384818293029795
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,6 +289,56 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &2570015073148080882
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8115569763465999616}
+  - component: {fileID: 5921965786902198196}
+  m_Layer: 0
+  m_Name: NewRecruitManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8115569763465999616
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2570015073148080882}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 78.420044, y: -62.8743, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1415682384081273518}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5921965786902198196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2570015073148080882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56009769d0237495192d3bc5a506c730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NewRecruitManager
+  data: {fileID: 11400000, guid: 5ffe2af8e2066480e9b432d67c5c99c0, type: 2}
+  recruitSprite: {fileID: 7954376999068601730}
+  recruitName: {fileID: 3122498054526589149}
+  recruiteInstruments: {fileID: 4942191743988936387}
+  recruitTraits: {fileID: 3603504387365939216}
+  recruitDismissPanel: {fileID: 3866848684046679151}
 --- !u!1 &3617827670423795328
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,7 +459,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4965081843132094581}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5921965786902198196}
+        m_TargetAssemblyTypeName: NewRecruitManager, Assembly-CSharp
+        m_MethodName: Recruit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4797660447193815771
 GameObject:
   m_ObjectHideFlags: 0
@@ -1090,7 +1108,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3922795213381343115}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5921965786902198196}
+        m_TargetAssemblyTypeName: NewRecruitManager, Assembly-CSharp
+        m_MethodName: Dismiss
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7312126892956024047
 GameObject:
   m_ObjectHideFlags: 0
@@ -1337,7 +1367,7 @@ RectTransform:
   m_Children:
   - {fileID: 235521842116722862}
   - {fileID: 3866848684046679151}
-  - {fileID: 6798999188299232820}
+  - {fileID: 8115569763465999616}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1610,7 +1640,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 848091258757498023}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5921965786902198196}
+        m_TargetAssemblyTypeName: NewRecruitManager, Assembly-CSharp
+        m_MethodName: ToggleRecruitDismissPanel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &844324178166605776
 MonoBehaviour:
   m_ObjectHideFlags: 0
