@@ -30,7 +30,7 @@ public class ClickScript : MonoBehaviour
             else
             {
                 // Reference the Singleton directly here
-                ViewBandMemberUIManager.Instance?.ShowBandMemberDetails(false);
+                ViewBandMembersUIManager.Instance?.ShowBandMemberDetails(false);
             }
         }
     }

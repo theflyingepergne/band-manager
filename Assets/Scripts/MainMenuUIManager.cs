@@ -6,7 +6,7 @@ public class MainMenuUIManager : Singleton<MainMenuUIManager>
     public void OnPlayButtonClicked()
     {
         // Eventually play actual game but for now load ViewBandMember scene
-        SceneManager.LoadScene("ViewBandMember");
+        SceneManager.LoadScene("ViewBandMembers");
     }
 
     public void OnSettingsButtonClicked()

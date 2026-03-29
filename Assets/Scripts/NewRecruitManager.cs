@@ -57,6 +57,8 @@ public class NewRecruitManager : MonoBehaviour
 
     public void Recruit()
     {
+        BandManager.Instance?.RecruitMember(data);
+        Destroy(newRecruitPrefab);
         Debug.Log("Recruited");
     }
 

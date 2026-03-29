@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class ViewBandMemberUIManager : Singleton<ViewBandMemberUIManager>
+public class ViewBandMembersUIManager : Singleton<ViewBandMembersUIManager>
 {
     [Header("UI References")]
     [SerializeField] private RectTransform BandMemberDetailsPanel;    
