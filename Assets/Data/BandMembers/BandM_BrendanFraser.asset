@@ -28,3 +28,5 @@ MonoBehaviour:
   songsWritten:
   - songName: Brendan Fraser's Song
     songScore: 99.12893
+  - songName: Brendan Fraser's Song
+    songScore: 75.89122

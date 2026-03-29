@@ -4,9 +4,8 @@ using TMPro;
 
 public class ViewBandMemberUIManager : Singleton<ViewBandMemberUIManager>
 {
-    [SerializeField] private RectTransform BandMemberDetailsPanel;
-    
-    [Header("Band Member Details")]
+    [Header("UI References")]
+    [SerializeField] private RectTransform BandMemberDetailsPanel;    
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private TMP_Text genresText;
     [SerializeField] private Image talentBarFillImage;

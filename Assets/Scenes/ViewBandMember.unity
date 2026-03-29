@@ -2763,6 +2763,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cb289d0b7a55244db281b8a47a3c1d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ViewBandMemberUIManager
+  persistAcrossScenes: 0
   BandMemberDetailsPanel: {fileID: 825928517}
   nameText: {fileID: 115322707}
   genresText: {fileID: 1275949758}
