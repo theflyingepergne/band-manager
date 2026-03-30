@@ -4,6 +4,7 @@ using TMPro;
 
 public class ViewBandMembersUIManager : Singleton<ViewBandMembersUIManager>
 {
+    //---References---//
     [Header("UI References")]
     [SerializeField] private RectTransform BandMemberDetailsPanel;    
     [SerializeField] private TMP_Text nameText;
@@ -12,10 +13,20 @@ public class ViewBandMembersUIManager : Singleton<ViewBandMembersUIManager>
     [SerializeField] private TMP_Text instrumentsText;
     [SerializeField] private TMP_Text traitsText;
 
+    //---Events---//
+    void OnEnable() => ClickScript.OnClickEmptySpace += HandleClickEmptySpace;
+    void OnDisable() => ClickScript.OnClickEmptySpace -= HandleClickEmptySpace;
+
+    //---Method---//
     void Start()
     {
         // Hide the details panel on start
         ShowBandMemberDetails(false);
+    }
+    
+    private void HandleClickEmptySpace()
+    {
+        ShowBandMemberDetails(false, null);
     }
 
     public void ShowBandMemberDetails(bool isActive = false, BandMemberData data = null)

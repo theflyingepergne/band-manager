@@ -289,57 +289,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!1 &2570015073148080882
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8115569763465999616}
-  - component: {fileID: 5921965786902198196}
-  m_Layer: 0
-  m_Name: NewRecruitManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8115569763465999616
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2570015073148080882}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 78.420044, y: -62.8743, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1415682384081273518}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5921965786902198196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2570015073148080882}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56009769d0237495192d3bc5a506c730, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NewRecruitManager
-  data: {fileID: 11400000, guid: 5ffe2af8e2066480e9b432d67c5c99c0, type: 2}
-  newRecruitPrefab: {fileID: 8191418455238557507}
-  recruitSprite: {fileID: 7954376999068601730}
-  recruitName: {fileID: 3122498054526589149}
-  recruiteInstruments: {fileID: 4942191743988936387}
-  recruitTraits: {fileID: 3603504387365939216}
-  recruitDismissPanel: {fileID: 3866848684046679151}
 --- !u!1 &3617827670423795328
 GameObject:
   m_ObjectHideFlags: 0
@@ -461,7 +410,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5921965786902198196}
+      - m_Target: {fileID: 7603992877863600525}
         m_TargetAssemblyTypeName: NewRecruitManager, Assembly-CSharp
         m_MethodName: Recruit
         m_Mode: 1
@@ -1206,7 +1155,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5921965786902198196}
+      - m_Target: {fileID: 7603992877863600525}
         m_TargetAssemblyTypeName: NewRecruitManager, Assembly-CSharp
         m_MethodName: Dismiss
         m_Mode: 1
@@ -1444,6 +1393,7 @@ GameObject:
   - component: {fileID: 1415682384081273518}
   - component: {fileID: 3377241794956498363}
   - component: {fileID: 6591917489001922548}
+  - component: {fileID: 7603992877863600525}
   m_Layer: 5
   m_Name: NewRecruit
   m_TagString: Untagged
@@ -1465,7 +1415,6 @@ RectTransform:
   m_Children:
   - {fileID: 235521842116722862}
   - {fileID: 3866848684046679151}
-  - {fileID: 8115569763465999616}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1511,6 +1460,25 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 0.25
+--- !u!114 &7603992877863600525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8191418455238557507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56009769d0237495192d3bc5a506c730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NewRecruitManager
+  data: {fileID: 11400000, guid: 5ffe2af8e2066480e9b432d67c5c99c0, type: 2}
+  newRecruitPrefab: {fileID: 8191418455238557507}
+  recruitSprite: {fileID: 7954376999068601730}
+  recruitName: {fileID: 3122498054526589149}
+  recruitInstruments: {fileID: 4942191743988936387}
+  recruitTraits: {fileID: 3603504387365939216}
+  recruitDismissPanel: {fileID: 3866848684046679151}
 --- !u!1 &8267028069844832476
 GameObject:
   m_ObjectHideFlags: 0
@@ -1739,7 +1707,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5921965786902198196}
+      - m_Target: {fileID: 7603992877863600525}
         m_TargetAssemblyTypeName: NewRecruitManager, Assembly-CSharp
         m_MethodName: ToggleRecruitDismissPanel
         m_Mode: 1

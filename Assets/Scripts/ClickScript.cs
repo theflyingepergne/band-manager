@@ -3,7 +3,11 @@ using UnityEngine.InputSystem;
 
 public class ClickScript : MonoBehaviour
 {
+    //---References---//
     private Collider2D lastHitCollider;
+
+    //---Events---//
+    public static System.Action OnClickEmptySpace; // empty space as in no Collider2D
 
     void Update()
     {
@@ -30,7 +34,10 @@ public class ClickScript : MonoBehaviour
             else
             {
                 // Reference the Singleton directly here
-                ViewBandMembersUIManager.Instance?.ShowBandMemberDetails(false);
+                // ViewBandMembersUIManager.Instance?.ShowBandMemberDetails(false);
+
+                // Tell anyone who is listening that we clicked on empty space
+                OnClickEmptySpace?.Invoke();
             }
         }
     }

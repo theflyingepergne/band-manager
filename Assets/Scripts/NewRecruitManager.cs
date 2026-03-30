@@ -12,7 +12,7 @@ public class NewRecruitManager : MonoBehaviour
     [SerializeField] private GameObject newRecruitPrefab;
     [SerializeField] private Image recruitSprite;
     [SerializeField] private TMP_Text recruitName;
-    [SerializeField] private TMP_Text recruiteInstruments;
+    [SerializeField] private TMP_Text recruitInstruments;
     [SerializeField] private TMP_Text recruitTraits;
     [SerializeField] private RectTransform recruitDismissPanel;
 
@@ -28,7 +28,7 @@ public class NewRecruitManager : MonoBehaviour
     {
         recruitSprite.sprite = data.memberSprite;
         recruitName.text = data.memberName;
-        recruiteInstruments.text = $"Plays {data.instruments[0].instrumentName}";
+        recruitInstruments.text = $"Plays {data.instruments[0].instrumentName}";
         recruitTraits.text = $"Seems {data.traits[0]}...";
 
         SetRecruitDismissPanelVisibile(false);
@@ -41,12 +41,10 @@ public class NewRecruitManager : MonoBehaviour
         if (recruitDismissPanel.gameObject.activeSelf == true)
         {
             SetRecruitDismissPanelVisibile(false);
-            Debug.Log("hiding options");
         }
         else
         {
             SetRecruitDismissPanelVisibile(true);
-            Debug.Log("showing options");
         }
     }
 
@@ -59,13 +57,11 @@ public class NewRecruitManager : MonoBehaviour
     {
         BandManager.Instance?.RecruitMember(data);
         Destroy(newRecruitPrefab);
-        Debug.Log("Recruited");
     }
 
     public void Dismiss()
     {
         Destroy(newRecruitPrefab);
-        Debug.Log("Dismissed");
     }
 
     private void CloseIfNotThis(NewRecruitManager openedManager)
