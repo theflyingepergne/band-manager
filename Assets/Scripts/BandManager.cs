@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class BandManager : Singleton<BandManager>
 {
-    public List<BandMemberData> HiredMembers = new List<BandMemberData>();
+    public List<BandMemberData> BandMembers = new List<BandMemberData>();
 
     public void RecruitMember(BandMemberData data)
     {
-        if (!HiredMembers.Contains(data))
+        if (!BandMembers.Contains(data))
         {
-            HiredMembers.Add(data);
-            Debug.Log($"Hired {data.name}! Total members: {HiredMembers.Count}");
+            BandMembers.Add(data);
+            Debug.Log($"Hired {data.name}! Total members: {BandMembers.Count}");
         }
         else
         {

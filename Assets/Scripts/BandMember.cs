@@ -6,18 +6,21 @@ public class BandMember : MonoBehaviour, IClickable
 
     public void Start()
     {
-        BandMemberData data = bandMemberData;
-        Sprite sprite = data.memberSprite;
-        GetComponent<SpriteRenderer>().sprite = sprite;
+        PopulateBandMemberData(bandMemberData);
+    }
+
+    public void PopulateBandMemberData(BandMemberData data)
+    {
+        bandMemberData = data;
+        GetComponent<SpriteRenderer>().sprite = data.memberSprite;
     }
 
     public void OnClicked()
     {
-        BandMemberData data = bandMemberData;
-        ViewBandMembersUIManager.Instance.ShowBandMemberDetails(true, data);
+        ViewBandMembersUIManager.Instance.ShowBandMemberDetails(true, bandMemberData);
         
         // TEST: Write a song for this band member when clicked
-        WriteSong(data);
+        WriteSong(bandMemberData);
     }
 
     public void WriteSong(BandMemberData data)

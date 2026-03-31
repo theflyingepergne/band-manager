@@ -25,10 +25,4 @@ MonoBehaviour:
   - Gorgeous
   - Funny
   - Short Temper
-  songsWritten:
-  - songName: Eddie Murphy's Song
-    songScore: 44.84289
-  - songName: Eddie Murphy's Song
-    songScore: 93.39451
-  - songName: Eddie Murphy's Song
-    songScore: 34.216278
+  songsWritten: []

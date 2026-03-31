@@ -25,16 +25,4 @@ MonoBehaviour:
   - Charismatic
   - Wild
   - Depressed
-  songsWritten:
-  - songName: Brendan Fraser's Song
-    songScore: 5.54477
-  - songName: Brendan Fraser's Song
-    songScore: 89.74631
-  - songName: Brendan Fraser's Song
-    songScore: 59.157352
-  - songName: Brendan Fraser's Song
-    songScore: 53.945786
-  - songName: Brendan Fraser's Song
-    songScore: 44.808037
-  - songName: Brendan Fraser's Song
-    songScore: 61.817867
+  songsWritten: []

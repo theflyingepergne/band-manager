@@ -24,12 +24,4 @@ MonoBehaviour:
   - Gorgeous
   - Obedient
   - Nervous
-  songsWritten:
-  - songName: Kevin James's Song
-    songScore: 63.569344
-  - songName: Kevin James's Song
-    songScore: 39.333504
-  - songName: Kevin James's Song
-    songScore: 6.061375
-  - songName: Kevin James's Song
-    songScore: 52.770477
+  songsWritten: []

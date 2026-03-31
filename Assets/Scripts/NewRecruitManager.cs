@@ -38,14 +38,7 @@ public class NewRecruitManager : MonoBehaviour
     {
         OnAnyPanelOpened?.Invoke(this);
 
-        if (recruitDismissPanel.gameObject.activeSelf == true)
-        {
-            SetRecruitDismissPanelVisibile(false);
-        }
-        else
-        {
-            SetRecruitDismissPanelVisibile(true);
-        }
+        SetRecruitDismissPanelVisibile(!recruitDismissPanel.gameObject.activeSelf);
     }
 
     private void SetRecruitDismissPanelVisibile(bool visible)

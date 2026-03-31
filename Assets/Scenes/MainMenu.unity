@@ -1147,7 +1147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BandManager
   persistAcrossScenes: 1
-  HiredMembers: []
+  BandMembers: []
 --- !u!4 &873707836
 Transform:
   m_ObjectHideFlags: 0

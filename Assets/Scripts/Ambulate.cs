@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Ambulate : MonoBehaviour
 {
-    [SerializeField] private float speed = 2f;
-    [SerializeField] private Vector2 moveArea = new Vector2(9.5f, 5.1f);
+    public float speed = 2f;
+    public Vector2 moveArea;
 
     private Vector2 direction;
     private BoxCollider2D myCollider;
@@ -50,5 +50,10 @@ public class Ambulate : MonoBehaviour
         pos.x = Mathf.Clamp(pos.x, -moveArea.x + hW, moveArea.x - hW);
         pos.y = Mathf.Clamp(pos.y, -moveArea.y + hH, moveArea.y - hH);
         transform.position = pos;
+    }
+
+    public void SetupBoundaries(Vector2 newArea)
+    {
+        moveArea = newArea;
     }
 }
