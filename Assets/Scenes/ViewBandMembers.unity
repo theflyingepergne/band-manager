@@ -1505,6 +1505,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BandSpawner
   bandMemberPrefab: {fileID: 165794384857220249, guid: e49f31e3f94846943ab2a413b1e23642, type: 3}
   spawnArea: {x: 9.5, y: 5.1}
+  shouldAmbulate: 1
 --- !u!4 &691304493
 Transform:
   m_ObjectHideFlags: 0
@@ -2022,8 +2023,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 326.1, y: -61.005}
-  m_SizeDelta: {x: 552.2, y: 0}
+  m_AnchoredPosition: {x: 326.79, y: -58.52}
+  m_SizeDelta: {x: 553.58, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &895543527
 MonoBehaviour:
@@ -2047,8 +2048,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: View Band Members
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d95d84e9830d646bf948afeec0c1a737, type: 2}
-  m_sharedMaterial: {fileID: 2208980696650583147, guid: d95d84e9830d646bf948afeec0c1a737, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
