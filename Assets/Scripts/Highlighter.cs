@@ -17,16 +17,8 @@ public class Highlighter : MonoBehaviour, IHoverable
     {
         if (spriteRenderer != null)
         {
+            // If hovering, use highlighted colour, otherwise use original colour
             spriteRenderer.material.color = isHovering ? highlightedColour : originalColour;
         }
-        // If hovering, change the colour to the highlighted colour, otherwise change it back to the original colour
-        // if (isHovering && spriteRenderer != null)
-        // {
-        //     spriteRenderer.material.color = highlightedColour;
-        // }
-        // else
-        // {
-        //     spriteRenderer.material.color = originalColour;
-        // }
     }
 }

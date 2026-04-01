@@ -25,4 +25,6 @@ MonoBehaviour:
   - Charismatic
   - Pragmatic
   - Late
-  songsWritten: []
+  songsWritten:
+  - songName: Joanna Lumley's Song
+    songScore: 58.815067
