@@ -764,7 +764,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 1.1874784, y: 0.138829}
+  m_Offset: {x: 1.4052397, y: 0.138829}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -774,7 +774,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 8.064101, y: 5.476567}
+  m_Size: {x: 7.628579, y: 5.476567}
   m_EdgeRadius: 0
 --- !u!212 &1751388320
 SpriteRenderer:
@@ -862,10 +862,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 593021a88398b4d6d8e18216d2f047d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SetlistPreparationManager
-  startPosition: {x: 9.23, y: -1.14, z: 0}
+  startPosition: {x: 10.02, y: -1.14, z: 0}
   startRotation: {x: 0, y: 0, z: 5.41}
   hoverPosition: {x: 4.66, y: -1.57, z: 0}
   hoverRotation: {x: 0, y: 0, z: 12.295}
+  tweenSpeed: 0.4
+  easeType: 26
 --- !u!1001 &1983770074
 PrefabInstance:
   m_ObjectHideFlags: 0
