@@ -27,4 +27,5 @@ MonoBehaviour:
   - Late
   songsWritten:
   - songName: Joanna Lumley's Song
+    author: {fileID: 0}
     songScore: 58.815067

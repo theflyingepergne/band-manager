@@ -27,6 +27,8 @@ MonoBehaviour:
   - Funny
   songsWritten:
   - songName: Jack Black's Song
+    author: {fileID: 0}
     songScore: 56.19475
   - songName: Jack Black's Song
+    author: {fileID: 0}
     songScore: 91.074646

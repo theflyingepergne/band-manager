@@ -50,12 +50,6 @@ public class BandMember : MonoBehaviour, IClickable
 
         BandManager.Instance.AddSongToCollection(newSongEntry);
 
-#if UNITY_EDITOR
-    UnityEditor.EditorUtility.SetDirty(data);
-#endif
-// TODO when save load system is implemented, revisit this
-
-
         // Debug.Log(newSongEntry.songName);
         // Debug.Log("Song score = " + newSongEntry.songScore);
     }

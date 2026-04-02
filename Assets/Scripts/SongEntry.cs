@@ -13,6 +13,7 @@ public class SongEntry
     public float songScore = 10f;
     // Eventually songScore will be a calculated value
     // Add things here that will be used to calculate songScore
+    
     public SongEntry(string name, BandMemberData bandMember, float score)
     {
         songName = name;
