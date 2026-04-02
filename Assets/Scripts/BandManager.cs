@@ -3,18 +3,25 @@ using UnityEngine;
 
 public class BandManager : Singleton<BandManager>
 {
-    public List<BandMemberData> BandMembers = new List<BandMemberData>();
+    public List<BandMemberData> bandMembers = new List<BandMemberData>();
+    public List<SongEntry> songCollection = new List<SongEntry>();
 
     public void RecruitMember(BandMemberData data)
     {
-        if (!BandMembers.Contains(data))
+        if (!bandMembers.Contains(data))
         {
-            BandMembers.Add(data);
-            Debug.Log($"Hired {data.name}! Total members: {BandMembers.Count}");
+            bandMembers.Add(data);
+            Debug.Log($"Hired {data.name}! {bandMembers.Count} band members");
         }
         else
         {
             Debug.Log("Error, no data found during hire");
         }
+    }
+
+    public void AddSongToCollection(SongEntry song)
+    {
+        songCollection.Add(song);
+        Debug.Log($"Added {song.songName}! {songCollection.Count} songs in collection");
     }
 }

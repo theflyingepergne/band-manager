@@ -28,7 +28,7 @@ public class BandMember : MonoBehaviour, IClickable
         string newSongName = $"{data.memberName}'s Song";
         float newSongScore = Random.Range(0f, 100f);
 
-        SongEntry newSongEntry = new SongEntry(newSongName, newSongScore);
+        SongEntry newSongEntry = new SongEntry(newSongName, data, newSongScore);
 
         // // 1. Initialize the lists so they are valid
         // newSongData.songGenres = new List<GenreData>();
@@ -48,7 +48,7 @@ public class BandMember : MonoBehaviour, IClickable
         //     newSongData.songInstruments.Add(data.instruments[randomIndex]);
         // }
 
-        data.songsWritten.Add(newSongEntry); // Add the new song to the member's list of songs
+        BandManager.Instance.AddSongToCollection(newSongEntry);
 
 #if UNITY_EDITOR
     UnityEditor.EditorUtility.SetDirty(data);
@@ -56,7 +56,7 @@ public class BandMember : MonoBehaviour, IClickable
 // TODO when save load system is implemented, revisit this
 
 
-        Debug.Log(newSongEntry.songName);
-        Debug.Log("Song score = " + newSongEntry.songScore);
+        // Debug.Log(newSongEntry.songName);
+        // Debug.Log("Song score = " + newSongEntry.songScore);
     }
 }

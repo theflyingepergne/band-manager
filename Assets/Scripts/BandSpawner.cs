@@ -8,7 +8,7 @@ public abstract class BandSpawner : MonoBehaviour
     {
         if (BandManager.Instance == null) return;
 
-        var members = BandManager.Instance.BandMembers;
+        var members = BandManager.Instance.bandMembers;
         for (int i = 0; i < members.Count; i++)
         {
             SpawnMember(members[i], i);
