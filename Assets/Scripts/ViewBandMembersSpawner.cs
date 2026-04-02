@@ -8,16 +8,15 @@ public class ViewBandMembersSpawner : BandSpawner
 
     protected override void SpawnMember(BandMemberData data, int index)
     {
-        Vector3 randomPos = new Vector3(Random.Range(-spawnArea.x, spawnArea.x), Random.Range(-spawnArea.y, spawnArea.y), 0); //
-        GameObject sbm = Instantiate(bandMemberPrefab, randomPos, Quaternion.identity); //
+        Vector3 randomPos = new Vector3(Random.Range(-spawnArea.x, spawnArea.x), Random.Range(-spawnArea.y, spawnArea.y), 0);
+        GameObject spawnedBandMember = Instantiate(bandMemberPrefab, randomPos, Quaternion.identity);
 
-        sbm.GetComponent<BandMember>().PopulateBandMemberData(data);
-        sbm.transform.localScale = scale;
+        spawnedBandMember.GetComponent<BandMember>().PopulateBandMemberData(data);
+        spawnedBandMember.transform.localScale = scale;
 
         // Add ambulation
-        Ambulate amb = sbm.AddComponent<Ambulate>();
+        Ambulate amb = spawnedBandMember.AddComponent<Ambulate>();
         amb.speed = Random.Range(1f, 4f);
         amb.SetupBoundaries(spawnArea);
-
     }
 }

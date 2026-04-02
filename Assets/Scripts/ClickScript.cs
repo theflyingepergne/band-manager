@@ -33,9 +33,6 @@ public class ClickScript : MonoBehaviour
             }
             else
             {
-                // Reference the Singleton directly here
-                // ViewBandMembersUIManager.Instance?.ShowBandMemberDetails(false);
-
                 // Tell anyone who is listening that we clicked on empty space
                 OnClickEmptySpace?.Invoke();
             }
