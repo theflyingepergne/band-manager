@@ -1,4 +1,5 @@
 using UnityEngine;
+using DG.Tweening;
 
 public class SetlistPreparationManager : MonoBehaviour, IHoverable
 {
@@ -14,7 +15,11 @@ public class SetlistPreparationManager : MonoBehaviour, IHoverable
     }
     public void OnIsHovering(bool isHovering)
     {
-        gameObject.transform.position = isHovering ? hoverPosition : startPosition;
-        gameObject.transform.localRotation = isHovering ? Quaternion.Euler(hoverRotation) : Quaternion.Euler(startRotation);  
+        Vector3 destPos = isHovering ? hoverPosition : startPosition;
+        Vector3 destRot = isHovering ? hoverRotation : startRotation;
+
+        // "Do Move" to the destination over 0.5 seconds with a "Bouncy" feel
+        transform.DOMove(destPos, 0.5f).SetEase(Ease.OutBack);
+        transform.DORotate(destRot, 0.5f).SetEase(Ease.OutBack);
     }
 }
