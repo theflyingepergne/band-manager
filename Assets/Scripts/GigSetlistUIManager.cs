@@ -5,7 +5,7 @@ public class GigSetlistUIManager : Singleton<GigSetlistUIManager>
 {
     //---UI references
     [SerializeField] private RectTransform setlistSongList;
-    [SerializeField] private GameObject setlistSongWrapper;
+    [SerializeField] private GameObject gigSetlistSongWrapper;
 
     //---Data references
     private List<SongEntry> setlist = new List<SongEntry>();
@@ -35,7 +35,7 @@ public class GigSetlistUIManager : Singleton<GigSetlistUIManager>
         {
             i++;
 
-            GameObject newSongEntry = Instantiate(setlistSongWrapper, setlistSongList, false);
+            GameObject newSongEntry = Instantiate(gigSetlistSongWrapper, setlistSongList, false);
             GigSetlistSongManager songManager = newSongEntry.GetComponentInChildren<GigSetlistSongManager>();
 
             if (songManager != null)
