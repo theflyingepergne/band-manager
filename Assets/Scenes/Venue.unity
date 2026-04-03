@@ -1314,7 +1314,7 @@ GameObject:
   - component: {fileID: 2082406574}
   - component: {fileID: 2082406573}
   m_Layer: 0
-  m_Name: PerformGigUIManager
+  m_Name: GigSetlistUIManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1331,7 +1331,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cbb86d753c4753a4cb44f031868f0afa, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PerformGigUIManager
+  m_EditorClassIdentifier: Assembly-CSharp::GigSetlistUIManager
   persistAcrossScenes: 0
   setlistSongList: {fileID: 737636458}
   setlistSongWrapper: {fileID: 8148938167290287558, guid: 985e587aadea74ee08cd8fc6d60c299f, type: 3}
