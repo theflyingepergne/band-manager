@@ -41,6 +41,7 @@ public class ClickScript : MonoBehaviour
 
     private void ProcessHoveringOverSomething(Collider2D current)
     {
+        // Debug.Log("Hovering on " + current);
         // Are we hovering on anything that implements IHighlighter
         // If what we are hovering over != lastHitCollider
         // Highlight current and stop highlighting lastHitCollider

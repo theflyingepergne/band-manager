@@ -107,3 +107,5 @@ Assets/.DS_Store
 band-manager.slnx
 My project/Packages/manifest.json
 My project/Packages/packages-lock.json
+/Assets/_Recovery
+Assets/_Recovery.meta
