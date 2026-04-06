@@ -14,7 +14,7 @@ void Awake()
 
     if (parentManager == null)
     {
-        Debug.LogWarning($"HoverChild on {gameObject.name} found no IHoverable in parents!");
+        Debug.LogWarning($"HoverChild on {gameObject.name} did not find IHoverable in parent");
     }
 }
 
