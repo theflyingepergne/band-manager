@@ -1,4 +1,7 @@
 {
-  // Unity uses Mono; modern .NET breaks IntelliSense
-  "omnisharp.useModernNet": false
+    "omnisharp.useModernNet": false,
+    "files.exclude": {
+        "**/cs.meta": true
+    },
+    "dotnet.defaultSolution": "band-manager.slnx"
 }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1844078658077850011}
   - component: {fileID: 7607954035817240532}
   - component: {fileID: 3317398959938975676}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SongName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 6207133182142272111}
   - component: {fileID: 9215561503262009699}
   - component: {fileID: 1780276387132167330}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SongOptionsButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -238,10 +238,10 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_HighlightedColor: {r: 0.9716981, g: 0.8368296, b: 0, a: 1}
+    m_PressedColor: {r: 0.36040404, g: 0.8584906, b: 0.5303463, a: 1}
+    m_SelectedColor: {r: 0.28324133, g: 0.7838991, b: 0.8962264, a: 1}
+    m_DisabledColor: {r: 1, g: 0.5330188, b: 0.5330188, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -260,7 +260,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4815285565288395291}
+      - m_Target: {fileID: 6108724793981911298}
         m_TargetAssemblyTypeName: PrepareSetlistSongManager, Assembly-CSharp
         m_MethodName: ToggleRemoveButton
         m_Mode: 1
@@ -312,7 +312,7 @@ GameObject:
   - component: {fileID: 6243514621388713891}
   - component: {fileID: 1691719610526106623}
   - component: {fileID: 4762830422176586435}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: RemoveSongButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -421,7 +421,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4815285565288395291}
+      - m_Target: {fileID: 6108724793981911298}
         m_TargetAssemblyTypeName: PrepareSetlistSongManager, Assembly-CSharp
         m_MethodName: RemoveSong
         m_Mode: 1
@@ -471,52 +471,6 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!1 &3567549146754338948
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4224511838046067111}
-  - component: {fileID: 4815285565288395291}
-  m_Layer: 0
-  m_Name: PrepareSetlistSongManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4224511838046067111
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3567549146754338948}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -60.0597, y: -18.905998, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 0}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8541770809979228359}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4815285565288395291
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3567549146754338948}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fb2c6c7cdf4d4457ad8a4cb046b3e68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PrepareSetlistSongManager
-  prepareSetlistSongPrefab: {fileID: 8627095653399680118}
-  removeButton: {fileID: 6243514621388713891}
 --- !u!1 &4952852926163423739
 GameObject:
   m_ObjectHideFlags: 0
@@ -529,7 +483,7 @@ GameObject:
   - component: {fileID: 134613569191563738}
   - component: {fileID: 1397254883387700004}
   - component: {fileID: 2980365843832628353}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SongNo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -681,7 +635,7 @@ GameObject:
   - component: {fileID: 8738036945649586895}
   - component: {fileID: 2151997748214655010}
   - component: {fileID: 5623198135370296887}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: X
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -833,7 +787,8 @@ GameObject:
   - component: {fileID: 1932153009655841316}
   - component: {fileID: 4983234394328525773}
   - component: {fileID: 4581764165278473114}
-  m_Layer: 0
+  - component: {fileID: 6108724793981911298}
+  m_Layer: 5
   m_Name: PrepSetlistSongWrapper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -848,13 +803,12 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8627095653399680118}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8769785849635787327}
   - {fileID: 5227590882094932212}
-  - {fileID: 4224511838046067111}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -926,3 +880,16 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &6108724793981911298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8627095653399680118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fb2c6c7cdf4d4457ad8a4cb046b3e68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PrepareSetlistSongManager
+  removeButton: {fileID: 6243514621388713891}
