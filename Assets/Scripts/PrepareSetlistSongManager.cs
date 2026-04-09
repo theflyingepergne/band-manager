@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 
-public class PrepareSetlistSongManager : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class PrepareSetlistSongManager : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler
 
 {
     //---References---//
@@ -16,7 +16,7 @@ public class PrepareSetlistSongManager : MonoBehaviour, IBeginDragHandler, IDrag
     [SerializeField] private TMP_Text songName;
     [SerializeField] private string songNameDefault = "A Little Less 16 Mandibles a Little More Munch";
 
-
+    private CanvasGroup canvasGroup;
     private LayoutElement layoutElement;
     private int startSiblingIndex;
 
@@ -29,6 +29,7 @@ public class PrepareSetlistSongManager : MonoBehaviour, IBeginDragHandler, IDrag
 
         // Init UI references
         layoutElement = GetComponent<LayoutElement>();
+        canvasGroup = GetComponent<CanvasGroup>();
     }
 
     //---Button Methods---//
@@ -46,9 +47,15 @@ public class PrepareSetlistSongManager : MonoBehaviour, IBeginDragHandler, IDrag
     }
 
     //---Drag and Drop Methods---//
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        PrepareSetlistManager.Instance.SetCurrentHoverIndex(transform.GetSiblingIndex());
+    }
+
     public void OnBeginDrag(PointerEventData eventData)
     {
         layoutElement.ignoreLayout = true;
+        canvasGroup.blocksRaycasts = false;
 
         startSiblingIndex = transform.GetSiblingIndex();
 
@@ -74,10 +81,23 @@ public class PrepareSetlistSongManager : MonoBehaviour, IBeginDragHandler, IDrag
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        // 1. Get the last index we hovered over from the manager
+        int targetIndex = PrepareSetlistManager.Instance.GetCurrentHoverIndex();
+
+        // 2. If we actually hovered over a valid slot, move there
+        if (targetIndex != -1)
+        {
+            transform.SetSiblingIndex(targetIndex);
+        }
+
+        // 3. Clean up
         layoutElement.ignoreLayout = false;
+        canvasGroup.blocksRaycasts = true;
+        transform.localPosition = Vector3.zero;
 
-        transform.SetSiblingIndex(startSiblingIndex);
-
-        Debug.Log("Song snapped back to original slot.");
+        // Reset the manager's hover tracker
+        PrepareSetlistManager.Instance.SetCurrentHoverIndex(-1);
     }
+
+
 }

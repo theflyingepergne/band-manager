@@ -1,7 +1,7 @@
 using UnityEngine;
 using DG.Tweening;
 
-public class PrepareSetlistManager : MonoBehaviour, IHoverable
+public class PrepareSetlistManager : Singleton<PrepareSetlistManager>, IHoverable
 {
     [Header("UI")]
     [SerializeField] private RectTransform setlistWrapper;
@@ -52,4 +52,13 @@ public class PrepareSetlistManager : MonoBehaviour, IHoverable
 
         seq.OnComplete(() => isTweening = false);
     }
+
+    private int currentHoveredIndex = -1;
+
+    public void SetCurrentHoverIndex(int index)
+    {
+        currentHoveredIndex = index;
+    }
+
+    public int GetCurrentHoverIndex() => currentHoveredIndex;
 }
