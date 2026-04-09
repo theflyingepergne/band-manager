@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class PrepareSetlistSongManager : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 
@@ -10,6 +11,19 @@ public class PrepareSetlistSongManager : MonoBehaviour, IBeginDragHandler, IDrag
 
     [Header("Prefab References")]
     [SerializeField] private Button removeButton;
+
+    [Header("Song details")]
+    [SerializeField] private TMP_Text songNo;
+    [SerializeField] private string songNoDefault = "1. ";
+    [SerializeField] private TMP_Text songName;
+    [SerializeField] private string songNameDefault = "A Little Less 16 Mandibles a Little More Munch";
+
+    //---Methods---//
+    void Start()
+    {
+        songNo.text = songNoDefault;
+        songName.text = songNameDefault;
+    }
 
     //---Button Methods---//
     public void ToggleRemoveButton()
