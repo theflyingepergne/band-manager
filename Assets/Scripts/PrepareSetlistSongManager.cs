@@ -12,7 +12,6 @@ public class PrepareSetlistSongManager : MonoBehaviour, IBeginDragHandler, IDrag
 
     [Header("Song details")]
     [SerializeField] private TMP_Text songNo;
-    [SerializeField] private string songNoDefault = "1. ";
     [SerializeField] private TMP_Text songName;
     [SerializeField] private string songNameDefault = "A Little Less 16 Mandibles a Little More Munch";
 
@@ -20,11 +19,16 @@ public class PrepareSetlistSongManager : MonoBehaviour, IBeginDragHandler, IDrag
     private LayoutElement layoutElement;
     private int startSiblingIndex;
 
+    //---Events---//
+    void OnEnable() => PrepareSetlistManager.OnSetlistReordered += RefreshVisualIndex;
+    void OnDisable() => PrepareSetlistManager.OnSetlistReordered -= RefreshVisualIndex;
+
     //---Methods---//
     void Start()
     {
         // Init text
-        songNo.text = songNoDefault;
+        startSiblingIndex = transform.GetSiblingIndex() + 1;
+        songNo.text = $"{startSiblingIndex}. ";
         songName.text = songNameDefault;
 
         // Init UI references
@@ -43,12 +47,15 @@ public class PrepareSetlistSongManager : MonoBehaviour, IBeginDragHandler, IDrag
 
     public void RemoveSong()
     {
+        transform.SetParent(null);
         Destroy(gameObject);
+        PrepareSetlistManager.Instance.BroadcastReorder();
     }
 
-    //---Drag and Drop Methods---//
+    //---Song Reordering Methods---//
     public void OnPointerEnter(PointerEventData eventData)
     {
+        // Get target index from hovering over other songs in the setlist
         PrepareSetlistManager.Instance.SetCurrentHoverIndex(transform.GetSiblingIndex());
     }
 
@@ -58,45 +65,49 @@ public class PrepareSetlistSongManager : MonoBehaviour, IBeginDragHandler, IDrag
         canvasGroup.blocksRaycasts = false;
 
         startSiblingIndex = transform.GetSiblingIndex();
-
-        Debug.Log($"Picked up song at index: {startSiblingIndex}");
+        // Debug.Log($"Picked up song at index: {startSiblingIndex}");
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        // 1. Get the RectTransform of the song itself
         RectTransform rectTransform = GetComponent<RectTransform>();
 
-        // 2. Translate Screen pixels to World coordinates
+        // Translate Screen pixels to World coordinates
         if (RectTransformUtility.ScreenPointToWorldPointInRectangle(
             rectTransform,
             eventData.position,
             eventData.pressEventCamera,
             out Vector3 worldPoint))
         {
-            // 3. Set the position!
             transform.position = worldPoint;
         }
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        // 1. Get the last index we hovered over from the manager
+        // Get the last index hovered over from the manager
         int targetIndex = PrepareSetlistManager.Instance.GetCurrentHoverIndex();
 
-        // 2. If we actually hovered over a valid slot, move there
+        // If we hovered over a valid slot, move there
         if (targetIndex != -1)
         {
             transform.SetSiblingIndex(targetIndex);
         }
 
-        // 3. Clean up
         layoutElement.ignoreLayout = false;
         canvasGroup.blocksRaycasts = true;
-        transform.localPosition = Vector3.zero;
 
-        // Reset the manager's hover tracker
         PrepareSetlistManager.Instance.SetCurrentHoverIndex(-1);
+        songNo.text = $"{targetIndex + 1}. ";
+
+        PrepareSetlistManager.Instance.BroadcastReorder();
+    }
+
+    private void RefreshVisualIndex()
+    {
+        // 'transform.GetSiblingIndex()' is always up-to-date after a reorder
+        int newIndex = transform.GetSiblingIndex() + 1;
+        songNo.text = $"{newIndex}. ";
     }
 
 

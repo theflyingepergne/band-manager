@@ -1,8 +1,10 @@
 using UnityEngine;
 using DG.Tweening;
+using System;
 
 public class PrepareSetlistManager : Singleton<PrepareSetlistManager>, IHoverable
 {
+    //---References---//
     [Header("UI")]
     [SerializeField] private RectTransform setlistWrapper;
 
@@ -17,6 +19,10 @@ public class PrepareSetlistManager : Singleton<PrepareSetlistManager>, IHoverabl
     private bool isTweening = false;
     private bool currentHoverState = false;
 
+    //---Events---//
+    public static event Action OnSetlistReordered;
+
+    //---Methods---//
     public void Start()
     {
         transform.position = startAnchor.position;
@@ -53,6 +59,7 @@ public class PrepareSetlistManager : Singleton<PrepareSetlistManager>, IHoverabl
         seq.OnComplete(() => isTweening = false);
     }
 
+    //---Setlist Reordering---//
     private int currentHoveredIndex = -1;
 
     public void SetCurrentHoverIndex(int index)
@@ -61,4 +68,10 @@ public class PrepareSetlistManager : Singleton<PrepareSetlistManager>, IHoverabl
     }
 
     public int GetCurrentHoverIndex() => currentHoveredIndex;
+
+    public void BroadcastReorder()
+    {
+        OnSetlistReordered?.Invoke();
+        Debug.Log("Telling everyone to update their indices");
+    }
 }
