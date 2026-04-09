@@ -7,8 +7,6 @@ public class PrepareSetlistSongManager : MonoBehaviour, IBeginDragHandler, IDrag
 
 {
     //---References---//
-    [Header("Manager References")]
-
     [Header("Prefab References")]
     [SerializeField] private Button removeButton;
 
@@ -18,11 +16,19 @@ public class PrepareSetlistSongManager : MonoBehaviour, IBeginDragHandler, IDrag
     [SerializeField] private TMP_Text songName;
     [SerializeField] private string songNameDefault = "A Little Less 16 Mandibles a Little More Munch";
 
+
+    private LayoutElement layoutElement;
+    private int startSiblingIndex;
+
     //---Methods---//
     void Start()
     {
+        // Init text
         songNo.text = songNoDefault;
         songName.text = songNameDefault;
+
+        // Init UI references
+        layoutElement = GetComponent<LayoutElement>();
     }
 
     //---Button Methods---//
@@ -42,16 +48,36 @@ public class PrepareSetlistSongManager : MonoBehaviour, IBeginDragHandler, IDrag
     //---Drag and Drop Methods---//
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log("beginning drag");
+        layoutElement.ignoreLayout = true;
+
+        startSiblingIndex = transform.GetSiblingIndex();
+
+        Debug.Log($"Picked up song at index: {startSiblingIndex}");
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        Debug.Log("Dragging: " + eventData.position);
+        // 1. Get the RectTransform of the song itself
+        RectTransform rectTransform = GetComponent<RectTransform>();
+
+        // 2. Translate Screen pixels to World coordinates
+        if (RectTransformUtility.ScreenPointToWorldPointInRectangle(
+            rectTransform,
+            eventData.position,
+            eventData.pressEventCamera,
+            out Vector3 worldPoint))
+        {
+            // 3. Set the position!
+            transform.position = worldPoint;
+        }
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log("Ended drag");
+        layoutElement.ignoreLayout = false;
+
+        transform.SetSiblingIndex(startSiblingIndex);
+
+        Debug.Log("Song snapped back to original slot.");
     }
 }
