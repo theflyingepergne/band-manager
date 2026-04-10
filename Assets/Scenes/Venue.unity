@@ -1334,7 +1334,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GigSetlistUIManager
   persistAcrossScenes: 0
   setlistSongList: {fileID: 737636458}
-  setlistSongWrapper: {fileID: 8148938167290287558, guid: 985e587aadea74ee08cd8fc6d60c299f, type: 3}
+  gigSetlistSongWrapper: {fileID: 8148938167290287558, guid: 985e587aadea74ee08cd8fc6d60c299f, type: 3}
 --- !u!4 &2082406574
 Transform:
   m_ObjectHideFlags: 0

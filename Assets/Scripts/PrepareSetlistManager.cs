@@ -8,6 +8,11 @@ public class PrepareSetlistManager : Singleton<PrepareSetlistManager>, IHoverabl
     [Header("UI")]
     [SerializeField] private RectTransform setlistWrapper;
 
+    [Header("Prefabs")]
+    [SerializeField] private GameObject prepSetlistGhostSong;
+    private GameObject newPrepSetlistGhostSong;
+
+
     [Header("Positions")]
     [SerializeField] private Transform startAnchor;
     [SerializeField] private Transform hoverAnchor;
@@ -61,17 +66,39 @@ public class PrepareSetlistManager : Singleton<PrepareSetlistManager>, IHoverabl
 
     //---Setlist Reordering---//
     private int currentHoveredIndex = -1;
+    public int GetCurrentHoverIndex() => currentHoveredIndex;
 
     public void SetCurrentHoverIndex(int index)
     {
         currentHoveredIndex = index;
     }
 
-    public int GetCurrentHoverIndex() => currentHoveredIndex;
-
     public void BroadcastReorder()
     {
         OnSetlistReordered?.Invoke();
         Debug.Log("Telling everyone to update their indices");
+    }
+
+    //---Setlist Ghost Slot---//
+    public void EnableGhostSong(int index)
+    {
+        newPrepSetlistGhostSong = Instantiate(prepSetlistGhostSong, setlistWrapper, false);
+        Debug.Log("instantiated ghost song");
+
+        newPrepSetlistGhostSong.transform.SetSiblingIndex(index);
+    }
+
+    public void MoveGhostSong(int newIndex)
+    {
+        if (newPrepSetlistGhostSong != null)
+        {
+            newPrepSetlistGhostSong.transform.SetSiblingIndex(newIndex);
+        }
+    }
+
+    public void DisableGhostSong()
+    {
+        newPrepSetlistGhostSong.transform.SetParent(null);
+        Destroy(newPrepSetlistGhostSong);
     }
 }

@@ -57,6 +57,7 @@ public class PrepareSetlistSongManager : MonoBehaviour, IBeginDragHandler, IDrag
     {
         // Get target index from hovering over other songs in the setlist
         PrepareSetlistManager.Instance.SetCurrentHoverIndex(transform.GetSiblingIndex());
+        PrepareSetlistManager.Instance.MoveGhostSong(transform.GetSiblingIndex());
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -65,7 +66,8 @@ public class PrepareSetlistSongManager : MonoBehaviour, IBeginDragHandler, IDrag
         canvasGroup.blocksRaycasts = false;
 
         startSiblingIndex = transform.GetSiblingIndex();
-        // Debug.Log($"Picked up song at index: {startSiblingIndex}");
+        PrepareSetlistManager.Instance.EnableGhostSong(startSiblingIndex);
+        transform.SetAsLastSibling();
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -100,15 +102,14 @@ public class PrepareSetlistSongManager : MonoBehaviour, IBeginDragHandler, IDrag
         PrepareSetlistManager.Instance.SetCurrentHoverIndex(-1);
         songNo.text = $"{targetIndex + 1}. ";
 
+        PrepareSetlistManager.Instance.DisableGhostSong();
         PrepareSetlistManager.Instance.BroadcastReorder();
     }
 
     private void RefreshVisualIndex()
     {
-        // 'transform.GetSiblingIndex()' is always up-to-date after a reorder
+        // 'transform.GetSiblingIndex()' is always up-to-date reorder
         int newIndex = transform.GetSiblingIndex() + 1;
         songNo.text = $"{newIndex}. ";
     }
-
-
 }
