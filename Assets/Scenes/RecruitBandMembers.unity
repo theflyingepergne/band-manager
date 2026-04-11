@@ -980,7 +980,7 @@ PrefabInstance:
     - target: {fileID: 7603992877863600525, guid: 548278d5028314881846cfdcb68c8d96, type: 3}
       propertyPath: data
       value: 
-      objectReference: {fileID: 11400000, guid: 2fd93f56d0f6ae94c98e2736c0b1f8e4, type: 2}
+      objectReference: {fileID: 11400000, guid: 55cabd3e86b9b4e6aa034cb94d84f076, type: 2}
     - target: {fileID: 8056088343999216989, guid: 548278d5028314881846cfdcb68c8d96, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
