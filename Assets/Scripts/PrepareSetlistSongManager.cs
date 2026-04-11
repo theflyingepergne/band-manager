@@ -26,14 +26,25 @@ public class PrepareSetlistSongManager : MonoBehaviour, IBeginDragHandler, IDrag
     //---Methods---//
     void Start()
     {
-        // Init text
-        startSiblingIndex = transform.GetSiblingIndex() + 1;
-        songNo.text = $"{startSiblingIndex}. ";
-        songName.text = songNameDefault;
-
         // Init UI references
         layoutElement = GetComponent<LayoutElement>();
         canvasGroup = GetComponent<CanvasGroup>();
+    }
+
+    public void SetupSong(SongEntry data)
+    {
+        // Init text
+        startSiblingIndex = transform.GetSiblingIndex() + 1;
+        songNo.text = $"{startSiblingIndex}. ";
+
+        if (data != null)
+        {
+            songName.text = data.songName;
+        }
+        else
+        {
+            songName.text = songNameDefault;
+        }
     }
 
     //---Button Methods---//

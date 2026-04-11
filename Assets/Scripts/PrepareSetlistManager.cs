@@ -1,6 +1,7 @@
 using UnityEngine;
 using DG.Tweening;
 using System;
+using System.Collections.Generic;
 
 public class PrepareSetlistManager : Singleton<PrepareSetlistManager>, IHoverable
 {
@@ -9,9 +10,10 @@ public class PrepareSetlistManager : Singleton<PrepareSetlistManager>, IHoverabl
     [SerializeField] private RectTransform setlistWrapper;
 
     [Header("Prefabs")]
+    [SerializeField] private GameObject prepSetlistSongWrapper;
+    private GameObject newPrepSetlistSong;
     [SerializeField] private GameObject prepSetlistGhostSong;
     private GameObject newPrepSetlistGhostSong;
-
 
     [Header("Positions")]
     [SerializeField] private Transform startAnchor;
@@ -23,6 +25,7 @@ public class PrepareSetlistManager : Singleton<PrepareSetlistManager>, IHoverabl
 
     private bool isTweening = false;
     private bool currentHoverState = false;
+    private List<SongEntry> activeSetlistInitial = new List<SongEntry>();
 
     //---Events---//
     public static event Action OnSetlistReordered;
@@ -33,10 +36,44 @@ public class PrepareSetlistManager : Singleton<PrepareSetlistManager>, IHoverabl
         transform.position = startAnchor.position;
         transform.rotation = startAnchor.rotation;
 
-        // TODO instantiate prefabs with some kind of Setup() script
-        // TODO add prefabs to setlistWrapper vertical layout group
+        SetupSetlist();
     }
 
+    public void SetupSetlist()
+    {
+        ClearSetlistWrapper();
+
+        // Get activeSetlist from BandManager
+        if (BandManager.Instance.activeSetlist.Count > 0)
+        {
+            activeSetlistInitial = BandManager.Instance.activeSetlist;
+            // Debug.Log($"Active Setlist length: {activeSetlistInitial.Count}");
+
+            foreach (SongEntry song in activeSetlistInitial)
+            {
+                // Instantiate PrepSetlistSongWrapper prefabs
+                // Add prefabs to wrapper
+                newPrepSetlistSong = Instantiate(prepSetlistSongWrapper, setlistWrapper, false);
+                newPrepSetlistSong.GetComponent<PrepareSetlistSongManager>().SetupSong(song);
+
+                // Debug.Log($"{song.songName}");
+            }
+        }
+
+        BroadcastReorder();
+    }
+
+    private void ClearSetlistWrapper()
+    {
+        for (int i = setlistWrapper.childCount - 1; i >= 0; i--)
+        {
+            Transform child = setlistWrapper.GetChild(i);
+            child.SetParent(null);
+            Destroy(child.gameObject);
+        }
+    }
+
+    //---Tween Hovering---//
     public void OnIsHovering(bool isHovering)
     {
         // If we are already tween, don't interrupt tween
@@ -76,14 +113,14 @@ public class PrepareSetlistManager : Singleton<PrepareSetlistManager>, IHoverabl
     public void BroadcastReorder()
     {
         OnSetlistReordered?.Invoke();
-        Debug.Log("Telling everyone to update their indices");
+        // Debug.Log("Telling everyone to update their indices");
     }
 
     //---Setlist Ghost Slot---//
     public void EnableGhostSong(int index)
     {
         newPrepSetlistGhostSong = Instantiate(prepSetlistGhostSong, setlistWrapper, false);
-        Debug.Log("instantiated ghost song");
+        // Debug.Log("instantiated ghost song");
 
         newPrepSetlistGhostSong.transform.SetSiblingIndex(index);
     }

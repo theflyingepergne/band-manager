@@ -21,7 +21,7 @@ public class GigSetlistUIManager : Singleton<GigSetlistUIManager>
 
         // For now, the entire songCollection is the setlist
         // TODO use the setlist prepared in Transit
-        setlist = BandManager.Instance.songCollection;
+        setlist = BandManager.Instance.activeSetlist;
         
         return setlist;
     }

@@ -1161,6 +1161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PrepareSetlistManager
   persistAcrossScenes: 0
   setlistWrapper: {fileID: 1284799260}
+  prepSetlistSongWrapper: {fileID: 8627095653399680118, guid: 291482ef3f795411487ef45113a1db3f, type: 3}
   prepSetlistGhostSong: {fileID: 3463193422219695975, guid: e1c84154008dd4e57a98f573b6af3f40, type: 3}
   startAnchor: {fileID: 1188382262}
   hoverAnchor: {fileID: 882659764}

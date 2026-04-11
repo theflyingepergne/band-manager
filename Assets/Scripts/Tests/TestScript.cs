@@ -33,12 +33,13 @@ public class TestSongGenerator : MonoBehaviour
 
         for (int i = 0; i < titles.Length; i++)
         {
-            float newSongScore = UnityEngine.Random.Range(0f, 100f);
+            float newSongScore = Random.Range(0f, 100f);
             SongEntry newSong = new SongEntry(titles[i], bandMemberData, newSongScore);
             BandManager.Instance.AddSongToCollection(newSong);
         }
 
-        Debug.Log($"Generated {BandManager.Instance.songCollection.Count} test songs in BandManager.");
+        Debug.Log("Generated test songs in BandManager.");
+        BandManager.Instance.PrepareSetlist();
     }
 }
 
