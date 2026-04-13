@@ -5,8 +5,11 @@ public class BandManager : Singleton<BandManager>
 {
     //---References---//
     public List<BandMemberData> bandMembers = new List<BandMemberData>();
+
     public List<SongEntry> songCollection = new List<SongEntry>();
     public List<SongEntry> activeSetlist = new List<SongEntry>();
+
+    public VenueData destinationVenue;
 
     //---Methods---//
     public void RecruitMember(BandMemberData data)
@@ -55,5 +58,15 @@ public class BandManager : Singleton<BandManager>
             activeSetlist = selectedSongs;
         }
         return activeSetlist;
+    }
+
+    //---Venue Methods---//
+    public void SetVenue(VenueData chosenVenue)
+    {
+        if (chosenVenue != null)
+        {
+            destinationVenue = chosenVenue;
+            Debug.Log("venue data set!");
+        }
     }
 }

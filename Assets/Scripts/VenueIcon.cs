@@ -8,6 +8,7 @@ public class VenueIcon : MonoBehaviour, IClickable
     public void OnClicked()
     {
         // Debug.Log("Venue icon clicked: " + venueData.venueName);
-        SceneManager.LoadScene("Venue");
+        BandManager.Instance.SetVenue(venueData);
+        SceneManager.LoadScene("Transit");
     }
 }

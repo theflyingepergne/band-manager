@@ -116,6 +116,20 @@ public class PrepareSetlistManager : Singleton<PrepareSetlistManager>, IHoverabl
         // Debug.Log("Telling everyone to update their indices");
     }
 
+    public void FinalizeSetlist()
+    {
+        // call this to "save" the setlist to the bandmanager
+        List<SongEntry> reorderedSetlist = new List<SongEntry>();
+
+        foreach (Transform child in setlistWrapper)
+        {
+            var songScript = child.GetComponent<PrepareSetlistSongManager>();
+            reorderedSetlist.Add(songScript.song);
+        }
+
+        BandManager.Instance.activeSetlist  = reorderedSetlist;
+    }
+
     //---Setlist Ghost Slot---//
     public void EnableGhostSong(int index)
     {

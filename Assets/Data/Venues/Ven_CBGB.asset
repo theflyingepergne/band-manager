@@ -18,5 +18,5 @@ MonoBehaviour:
   venuePreferredGenres:
   - {fileID: 11400000, guid: 8571d9608c768432aa2acd7fab5f9e9d, type: 2}
   - {fileID: 11400000, guid: d04322ed52d9344d9bcdbf0fde05b04a, type: 2}
-  venueCapacity: 120
+  venueCapacity: 30
   venueBackgroundSprite: {fileID: 21300000, guid: 4bb1d39d1cce84b47ac3c744952cfb18, type: 3}

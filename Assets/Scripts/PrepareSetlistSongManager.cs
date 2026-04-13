@@ -14,6 +14,7 @@ public class PrepareSetlistSongManager : MonoBehaviour, IBeginDragHandler, IDrag
     [SerializeField] private TMP_Text songNo;
     [SerializeField] private TMP_Text songName;
     [SerializeField] private string songNameDefault = "A Little Less 16 Mandibles a Little More Munch";
+    public SongEntry song;
 
     private CanvasGroup canvasGroup;
     private LayoutElement layoutElement;
@@ -33,6 +34,7 @@ public class PrepareSetlistSongManager : MonoBehaviour, IBeginDragHandler, IDrag
 
     public void SetupSong(SongEntry data)
     {
+        song = data;
         // Init text
         startSiblingIndex = transform.GetSiblingIndex() + 1;
         songNo.text = $"{startSiblingIndex}. ";
