@@ -57,6 +57,7 @@ public class BandManager : Singleton<BandManager>
             }
             activeSetlist = selectedSongs;
         }
+        
         return activeSetlist;
     }
 

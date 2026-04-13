@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class PrepareSetlistManager : Singleton<PrepareSetlistManager>, IHoverable
 {
-    //---References---//
+    //---Serialize References---//
     [Header("UI")]
     [SerializeField] private RectTransform setlistWrapper;
 
@@ -23,9 +23,11 @@ public class PrepareSetlistManager : Singleton<PrepareSetlistManager>, IHoverabl
     [SerializeField] private float tweenSpeed = 0.5f;
     [SerializeField] private Ease easeType = Ease.OutBack;
 
+    //---Local References---//
     private bool isTweening = false;
     private bool currentHoverState = false;
     private List<SongEntry> activeSetlistInitial = new List<SongEntry>();
+    private BandManager bm;
 
     //---Events---//
     public static event Action OnSetlistReordered;
@@ -33,6 +35,8 @@ public class PrepareSetlistManager : Singleton<PrepareSetlistManager>, IHoverabl
     //---Methods---//
     public void Start()
     {
+        bm = BandManager.Instance;
+
         transform.position = startAnchor.position;
         transform.rotation = startAnchor.rotation;
 
@@ -43,10 +47,16 @@ public class PrepareSetlistManager : Singleton<PrepareSetlistManager>, IHoverabl
     {
         ClearSetlistWrapper();
 
-        // Get activeSetlist from BandManager
-        if (BandManager.Instance.activeSetlist.Count > 0)
+        // If the BandManager hasn't prepared an activeSetlist already, do it
+        if (bm.activeSetlist.Count <= 0)
         {
-            activeSetlistInitial = BandManager.Instance.activeSetlist;
+            bm.PrepareSetlist();
+        }
+
+        // Get activeSetlist from BandManager
+        if (bm.activeSetlist.Count > 0)
+        {
+            activeSetlistInitial = bm.activeSetlist;
             // Debug.Log($"Active Setlist length: {activeSetlistInitial.Count}");
 
             foreach (SongEntry song in activeSetlistInitial)
@@ -127,7 +137,7 @@ public class PrepareSetlistManager : Singleton<PrepareSetlistManager>, IHoverabl
             reorderedSetlist.Add(songScript.song);
         }
 
-        BandManager.Instance.activeSetlist  = reorderedSetlist;
+        bm.activeSetlist  = reorderedSetlist;
     }
 
     //---Setlist Ghost Slot---//
