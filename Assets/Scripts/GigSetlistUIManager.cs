@@ -3,15 +3,18 @@ using UnityEngine;
 
 public class GigSetlistUIManager : Singleton<GigSetlistUIManager>
 {
-    //---UI references
+    //---References---//
+    [Header("UI References")]
     [SerializeField] private RectTransform setlistSongList;
     [SerializeField] private GameObject gigSetlistSongWrapper;
 
-    //---Data references
+    //---Local references--//
     private List<SongEntry> setlist = new List<SongEntry>();
+    private BandManager bm;
 
     public void Start()
     {
+        bm = BandManager.Instance;
         PopulateSetlistPanel(GetSetlist());
     }
 
@@ -21,8 +24,11 @@ public class GigSetlistUIManager : Singleton<GigSetlistUIManager>
 
         // For now, the entire songCollection is the setlist
         // TODO use the setlist prepared in Transit
-        setlist = BandManager.Instance.activeSetlist;
-        
+        if (bm != null)
+        {
+            setlist = bm.activeSetlist;
+        }
+
         return setlist;
     }
 
