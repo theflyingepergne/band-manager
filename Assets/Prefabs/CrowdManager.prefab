@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2500942454006426687}
   - component: {fileID: 6230640552237845678}
   m_Layer: 0
-  m_Name: Crowd
+  m_Name: CrowdManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dc3b0a8217ba664f922a33512f0f48d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CrowdManager
-  fanPrefab: {fileID: 9026602661950908936, guid: 6aa7f90c9cd6cba4c88bdbe118466c74, type: 3}
+  crowdMember: {fileID: 0}
   rows: 5
   columns: 10
   spacing: {x: 1.5, y: 1.2}
