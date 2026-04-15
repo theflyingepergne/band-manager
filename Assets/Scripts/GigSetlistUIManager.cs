@@ -15,6 +15,7 @@ public class GigSetlistUIManager : Singleton<GigSetlistUIManager>
     public void Start()
     {
         bm = BandManager.Instance;
+        ClearSetlistWrapper();
         PopulateSetlistPanel(GetSetlist());
     }
 
@@ -30,6 +31,16 @@ public class GigSetlistUIManager : Singleton<GigSetlistUIManager>
         }
 
         return setlist;
+    }
+
+    public void ClearSetlistWrapper()
+    {
+        for (int i = setlistSongList.childCount - 1; i >= 0; i--)
+        {
+            Transform child = setlistSongList.GetChild(i);
+            child.SetParent(null);
+            Destroy(child.gameObject);
+        }
     }
 
     public void PopulateSetlistPanel(List<SongEntry> songs)
