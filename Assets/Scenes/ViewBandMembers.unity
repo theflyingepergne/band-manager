@@ -408,8 +408,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 600, y: -44.004997}
-  m_SizeDelta: {x: 134.08, y: 0}
+  m_AnchoredPosition: {x: 600, y: -20}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &60996651
 MonoBehaviour:
@@ -1976,7 +1976,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 326.1, y: -61.005}
+  m_AnchoredPosition: {x: 326.1, y: -25}
   m_SizeDelta: {x: 552.2, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &895543527
@@ -2637,7 +2637,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9572221aec71a43908515c2a36a6a52c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestSongGenerator
-  bandMemberData: {fileID: 0}
+  bandMemberData: {fileID: 11400000, guid: 8d82f51ae66b1644d8ea8f32ef3fc0b3, type: 2}
+  autoGenerateTestSongs: 0
 --- !u!4 &1351523765
 Transform:
   m_ObjectHideFlags: 0

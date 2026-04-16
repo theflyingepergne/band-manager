@@ -4,10 +4,14 @@ using UnityEngine.InputSystem;
 public class TestSongGenerator : MonoBehaviour
 {
     [SerializeField] private BandMemberData bandMemberData;
+    [SerializeField] private bool autoGenerateTestSongs;
 
     void Start()
     {
-        GenerateTestSongs();
+        if (autoGenerateTestSongs == true)
+        {
+            GenerateTestSongs();
+        }
     }
 
     void Update()

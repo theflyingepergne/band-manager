@@ -6,6 +6,7 @@ public class GigSetlistUIManager : Singleton<GigSetlistUIManager>
     //---References---//
     [Header("UI References")]
     [SerializeField] private RectTransform setlistSongList;
+    [SerializeField] private Vector3 pointerAdjustment = new (150f, 0f, 0f);
 
     [Header("Prefabs")]
     [SerializeField] private GameObject gigSetlistSongWrapper;
@@ -97,13 +98,14 @@ public class GigSetlistUIManager : Singleton<GigSetlistUIManager>
         
         currentSongPointer.GetComponent<SpriteRenderer>().sortingOrder = 21;
         currentSongPointer.transform.localPosition = Vector3.zero;
+        currentSongPointer.transform.localPosition = pointerAdjustment;
         currentSongPointer.transform.localScale = new Vector3(10f, 10f, 10f);
     }
 
     private void MoveSongPointer(Transform pointerParent)
     {
         currentSongPointer.transform.SetParent(pointerParent);
-        currentSongPointer.transform.localPosition = Vector3.zero;
+        currentSongPointer.transform.localPosition = pointerAdjustment;
 
     }
 }

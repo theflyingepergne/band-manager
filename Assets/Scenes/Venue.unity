@@ -2620,8 +2620,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GigDirector
   persistAcrossScenes: 0
-  songDuration: 5
-  postGigWait: 5
+  songDuration: 2
+  postGigWait: 2
   gigReportUI: {fileID: 923824493}
   gigSetlistUIManager: {fileID: 2082406572}
 --- !u!4 &992438138
