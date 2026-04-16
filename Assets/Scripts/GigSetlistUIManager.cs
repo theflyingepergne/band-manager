@@ -76,7 +76,7 @@ public class GigSetlistUIManager : Singleton<GigSetlistUIManager>
     public void HighlightCurrentSong(int songIndex)
     {
         
-        Debug.Log($"Playing {setlist[songIndex].songName}");
+        // Debug.Log($"Playing {setlist[songIndex].songName}");
         if (currentSongPointer != null)
         {
             Transform currentSong = setlistSongList.GetChild(songIndex).transform;
@@ -97,7 +97,6 @@ public class GigSetlistUIManager : Singleton<GigSetlistUIManager>
             false);
         
         currentSongPointer.GetComponent<SpriteRenderer>().sortingOrder = 21;
-        currentSongPointer.transform.localPosition = Vector3.zero;
         currentSongPointer.transform.localPosition = pointerAdjustment;
         currentSongPointer.transform.localScale = new Vector3(10f, 10f, 10f);
     }

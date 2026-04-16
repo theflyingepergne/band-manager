@@ -47,17 +47,13 @@ public class PrepareSetlistManager : Singleton<PrepareSetlistManager>, IHoverabl
     {
         ClearSetlistWrapper();
 
-        // If the BandManager hasn't prepared an activeSetlist already, do it
-        if (bm.activeSetlist.Count <= 0)
-        {
-            bm.PrepareSetlist();
-        }
+        // Tell BandManager to pick 6 random songs for activeSetlist
+        bm.PrepareSetlist();
 
         // Get activeSetlist from BandManager
         if (bm.activeSetlist.Count > 0)
         {
             activeSetlistInitial = bm.activeSetlist;
-            // Debug.Log($"Active Setlist length: {activeSetlistInitial.Count}");
 
             foreach (SongEntry song in activeSetlistInitial)
             {
@@ -65,8 +61,6 @@ public class PrepareSetlistManager : Singleton<PrepareSetlistManager>, IHoverabl
                 // Add prefabs to wrapper
                 newPrepSetlistSong = Instantiate(prepSetlistSongWrapper, setlistWrapper, false);
                 newPrepSetlistSong.GetComponent<PrepareSetlistSongManager>().SetupSong(song);
-
-                // Debug.Log($"{song.songName}");
             }
         }
 
@@ -137,7 +131,7 @@ public class PrepareSetlistManager : Singleton<PrepareSetlistManager>, IHoverabl
             reorderedSetlist.Add(songScript.song);
         }
 
-        bm.activeSetlist  = reorderedSetlist;
+        bm.activeSetlist = reorderedSetlist;
     }
 
     //---Setlist Ghost Slot---//
