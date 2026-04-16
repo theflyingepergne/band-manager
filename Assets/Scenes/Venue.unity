@@ -2620,7 +2620,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GigDirector
   persistAcrossScenes: 0
-  songDuration: 2
+  songDuration: 0.25
   postGigWait: 2
   gigReportUI: {fileID: 923824493}
   gigSetlistUIManager: {fileID: 2082406572}
@@ -5503,6 +5503,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GigSetlistUIManager
   persistAcrossScenes: 0
   setlistSongList: {fileID: 737636458}
+  pointerAdjustment: {x: 150, y: 0, z: 0}
   gigSetlistSongWrapper: {fileID: 8148938167290287558, guid: 985e587aadea74ee08cd8fc6d60c299f, type: 3}
   currentSongPointerPrefab: {fileID: 1356064258032869984, guid: 23977e0caacbe476fac07ad86ba0abaf, type: 3}
 --- !u!4 &2082406574

@@ -40,14 +40,25 @@ public class GigDirector : Singleton<GigDirector>
             yield return new WaitForSeconds(songDuration);
         }
 
-        //---All Songs Finished---
-        // 3. Trigger "Crowd Wild" state for a few seconds
+        //---Songs Finished---//
+
+        // Trigger "Crowd Wild" state for a few seconds
         Debug.Log("Woo!");
+        CrowdReaction();
 
         yield return new WaitForSeconds(postGigWait);
 
-        // 4. Show the Report
+        // Show the Report
         ShowGigReport();
+    }
+
+    private void CrowdReaction()
+    {
+        CrowdMember[] crowd = FindObjectsByType<CrowdMember>(FindObjectsSortMode.None);
+        foreach (var person in crowd)
+        {
+            person.StartJumping();
+        }
     }
 
     private void ShowGigReport()
