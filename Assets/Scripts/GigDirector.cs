@@ -7,6 +7,8 @@ public class GigDirector : Singleton<GigDirector>
     [Header("Config")]
     [SerializeField] private float songDuration = 5f;
     [SerializeField] private float postGigWait = 10f;
+    [SerializeField] private float crowdReactionPercentage = 60f;
+    private float percentage = 0;
 
     [Header("UI References")]
     [SerializeField] private GameObject gigReportUI;
@@ -44,7 +46,8 @@ public class GigDirector : Singleton<GigDirector>
 
         // Trigger "Crowd Wild" state for a few seconds
         Debug.Log("Woo!");
-        CrowdReaction();
+
+        CrowdReaction(CalculateCrowdReaction());
 
         yield return new WaitForSeconds(postGigWait);
 
@@ -52,12 +55,28 @@ public class GigDirector : Singleton<GigDirector>
         ShowGigReport();
     }
 
-    private void CrowdReaction()
+    private float CalculateCrowdReaction()
     {
+        // TODO calculate crowd reaction percentage based on song stats
+        percentage = crowdReactionPercentage / 100f;
+
+        return percentage;
+    }
+
+    public void CrowdReaction(float percentage)
+    {
+        // Clamp percentage between 0 and 1 just in case
+        float weight = Mathf.Clamp01(percentage);
+
         CrowdMember[] crowd = FindObjectsByType<CrowdMember>(FindObjectsSortMode.None);
+
         foreach (var person in crowd)
         {
-            person.StartJumping();
+            // Random.value returns a float between 0.0 and 1.0
+            if (UnityEngine.Random.value <= weight)
+            {
+                person.StartJumping();
+            }
         }
     }
 

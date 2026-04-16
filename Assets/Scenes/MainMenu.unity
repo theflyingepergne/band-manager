@@ -1150,6 +1150,7 @@ MonoBehaviour:
   bandMembers: []
   songCollection: []
   activeSetlist: []
+  destinationVenue: {fileID: 0}
 --- !u!4 &873707836
 Transform:
   m_ObjectHideFlags: 0
