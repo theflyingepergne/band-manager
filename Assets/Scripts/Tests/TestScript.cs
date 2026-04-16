@@ -4,6 +4,12 @@ using UnityEngine.InputSystem;
 public class TestSongGenerator : MonoBehaviour
 {
     [SerializeField] private BandMemberData bandMemberData;
+
+    void Start()
+    {
+        GenerateTestSongs();
+    }
+
     void Update()
     {
         if (Keyboard.current.tKey.wasPressedThisFrame)
@@ -19,16 +25,16 @@ public class TestSongGenerator : MonoBehaviour
 
         string[] titles =
         {
-            "Bleed American",
-            "The Middle",
+            "Bleed English",
+            "The Geeta",
             "Sweetness",
             "Hear You Me",
             "Authority Song",
-            "My Best Theory",
+            "My Gus Theory",
             "A Praise Chorus",
-            "Lucky Denver Mint",
+            "Lucky Pedro Mint",
             "Work",
-            "Always Be"
+            "Always Be Andy"
         };
 
         for (int i = 0; i < titles.Length; i++)

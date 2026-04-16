@@ -11,40 +11,38 @@ public class GigDirector : Singleton<GigDirector>
     [Header("UI References")]
     [SerializeField] private GameObject gigReportUI;
     [SerializeField] private GameObject gigSetlistUIManager;
-    [SerializeField] private GameObject currentSongPointer;
 
     //---Local References---//
-    private GigSetlistUIManager gSUIM;
     private BandManager bm;
 
     private void Start()
     {
         // Init local refs
         bm = BandManager.Instance;
-        gSUIM = gigSetlistUIManager.GetComponent<GigSetlistUIManager>();
+    }
 
-        // Start gig
+    public void StartGig()
+    {
         StartCoroutine(RunGigSequence());
     }
 
     private IEnumerator RunGigSequence()
     {
-        var setlist = BandManager.Instance.activeSetlist;
 
-        for (int i = 0; i < setlist.Count; i++)
+        for (int i = 0; i < bm.activeSetlist.Count; i++)
         {
-            Debug.Log($"Now playing: {setlist[i].songName}");
+            // var currentSong = setlist[i];
+            // Debug.Log($"Now playing: {currentSong.songName}");
 
-            // 1. Update UI (Move the arrow)
+            // Update UI (Move the arrow)
+            gigSetlistUIManager.GetComponent<GigSetlistUIManager>().HighlightCurrentSong(i);
 
             yield return new WaitForSeconds(songDuration);
         }
 
-        // --- All Songs Finished ---
-
-        // 3. Trigger "Crowd Wild" state
-        // CrowdAnimator.SetTrigger("GoWild");
-        // AudioSource.PlayOneShot(crowdCheerClip);
+        //---All Songs Finished---
+        // 3. Trigger "Crowd Wild" state for a few seconds
+        Debug.Log("Woo!");
 
         yield return new WaitForSeconds(postGigWait);
 

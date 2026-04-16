@@ -67,7 +67,7 @@ public class BandManager : Singleton<BandManager>
         if (chosenVenue != null)
         {
             destinationVenue = chosenVenue;
-            Debug.Log("venue data set!");
+            // Debug.Log("venue data set!");
         }
     }
 }

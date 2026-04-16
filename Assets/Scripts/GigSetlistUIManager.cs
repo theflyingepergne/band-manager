@@ -6,7 +6,11 @@ public class GigSetlistUIManager : Singleton<GigSetlistUIManager>
     //---References---//
     [Header("UI References")]
     [SerializeField] private RectTransform setlistSongList;
+
+    [Header("Prefabs")]
     [SerializeField] private GameObject gigSetlistSongWrapper;
+    [SerializeField] private GameObject currentSongPointerPrefab;
+    private GameObject currentSongPointer;
 
     //---Local references--//
     private List<SongEntry> setlist = new List<SongEntry>();
@@ -14,17 +18,19 @@ public class GigSetlistUIManager : Singleton<GigSetlistUIManager>
 
     public void Start()
     {
+        // Init local refs
         bm = BandManager.Instance;
+
         ClearSetlistWrapper();
         PopulateSetlistPanel(GetSetlist());
+
+        GigDirector.Instance.StartGig();
     }
 
     public List<SongEntry> GetSetlist()
     {
         setlist.Clear();
 
-        // For now, the entire songCollection is the setlist
-        // TODO use the setlist prepared in Transit
         if (bm != null)
         {
             setlist = bm.activeSetlist;
@@ -64,5 +70,40 @@ public class GigSetlistUIManager : Singleton<GigSetlistUIManager>
                 Debug.Log("Couldnt find song wrapper manager for some reason");
             }
         }
+    }
+
+    public void HighlightCurrentSong(int songIndex)
+    {
+        
+        Debug.Log($"Playing {setlist[songIndex].songName}");
+        if (currentSongPointer != null)
+        {
+            Transform currentSong = setlistSongList.GetChild(songIndex).transform;
+            MoveSongPointer(currentSong);
+        }
+        else
+        {
+            Transform currentSong = setlistSongList.GetChild(songIndex).transform;
+            CreateSongPointer(currentSong);
+        }
+    }
+
+    private void CreateSongPointer(Transform pointerParent)
+    {
+        currentSongPointer = Instantiate(
+            currentSongPointerPrefab,
+            pointerParent,
+            false);
+        
+        currentSongPointer.GetComponent<SpriteRenderer>().sortingOrder = 21;
+        currentSongPointer.transform.localPosition = Vector3.zero;
+        currentSongPointer.transform.localScale = new Vector3(10f, 10f, 10f);
+    }
+
+    private void MoveSongPointer(Transform pointerParent)
+    {
+        currentSongPointer.transform.SetParent(pointerParent);
+        currentSongPointer.transform.localPosition = Vector3.zero;
+
     }
 }
