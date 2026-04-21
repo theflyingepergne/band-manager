@@ -5,22 +5,23 @@ public class GigDirector : Singleton<GigDirector>
 {
     //---References---//
     [Header("Config")]
-    [SerializeField] private float songDuration = 5f;
+    [SerializeField] public float songDuration = 5f;
     [SerializeField] private float postGigWait = 10f;
     [SerializeField] private float crowdReactionPercentage = 60f;
     private float percentage = 0;
 
     [Header("UI References")]
     [SerializeField] private GameObject gigReportUI;
-    [SerializeField] private GameObject gigSetlistUIManager;
 
     //---Local References---//
     private BandManager bm;
+    private GigSetlistUIManager gSUIM;
 
     private void Start()
     {
         // Init local refs
         bm = BandManager.Instance;
+        gSUIM = GigSetlistUIManager.Instance;
     }
 
     public void StartGig()
@@ -30,16 +31,22 @@ public class GigDirector : Singleton<GigDirector>
 
     private IEnumerator RunGigSequence()
     {
+        int i = 0;
 
-        for (int i = 0; i < bm.activeSetlist.Count; i++)
+        foreach (SongEntry song in gSUIM.setlist)
         {
             // var currentSong = setlist[i];
             // Debug.Log($"Now playing: {currentSong.songName}");
 
             // Update UI (Move the arrow)
-            gigSetlistUIManager.GetComponent<GigSetlistUIManager>().HighlightCurrentSong(i);
+            gSUIM.GetComponent<GigSetlistUIManager>().HighlightCurrentSong(i);
+
+            // Tell VibeBarManager to create bar for current song
+            GigVibeManager.Instance.SetupVibeBar(song);
+            
 
             yield return new WaitForSeconds(songDuration);
+            i++;
         }
 
         //---Songs Finished---//
@@ -47,7 +54,7 @@ public class GigDirector : Singleton<GigDirector>
         // Trigger "Crowd Wild" state for a few seconds
         Debug.Log("Woo!");
 
-        CrowdReaction(CalculateCrowdReaction());
+        CrowdReaction(PercentageCrowdReaction());
 
         yield return new WaitForSeconds(postGigWait);
 
@@ -55,7 +62,7 @@ public class GigDirector : Singleton<GigDirector>
         ShowGigReport();
     }
 
-    private float CalculateCrowdReaction()
+    private float PercentageCrowdReaction()
     {
         // TODO calculate crowd reaction percentage based on song stats
         percentage = crowdReactionPercentage / 100f;

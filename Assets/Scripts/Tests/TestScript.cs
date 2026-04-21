@@ -43,7 +43,7 @@ public class TestSongGenerator : MonoBehaviour
 
         for (int i = 0; i < titles.Length; i++)
         {
-            float newSongScore = Random.Range(0f, 100f);
+            float newSongScore = Random.Range(60f, 100f);
             SongEntry newSong = new SongEntry(titles[i], bandMemberData, newSongScore);
             BandManager.Instance.AddSongToCollection(newSong);
         }

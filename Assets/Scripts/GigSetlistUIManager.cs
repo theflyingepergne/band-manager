@@ -14,7 +14,7 @@ public class GigSetlistUIManager : Singleton<GigSetlistUIManager>
     private GameObject currentSongPointer;
 
     //---Local references--//
-    private List<SongEntry> setlist = new List<SongEntry>();
+    public List<SongEntry> setlist = new List<SongEntry>();
     private BandManager bm;
 
     public void Start()
