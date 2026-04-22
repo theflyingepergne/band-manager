@@ -40,24 +40,23 @@ public class GigDirector : Singleton<GigDirector>
 
         foreach (SongEntry song in gSUIM.setlist)
         {
-            // var currentSong = setlist[i];
-            // Debug.Log($"Now playing: {currentSong.songName}");
-
             // Update UI (Move the arrow)
             gSUIM.GetComponent<GigSetlistUIManager>().HighlightCurrentSong(i);
 
             // Create vibeBar for current song
+            // vibeBar fills itself on setup using song params
             SetupVibeBar(song);
 
-
+            // "Wait" for song to end
             yield return new WaitForSeconds(songDuration);
+
             i++;
         }
 
         //---Songs Finished---//
 
         // Trigger "Crowd Wild" state for a few seconds
-        Debug.Log("Woo!");
+        // Debug.Log("Woo!");
 
         CrowdReaction(PercentageCrowdReaction());
 
