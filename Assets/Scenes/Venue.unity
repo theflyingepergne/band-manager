@@ -2727,6 +2727,8 @@ MonoBehaviour:
   postGigWait: 2
   crowdReactionPercentage: 40
   gigReportUI: {fileID: 923824493}
+  vibeBarWrapper: {fileID: 138415824}
+  vibeBarPrefab: {fileID: 4064003319972825430, guid: d790d5e300b7743b5b1effcdfd6acf6d, type: 3}
 --- !u!4 &992438138
 Transform:
   m_ObjectHideFlags: 0
@@ -2737,53 +2739,6 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.11821, y: -0.49168, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1016079251
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1016079253}
-  - component: {fileID: 1016079252}
-  m_Layer: 0
-  m_Name: GigVibeManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1016079252
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1016079251}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00bf180d7c26541b5bc9f1c1b418e1d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GigVibeManager
-  persistAcrossScenes: 0
-  vibeBarWrapper: {fileID: 138415824}
-  vibeBarPrefab: {fileID: 4064003319972825430, guid: d790d5e300b7743b5b1effcdfd6acf6d, type: 3}
---- !u!4 &1016079253
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1016079251}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6130,4 +6085,3 @@ SceneRoots:
   - {fileID: 1089960908}
   - {fileID: 1911910454}
   - {fileID: 992438138}
-  - {fileID: 1016079253}

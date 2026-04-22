@@ -12,6 +12,11 @@ public class GigDirector : Singleton<GigDirector>
 
     [Header("UI References")]
     [SerializeField] private GameObject gigReportUI;
+    [SerializeField] private RectTransform vibeBarWrapper;
+
+    [Header("Prefabs")]
+    [SerializeField] private GameObject vibeBarPrefab;
+
 
     //---Local References---//
     private BandManager bm;
@@ -41,9 +46,9 @@ public class GigDirector : Singleton<GigDirector>
             // Update UI (Move the arrow)
             gSUIM.GetComponent<GigSetlistUIManager>().HighlightCurrentSong(i);
 
-            // Tell VibeBarManager to create bar for current song
-            GigVibeManager.Instance.SetupVibeBar(song);
-            
+            // Create vibeBar for current song
+            SetupVibeBar(song);
+
 
             yield return new WaitForSeconds(songDuration);
             i++;
@@ -62,6 +67,20 @@ public class GigDirector : Singleton<GigDirector>
         ShowGigReport();
     }
 
+    //---Vibe Bar---//
+    public GameObject SetupVibeBar(SongEntry song)
+    {
+        GameObject vibeBar = Instantiate(vibeBarPrefab, vibeBarWrapper, false);
+        GigVibeBar vibeBarScript = vibeBar.GetComponent<GigVibeBar>();
+        vibeBar.transform.localPosition = Vector3.zero;
+
+        vibeBarScript.SetupBar(song.songScore, GigDirector.Instance.songDuration);
+
+        Debug.Log(song.songName);
+        return vibeBar;
+    }
+
+    //---Crowd Reaction---//
     private float PercentageCrowdReaction()
     {
         // TODO calculate crowd reaction percentage based on song stats
@@ -87,6 +106,7 @@ public class GigDirector : Singleton<GigDirector>
         }
     }
 
+    //---Gig Report---//
     private void ShowGigReport()
     {
         gigReportUI.SetActive(true);
