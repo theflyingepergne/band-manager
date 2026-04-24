@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameEventData
   title: Inspiration has struck!
   description: One of the band members has written a song. How adorable! I'll put
-    it on the fridge... Or in the Song Vault!
+    it on the fridge... Or in the Song Vault hehe
   sprite: {fileID: 21300000, guid: dfde743b4bffe468684ff58eca15cea0, type: 3}
   choices:
-  - choiceLabel: Another little money maker to add to the collection hehe
+  - choiceLabel: Another little money maker to add to the collection
     StatChanges: []
     CustomEvents:
     - {fileID: 11400000, guid: a98c52e5a094940fe97be7881de89238, type: 2}

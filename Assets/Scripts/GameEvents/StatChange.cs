@@ -7,7 +7,7 @@ public class StatChange
     public StatType stat;
     public float amount; // Can be negative or positive
 
-    public void Execute()
+    public void ApplyStatChange()
     {
         BandManager.Instance.ApplyStatChange(this);
     }

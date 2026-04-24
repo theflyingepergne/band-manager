@@ -1,12 +1,21 @@
+using System.Diagnostics.Tracing;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class TestSongGenerator : MonoBehaviour
 {
+    //---References---//
+    [Header("Data")]
     [SerializeField] private BandMemberData bandMemberData;
+    [SerializeField] private GameEventDatabase gameEventDatabase;
+
+    [Header("Config")]
     [SerializeField] private bool autoGenerateTestSongs;
+
+    [Header("GameObjects")]
     [SerializeField] private GameObject gameEventPrefab;
 
+    //---Methods---//
     void Start()
     {
         if (autoGenerateTestSongs == true)
@@ -61,8 +70,15 @@ public class TestSongGenerator : MonoBehaviour
 
     void TriggerGameEvent()
     {
-        bool active = gameEventPrefab.activeSelf;
-        gameEventPrefab.SetActive(!active);
+        if (gameEventPrefab != null)
+        {
+            GameEventManager gameEventManager = gameEventPrefab.GetComponent<GameEventManager>();
+            gameEventManager.SetupEvent(gameEventDatabase.GetRandomEvent());
+
+            bool active = gameEventPrefab.activeSelf;
+            gameEventPrefab.SetActive(!active);
+        }
+        
     }
 }
 

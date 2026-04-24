@@ -1,6 +1,10 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "WriteSongEvent", menuName = "Game Events/Custom Game Events/WriteSongEvent")]
+[CreateAssetMenu(
+    fileName = "WriteSongEvent",
+    menuName = "Game Events/Custom Game Events/WriteSongEvent"
+)]
+
 public class WriteSongEvent : CustomGameEventData
 {
     public override void Execute()

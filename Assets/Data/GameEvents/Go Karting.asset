@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1ffe2ac32d514137a1397c28846fef0, type: 3}
   m_Name: Go Karting
   m_EditorClassIdentifier: Assembly-CSharp::GameEventData
-  eventTitle: '"We Want to go Go Karting"'
+  title: '"We want to go Go Karting"'
   description: The band are bored of racing each other on foot and have decided they
     want to see who is the fastest at the local indoor Go Karting dome.
-  eventIllustration: {fileID: 21300000, guid: 47293e44133a6480e8cf3551296541b8, type: 3}
+  sprite: {fileID: 21300000, guid: 47293e44133a6480e8cf3551296541b8, type: 3}
   choices:
   - choiceLabel: This could bring them closer together...
     StatChanges:
@@ -23,7 +23,9 @@ MonoBehaviour:
       amount: -200
     - stat: 2
       amount: 10
-  - choiceLabel: Sounds like a waste of time
+    CustomEvents: []
+  - choiceLabel: Sounds like a waste of time.
     StatChanges:
     - stat: 2
       amount: -5
+    CustomEvents: []
