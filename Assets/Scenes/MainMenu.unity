@@ -1151,6 +1151,9 @@ MonoBehaviour:
   songCollection: []
   activeSetlist: []
   destinationVenue: {fileID: 0}
+  money: 0
+  fans: 0
+  chemistry: 0
 --- !u!4 &873707836
 Transform:
   m_ObjectHideFlags: 0

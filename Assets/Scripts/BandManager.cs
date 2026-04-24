@@ -57,22 +57,29 @@ public class BandManager : Singleton<BandManager>
     //---Game Event Methods---//
     public void GenerateRandomSongFromEvent()
     {
-        string songName = "Default song name";
-        BandMemberData bandMember = null;
+        // Init vars
+        string songName;
+        BandMemberData bandMember;
         float newSongScore = Random.Range(60f, 100f);
 
-        if (bandMembers != null || bandMembers.Count != 0)
+        if (bandMembers != null && bandMembers.Count > 0)
         {
             // pick a random band member to supply song data
             int i = Random.Range(0, bandMembers.Count);
             bandMember = bandMembers[i];
-            songName = $"{bandMember.name}'s song";
+            songName = $"{bandMember.memberName}'s song";
+
+        }
+        else
+        {
+            songName = "Default song name";
+            bandMember = ScriptableObject.CreateInstance<BandMemberData>();
         }
 
         SongEntry newSong = new SongEntry(songName, bandMember, newSongScore);
-        BandManager.Instance.AddSongToCollection(newSong);
+        AddSongToCollection(newSong);
     }
-    
+
     //---Setlist Methods---//
     public List<SongEntry> PrepareSetlist()
     {
@@ -99,7 +106,7 @@ public class BandManager : Singleton<BandManager>
             }
             activeSetlist = selectedSongs;
         }
-        
+
         return activeSetlist;
     }
 

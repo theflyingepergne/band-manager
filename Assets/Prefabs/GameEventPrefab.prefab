@@ -412,6 +412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e3afb1244dc1440d876cf22cb39c73d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameEventDataManager
+  persistAcrossScenes: 0
   gameEventData: {fileID: 11400000, guid: 5ec4e5a04f7b84c56a966d5159cc7e75, type: 2}
   gameEventDatabase: {fileID: 11400000, guid: 1f77b1c68ad1c486385dc7306b3ffa8a, type: 2}
   eventTitle: {fileID: 4280836024885483553}
@@ -554,11 +555,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 6778094252829322988}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -100}
+  m_SizeDelta: {x: 690, y: 60}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &2560719249380544619
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -670,7 +671,6 @@ GameObject:
   - component: {fileID: 6778094252829322988}
   - component: {fileID: 7932590478464892376}
   - component: {fileID: 3082271933090251524}
-  - component: {fileID: 4234709800323753314}
   m_Layer: 5
   m_Name: EventWrapper
   m_TagString: Untagged
@@ -738,32 +738,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 0.25
---- !u!114 &4234709800323753314
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6287996452960342931}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.VerticalLayoutGroup
-  m_Padding:
-    m_Left: 50
-    m_Right: 50
-    m_Top: 50
-    m_Bottom: 50
-  m_ChildAlignment: 0
-  m_Spacing: 10
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 1
-  m_ChildControlHeight: 1
-  m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
-  m_ReverseArrangement: 0
 --- !u!1 &6502368677536205773
 GameObject:
   m_ObjectHideFlags: 0
@@ -774,7 +748,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1561249962515306379}
   - component: {fileID: 2247502993250696792}
-  - component: {fileID: 5213837853889654312}
   - component: {fileID: 1801490850177945286}
   m_Layer: 5
   m_Name: EventChoiceWrapper
@@ -798,11 +771,11 @@ RectTransform:
   - {fileID: 4061320305204943471}
   m_Father: {fileID: 6778094252829322988}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 40}
+  m_SizeDelta: {x: 690, y: 80}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &2247502993250696792
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -811,36 +784,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6502368677536205773}
   m_CullTransparentMesh: 1
---- !u!114 &5213837853889654312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6502368677536205773}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!114 &1801490850177945286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -859,7 +802,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
-  m_Spacing: 0
+  m_Spacing: 10
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
@@ -899,11 +842,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 6778094252829322988}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -310}
+  m_SizeDelta: {x: 690, y: 200}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &4786595170492077144
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1016,6 +959,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1561249962515306379}
     m_Modifications:
+    - target: {fileID: 912609462538071714, guid: 2b2a30c8ce2e34db3aa2f8fba6ccfe84, type: 3}
+      propertyPath: m_fontSize
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 912609462538071714, guid: 2b2a30c8ce2e34db3aa2f8fba6ccfe84, type: 3}
+      propertyPath: m_fontSizeMin
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 1663334368192040162, guid: 2b2a30c8ce2e34db3aa2f8fba6ccfe84, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 0
@@ -1043,6 +994,14 @@ PrefabInstance:
     - target: {fileID: 1663334368192040162, guid: 2b2a30c8ce2e34db3aa2f8fba6ccfe84, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1716684713025029344, guid: 2b2a30c8ce2e34db3aa2f8fba6ccfe84, type: 3}
+      propertyPath: m_MinWidth
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1716684713025029344, guid: 2b2a30c8ce2e34db3aa2f8fba6ccfe84, type: 3}
+      propertyPath: m_MinHeight
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 2166522210052113869, guid: 2b2a30c8ce2e34db3aa2f8fba6ccfe84, type: 3}
       propertyPath: m_Pivot.x

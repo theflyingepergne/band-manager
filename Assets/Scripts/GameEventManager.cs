@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameEventManager : MonoBehaviour
+public class GameEventManager : Singleton<GameEventManager>
 {
     //---References---//
     [Header("Data")]
@@ -42,8 +42,10 @@ public class GameEventManager : MonoBehaviour
 
     private void SetupEventChoiceButtons()
     {
+        // Clear any old buttons
         ClearEventChoiceButtons();
 
+        // Create a button for each choice
         foreach (EventChoice choice in gameEventData.choices)
         {
             GameObject eCBP = Instantiate(eventChoiceButtonPrefab, eventChoiceWrapper, false);
@@ -85,7 +87,27 @@ public class GameEventManager : MonoBehaviour
             }
         }
 
-        // Hide the UI and clear the phone notification
-        // CloseEventWindow();
+        // Clear EventChoiceButtons
+        ClearEventChoiceButtons();
+
+        // Set event description to chosen EventChoice outcome
+        eventDescription.text = chosen.choiceOutcomeDescription;
+
+        CreateCloseButton();
+    }
+
+    private void CreateCloseButton()
+    {
+        GameObject c = Instantiate(eventChoiceButtonPrefab, eventChoiceWrapper, false);
+        c.GetComponentInChildren<TextMeshProUGUI>().text = "Close";
+        
+        Button btn = c.GetComponentInChildren<Button>();
+        // Close window on click
+        btn.onClick.AddListener(() => CloseEventWindow());
+    }
+
+    public void CloseEventWindow()
+    {
+        gameObject.SetActive(false);
     }
 }
