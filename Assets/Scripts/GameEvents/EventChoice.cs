@@ -6,5 +6,5 @@ public class EventChoice
 {
     public string choiceLabel;
     public List<StatChange> StatChanges; // If no stat changes, leave empty
-    public List<CustomGameEvent> CustomEvents; // drag in custom events
+    public List<CustomGameEventData> CustomEvents; // drag in custom events
 }

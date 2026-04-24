@@ -50,6 +50,7 @@ public class BandManager : Singleton<BandManager>
         Debug.Log($"Added {song.songName}, score = {song.songScore}");
     }
 
+    //---Game Event Methods---//
     public void GenerateRandomSongFromEvent()
     {
         string songName = "Default song name";
@@ -67,6 +68,7 @@ public class BandManager : Singleton<BandManager>
         SongEntry newSong = new SongEntry(songName, bandMember, newSongScore);
         BandManager.Instance.AddSongToCollection(newSong);
     }
+    
     //---Setlist Methods---//
     public List<SongEntry> PrepareSetlist()
     {

@@ -1096,6 +1096,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 261609279}
   m_CullTransparentMesh: 1
+--- !u!1 &370551890 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3090593790593587005, guid: 860388272eb7d42b3b2c8f92dcd294c0, type: 3}
+  m_PrefabInstance: {fileID: 1203025327683412224}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &440783302
 GameObject:
   m_ObjectHideFlags: 0
@@ -2717,7 +2722,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestSongGenerator
   bandMemberData: {fileID: 11400000, guid: 8d82f51ae66b1644d8ea8f32ef3fc0b3, type: 2}
-  autoGenerateTestSongs: 1
+  autoGenerateTestSongs: 0
+  gameEventPrefab: {fileID: 370551890}
 --- !u!4 &1351523765
 Transform:
   m_ObjectHideFlags: 0
@@ -3130,7 +3136,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3090593790593587005, guid: 860388272eb7d42b3b2c8f92dcd294c0, type: 3}
       propertyPath: m_Name
-      value: GameEvent
+      value: GameEventPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 3090593790593587005, guid: 860388272eb7d42b3b2c8f92dcd294c0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6586801241436047478, guid: 860388272eb7d42b3b2c8f92dcd294c0, type: 3}
       propertyPath: m_Camera

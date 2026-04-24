@@ -5,6 +5,7 @@ public class TestSongGenerator : MonoBehaviour
 {
     [SerializeField] private BandMemberData bandMemberData;
     [SerializeField] private bool autoGenerateTestSongs;
+    [SerializeField] private GameObject gameEventPrefab;
 
     void Start()
     {
@@ -20,6 +21,12 @@ public class TestSongGenerator : MonoBehaviour
         {
             GenerateTestSongs();
         }
+
+        if (Keyboard.current.eKey.wasPressedThisFrame)
+        {
+            TriggerGameEvent();
+        }
+
     }
 
     void GenerateTestSongs()
@@ -50,6 +57,12 @@ public class TestSongGenerator : MonoBehaviour
 
         Debug.Log("Generated test songs in BandManager.");
         BandManager.Instance.PrepareSetlist();
+    }
+
+    void TriggerGameEvent()
+    {
+        bool active = gameEventPrefab.activeSelf;
+        gameEventPrefab.SetActive(!active);
     }
 }
 

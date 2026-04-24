@@ -11,7 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1ffe2ac32d514137a1397c28846fef0, type: 3}
   m_Name: Go Karting
-  m_EditorClassIdentifier: Assembly-CSharp::GameEvent
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventData
   eventTitle: '"We Want to go Go Karting"'
   description: The band are bored of racing each other on foot and have decided they
     want to see who is the fastest at the local indoor Go Karting dome.
