@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1ffe2ac32d514137a1397c28846fef0, type: 3}
+  m_Name: Record Store Gig
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventData
+  title: CDeez Bands
+  description: 'To celebrate their launch, record store "CDeez" is letting local
+    bands play a song or two.
+
+
+    They''re a new store so they can only pay in
+    exposure but you don''t mind. After all, it''s all about the music, right?'
+  sprite: {fileID: 21300000, guid: 1e50682e310544a8495eba08cad48fa0, type: 3}
+  choices:
+  - choiceLabel: Let's do it! A gig is a gig.
+    choiceOutcomeDescription: 'You only played 1 song but a few kids way in the back
+      loved it! Maybe they''ll tell their friends and then they''ll tell their friends... '
+    StatChanges:
+    - stat: 1
+      amount: 10
+    CustomEvents: []
+  - choiceLabel: No money no show
+    choiceOutcomeDescription: 
+    StatChanges: []
+    CustomEvents:
+    - {fileID: 11400000, guid: ce70df2eb3f8144a385f6daad835ebf1, type: 2}

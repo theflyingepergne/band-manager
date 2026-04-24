@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameEventDatabase
   events:
   - {fileID: 11400000, guid: a652d662c8549452686eca3ed8c02a6f, type: 2}
+  - {fileID: 11400000, guid: 66f2e39dd2697435197f4eb755c18228, type: 2}
   - {fileID: 11400000, guid: 5ec4e5a04f7b84c56a966d5159cc7e75, type: 2}
