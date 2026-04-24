@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameEventManager : MonoBehaviour
 {
@@ -12,23 +13,56 @@ public class GameEventManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI eventTitle;
     [SerializeField] private TextMeshProUGUI eventDescription;
     [SerializeField] private GameObject eventSprite;
+    [SerializeField] private RectTransform eventChoiceWrapper;
+
+    [Header("Prefabs")]
+    [SerializeField] private GameObject eventChoiceButtonPrefab;
 
     //---Methods---//
     void Start()
     {
-        // Setup event with default data
         SetupEvent(gameEventData);
     }
 
     public void SetupEvent(GameEventData data)
     {
+        // If no data was passed in, use default gameEventData
         if (data != null)
         {
             gameEventData = data;
         }
+
+        // Setup title, description and sprite
         eventTitle.text = gameEventData.title;
         eventDescription.text = gameEventData.description;
         eventSprite.GetComponent<SpriteRenderer>().sprite = gameEventData.sprite;
+
+        SetupEventChoiceButtons();
+    }
+
+    private void SetupEventChoiceButtons()
+    {
+        ClearEventChoiceButtons();
+
+        foreach (EventChoice choice in gameEventData.choices)
+        {
+            GameObject eCBP = Instantiate(eventChoiceButtonPrefab, eventChoiceWrapper, false);
+            eCBP.GetComponentInChildren<TextMeshProUGUI>().text = choice.choiceLabel;
+            Button btn = eCBP.GetComponent<Button>();
+
+            btn.onClick.AddListener(() => OnChoiceSelected(choice));
+        }
+    }
+
+    private void ClearEventChoiceButtons()
+    {
+        // Clear any existing buttons
+        for (int i = eventChoiceWrapper.childCount - 1; i >= 0; i--)
+        {
+            Transform child = eventChoiceWrapper.GetChild(i);
+            child.SetParent(null);
+            Destroy(child.gameObject);
+        }
     }
 
     public void OnChoiceSelected(EventChoice chosen)

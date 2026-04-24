@@ -20,12 +20,16 @@ public class BandManager : Singleton<BandManager>
         switch (effect.stat)
         {
             case StatChange.StatType.Money:
-                money += effect.amount; break;
+                money += effect.amount;
+                break;
             case StatChange.StatType.Fans:
-                fans += (int)effect.amount; break;
+                fans += (int)effect.amount;
+                break;
             case StatChange.StatType.Chemistry:
-                chemistry = Mathf.Clamp(chemistry + effect.amount, 0f, 100f); break;
+                chemistry = Mathf.Clamp(chemistry + effect.amount, 0f, 100f);
+                break;
         }
+        Debug.Log($"{effect.stat} changed by {effect.amount}!");
     }
 
     //---Band Member Methods---//

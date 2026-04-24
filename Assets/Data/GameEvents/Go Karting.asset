@@ -18,6 +18,8 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 47293e44133a6480e8cf3551296541b8, type: 3}
   choices:
   - choiceLabel: This could bring them closer together...
+    choiceOutcome: 'The band loved that! Sure it was a hit to my wallet but... look
+      how happy they are ('':'
     StatChanges:
     - stat: 0
       amount: -200
@@ -25,6 +27,8 @@ MonoBehaviour:
       amount: 10
     CustomEvents: []
   - choiceLabel: Sounds like a waste of time.
+    choiceOutcome: The band go back to moping around the house and I go back to counting
+      my money.
     StatChanges:
     - stat: 2
       amount: -5
