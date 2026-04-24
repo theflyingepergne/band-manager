@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1ffe2ac32d514137a1397c28846fef0, type: 3}
+  m_Name: Wrote A Song
+  m_EditorClassIdentifier: Assembly-CSharp::GameEvent
+  eventTitle: Inspiration has struck!
+  description: One of the band members has written a song. How adorable! I'll put
+    it on the fridge... Or in the Song Vault!
+  eventIllustration: {fileID: 21300000, guid: dfde743b4bffe468684ff58eca15cea0, type: 3}
+  choices:
+  - choiceLabel: Another little money maker to add to the collection hehe
+    StatChanges: []
+    CustomEvents:
+    - {fileID: 11400000, guid: a98c52e5a094940fe97be7881de89238, type: 2}
