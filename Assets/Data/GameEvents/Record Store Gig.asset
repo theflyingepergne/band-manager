@@ -21,14 +21,14 @@ MonoBehaviour:
     exposure but you don''t mind. After all, it''s all about the music, right?'
   sprite: {fileID: 21300000, guid: 1e50682e310544a8495eba08cad48fa0, type: 3}
   choices:
-  - choiceLabel: Let's do it! A gig is a gig.
+  - choiceLabel: Let's do it! A gig is a gig is a gig.
     choiceOutcomeDescription: 'You only played 1 song but a few kids way in the back
       loved it! Maybe they''ll tell their friends and then they''ll tell their friends... '
     StatChanges:
     - stat: 1
       amount: 10
     CustomEvents: []
-  - choiceLabel: No money no show
+  - choiceLabel: Ignore
     choiceOutcomeDescription: 
     StatChanges: []
     CustomEvents:

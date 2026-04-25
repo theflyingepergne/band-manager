@@ -11,4 +11,14 @@ public class StatChange
     {
         BandManager.Instance.ApplyStatChange(this);
     }
+
+    public string GetStatText()
+    {
+        // Set positive / negative colours
+        string color = amount >= 0 ? "green" : "red";
+
+        // Append any stat change text to outcome text
+        string sign = amount >= 0 ? "+" : "";
+        return $"<color={color}>{sign}{amount} {stat}</color>";
+    }
 }

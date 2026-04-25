@@ -1,3 +1,4 @@
+using System.Text;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,6 +20,7 @@ public class GameEventManager : Singleton<GameEventManager>
     [SerializeField] private GameObject eventChoiceButtonPrefab;
 
     //---Methods---//
+    //---Setup before picking choice---//
     void Start()
     {
         SetupEvent(gameEventData);
@@ -67,14 +69,20 @@ public class GameEventManager : Singleton<GameEventManager>
         }
     }
 
+    //---Setup after picking choice---//
     public void OnChoiceSelected(EventChoice chosen)
     {
+        // Prepare text player will see after picking a choice
+        StringBuilder sb = new StringBuilder();
+        sb.AppendLine($"{chosen.choiceOutcomeDescription}\n");
+
         // Perform any stat changes
         if (chosen.StatChanges.Count > 0)
         {
             foreach (var statChange in chosen.StatChanges)
             {
                 statChange.ApplyStatChange();
+                sb.AppendLine(statChange.GetStatText());
             }
         }
 
@@ -91,18 +99,21 @@ public class GameEventManager : Singleton<GameEventManager>
         ClearEventChoiceButtons();
 
         // Set event description to chosen EventChoice outcome
-        eventDescription.text = chosen.choiceOutcomeDescription;
+        // as well as any stat changes
+        eventDescription.text = sb.ToString();
 
+        // Create close button and add it to wrapper
         CreateCloseButton();
     }
 
     private void CreateCloseButton()
     {
+        // Create button
         GameObject c = Instantiate(eventChoiceButtonPrefab, eventChoiceWrapper, false);
         c.GetComponentInChildren<TextMeshProUGUI>().text = "Close";
-        
-        Button btn = c.GetComponentInChildren<Button>();
+
         // Close window on click
+        Button btn = c.GetComponentInChildren<Button>();
         btn.onClick.AddListener(() => CloseEventWindow());
     }
 
