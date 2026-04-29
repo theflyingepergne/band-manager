@@ -15,14 +15,14 @@ EditorBuildSettings:
     path: Assets/Scenes/RecruitBandMembers.unity
     guid: fbb5250df15704dccaa4367e8409062c
   - enabled: 1
-    path: Assets/Scenes/Venue.unity
-    guid: defc47a6a75921447b31c48eea35e370
-  - enabled: 1
     path: Assets/Scenes/Map.unity
     guid: ba4cec47d91324edb9262c1d3cd4c0ec
   - enabled: 1
     path: Assets/Scenes/Transit.unity
     guid: d9a4c19497f10419386ee2a7b5b442c4
+  - enabled: 1
+    path: Assets/Scenes/Venue.unity
+    guid: defc47a6a75921447b31c48eea35e370
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: db7bd4e0972b3446db76c5b86762e8fb, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6723696937774599454}
   - component: {fileID: 9172039462748905810}
   - component: {fileID: 7714012343134507616}
+  - component: {fileID: -4407109380463787027}
   m_Layer: 6
   m_Name: BandMember
   m_TagString: BandMember
@@ -80,8 +81,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1421806305
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: dd4929199bf49e942a12481bf9e2016c, type: 3}
@@ -165,4 +166,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17c7b7a3b8a2b42eeb6655a3b4267108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Highlighter
-  highlightedColour: {r: 0.74901974, g: 0, b: 0, a: 0.49019608}
+  highlightedColour: {r: 0.74901974, g: 0, b: 0, a: 0.6862745}
+--- !u!114 &-4407109380463787027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165794384857220249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 1, b: 0, a: 1}
+  m_EffectDistance: {x: 10, y: 10}
+  m_UseGraphicAlpha: 1

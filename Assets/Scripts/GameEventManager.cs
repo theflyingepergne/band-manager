@@ -52,8 +52,9 @@ public class GameEventManager : Singleton<GameEventManager>
         {
             GameObject eCBP = Instantiate(eventChoiceButtonPrefab, eventChoiceWrapper, false);
             eCBP.GetComponentInChildren<TextMeshProUGUI>().text = choice.choiceLabel;
-            Button btn = eCBP.GetComponent<Button>();
 
+            // Call OnChoiceSelected on button click
+            Button btn = eCBP.GetComponent<Button>();
             btn.onClick.AddListener(() => OnChoiceSelected(choice));
         }
     }

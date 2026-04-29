@@ -4,7 +4,7 @@ using UnityEngine;
 public class Highlighter : MonoBehaviour, IHoverable
 {
     Color originalColour;
-    [SerializeField] Color highlightedColour = new Color(255f, 0f, 0f, 125f);
+    [SerializeField] Color highlightedColour = new Color(255f, 0f, 0f, 175f);
     SpriteRenderer spriteRenderer;
 
     void Start()
