@@ -80,8 +80,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1473647357
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 72e0409f7f77b481b9b74d68180dcb00, type: 3}
@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0910868165614db2a7da30bf0a813bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TravelIcon
+  sceneToLoad: Map
 --- !u!114 &175906148764472223
 MonoBehaviour:
   m_ObjectHideFlags: 0

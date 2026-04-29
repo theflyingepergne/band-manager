@@ -1483,8 +1483,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 378d82f10384d4dda962c46e6f1e842b, type: 3}
     - target: {fileID: 2087567071752947163, guid: e71b107713cb547e7985c7a816bf3094, type: 3}
+      propertyPath: m_SortingLayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2087567071752947163, guid: e71b107713cb547e7985c7a816bf3094, type: 3}
       propertyPath: m_SortingOrder
       value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 2087567071752947163, guid: e71b107713cb547e7985c7a816bf3094, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 2091290839
       objectReference: {fileID: 0}
     - target: {fileID: 2880119272614222558, guid: e71b107713cb547e7985c7a816bf3094, type: 3}
       propertyPath: m_Name
@@ -2668,7 +2676,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 2091290839
   m_SortingOrder: 21
   m_TargetDisplay: 0
 --- !u!224 &923824497
@@ -3045,7 +3053,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1577565867
   m_SortingOrder: 20
   m_TargetDisplay: 0
 --- !u!224 &1227882262
@@ -5855,7 +5863,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: -253408703
   m_SortingOrder: -1
   m_TargetDisplay: 0
 --- !u!224 &5894355197103755173

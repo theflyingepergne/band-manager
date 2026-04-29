@@ -39,11 +39,26 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: UI_Background
+    uniqueID: 4041558593
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
   - name: BandMember
     uniqueID: 2873160991
+    locked: 0
+  - name: UI_Midground
+    uniqueID: 1577565867
+    locked: 0
+  - name: Setlist
+    uniqueID: 855248679
+    locked: 0
+  - name: Buttons
+    uniqueID: 2821319939
+    locked: 0
+  - name: UI_Foreground
+    uniqueID: 2091290839
     locked: 0
   m_RenderingLayers:
   - Default
