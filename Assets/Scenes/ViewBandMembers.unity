@@ -3379,34 +3379,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameEventPrefab
       objectReference: {fileID: 0}
-    - target: {fileID: 3090593790593587005, guid: 860388272eb7d42b3b2c8f92dcd294c0, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4061320305204943471, guid: 860388272eb7d42b3b2c8f92dcd294c0, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4061320305204943471, guid: 860388272eb7d42b3b2c8f92dcd294c0, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4061320305204943471, guid: 860388272eb7d42b3b2c8f92dcd294c0, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 690
-      objectReference: {fileID: 0}
-    - target: {fileID: 4061320305204943471, guid: 860388272eb7d42b3b2c8f92dcd294c0, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 80
-      objectReference: {fileID: 0}
-    - target: {fileID: 4061320305204943471, guid: 860388272eb7d42b3b2c8f92dcd294c0, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 345
-      objectReference: {fileID: 0}
-    - target: {fileID: 4061320305204943471, guid: 860388272eb7d42b3b2c8f92dcd294c0, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -40
-      objectReference: {fileID: 0}
     - target: {fileID: 6586801241436047478, guid: 860388272eb7d42b3b2c8f92dcd294c0, type: 3}
       propertyPath: m_Camera
       value: 
