@@ -24,15 +24,16 @@ public class StatDisplay : MonoBehaviour
         switch (thisStat)
         {
             case StatType.Money:
-                GetStatText(bm.money);
+                DisplayStatText(FormatStatText(StatType.Money, bm.money), bm.money);
                 break;
             case StatType.Chemistry:
-                GetStatText(bm.chemistry);
+                DisplayStatText(FormatStatText(StatType.Chemistry, bm.chemistry), bm.chemistry);
                 break;
             case StatType.Fans:
-                GetStatText(bm.fans);
+                DisplayStatText(FormatStatText(StatType.Fans, bm.fans), bm.fans);
                 break;
         }
+
     }
 
     private void HandleStatChanged(StatType stat, float amount)
@@ -40,19 +41,37 @@ public class StatDisplay : MonoBehaviour
         // When stats change, update UI text
         if (thisStat == stat)
         {
-            GetStatText(amount);
+            DisplayStatText(FormatStatText(stat, amount), amount);
         }
 
         // Debug.Log("changed stat in UI");
     }
 
-    private void GetStatText(float amount)
+    private string FormatStatText(StatType stat, float amount)
     {
+        switch (stat)
+        {
+            case StatType.Money:
+                return amount.ToString();
+            case StatType.Chemistry:
+                return amount.ToString() + "%";
+            case StatType.Fans:
+                return FormatUtils.AbbreviateNumber(amount);
+            default:
+                return amount.ToString();
+        }
+    }
+
+    private void DisplayStatText(string displayText, float amount)
+    {
+        // Prepare text for display in the UI
+
         // Set positive / negative colours
         string color = amount >= 0 ? "white" : "red";
 
-        // Append any stat change text to outcome text
+        // Append sign to amount
         string sign = amount >= 0 ? "" : "";
-        statText.text = $"<color={color}>{sign}{amount}</color>";
+        statText.text = $"<color={color}>{sign}{displayText}</color>";
     }
+
 }
