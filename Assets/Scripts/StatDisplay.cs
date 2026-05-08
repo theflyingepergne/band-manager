@@ -1,15 +1,12 @@
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 
 public class StatDisplay : MonoBehaviour
 {
     //---References---//
     [SerializeField] public StatType thisStat;
     [SerializeField] private TMP_Text statText;
-
-    //---Local References---//
-    private BandManager bm;
 
     //---Events---//
     void OnEnable() => BandManager.OnStatChanged += HandleStatChanged;
@@ -18,7 +15,7 @@ public class StatDisplay : MonoBehaviour
     //---Methods---//
     private void Start()
     {
-        bm = BandManager.Instance;
+        BandManager bm = BandManager.Instance;
 
         // Initialise UI with values directly from bm
         switch (thisStat)
@@ -42,8 +39,8 @@ public class StatDisplay : MonoBehaviour
         if (thisStat == stat)
         {
             DisplayStatText(FormatStatText(stat, amount), amount);
+            statText.transform.DOPunchScale(Vector2.one * 1.2f, 0.2f);
         }
-
         // Debug.Log("changed stat in UI");
     }
 

@@ -12,8 +12,8 @@ public class BandManager : Singleton<BandManager>
 
     //---Stats---//
     public float money;
-    public int fans;
     public float chemistry;
+    public int fans;
 
     //---Events---//
     public static System.Action<StatType, float> OnStatChanged;
@@ -27,17 +27,17 @@ public class BandManager : Singleton<BandManager>
                 money += effect.amount;
                 OnStatChanged?.Invoke(effect.stat, money);
                 break;
-            case StatType.Fans:
-                fans += (int)effect.amount;
-                OnStatChanged?.Invoke(effect.stat, fans);
-                break;
             case StatType.Chemistry:
                 chemistry = Mathf.Clamp(chemistry + effect.amount, 0f, 100f);
                 OnStatChanged?.Invoke(effect.stat, chemistry);
                 break;
+            case StatType.Fans:
+                fans += (int)effect.amount;
+                OnStatChanged?.Invoke(effect.stat, fans);
+                break;
         }
 
-        Debug.Log($"{effect.stat} changed by {effect.amount}!");
+        // Debug.Log($"{effect.stat} changed by {effect.amount}!");
         
     }
 

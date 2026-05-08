@@ -24,7 +24,7 @@ MonoBehaviour:
     - stat: 0
       amount: -200
     - stat: 2
-      amount: 10
+      amount: 60
     CustomEvents: []
   - choiceLabel: Sounds like a waste of time.
     choiceOutcomeDescription: The band go back to moping around the house. Oh well!
