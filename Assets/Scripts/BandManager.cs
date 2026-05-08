@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 
 public class BandManager : Singleton<BandManager>
@@ -14,22 +15,30 @@ public class BandManager : Singleton<BandManager>
     public int fans;
     public float chemistry;
 
+    //---Events---//
+    public static System.Action<StatType, float> OnStatChanged;
+
     //---Stat Methods---//
     public void ApplyStatChange(StatChange effect)
     {
         switch (effect.stat)
         {
-            case StatChange.StatType.Money:
+            case StatType.Money:
                 money += effect.amount;
+                OnStatChanged?.Invoke(effect.stat, money);
                 break;
-            case StatChange.StatType.Fans:
+            case StatType.Fans:
                 fans += (int)effect.amount;
+                OnStatChanged?.Invoke(effect.stat, fans);
                 break;
-            case StatChange.StatType.Chemistry:
+            case StatType.Chemistry:
                 chemistry = Mathf.Clamp(chemistry + effect.amount, 0f, 100f);
+                OnStatChanged?.Invoke(effect.stat, chemistry);
                 break;
         }
+
         Debug.Log($"{effect.stat} changed by {effect.amount}!");
+        
     }
 
     //---Band Member Methods---//
