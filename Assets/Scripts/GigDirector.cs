@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GigDirector : Singleton<GigDirector>
@@ -21,6 +22,7 @@ public class GigDirector : Singleton<GigDirector>
     //---Local References---//
     private BandManager bm;
     private GigSetlistUIManager gSUIM;
+    private List<GameObject> vibeBars = new List<GameObject>();
 
     private void Start()
     {
@@ -43,11 +45,9 @@ public class GigDirector : Singleton<GigDirector>
             // Update UI (Move the arrow)
             gSUIM.GetComponent<GigSetlistUIManager>().HighlightCurrentSong(i);
 
-            // Create vibeBar for current song
-            // vibeBar fills itself on setup using song params
-            SetupVibeBar(song);
+            // Fill current vibeBar
+            vibeBars[i].GetComponent<GigVibeBar>().FillBar();
 
-            // "Wait" for song to end
             yield return new WaitForSeconds(songDuration);
 
             i++;
@@ -67,15 +67,31 @@ public class GigDirector : Singleton<GigDirector>
     }
 
     //---Vibe Bar---//
+    public void SetupAllVibeBars()
+    {
+        vibeBars.Clear();
+
+        foreach (SongEntry song in gSUIM.setlist)
+        {
+            // Set up all bars
+            SetupVibeBar(song);
+        }
+
+        Debug.Log(vibeBars.Count.ToString());
+    }
+
     public GameObject SetupVibeBar(SongEntry song)
     {
+        // Create vibeBar and add to vibeBars
         GameObject vibeBar = Instantiate(vibeBarPrefab, vibeBarWrapper, false);
-        GigVibeBar vibeBarScript = vibeBar.GetComponent<GigVibeBar>();
         vibeBar.transform.localPosition = Vector3.zero;
+        vibeBars.Add(vibeBar);
 
+        // Setup vibeBar
+        GigVibeBar vibeBarScript = vibeBar.GetComponent<GigVibeBar>();
         vibeBarScript.SetupBar(song.songScore, GigDirector.Instance.songDuration);
 
-        Debug.Log(song.songName);
+        // Debug.Log(song.songName);
         return vibeBar;
     }
 

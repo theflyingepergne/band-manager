@@ -17,7 +17,7 @@ public class GigVibeBar : MonoBehaviour
         targetFill = songScore / 100f;
         timeToFill = songDuration;
 
-        FillBar();
+        // FillBar();
     }
 
     public void FillBar()

@@ -25,6 +25,7 @@ public class GigSetlistUIManager : Singleton<GigSetlistUIManager>
         ClearSetlistWrapper();
         PopulateSetlistPanel(GetSetlist());
 
+        GigDirector.Instance.SetupAllVibeBars();
         GigDirector.Instance.StartGig();
     }
 
