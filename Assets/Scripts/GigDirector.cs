@@ -23,6 +23,8 @@ public class GigDirector : Singleton<GigDirector>
     private BandManager bm;
     private GigSetlistUIManager gSUIM;
     private List<GameObject> vibeBars = new List<GameObject>();
+    private float gigScore;
+    private float songScoreTotal = 0f;
 
     private void Start()
     {
@@ -64,6 +66,7 @@ public class GigDirector : Singleton<GigDirector>
 
         // Show the Report
         ShowGigReport();
+        Debug.Log("Gig score: " + GetGigScore());
     }
 
     //---Vibe Bar---//
@@ -73,11 +76,12 @@ public class GigDirector : Singleton<GigDirector>
 
         foreach (SongEntry song in gSUIM.setlist)
         {
-            // Set up all bars
             SetupVibeBar(song);
+
+            // Add song score to song score total
+            songScoreTotal += song.songScore;
         }
 
-        Debug.Log(vibeBars.Count.ToString());
     }
 
     public GameObject SetupVibeBar(SongEntry song)
@@ -125,6 +129,13 @@ public class GigDirector : Singleton<GigDirector>
     private void ShowGigReport()
     {
         gigReportUI.SetActive(true);
-        // Pass data to the report based on the setlist quality
+        // TODO Pass data to the report based on the setlist quality
+    }
+
+    private float GetGigScore()
+    {
+        float numSongs = gSUIM.setlist.Count;
+        gigScore = songScoreTotal / (numSongs * 100f);
+        return gigScore;
     }
 }
