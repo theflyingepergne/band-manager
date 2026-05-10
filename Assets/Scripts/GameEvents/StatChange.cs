@@ -6,6 +6,12 @@ public class StatChange
     public StatType stat;
     public float amount; // Can be negative or positive
 
+    public void SetupStatChange(StatType newStat, float newAmount)
+    {
+        stat = newStat;
+        amount = newAmount;
+    }
+
     public void ApplyStatChange()
     {
         BandManager.Instance.ApplyStatChange(this);

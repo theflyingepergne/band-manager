@@ -17,14 +17,11 @@ public class GigReport : MonoBehaviour
     private float gigScore;
     private float songScoreTotal = 0f;
 
-    void Awake()
+    void OnEnable()
     {
         bm = BandManager.Instance;
         vd = bm.destinationVenue;
-    }
 
-    void OnEnable()
-    {
         GetGigScore();
         moneyEarned.text = GetMoneyGain();
     }
@@ -48,7 +45,14 @@ public class GigReport : MonoBehaviour
 
     private string GetMoneyGain()
     {
+        // Calculate money gain
         float moneyGain = vd.basePay + (GetGigScore() * vd.basePay);
+
+        // Apply stat change
+        StatChange moneyStatChange = new StatChange();
+        moneyStatChange.SetupStatChange(StatType.Money, moneyGain);
+        moneyStatChange.ApplyStatChange();
+
         return moneyGain.ToString("+£#.##;-£#.##");
     }
 
