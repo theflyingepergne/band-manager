@@ -8,6 +8,8 @@ public class VenueData : ScriptableObject
     [SerializeField] private string venueDescription;
     [SerializeField] private List<GenreData> venuePreferredGenres;
     [SerializeField] private int venueCapacity;
+    [SerializeField] public float basePay;
     [SerializeField] private Sprite venueBackgroundSprite;
-    // Add field for band member stage transforms - not sure how to do this yet, maybe a list of transforms that we can assign in the inspector?
+    // Add field for band member stage transforms - not sure how to do this yet
+    // maybe a list of transforms that we can assign in the inspector?
 }

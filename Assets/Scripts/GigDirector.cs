@@ -12,7 +12,7 @@ public class GigDirector : Singleton<GigDirector>
     private float percentage = 0;
 
     [Header("UI References")]
-    [SerializeField] private GameObject gigReportUI;
+    [SerializeField] private GameObject gigReportRoot;
     [SerializeField] private RectTransform vibeBarWrapper;
 
     [Header("Prefabs")]
@@ -23,9 +23,8 @@ public class GigDirector : Singleton<GigDirector>
     private BandManager bm;
     private GigSetlistUIManager gSUIM;
     private List<GameObject> vibeBars = new List<GameObject>();
-    private float gigScore;
-    private float songScoreTotal = 0f;
 
+    //---Methods---//
     private void Start()
     {
         // Init local refs
@@ -42,7 +41,7 @@ public class GigDirector : Singleton<GigDirector>
     {
         int i = 0;
 
-        foreach (SongEntry song in gSUIM.setlist)
+        foreach (SongEntry song in bm.activeSetlist)
         {
             // Update UI (Move the arrow)
             gSUIM.GetComponent<GigSetlistUIManager>().HighlightCurrentSong(i);
@@ -66,7 +65,6 @@ public class GigDirector : Singleton<GigDirector>
 
         // Show the Report
         ShowGigReport();
-        Debug.Log("Gig score: " + GetGigScore());
     }
 
     //---Vibe Bar---//
@@ -74,12 +72,9 @@ public class GigDirector : Singleton<GigDirector>
     {
         vibeBars.Clear();
 
-        foreach (SongEntry song in gSUIM.setlist)
+        foreach (SongEntry song in bm.activeSetlist)
         {
             SetupVibeBar(song);
-
-            // Add song score to song score total
-            songScoreTotal += song.songScore;
         }
 
     }
@@ -128,14 +123,8 @@ public class GigDirector : Singleton<GigDirector>
     //---Gig Report---//
     private void ShowGigReport()
     {
-        gigReportUI.SetActive(true);
+        gigReportRoot.SetActive(true);
         // TODO Pass data to the report based on the setlist quality
     }
 
-    private float GetGigScore()
-    {
-        float numSongs = gSUIM.setlist.Count;
-        gigScore = songScoreTotal / (numSongs * 100f);
-        return gigScore;
-    }
 }
