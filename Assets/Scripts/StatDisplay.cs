@@ -49,7 +49,7 @@ public class StatDisplay : MonoBehaviour
         switch (stat)
         {
             case StatType.Money:
-                return amount.ToString();
+                return amount.ToString("0.##");
             case StatType.Chemistry:
                 return amount.ToString() + "%";
             case StatType.Fans:
