@@ -41,7 +41,7 @@ public class GigDirector : Singleton<GigDirector>
     {
         int i = 0;
 
-        foreach (SongEntry song in bm.activeSetlist)
+        foreach (SongEntry song in gSUIM.setlist)
         {
             // Update UI (Move the arrow)
             gSUIM.GetComponent<GigSetlistUIManager>().HighlightCurrentSong(i);
@@ -72,7 +72,7 @@ public class GigDirector : Singleton<GigDirector>
     {
         vibeBars.Clear();
 
-        foreach (SongEntry song in bm.activeSetlist)
+        foreach (SongEntry song in gSUIM.setlist)
         {
             SetupVibeBar(song);
         }
@@ -124,6 +124,7 @@ public class GigDirector : Singleton<GigDirector>
     private void ShowGigReport()
     {
         gigReportRoot.SetActive(true);
+        gigReportRoot.GetComponentInChildren<GigReport>().ShowGigReport();
         // TODO Pass data to the report based on the setlist quality
     }
 

@@ -12,12 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a9078ed6c40d4f6380ab3bcc198749f, type: 3}
   m_Name: Ven_CBGB
   m_EditorClassIdentifier: Assembly-CSharp::VenueData
-  venueName: CBGB
-  venueDescription: A grotty bar where punk acts get their foot in the door - just
-    don't order the chilli or use the loo
-  venuePreferredGenres:
-  - {fileID: 11400000, guid: 8571d9608c768432aa2acd7fab5f9e9d, type: 2}
-  - {fileID: 11400000, guid: d04322ed52d9344d9bcdbf0fde05b04a, type: 2}
-  venueCapacity: 30
-  basePay: 29
-  venueBackgroundSprite: {fileID: 21300000, guid: 4bb1d39d1cce84b47ac3c744952cfb18, type: 3}
+  name: CBGB
+  description: A grotty place where punk rock acts find their footing - just pray
+    you don't need to use the loo!
+  genres: []
+  capacity: 36
+  basePay: 15.68
+  backgroundSprite: {fileID: 0}

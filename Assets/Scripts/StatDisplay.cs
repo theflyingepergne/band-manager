@@ -49,9 +49,9 @@ public class StatDisplay : MonoBehaviour
         switch (stat)
         {
             case StatType.Money:
-                return amount.ToString("0.##");
+                return amount.ToString("#,###,###,##0.00");
             case StatType.Chemistry:
-                return amount.ToString() + "%";
+                return amount.ToString("0.#") + "%";
             case StatType.Fans:
                 return FormatUtils.AbbreviateNumber(amount);
             default:

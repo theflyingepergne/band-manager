@@ -24,6 +24,26 @@ public class StatChange
 
         // Append any stat change text to outcome text
         string sign = amount >= 0 ? "+" : "";
-        return $"<color={color}>{sign}{amount} {stat}</color>";
+
+        switch (stat)
+        {
+            case StatType.Money:
+                // Add pound sign
+                string poundAmount = amount.ToString("+£#,##0.00;-£#,##0.00");
+                string moneyText = $"<color={color}>{poundAmount} {stat}</color>";
+                return moneyText;
+            case StatType.Fans:
+                // Abbreviate number
+                string abbrAmount = FormatUtils.AbbreviateNumber(amount);
+                string abbrOutText = $"<color={color}>{sign}{abbrAmount} {stat}</color>";
+                return abbrOutText;
+            case StatType.Chemistry:
+                // Add % sign
+                string percentAmount = amount.ToString("+0.#;-0.#") + "%";
+                string chemistryText = $"<color={color}>{percentAmount} {stat}</color>";
+                return chemistryText;
+            default:
+                return "0";
+        }
     }
 }

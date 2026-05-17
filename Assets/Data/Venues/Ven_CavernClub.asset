@@ -12,13 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a9078ed6c40d4f6380ab3bcc198749f, type: 3}
   m_Name: Ven_CavernClub
   m_EditorClassIdentifier: Assembly-CSharp::VenueData
-  venueName: The Cavern Club
-  venueDescription: People that come here are looking for music that takes the to
-    another plane of existence
-  venuePreferredGenres:
-  - {fileID: 11400000, guid: 8571d9608c768432aa2acd7fab5f9e9d, type: 2}
-  - {fileID: 11400000, guid: a7ef8e7ffbfa14b7c80ce20b7b108a69, type: 2}
-  - {fileID: 11400000, guid: bfc868d0cb3c943789a35850f0c4913d, type: 2}
-  venueCapacity: 60
-  basePay: 42
-  venueBackgroundSprite: {fileID: 21300000, guid: f058902d49bbc4753908c43d89676194, type: 3}
+  name: The Cavern Club
+  description: A hip club where psychedelic rock acts fill these subterranean vaults
+  genres: []
+  capacity: 63
+  basePay: 42.91
+  backgroundSprite: {fileID: 0}
