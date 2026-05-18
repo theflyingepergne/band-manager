@@ -1,4 +1,5 @@
-using System;
+// The gig report shows the outcomes of the gig and gains
+// This script calculates the gains as well as formatting the strings that will appear
 using TMPro;
 using UnityEngine;
 
@@ -98,6 +99,9 @@ public class GigReport : MonoBehaviour
     private string GetFansGain()
     {
         // Calculate fan gain
+        // Buzz should eventually be taken into account
+        // High buzz = more fans multiplier
+        // For now just multiply venue capacity by gig score
         float fansGain = Mathf.Ceil(vd.capacity * GetGigScore());
 
         // Apply stat change
