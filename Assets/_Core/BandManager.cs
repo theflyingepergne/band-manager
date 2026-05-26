@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BandManager : Singleton<BandManager>
+public class BandManager
 {
+    public static BandManager Instance { get; private set; }
+
     //---References---//
     public List<BandMemberData> bandMembers = new List<BandMemberData>();
     public List<SongEntry> songCollection = new List<SongEntry>();
@@ -10,12 +12,20 @@ public class BandManager : Singleton<BandManager>
     public VenueData destinationVenue;
 
     //---Stats---//
-    public float money;
+    public float money = 100f;
     public float chemistry;
     public int fans;
 
     //---Events---//
     public static System.Action<StatType, float> OnStatChanged;
+
+    public static void Initialize()
+    {
+        Instance = new BandManager();
+        Debug.Log("Initialized BandManager");
+        // TODO: Load stats from SaveLoadSystem
+        // Instance.LoadCoreStats();
+    }
 
     //---Stat Methods---//
     public void ApplyStatChange(StatChange effect)
