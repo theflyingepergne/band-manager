@@ -2,8 +2,16 @@ using UnityEngine;
 
 public class BandMember : MonoBehaviour, IClickable
 {
+    //---References---//
     [SerializeField] public BandMemberData bandMemberData;
+    private bool isBeingViewed = false;
 
+    //---Events---//
+    void OnEnable() => ClickScript.OnClickEmptySpace += HandleClickEmptySpace;
+    void OnDisable() => ClickScript.OnClickEmptySpace -= HandleClickEmptySpace;
+
+
+    //---Methods---//
     public void Start()
     {
         PopulateBandMemberData(bandMemberData);
@@ -17,10 +25,46 @@ public class BandMember : MonoBehaviour, IClickable
 
     public void OnClicked()
     {
-        ViewBandMembersUIManager.Instance.ShowBandMemberDetails(true, bandMemberData);
-        
-        // TEST: Write a song for this band member when clicked
-        WriteSong(bandMemberData);
+        if (isBeingViewed == true)
+        {
+            // If we are already looking at the band member, close the panel
+            ViewBandMembersUIManager.Instance.ShowBandMemberDetails(false, bandMemberData);
+
+            // If the band member can ambulate, let them resume ambulating
+            if (TryGetComponent<Ambulate>(out Ambulate amb))
+            {
+                amb.doMove = true;
+            }
+
+            isBeingViewed = !isBeingViewed;
+        }
+        else
+        {
+            // If we are not already looking at band member, open the panel
+            ViewBandMembersUIManager.Instance.ShowBandMemberDetails(true, bandMemberData);
+
+            // TEST: Write a song for this band member when clicked
+            WriteSong(bandMemberData);
+
+            // If band member can ambulate, stop them from moving
+            if (TryGetComponent<Ambulate>(out Ambulate amb))
+            {
+                amb.doMove = false;
+            }
+
+            isBeingViewed = !isBeingViewed;
+        }
+
+    }
+
+    private void HandleClickEmptySpace()
+    {
+        if (TryGetComponent<Ambulate>(out Ambulate amb))
+        {
+            amb.doMove = true;
+        }
+
+        isBeingViewed = false;
     }
 
     public void WriteSong(BandMemberData data)

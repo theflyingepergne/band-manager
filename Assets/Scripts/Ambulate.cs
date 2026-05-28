@@ -4,6 +4,7 @@ public class Ambulate : MonoBehaviour
 {
     public float speed = 2f;
     public Vector2 moveArea;
+    public bool doMove = true;
 
     private Vector2 direction;
     private BoxCollider2D myCollider;
@@ -16,6 +17,10 @@ public class Ambulate : MonoBehaviour
 
     void Update()
     {
+        if (doMove == false)
+        {
+            return;
+        }
         transform.Translate(direction * speed * Time.deltaTime);
 
         Vector3 currentScale = transform.localScale;
