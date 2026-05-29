@@ -13,12 +13,17 @@ public class CalendarDay : MonoBehaviour
 
         string eventTextBlock = "";
 
-        foreach (GameEventData e in events)
+        if (events != null)
         {
-            // create a text block of event names
-            eventTextBlock += "- " + e.title + "\n";
+            foreach (GameEventData e in events)
+            {
+                // create a text block of event names
+                eventTextBlock += "- " + e.title + "\n";
+            }
         }
         eventText.text = eventTextBlock;
+
+
     }
 
 }
