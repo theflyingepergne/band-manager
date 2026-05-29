@@ -13,6 +13,7 @@ public class TestSongGenerator : MonoBehaviour
 
     [Header("GameObjects")]
     [SerializeField] private GameObject gameEventPrefab;
+    [SerializeField] private GameObject calendarCanvas;
 
     //---Methods---//
     void Start()
@@ -33,6 +34,11 @@ public class TestSongGenerator : MonoBehaviour
         if (Keyboard.current.eKey.wasPressedThisFrame)
         {
             TriggerGameEvent();
+        }
+
+        if (Keyboard.current.cKey.wasPressedThisFrame)
+        {
+            ToggleCalendar();
         }
 
     }
@@ -78,6 +84,11 @@ public class TestSongGenerator : MonoBehaviour
             gameEventPrefab.SetActive(!active);
         }
         
+    }
+
+    void ToggleCalendar()
+    {
+        calendarCanvas.SetActive(!calendarCanvas.activeSelf);
     }
 }
 
