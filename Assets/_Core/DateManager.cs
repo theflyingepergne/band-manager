@@ -5,7 +5,7 @@ public class DateManager
     public static DateManager Instance { get; private set; }
 
     //---Date---//
-    public int day = 27;
+    public int day = 31;
     public int month = 1;
     public int year = 1979;
 

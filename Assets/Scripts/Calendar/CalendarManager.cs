@@ -34,25 +34,19 @@ public class CalendarManager : MonoBehaviour
     void OnDisable() => DateManager.OnDateChanged -= HandleDateChanged;
 
     //---Methods---//
-    private void Start()
-    {
-        dm = DateManager.Instance;
-        
-        day = dm.day;
-        month = dm.month;
-        year = dm.year;
-
-        SetupCalendar();
-    }
-
     private void OnEnable()
     {
+        dm = DateManager.Instance;
         DateManager.OnDateChanged += HandleDateChanged;
         SetupCalendar();
     }
 
     private void SetupCalendar()
     {
+        day = dm.day;
+        month = dm.month;
+        year = dm.year;
+
         ClearCalendar();
         
         // If month is feb, use the small calendar
