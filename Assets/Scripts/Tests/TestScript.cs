@@ -51,6 +51,11 @@ public class TestSongGenerator : MonoBehaviour
             ChangeDate(-1);
         }
 
+        if (Keyboard.current.fKey.wasPressedThisFrame)
+        {
+            CameraFade.Instance.DoCameraFade(1);
+        }
+
     }
 
     void GenerateTestSongs()
