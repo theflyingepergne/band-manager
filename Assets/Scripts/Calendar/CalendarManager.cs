@@ -82,8 +82,6 @@ public class CalendarManager : MonoBehaviour
             {
                 newCalendarDay.GetComponent<CalendarDay>().SetupDay(day + 1, null);
             }
-
-
         }
 
         // TODO: pull month/year text using some kind of date manager

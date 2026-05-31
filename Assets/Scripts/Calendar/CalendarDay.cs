@@ -4,8 +4,10 @@ using TMPro;
 
 public class CalendarDay : MonoBehaviour
 {
+    [Header("UI References")]
     [SerializeField] private TMP_Text dayNo;
     [SerializeField] private TMP_Text eventText;
+    [SerializeField] private GameObject currentDayMarker;
 
     public void SetupDay(int day, List<GameEventData> events)
     {
@@ -23,7 +25,14 @@ public class CalendarDay : MonoBehaviour
         }
         eventText.text = eventTextBlock;
 
-
+        if (day == DateManager.Instance.day)
+        {
+            currentDayMarker.SetActive(true);
+        }
+        else
+        {
+            currentDayMarker.SetActive(false);
+        }
     }
 
 }
