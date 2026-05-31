@@ -31,7 +31,6 @@ public class CalendarManager : MonoBehaviour
     public int year = 1979;
 
     //---Events---//
-    void OnEnable() => DateManager.OnDateChanged += HandleDateChanged;
     void OnDisable() => DateManager.OnDateChanged -= HandleDateChanged;
 
     //---Methods---//
@@ -43,6 +42,12 @@ public class CalendarManager : MonoBehaviour
         month = dm.month;
         year = dm.year;
 
+        SetupCalendar();
+    }
+
+    private void OnEnable()
+    {
+        DateManager.OnDateChanged += HandleDateChanged;
         SetupCalendar();
     }
 
