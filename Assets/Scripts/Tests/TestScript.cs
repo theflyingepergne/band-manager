@@ -41,6 +41,16 @@ public class TestSongGenerator : MonoBehaviour
             ToggleCalendar();
         }
 
+        if (Keyboard.current.rightArrowKey.wasPressedThisFrame)
+        {
+            ChangeDate(1);
+        }
+
+        if (Keyboard.current.leftArrowKey.wasPressedThisFrame)
+        {
+            ChangeDate(-1);
+        }
+
     }
 
     void GenerateTestSongs()
@@ -89,6 +99,12 @@ public class TestSongGenerator : MonoBehaviour
     void ToggleCalendar()
     {
         calendarCanvas.SetActive(!calendarCanvas.activeSelf);
+    }
+
+    void ChangeDate(int amount)
+    {
+        DateManager.Instance.ChangeDate(amount);
+        Debug.Log($"Current Date: {DateManager.Instance.GetDate()}");
     }
 }
 

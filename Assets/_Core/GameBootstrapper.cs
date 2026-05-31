@@ -8,10 +8,13 @@ public static class GameBootstrapper
     {
         Debug.Log("--- Game Boot Sequence Started ---");
 
-        // Step 1: Init Save/Load system first so it's ready to load from
+        // Init Save/Load system first so it's ready to load from
         // SaveLoadSystem.Initialize();
 
-        // Step 2: Init BandManager, which will safely pull data from the SaveLoadSystem
+        // Init DateManager which will get the date from SaveLoadSystem
+        DateManager.Initialize();
+
+        // Init BandManager, which will safely pull data from the SaveLoadSystem
         BandManager.Initialize();
 
         Debug.Log("--- Game Boot Sequence Complete ---");
