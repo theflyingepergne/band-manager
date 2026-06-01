@@ -4034,6 +4034,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8368458580331886350, guid: 28c78106e21b14840a6982668ddf1061, type: 3}
   m_PrefabInstance: {fileID: 8868184071283110859}
   m_PrefabAsset: {fileID: 0}
+--- !u!225 &1481244629 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 1237453954238643756, guid: 28c78106e21b14840a6982668ddf1061, type: 3}
+  m_PrefabInstance: {fileID: 8868184071283110859}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1559290449
 GameObject:
   m_ObjectHideFlags: 0
@@ -5576,6 +5581,10 @@ PrefabInstance:
       propertyPath: canvasBlack
       value: 
       objectReference: {fileID: 1481244628}
+    - target: {fileID: 622546539149825445, guid: 28c78106e21b14840a6982668ddf1061, type: 3}
+      propertyPath: canvasGroupBlack
+      value: 
+      objectReference: {fileID: 1481244629}
     - target: {fileID: 1237453954238643756, guid: 28c78106e21b14840a6982668ddf1061, type: 3}
       propertyPath: m_Alpha
       value: 0

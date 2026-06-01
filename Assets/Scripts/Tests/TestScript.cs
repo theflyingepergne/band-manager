@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -53,15 +54,11 @@ public class TestSongGenerator : MonoBehaviour
 
         if (Keyboard.current.fKey.wasPressedThisFrame)
         {
-            CameraFade.Instance.DoCameraFade(1);
-            CameraFade.Instance.DoCameraFade(0);
+            TriggerSceneTransition();
 
         }
 
-        // if (Keyboard.current.gKey.wasPressedThisFrame)
-        // {
-        //     CameraFade.Instance.DoCameraFade(0);
-        // }
+
 
     }
 
@@ -118,5 +115,20 @@ public class TestSongGenerator : MonoBehaviour
         DateManager.Instance.ChangeDate(amount);
         Debug.Log($"Current Date: {DateManager.Instance.GetDate()}");
     }
+
+    private async void TriggerSceneTransition()
+    {
+        // 1. Fade to black and wait
+        await CameraFade.Instance.DoCameraFade(1f);
+
+        // Do your background logic here (e.g., load next gig, change UI) ...
+        // You can use Task.Delay (milliseconds) like this:
+        await Task.Delay(500);
+
+        // 2. Fade back in
+        await CameraFade.Instance.DoCameraFade(0f);
+    }
 }
+
+
 

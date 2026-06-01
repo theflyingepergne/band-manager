@@ -1,39 +1,37 @@
-using UnityEngine;
+using System.Threading.Tasks; // standard C# library for async
 using DG.Tweening;
+using UnityEngine;
 
 public class CameraFade : MonoBehaviour
 {
-    public static CameraFade Instance { get; private set; }
+    public static CameraFade Instance;
 
-    //---References---//
     [Header("UI References")]
-    [SerializeField] private GameObject canvasBlack;
+    [SerializeField] private CanvasGroup canvasGroupBlack; // Referenced directly for performance
 
     [Header("Controls")]
     [SerializeField] private float fadeDuration = 0.5f;
 
-    //---Methods---//
     private void Awake()
     {
         Instance = this;
+        // Ensure it starts in the correct state
+        canvasGroupBlack.gameObject.SetActive(canvasGroupBlack.alpha > 0);
     }
 
-    public void DoCameraFade(int alpha)
+    // Changing this to an async Task lets you 'await' it from other scripts
+    public async Task DoCameraFade(float targetAlpha)
     {
-        // fade camera by tweening canvas group alpha
-        CanvasGroup cg = canvasBlack.GetComponent<CanvasGroup>();
-        float startingAlpha = 1f - alpha;
-        cg.alpha = startingAlpha;
+        // Setup initial states
+        canvasGroupBlack.gameObject.SetActive(true);
 
-        // when the tween is complete, decide whether or not to "hold"
-        canvasBlack.SetActive(true);
-        cg.DOFade(alpha, fadeDuration).OnComplete(()=>FinishCameraFade(alpha));
-    }
-    
-    private void FinishCameraFade(int hold)
-    {
-        // if fading to black (i.e alpha == 1), doHold == true
-        bool doHold = System.Convert.ToBoolean(hold);
-        canvasBlack.SetActive(doHold);
+        // Run the tween and wait right here until it finishes
+        await canvasGroupBlack.DOFade(targetAlpha, fadeDuration).AsyncWaitForCompletion();
+
+        // Clean up if we faded out completely
+        if (targetAlpha <= 0f)
+        {
+            canvasGroupBlack.gameObject.SetActive(false);
+        }
     }
 }

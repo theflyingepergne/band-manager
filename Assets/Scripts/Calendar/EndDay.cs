@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class EndDay : MonoBehaviour, IClickable
@@ -21,10 +22,23 @@ public class EndDay : MonoBehaviour, IClickable
         DateManager.Instance.ChangeDate(1);
         canvasEndDay.SetActive(false);
         Debug.Log($"Current Date: {DateManager.Instance.GetDate()}");
+        FadeInFadeOut();
     }
 
     public void ClickedCancel()
     {
         canvasEndDay.SetActive(false);
+    }
+
+    private async void FadeInFadeOut()
+    {
+        // Fade to black
+        await CameraFade.Instance.DoCameraFade(1f);
+
+        // Use Task.Delay (milliseconds) to hold
+        await Task.Delay(500);
+
+        // Fade back in
+        await CameraFade.Instance.DoCameraFade(0f);
     }
 }
