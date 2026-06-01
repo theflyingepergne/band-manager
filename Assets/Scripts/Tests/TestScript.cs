@@ -54,8 +54,9 @@ public class TestSongGenerator : MonoBehaviour
 
         if (Keyboard.current.fKey.wasPressedThisFrame)
         {
-            TriggerSceneTransition();
-
+            // this method specifically fades in then out
+            // we could change the method so it only fades in and another script could call fade out
+            FadeInFadeOut();
         }
 
 
@@ -116,16 +117,17 @@ public class TestSongGenerator : MonoBehaviour
         Debug.Log($"Current Date: {DateManager.Instance.GetDate()}");
     }
 
-    private async void TriggerSceneTransition()
+    // Must be an async method
+    private async void FadeInFadeOut()
     {
-        // 1. Fade to black and wait
+        // Fade to black
         await CameraFade.Instance.DoCameraFade(1f);
 
-        // Do your background logic here (e.g., load next gig, change UI) ...
-        // You can use Task.Delay (milliseconds) like this:
+        // Run logic here (e.g., load next gig, change UI)
+        // Can use Task.Delay (milliseconds) to hold
         await Task.Delay(500);
 
-        // 2. Fade back in
+        // Fade back in
         await CameraFade.Instance.DoCameraFade(0f);
     }
 }

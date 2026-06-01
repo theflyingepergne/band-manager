@@ -7,7 +7,7 @@ public class CameraFade : MonoBehaviour
     public static CameraFade Instance;
 
     [Header("UI References")]
-    [SerializeField] private CanvasGroup canvasGroupBlack; // Referenced directly for performance
+    [SerializeField] private CanvasGroup canvasGroupBlack;
 
     [Header("Controls")]
     [SerializeField] private float fadeDuration = 0.5f;
@@ -19,7 +19,7 @@ public class CameraFade : MonoBehaviour
         canvasGroupBlack.gameObject.SetActive(canvasGroupBlack.alpha > 0);
     }
 
-    // Changing this to an async Task lets you 'await' it from other scripts
+    // As this is an async task, we must 'await' it when calling from other scripts
     public async Task DoCameraFade(float targetAlpha)
     {
         // Setup initial states
