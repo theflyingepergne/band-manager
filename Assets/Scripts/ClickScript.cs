@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 public class ClickScript : MonoBehaviour
 {
@@ -13,6 +14,13 @@ public class ClickScript : MonoBehaviour
     {
         // Get mouse position
         Vector2 mousePos = Mouse.current.position.ReadValue();
+
+        // Check if the mouse is currently hovering over a UI element
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
+        {
+            // The mouse is over UI! Stop here so we don't highlight or click sprites behind it.
+            return;
+        }
 
         // Perform Raycast
         RaycastHit2D hit2D = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(mousePos), Vector2.zero);

@@ -100,10 +100,8 @@ public class TestSongGenerator : MonoBehaviour
             GameEventManager gameEventManager = gameEventPrefab.GetComponent<GameEventManager>();
             gameEventManager.SetupEvent(gameEventDatabase.GetRandomEvent());
 
-            bool active = gameEventPrefab.activeSelf;
-            gameEventPrefab.SetActive(!active);
+            gameEventPrefab.SetActive(!gameEventPrefab.activeSelf);
         }
-        
     }
 
     void ToggleCalendar()
