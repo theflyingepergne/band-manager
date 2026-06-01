@@ -115,7 +115,7 @@ GameObject:
   - component: {fileID: 7526727639328936521}
   - component: {fileID: 8684973579596882464}
   - component: {fileID: 7876649746039057996}
-  - component: {fileID: 8456068206843008722}
+  - component: {fileID: 3965366000445372054}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -189,7 +189,7 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 0
---- !u!114 &8456068206843008722
+--- !u!114 &3965366000445372054
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -648,6 +648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a794cec321794394bbda57eb29f7808, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EndDay
+  canvasEndDay: {fileID: 0}
 --- !u!1 &5601255691842410541
 GameObject:
   m_ObjectHideFlags: 0

@@ -2993,6 +2993,7 @@ GameObject:
   - component: {fileID: 1094315603}
   - component: {fileID: 1094315602}
   - component: {fileID: 1094315601}
+  - component: {fileID: 1094315605}
   - component: {fileID: 1094315604}
   m_Layer: 5
   m_Name: Canvas_Calendar
@@ -3015,10 +3016,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
+  m_ScaleFactor: 0.49
   m_ReferenceResolution: {x: 1920, y: 1080}
-  m_ScreenMatchMode: 1
-  m_MatchWidthOrHeight: 0
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -3095,6 +3096,23 @@ MonoBehaviour:
   day: 1
   month: 1
   year: 1979
+--- !u!114 &1094315605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1094315599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GraphicRaycaster
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1104799941
 GameObject:
   m_ObjectHideFlags: 0
@@ -5141,6 +5159,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 2678842943278641660, guid: f8fa7c30d4f474d90906a37775b607f0, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3886299245091735682, guid: f8fa7c30d4f474d90906a37775b607f0, type: 3}
       propertyPath: m_Color.a
       value: 1
@@ -5159,7 +5181,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3886299245091735682, guid: f8fa7c30d4f474d90906a37775b607f0, type: 3}
       propertyPath: m_PixelsPerUnitMultiplier
-      value: 0.25
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5717976916972832808, guid: f8fa7c30d4f474d90906a37775b607f0, type: 3}
       propertyPath: m_AnchorMax.x
@@ -5366,6 +5388,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 52309216}
     - target: {fileID: 8051948496920818670, guid: f8fa7c30d4f474d90906a37775b607f0, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8051948496920818670, guid: f8fa7c30d4f474d90906a37775b607f0, type: 3}
       propertyPath: m_SortingLayerID
       value: 2091290839
       objectReference: {fileID: 0}
@@ -5554,6 +5580,10 @@ PrefabInstance:
       propertyPath: m_Alpha
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2910783180108465458, guid: 28c78106e21b14840a6982668ddf1061, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3077995734945068996, guid: 28c78106e21b14840a6982668ddf1061, type: 3}
       propertyPath: m_Name
       value: Main Camera
@@ -5596,6 +5626,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5376142287998735198, guid: 28c78106e21b14840a6982668ddf1061, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8368458580331886350, guid: 28c78106e21b14840a6982668ddf1061, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

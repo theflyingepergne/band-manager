@@ -8,8 +8,11 @@ public class EndDay : MonoBehaviour, IClickable
     //---Methods---//
     public void OnClicked()
     {
-        Debug.Log("End day?");
-        canvasEndDay.SetActive(true);
+        if (canvasEndDay.activeSelf != true)
+        {
+            Debug.Log("End day?");
+            canvasEndDay.SetActive(true);
+        }
     }
 
     public void ClickedEndDay()
