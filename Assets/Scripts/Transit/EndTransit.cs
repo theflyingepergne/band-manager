@@ -22,7 +22,7 @@ public class EndTransit : MonoBehaviour, IClickable
         VenueData venueToLoad = BandManager.Instance.destinationVenue;
 
         await CameraFade.Instance.DoCameraFade(1);
-        await Task.Delay(200);
+        // await Task.Delay(200);
         // eventually use venueToLoad to either load a scene
         // or use the venue data dress the scene
         // for now we just load Venue

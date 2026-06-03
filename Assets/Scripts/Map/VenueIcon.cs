@@ -3,7 +3,6 @@ using UnityEngine;
 public class VenueIcon : MonoBehaviour, IClickable
 {
     [Header("UI References")]
-    // [SerializeField] private GameObject canvasVenueInfo;
     [SerializeField] private VenueInfoPanel venueInfoPanel;
 
     [Header("Data References")]
@@ -12,7 +11,7 @@ public class VenueIcon : MonoBehaviour, IClickable
     public void OnClicked()
     {
         bool isOnLeftHandSide;
-        
+
         if (gameObject.transform.position.x < 0)
         {
             isOnLeftHandSide = true;
@@ -34,7 +33,6 @@ public class VenueIcon : MonoBehaviour, IClickable
         {
             venueInfoPanel.gameObject.SetActive(true);
         }
-
-        venueInfoPanel.SetupVenueInfo(venueData);
+        venueInfoPanel.SetupVenueInfo(venueData); 
     }
 }

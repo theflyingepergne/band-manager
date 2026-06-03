@@ -27,8 +27,10 @@ public class VenueInfoPanel : MonoBehaviour
             venueInfoBorder.anchorMin = new Vector2(1, 0);
             venueInfoBorder.anchorMax = new Vector2(1, 0);
             venueInfoBorder.pivot = new Vector2(1, 0);
-
             venueInfoBorder.anchoredPosition = new Vector2(-50f, 50f);
+
+            // Test
+
         }
         else
         {

@@ -12,7 +12,7 @@ public class TravelIcon : MonoBehaviour, IClickable
         if (doCameraFade == true)
         {
             await CameraFade.Instance.DoCameraFade(1);
-            await Task.Delay(200);
+            // await Task.Delay(200);
         }
         // Debug.Log("Travel icon clicked");
         SceneManager.LoadScene(sceneToLoad);
