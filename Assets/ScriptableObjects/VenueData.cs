@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "VenueData", menuName = "Scriptable Objects/VenueData")]
 public class VenueData : ScriptableObject
 {
-    [SerializeField] public string name;
+    [SerializeField] public new string name;
     [SerializeField] public string description;
     [SerializeField] public List<GenreData> genres;
     [SerializeField] public float distance;

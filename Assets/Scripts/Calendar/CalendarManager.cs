@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class CalendarManager : MonoBehaviour
+public class CalendarManager : MonoBehaviour, IPointerClickHandler
 {
     //---References---//
     [Header("UI References")]
@@ -12,6 +13,7 @@ public class CalendarManager : MonoBehaviour
     [SerializeField] private RectTransform gridSprite;
     [SerializeField] private TMP_Text monthText;
     [SerializeField] private TMP_Text yearText;
+    [SerializeField] private GameObject BG;
 
     [Header("Sprite references")]
     [SerializeField] private Sprite calendar4Rows;
@@ -31,7 +33,6 @@ public class CalendarManager : MonoBehaviour
     public int year = 1979;
 
     //---Events---//
-    void OnDisable() => DateManager.OnDateChanged -= HandleDateChanged;
 
     //---Methods---//
     private void OnEnable()
@@ -41,6 +42,11 @@ public class CalendarManager : MonoBehaviour
         SetupCalendar();
     }
 
+    private void OnDisable()
+    {
+        DateManager.OnDateChanged -= HandleDateChanged;
+    }
+
     private void SetupCalendar()
     {
         day = dm.day;
@@ -48,7 +54,7 @@ public class CalendarManager : MonoBehaviour
         year = dm.year;
 
         ClearCalendar();
-        
+
         // If month is feb, use the small calendar
         if (month == 2)
         {
@@ -83,7 +89,6 @@ public class CalendarManager : MonoBehaviour
             }
         }
 
-        // TODO: pull month/year text using some kind of date manager
         monthText.text = MonthList.Months[month].Name;
         yearText.text = year.ToString();
     }
@@ -104,5 +109,13 @@ public class CalendarManager : MonoBehaviour
         month = newMonth;
         year = newYear;
         SetupCalendar();
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (eventData.pointerCurrentRaycast.gameObject == BG)
+        {
+            gameObject.SetActive(false);
+        }
     }
 }
