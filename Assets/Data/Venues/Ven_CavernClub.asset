@@ -14,7 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VenueData
   name: The Cavern Club
   description: A hip club where psychedelic rock acts fill these subterranean vaults
-  genres: []
+  genres:
+  - {fileID: 11400000, guid: 8571d9608c768432aa2acd7fab5f9e9d, type: 2}
+  - {fileID: 11400000, guid: a7ef8e7ffbfa14b7c80ce20b7b108a69, type: 2}
+  - {fileID: 11400000, guid: bfc868d0cb3c943789a35850f0c4913d, type: 2}
+  - {fileID: 11400000, guid: a227f3cddda8845aa9641181fd383a03, type: 2}
+  distance: 1.2
   capacity: 63
+  bookingFee: 25
   basePay: 42.91
   backgroundSprite: {fileID: 21300000, guid: f058902d49bbc4753908c43d89676194, type: 3}

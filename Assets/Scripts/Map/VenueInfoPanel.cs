@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
-using System.Threading.Tasks;
 
 public class VenueInfoPanel : MonoBehaviour
 {
@@ -18,6 +17,10 @@ public class VenueInfoPanel : MonoBehaviour
 
     private VenueData currentVenue;
 
+    //---EVents---//
+    void OnEnable() => ClickScript.OnClickEmptySpace += HandleClickOnEmptySpace;
+    void OnDisable() => ClickScript.OnClickEmptySpace -= HandleClickOnEmptySpace;
+
     //---Methods---//
     public void SetPanelPosition(bool isOnLeftHandSide)
     {
@@ -28,9 +31,6 @@ public class VenueInfoPanel : MonoBehaviour
             venueInfoBorder.anchorMax = new Vector2(1, 0);
             venueInfoBorder.pivot = new Vector2(1, 0);
             venueInfoBorder.anchoredPosition = new Vector2(-50f, 50f);
-
-            // Test
-
         }
         else
         {
@@ -48,9 +48,9 @@ public class VenueInfoPanel : MonoBehaviour
         venueName.text = venue.name;
         venueSprite.sprite = venue.backgroundSprite;
         description.text = venue.description;
-        distance.text = "500 miles";
-        capacity.text = venue.capacity.ToString();
-        bookingFee.text = "£1000.00";
+        distance.text = "Distance: " + venue.distance.ToString("0.##") + "miles";
+        capacity.text = "Capacity: " + venue.capacity.ToString();
+        bookingFee.text = "Booking Fee: " + (venue.bookingFee > 0 ? venue.bookingFee.ToString("£#,##0.00") : "Free");
     }
 
     public async void ClickedGoButton()
@@ -66,5 +66,10 @@ public class VenueInfoPanel : MonoBehaviour
     public void ClickedCancelButton()
     {
         gameObject.SetActive(false);
+    }
+
+    private void HandleClickOnEmptySpace()
+    {
+        ClickedCancelButton();
     }
 }
