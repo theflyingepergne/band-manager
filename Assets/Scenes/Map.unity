@@ -393,6 +393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87c7594784a0a1847bd05074cc668da5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VenueInfoPanel
+  venueInfoBorder: {fileID: 994838853}
   venueName: {fileID: 74002629}
   venueSprite: {fileID: 1583450317}
   description: {fileID: 1050879395}
@@ -434,7 +435,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 202, y: -18.005005}
+  m_AnchoredPosition: {x: 202, y: -18.005}
   m_SizeDelta: {x: 404, y: 36.01}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &74002629
