@@ -1,10 +1,14 @@
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenuUIManager : Singleton<MainMenuUIManager>
 {
-    public void OnPlayButtonClicked()
+    public async void OnPlayButtonClicked()
     {
+        await CameraFade.Instance.DoCameraFade(1);
+        await Task.Delay(200);
+
         // Eventually play actual game but for now load ViewBandMember scene
         SceneManager.LoadScene("ViewBandMembers");
     }

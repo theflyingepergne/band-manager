@@ -5354,7 +5354,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3077995734945068996, guid: 28c78106e21b14840a6982668ddf1061, type: 3}
       propertyPath: m_Name
-      value: Main Camera
+      value: AndyCamera
       objectReference: {fileID: 0}
     - target: {fileID: 5376142287998735198, guid: 28c78106e21b14840a6982668ddf1061, type: 3}
       propertyPath: m_LocalPosition.x
