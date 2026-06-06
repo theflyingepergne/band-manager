@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1ffe2ac32d514137a1397c28846fef0, type: 3}
   m_Name: Wrote A Song
   m_EditorClassIdentifier: Assembly-CSharp::GameEventData
+  isFixedDate: 1
+  date:
+    day: 1
+    month: 2
+    year: 1979
   title: Inspiration has struck!
   description: One of the band members has written a song. How adorable! I'll put
     it on the fridge... Or better yet, in the "Song Vault"!

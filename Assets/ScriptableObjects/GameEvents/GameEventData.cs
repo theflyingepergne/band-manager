@@ -4,6 +4,19 @@ using System.Collections.Generic;
 [CreateAssetMenu(fileName = "GameEventData", menuName = "Game Events/Game Event")]
 public class GameEventData : ScriptableObject
 {
+    [System.Serializable]
+    public struct EventDate
+    {
+        public int day;
+        public int month;
+        public int year;
+    }
+
+    [Header("Scheduling (leave blank for random date)")]
+    public bool isFixedDate;
+    public EventDate date;
+
+    [Header("Event details")]
     public string title;
     [TextArea] public string description;
     public Sprite sprite;
