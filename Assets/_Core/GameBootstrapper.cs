@@ -17,6 +17,8 @@ public static class GameBootstrapper
         // Init BandManager, which will safely pull data from the SaveLoadSystem
         BandManager.Initialize();
 
+        ScheduleManager.Initialize();
+
         Debug.Log("--- Game Boot Sequence Complete ---");
     }
 }

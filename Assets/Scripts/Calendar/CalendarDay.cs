@@ -10,7 +10,7 @@ public class CalendarDay : MonoBehaviour
     [SerializeField] private TMP_Text eventText;
     [SerializeField] private GameObject currentDayMarker;
 
-    public void SetupDay(int day, List<GameEventData> events)
+    public void SetupDay(int day, List<ScheduledEvent> events)
     {
         dayNo.text = day.ToString();
 
@@ -18,10 +18,10 @@ public class CalendarDay : MonoBehaviour
 
         if (events != null)
         {
-            foreach (GameEventData e in events)
+            foreach (ScheduledEvent e in events)
             {
                 // create a text block of event names
-                eventTextBlock += "- " + e.title + "\n";
+                eventTextBlock += "- " + e.gameEventData.title + "\n";
             }
         }
         eventText.text = eventTextBlock;

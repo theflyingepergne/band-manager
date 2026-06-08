@@ -2,6 +2,6 @@ using UnityEngine;
 
 public class ScheduledEvent
 {
-    public GameEventData eventData;
+    public GameEventData gameEventData;
     public GameDate date;
 }

@@ -2881,13 +2881,10 @@ MonoBehaviour:
   calendar4Rows: {fileID: 21300000, guid: 896d6d8d0778ac24a93a518cce9a560a, type: 3}
   calendar5Rows: {fileID: 21300000, guid: acecaed9342a4400cbb7dba61a3dcd10, type: 3}
   calendarDayPrefab: {fileID: 3397132626328432716, guid: 90551f626cea9a540af52f8b7cb3dc90, type: 3}
-  gameEventData:
-  - {fileID: 11400000, guid: a652d662c8549452686eca3ed8c02a6f, type: 2}
-  - {fileID: 11400000, guid: 66f2e39dd2697435197f4eb755c18228, type: 2}
-  - {fileID: 11400000, guid: 5ec4e5a04f7b84c56a966d5159cc7e75, type: 2}
-  day: 1
-  month: 1
-  year: 1979
+  date:
+    day: 1
+    month: 1
+    year: 1979
 --- !u!114 &1094315605
 MonoBehaviour:
   m_ObjectHideFlags: 0

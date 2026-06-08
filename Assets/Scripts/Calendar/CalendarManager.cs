@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Net;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -20,26 +19,23 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
     [SerializeField] private Sprite calendar4Rows;
     [SerializeField] private Sprite calendar5Rows;
 
-
     [Header("Prefab references")]
     [SerializeField] private GameObject calendarDayPrefab;
 
-    [Header("Test Game Event")]
-    [SerializeField] private List<GameEventData> gameEventData;
-
     //---Local References---//
     DateManager dm;
-
-
+    ScheduleManager sm;
+    private List<ScheduledEvent> scheduledEvents;
     public GameDate date = new GameDate(1, 1, 1979);
-
-    //---Events---//
 
     //---Methods---//
     private void OnEnable()
     {
         dm = DateManager.Instance;
+        sm = ScheduleManager.Instance;
+
         DateManager.OnDateChanged += HandleDateChanged;
+        
         SetupCalendar();
     }
 
@@ -51,6 +47,7 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
     private void SetupCalendar()
     {
         date = dm.date;
+        scheduledEvents = sm.scheduledEvents;
 
         ClearCalendar();
 
@@ -78,17 +75,17 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
             // Create CalendarDay prefabs and parent to Calendar gridContainer
             GameObject newCalendarDay = Instantiate(calendarDayPrefab, gridContainer, false);
 
-            // Initialize empty list of GameEventData to populate with eventsToAdd
-            List<GameEventData> eventsToAdd = new List<GameEventData>();
+            // Initialize empty list of scheduledEvents to populate with eventsToAdd
+            List<ScheduledEvent> eventsToAdd = new List<ScheduledEvent>();
 
-            // For each GameEventData in list of GameEventData (GameEventDatabase),
+            // For each scheduledEvents in list of scheduledEvents (scheduledEventsbase),
             // If the date of the GameEvent matches the date of the current iteration
             // Add it to a list of eventsToAdd
-            foreach (GameEventData g in gameEventData)
+            foreach (ScheduledEvent e in scheduledEvents)
             {
-                if (g.date.day == d && g.date.month == date.month && g.date.year == date.year)
+                if (e.date.day == d && e.date.month == date.month && e.date.year == date.year)
                 {
-                    eventsToAdd.Add(g);
+                    eventsToAdd.Add(e);
                 }
             }
 

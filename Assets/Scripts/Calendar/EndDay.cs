@@ -11,14 +11,14 @@ public class EndDay : MonoBehaviour, IClickable
     {
         if (canvasEndDay.activeSelf != true)
         {
-            Debug.Log("End day?");
+            // Debug.Log("End day?");
             canvasEndDay.SetActive(true);
         }
     }
 
     public void ClickedEndDay()
     {
-        Debug.Log("Ended day");
+        // Debug.Log("Ended day");
         DateManager.Instance.ChangeDate(1);
         canvasEndDay.SetActive(false);
         Debug.Log($"Current Date: {DateManager.Instance.GetDateAsString()}");
