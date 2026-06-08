@@ -73,20 +73,32 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
             );
         }
 
-        for (int day = 0; day < MonthList.Months[month].Days; day++)
+        for (int d = 1; d < MonthList.Months[month].Days + 1; d++)
         {
             GameObject newCalendarDay = Instantiate(calendarDayPrefab, gridContainer, false);
 
-            // randomly populate the calendar with events for now
-            bool doDay = Random.value < 0.2f;
-            if (doDay == true)
+            // // randomly populate the calendar with events for now
+            // bool doDay = Random.value < 0.2f;
+            // if (doDay == true)
+            // {
+            //     newCalendarDay.GetComponent<CalendarDay>().SetupDay(day + 1, gameEventData);
+            // }
+            // else
+            // {
+            //     newCalendarDay.GetComponent<CalendarDay>().SetupDay(day + 1, null);
+            // }
+
+            List<GameEventData> eventsToAdd = new List<GameEventData>();
+
+            foreach (GameEventData g in gameEventData)
             {
-                newCalendarDay.GetComponent<CalendarDay>().SetupDay(day + 1, gameEventData);
+                if (g.date.day == d && g.date.month == month && g.date.year == year)
+                {
+                    eventsToAdd.Add(g);
+                }
             }
-            else
-            {
-                newCalendarDay.GetComponent<CalendarDay>().SetupDay(day + 1, null);
-            }
+
+            newCalendarDay.GetComponent<CalendarDay>().SetupDay(d, eventsToAdd);
         }
 
         monthText.text = MonthList.Months[month].Name;
