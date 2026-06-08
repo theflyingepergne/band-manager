@@ -8,6 +8,7 @@ public class ScheduleManager
     //---References---//
     public List<GameEventData> gameEvents;
     public List<ScheduledEvent> scheduledEvents;
+    DateManager dm;
 
     //---Methods---//
     public static void Initialize()
@@ -19,6 +20,7 @@ public class ScheduleManager
         // Initialize lists
         Instance.gameEvents = new List<GameEventData>();
         Instance.scheduledEvents = new List<ScheduledEvent>();
+        Instance.dm = DateManager.Instance;
 
         GameEventDatabase database = Resources.Load<GameEventDatabase>("GameEvents/GameEventDatabase");
 
@@ -49,12 +51,21 @@ public class ScheduleManager
             {
                 scheduledEvent.date = gameEventData.date;
             }
-            // else
-            // {
-            //     scheduledEvent.date = GenerateRandomDate();
-            // }
+            else
+            {
+                scheduledEvent.date = GenerateRandomDate();
+            }
 
             scheduledEvents.Add(scheduledEvent);
         }
+    }
+
+    private GameDate GenerateRandomDate()
+    {
+        int randomMonth = Random.Range(dm.date.month, dm.date.month + 2);
+        int randomDay = Random.Range(dm.date.day, MonthList.Months[randomMonth].Days + 1);
+
+        GameDate randomDate = new GameDate(randomDay, randomMonth, dm.date.year);
+        return randomDate;
     }
 }
