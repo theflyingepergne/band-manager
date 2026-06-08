@@ -26,7 +26,7 @@ public class CalendarDay : MonoBehaviour
         }
         eventText.text = eventTextBlock;
 
-        if (day == DateManager.Instance.day)
+        if (day == DateManager.Instance.date.day)
         {
             currentDayMarker.SetActive(true);
             currentDayMarker.transform.DOPunchScale(Vector2.one * 1.4f, 0.4f, 1);

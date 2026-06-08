@@ -5,13 +5,12 @@ public class DateManager
     public static DateManager Instance { get; private set; }
 
     //---Date---//
-    public int day = 31;
-    public int month = 1;
-    public int year = 1979;
+    public GameDate date = new GameDate(31, 1, 1979);
 
     //---Events---//
-    public static System.Action<int, int, int> OnDateChanged;
+    public static System.Action<GameDate> OnDateChanged;
 
+    //---Methods---//
     public static void Initialize()
     {
         Instance = new DateManager();
@@ -22,44 +21,44 @@ public class DateManager
 
     public void ChangeDate(int changeAmount)
     {
-        int currentMonthDays = MonthList.Months[month].Days;
-        day += changeAmount;
+        GameDate _date = date;
+        int currentMonthDays = MonthList.Months[_date.month].Days;
 
-        // if day is higher than currentMonthDays, increment month
-        if (day > currentMonthDays)
+        _date.day += changeAmount;
+
+        if (_date.day > currentMonthDays)
         {
-            month++;
-            day = 1;
+            _date.month++;
+            _date.day = 1;
         }
 
-        // if day is less than 1, decrement month
-        if (day < 1)
+        if (_date.day < 1)
         {
-            month--;
-            day = MonthList.Months[month].Days;
+            _date.month--;
+            _date.day = MonthList.Months[_date.month].Days;
         }
 
-        // if month is greater than 12, increment year
-        if (month > 12)
+        if (_date.month > 12)
         {
-            year++;
-            month = 1;
+            _date.year++;
+            _date.month = 1;
         }
 
-        // if month is less than 1, decrement year
-        if (month < 1)
+        if (_date.month < 1)
         {
-            year--;
-            month = 12;
-            day = MonthList.Months[month].Days;
+            _date.year--;
+            _date.month = 12;
+            _date.day = MonthList.Months[_date.month].Days;
         }
 
-        OnDateChanged?.Invoke(day, month, year);
+        date = _date;
+
+        OnDateChanged?.Invoke(date);
     }
 
-    public string GetDate()
+    public string GetDateAsString()
     {
-        return $"{day}/{month}/{year}";
+        return $"{date.day}/{date.month}/{date.year}";
     }
 
 }

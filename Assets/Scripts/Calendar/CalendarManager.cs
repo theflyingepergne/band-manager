@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Net;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -28,9 +29,9 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
 
     //---Local References---//
     DateManager dm;
-    public int day = 1;
-    public int month = 1;
-    public int year = 1979;
+
+
+    public GameDate date = new GameDate(1, 1, 1979);
 
     //---Events---//
 
@@ -49,14 +50,12 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
 
     private void SetupCalendar()
     {
-        day = dm.day;
-        month = dm.month;
-        year = dm.year;
+        date = dm.date;
 
         ClearCalendar();
 
         // If month is feb, use the small calendar
-        if (month == 2)
+        if (date.month == 2)
         {
             gridSprite.GetComponent<Image>().sprite = calendar4Rows;
             calendarBorder.SetSizeWithCurrentAnchors(
@@ -73,36 +72,32 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
             );
         }
 
-        for (int d = 1; d < MonthList.Months[month].Days + 1; d++)
+        // For however many days there are in the current month...
+        for (int d = 1; d < MonthList.Months[date.month].Days + 1; d++)
         {
+            // Create CalendarDay prefabs and parent to Calendar gridContainer
             GameObject newCalendarDay = Instantiate(calendarDayPrefab, gridContainer, false);
 
-            // // randomly populate the calendar with events for now
-            // bool doDay = Random.value < 0.2f;
-            // if (doDay == true)
-            // {
-            //     newCalendarDay.GetComponent<CalendarDay>().SetupDay(day + 1, gameEventData);
-            // }
-            // else
-            // {
-            //     newCalendarDay.GetComponent<CalendarDay>().SetupDay(day + 1, null);
-            // }
-
+            // Initialize empty list of GameEventData to populate with eventsToAdd
             List<GameEventData> eventsToAdd = new List<GameEventData>();
 
+            // For each GameEventData in list of GameEventData (GameEventDatabase),
+            // If the date of the GameEvent matches the date of the current iteration
+            // Add it to a list of eventsToAdd
             foreach (GameEventData g in gameEventData)
             {
-                if (g.date.day == d && g.date.month == month && g.date.year == year)
+                if (g.date.day == d && g.date.month == date.month && g.date.year == date.year)
                 {
                     eventsToAdd.Add(g);
                 }
             }
 
+            // Populate CalendarDay with eventsToAdd
             newCalendarDay.GetComponent<CalendarDay>().SetupDay(d, eventsToAdd);
         }
 
-        monthText.text = MonthList.Months[month].Name;
-        yearText.text = year.ToString();
+        monthText.text = MonthList.Months[date.month].Name;
+        yearText.text = date.year.ToString();
     }
 
     private void ClearCalendar()
@@ -115,11 +110,9 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    private void HandleDateChanged(int newDay, int newMonth, int newYear)
+    private void HandleDateChanged(GameDate updatedDate)
     {
-        day = newDay;
-        month = newMonth;
-        year = newYear;
+        date = updatedDate;
         SetupCalendar();
     }
 

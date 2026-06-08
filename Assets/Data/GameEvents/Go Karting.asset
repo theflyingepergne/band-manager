@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1ffe2ac32d514137a1397c28846fef0, type: 3}
   m_Name: Go Karting
   m_EditorClassIdentifier: Assembly-CSharp::GameEventData
-  isFixedDate: 1
+  isFixedDate: 0
   date:
-    day: 29
+    day: 3
     month: 1
     year: 1979
   title: '"We want to go Go Karting"'
