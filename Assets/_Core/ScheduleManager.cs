@@ -62,10 +62,10 @@ public class ScheduleManager
     private GameDate GenerateRandomDate()
     {
         int randomMonth = Random.Range(dm.date.month, dm.date.month + 2);
-        int randomDay = Random.Range(dm.date.day, MonthList.Months[randomMonth].Days + 1);
+        int randomDay = Random.Range(1, MonthList.Months[randomMonth].Days + 1);
 
         GameDate randomDate = new(randomDay, randomMonth, dm.date.year);
-        // Debug.Log($"Created random date: {randomDate.GetDateAsString()}");
+        Debug.Log($"Created random date: {randomDate.GetDateAsString()}");
         return randomDate;
     }
 }

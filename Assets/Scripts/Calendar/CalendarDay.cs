@@ -2,9 +2,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class CalendarDay : MonoBehaviour
 {
+    //---References---//
     [Header("UI References")]
     [SerializeField] private TMP_Text dayNo;
     [SerializeField] private TMP_Text eventText;
@@ -16,26 +18,30 @@ public class CalendarDay : MonoBehaviour
     [SerializeField] private int vibrato = 1;
     [SerializeField] private int elasticity = 1;
 
-    Tween currentDayMarkerTween;
+    public string eventTextBlock { get; private set; }
+    public GameDate date { get; private set; }
 
-    private void Awake()
-    {
-        currentDayMarkerTween = currentDayMarker.transform.DOPunchScale
-            (
-                Vector2.one *
-                strength,
-                duration,
-                vibrato,
-                elasticity
-            );
+    //---Local References---//
+    Tween currentDayMarkerTween;
+    Button button;
+
+    //---Events---//
+    public static System.Action<string> OnInspectDay;
+
+    private void OnEnable()
+    {        
+        button = gameObject.GetComponent<Button>();
+        button.onClick.AddListener(() => OnDayClicked());
     }
 
-    public void SetupDay(int day, List<ScheduledEvent> events)
+    public void SetupDay(GameDate setupDate, List<ScheduledEvent> events)
     {
-        dayNo.text = day.ToString();
+        date = setupDate;
 
-        string eventTextBlock = "";
+        // Use day (from calendarManager) as day number
+        dayNo.text = date.day.ToString();
 
+        // If list of events is not null, add each event title to eventTextBlock
         if (events != null)
         {
             foreach (ScheduledEvent e in events)
@@ -44,12 +50,22 @@ public class CalendarDay : MonoBehaviour
                 eventTextBlock += "- " + e.gameEventData.title + "\n";
             }
         }
+
+        // Display finished eventTextBlock 
         eventText.text = eventTextBlock;
 
-        if (day == DateManager.Instance.date.day)
+        // Show current day marker if this CalendarDay == date.day
+        if (date.isSameDate(DateManager.Instance.date))
         {
             currentDayMarker.SetActive(true);
-            currentDayMarkerTween.Play();
+            currentDayMarkerTween = currentDayMarker.transform.DOPunchScale
+            (
+                Vector2.one *
+                strength,
+                duration,
+                vibrato,
+                elasticity
+            );
         }
         else
         {
@@ -64,5 +80,14 @@ public class CalendarDay : MonoBehaviour
             currentDayMarkerTween.Kill();
             currentDayMarkerTween = null;
         }
+    }
+
+    public void OnDayClicked()
+    {
+        if (eventTextBlock != null)
+        {
+            OnInspectDay?.Invoke(eventText.text);
+        }
+        Debug.Log($"Pressed button day: {dayNo.text}");
     }
 }

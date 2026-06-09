@@ -1,8 +1,8 @@
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 public class CalendarManager : MonoBehaviour, IPointerClickHandler
 {
@@ -13,17 +13,26 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
     [SerializeField] private TMP_Text monthText;
     [SerializeField] private TMP_Text yearText;
     [SerializeField] private GameObject BG;
-
-
+    [SerializeField] private RectTransform notesContainer;
 
     [Header("Prefab references")]
     [SerializeField] private GameObject calendarDayPrefab;
+    [SerializeField] private GameObject calendarNotePrefab;
+
+    [Header("Notes Tween controls")]
+    [SerializeField] private float strengthX = 1.4f;
+    [SerializeField] private float strengthY = 1.4f;
+    [SerializeField] private float duration = 0.4f;
+    [SerializeField] private int vibrato = 1;
+    [SerializeField] private int elasticity = 1;
+
+    public GameDate date = new(1, 1, 1979);
 
     //---Local References---//
     DateManager dm;
     ScheduleManager sm;
-    private List<ScheduledEvent> scheduledEvents;
-    public GameDate date = new GameDate(1, 1, 1979);
+    Tween notesTween;
+    List<ScheduledEvent> scheduledEvents;
 
     //---Methods---//
     private void OnEnable()
@@ -32,13 +41,16 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
         sm = ScheduleManager.Instance;
 
         DateManager.OnDateChanged += HandleDateChanged;
-        
+        CalendarDay.OnInspectDay += HandleInspectDay;
+
         SetupCalendar();
     }
 
     private void OnDisable()
     {
         DateManager.OnDateChanged -= HandleDateChanged;
+        CalendarDay.OnInspectDay -= HandleInspectDay;
+        ClearNotes();
     }
 
     private void SetupCalendar()
@@ -47,7 +59,7 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
         scheduledEvents = sm.scheduledEvents;
 
         ClearCalendar();
-
+        ClearNotes();
 
         // For however many days there are in the current month...
         for (int d = 1; d < MonthList.Months[date.month].Days + 1; d++)
@@ -70,7 +82,14 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
             }
 
             // Populate CalendarDay with eventsToAdd
-            newCalendarDay.GetComponent<CalendarDay>().SetupDay(d, eventsToAdd);
+            newCalendarDay.GetComponent<CalendarDay>().SetupDay(new GameDate(d, date.month, date.year), eventsToAdd);
+
+            // When we create the CalendarDay which has the current date...
+            if (newCalendarDay.GetComponent<CalendarDay>().date.isSameDate(date))
+            {
+                // Use its eventTextBlock to populate the notes
+                HandleInspectDay(newCalendarDay.GetComponent<CalendarDay>().eventTextBlock);
+            }
         }
 
         monthText.text = MonthList.Months[date.month].Name;
@@ -93,8 +112,53 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
         SetupCalendar();
     }
 
+    private void HandleInspectDay(string text)
+    {
+        ClearNotes();
+        GameObject newCalendarNotePrefab = Instantiate(calendarNotePrefab, notesContainer, false);
+        TMP_Text newCalendarNoteTMP_Text = newCalendarNotePrefab.GetComponentInChildren<TMP_Text>();
+        newCalendarNoteTMP_Text.text = text;
+        SetupTween(newCalendarNoteTMP_Text);
+    }
+
+    private void SetupTween(TMP_Text text)
+    {
+        notesTween = text.transform.DOPunchScale
+            (
+                new Vector2(1f * strengthX, 1f * strengthY),
+                duration,
+                vibrato,
+                elasticity
+            );
+    }
+
+    private void ClearNotes()
+    {
+        if (notesContainer.childCount > 0)
+        {
+            KillNotesTweens();
+
+            for (int i = notesContainer.childCount - 1; i >= 0; i--)
+            {
+                Transform child = notesContainer.GetChild(i);
+                child.SetParent(null);
+                Destroy(child.gameObject);
+            }
+        }
+    }
+
+    private void KillNotesTweens()
+    {
+        if (notesTween != null && notesTween.IsActive())
+        {
+            notesTween.Kill();
+            notesTween = null;
+        }
+    }
+
     public void OnPointerClick(PointerEventData eventData)
     {
+        // close calendar if we click off of it
         if (eventData.pointerCurrentRaycast.gameObject == BG)
         {
             gameObject.SetActive(false);
