@@ -10,6 +10,26 @@ public class CalendarDay : MonoBehaviour
     [SerializeField] private TMP_Text eventText;
     [SerializeField] private GameObject currentDayMarker;
 
+    [Header("Tween controls")]
+    [SerializeField] private float strength = 1.4f;
+    [SerializeField] private float duration = 0.4f;
+    [SerializeField] private int vibrato = 1;
+    [SerializeField] private int elasticity = 1;
+
+    Tween currentDayMarkerTween;
+
+    private void Awake()
+    {
+        currentDayMarkerTween = currentDayMarker.transform.DOPunchScale
+            (
+                Vector2.one *
+                strength,
+                duration,
+                vibrato,
+                elasticity
+            );
+    }
+
     public void SetupDay(int day, List<ScheduledEvent> events)
     {
         dayNo.text = day.ToString();
@@ -29,11 +49,20 @@ public class CalendarDay : MonoBehaviour
         if (day == DateManager.Instance.date.day)
         {
             currentDayMarker.SetActive(true);
-            currentDayMarker.transform.DOPunchScale(Vector2.one * 1.4f, 0.4f, 1);
+            currentDayMarkerTween.Play();
         }
         else
         {
             currentDayMarker.SetActive(false);
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (currentDayMarkerTween.IsActive())
+        {
+            currentDayMarkerTween.Kill();
+            currentDayMarkerTween = null;
         }
     }
 }

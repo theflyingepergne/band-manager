@@ -112,7 +112,7 @@ public class TestSongGenerator : MonoBehaviour
     void ChangeDate(int amount)
     {
         DateManager.Instance.ChangeDate(amount);
-        Debug.Log($"Current Date: {DateManager.Instance.GetDateAsString()}");
+        // Debug.Log($"Current Date: {DateManager.Instance.date.GetDateAsString()}");
     }
 
     // Must be an async method

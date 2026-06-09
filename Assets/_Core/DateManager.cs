@@ -55,10 +55,4 @@ public class DateManager
 
         OnDateChanged?.Invoke(date);
     }
-
-    public string GetDateAsString()
-    {
-        return $"{date.day}/{date.month}/{date.year}";
-    }
-
 }

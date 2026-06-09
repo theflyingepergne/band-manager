@@ -18,4 +18,9 @@ public struct GameDate
     {
         return day == other.day && month == other.month && year == other.year;
     }
+
+    public readonly string GetDateAsString()
+    {
+        return $"{day}/{month}/{year}";
+    }
 }

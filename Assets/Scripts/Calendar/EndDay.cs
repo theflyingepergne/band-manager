@@ -21,7 +21,7 @@ public class EndDay : MonoBehaviour, IClickable
         // Debug.Log("Ended day");
         DateManager.Instance.ChangeDate(1);
         canvasEndDay.SetActive(false);
-        Debug.Log($"Current Date: {DateManager.Instance.GetDateAsString()}");
+        // Debug.Log($"Current Date: {DateManager.Instance.date.GetDateAsString()}");
         FadeInFadeOut();
     }
 

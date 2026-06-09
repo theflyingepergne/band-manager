@@ -22,11 +22,12 @@ public class ScheduleManager
         Instance.scheduledEvents = new List<ScheduledEvent>();
         Instance.dm = DateManager.Instance;
 
+        // Load GameEventDatabase from Resources/GameEvents folder
         GameEventDatabase database = Resources.Load<GameEventDatabase>("GameEvents/GameEventDatabase");
 
         if (database != null && database.events != null)
         {
-            // Copy the events out of the database into this manager's list
+            // Copy GameEventData list from GameEventDatabase
             Instance.gameEvents.AddRange(database.events);
             Debug.Log($"ScheduleManager initialized and loaded {Instance.gameEvents.Count} events from the database asset.");
         }
@@ -35,7 +36,6 @@ public class ScheduleManager
             Debug.LogError("ScheduleManager Error: Could not find 'GameEventDatabase' asset in a Resources folder!");
         }
 
-        // Schedule events
         Instance.ScheduleEvents();
     }
 
@@ -43,9 +43,8 @@ public class ScheduleManager
     {
         foreach (GameEventData gameEventData in gameEvents)
         {
-            ScheduledEvent scheduledEvent = new ScheduledEvent();
-
-            scheduledEvent.gameEventData = gameEventData;
+            // For each GameEvent, create a ScheduledEvent with either the fixed date or generate random date
+            ScheduledEvent scheduledEvent = new() { gameEventData = gameEventData };
 
             if (gameEventData.isFixedDate)
             {
@@ -65,7 +64,8 @@ public class ScheduleManager
         int randomMonth = Random.Range(dm.date.month, dm.date.month + 2);
         int randomDay = Random.Range(dm.date.day, MonthList.Months[randomMonth].Days + 1);
 
-        GameDate randomDate = new GameDate(randomDay, randomMonth, dm.date.year);
+        GameDate randomDate = new(randomDay, randomMonth, dm.date.year);
+        // Debug.Log($"Created random date: {randomDate.GetDateAsString()}");
         return randomDate;
     }
 }
