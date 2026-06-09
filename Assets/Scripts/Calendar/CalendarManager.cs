@@ -10,14 +10,11 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
     [Header("UI References")]
     [SerializeField] private RectTransform calendarBorder;
     [SerializeField] private RectTransform gridContainer;
-    [SerializeField] private RectTransform gridSprite;
     [SerializeField] private TMP_Text monthText;
     [SerializeField] private TMP_Text yearText;
     [SerializeField] private GameObject BG;
 
-    [Header("Sprite references")]
-    [SerializeField] private Sprite calendar4Rows;
-    [SerializeField] private Sprite calendar5Rows;
+
 
     [Header("Prefab references")]
     [SerializeField] private GameObject calendarDayPrefab;
@@ -51,23 +48,6 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
 
         ClearCalendar();
 
-        // If month is feb, use the small calendar
-        if (date.month == 2)
-        {
-            gridSprite.GetComponent<Image>().sprite = calendar4Rows;
-            calendarBorder.SetSizeWithCurrentAnchors(
-                RectTransform.Axis.Vertical,
-                795f
-            );
-        }
-        else
-        {
-            gridSprite.GetComponent<Image>().sprite = calendar5Rows;
-            calendarBorder.SetSizeWithCurrentAnchors(
-                RectTransform.Axis.Vertical,
-                965f
-            );
-        }
 
         // For however many days there are in the current month...
         for (int d = 1; d < MonthList.Months[date.month].Days + 1; d++)
