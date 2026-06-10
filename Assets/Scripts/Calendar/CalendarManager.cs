@@ -50,6 +50,7 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
     {
         DateManager.OnDateChanged -= HandleDateChanged;
         CalendarDay.OnInspectDay -= HandleInspectDay;
+        
         ClearNotes();
     }
 
@@ -68,7 +69,7 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
             GameObject newCalendarDay = Instantiate(calendarDayPrefab, gridContainer, false);
 
             // Initialize empty list of scheduledEvents to populate with eventsToAdd
-            List<ScheduledEvent> eventsToAdd = new List<ScheduledEvent>();
+            List<ScheduledEvent> eventsToAdd = new();
 
             // For each scheduledEvents in list of scheduledEvents (scheduledEventsbase),
             // If the date of the GameEvent matches the date of the current iteration
@@ -92,6 +93,7 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
             }
         }
 
+        // Set Month and Year text
         monthText.text = MonthList.Months[date.month].Name;
         yearText.text = date.year.ToString();
     }
@@ -115,9 +117,15 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
     private void HandleInspectDay(string text)
     {
         ClearNotes();
+
+        // Instantiate CalendarNote
         GameObject newCalendarNotePrefab = Instantiate(calendarNotePrefab, notesContainer, false);
         TMP_Text newCalendarNoteTMP_Text = newCalendarNotePrefab.GetComponentInChildren<TMP_Text>();
+
+        // Set note text
         newCalendarNoteTMP_Text.text = text;
+
+        // Setup tween using TextMeshPro transform rather than prefab transform
         SetupTween(newCalendarNoteTMP_Text);
     }
 
@@ -149,7 +157,7 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
 
     private void KillNotesTweens()
     {
-        if (notesTween != null && notesTween.IsActive())
+        if (notesTween.IsActive())
         {
             notesTween.Kill();
             notesTween = null;

@@ -12,7 +12,7 @@ public class CalendarDay : MonoBehaviour
     [SerializeField] private TMP_Text eventText;
     [SerializeField] private GameObject currentDayMarker;
 
-    [Header("Tween controls")]
+    [Header("Current Day Marker Tween controls")]
     [SerializeField] private float strength = 1.4f;
     [SerializeField] private float duration = 0.4f;
     [SerializeField] private int vibrato = 1;
@@ -29,7 +29,8 @@ public class CalendarDay : MonoBehaviour
     public static System.Action<string> OnInspectDay;
 
     private void OnEnable()
-    {        
+    {
+        // Setup button
         button = gameObject.GetComponent<Button>();
         button.onClick.AddListener(() => OnDayClicked());
     }
@@ -54,14 +55,13 @@ public class CalendarDay : MonoBehaviour
         // Display finished eventTextBlock 
         eventText.text = eventTextBlock;
 
-        // Show current day marker if this CalendarDay == date.day
+        // If CalendarDay == date.day, show currentDayMarker
         if (date.isSameDate(DateManager.Instance.date))
         {
             currentDayMarker.SetActive(true);
             currentDayMarkerTween = currentDayMarker.transform.DOPunchScale
             (
-                Vector2.one *
-                strength,
+                Vector2.one * strength,
                 duration,
                 vibrato,
                 elasticity
@@ -84,6 +84,7 @@ public class CalendarDay : MonoBehaviour
 
     public void OnDayClicked()
     {
+        // Only invoke event if CalendarDay has text
         if (eventTextBlock != null)
         {
             OnInspectDay?.Invoke(eventText.text);
