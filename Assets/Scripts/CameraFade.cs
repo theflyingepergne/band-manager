@@ -6,6 +6,7 @@ public class CameraFade : MonoBehaviour
 {
     public static CameraFade Instance;
 
+    //---References---//
     [Header("UI References")]
     [SerializeField] private CanvasGroup canvasGroupBlack;
 
@@ -13,6 +14,10 @@ public class CameraFade : MonoBehaviour
     [SerializeField] private float fadeDuration = 0.5f;
     [SerializeField] private bool fadeInOnStart = true;
 
+    //---Events---//
+    public static System.Action OnFadeInComplete;
+
+    //---Methods---//
     private void Awake()
     {
         Instance = this;
@@ -50,9 +55,12 @@ public class CameraFade : MonoBehaviour
         // Run the tween and wait right here until it finishes
         await canvasGroupBlack.DOFade(targetAlpha, fadeDuration).AsyncWaitForCompletion();
 
-        // Clean up if we faded out completely
         if (targetAlpha <= 0f)
         {
+            // If we've faded in, tell everyone who cares that we've finished fading in
+            OnFadeInComplete?.Invoke();
+
+            // Clean up if we faded out completely
             canvasGroupBlack.gameObject.SetActive(false);
         }
     }

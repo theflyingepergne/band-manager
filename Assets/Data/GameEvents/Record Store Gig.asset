@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1ffe2ac32d514137a1397c28846fef0, type: 3}
   m_Name: Record Store Gig
   m_EditorClassIdentifier: Assembly-CSharp::GameEventData
-  isFixedDate: 0
+  isFixedDate: 1
   date:
-    day: 0
-    month: 0
-    year: 0
+    day: 31
+    month: 1
+    year: 1979
   title: CDeez Bands
   description: 'To celebrate their launch, record store "CDeez" is letting local
     bands play a song or two.

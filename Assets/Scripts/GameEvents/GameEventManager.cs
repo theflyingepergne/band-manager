@@ -1,4 +1,5 @@
 using System.Text;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,21 +9,38 @@ public class GameEventManager : Singleton<GameEventManager>
     //---References---//
     [Header("Data")]
     [SerializeField] private GameEventData gameEventData;
-    [SerializeField] private GameEventDatabase gameEventDatabase;
 
     [Header("UI References")]
     [SerializeField] private TextMeshProUGUI eventTitle;
     [SerializeField] private TextMeshProUGUI eventDescription;
     [SerializeField] private GameObject eventSprite;
     [SerializeField] private RectTransform eventChoiceWrapper;
+    [SerializeField] private RectTransform notificationsPanel;
 
     [Header("Prefabs")]
+    [SerializeField] private GameObject gameEventPrefab;
     [SerializeField] private GameObject eventChoiceButtonPrefab;
+    [SerializeField] private GameObject eventNotificationPrefab;
+
+    [Header("Tween controls")]
+    [SerializeField] private float strength = 1.4f;
+    [SerializeField] private float duration = 0.4f;
+    [SerializeField] private int vibrato = 1;
+    [SerializeField] private int elasticity = 1;
+
+    //---Events---//
+    private void OnEnable() => DateManager.OnDateChanged += HandleDateChanged;
+    private void OnDisable() => DateManager.OnDateChanged -= HandleDateChanged;
+
+    //---Local References---//
+    ScheduleManager sm;
 
     //---Methods---//
-    //---Setup before picking choice---//
-    void Start()
+    private void Start()
     {
+        sm = ScheduleManager.Instance;
+
+        CreateEventNotifications();
         SetupEvent(gameEventData);
     }
 
@@ -120,6 +138,61 @@ public class GameEventManager : Singleton<GameEventManager>
 
     public void CloseEventWindow()
     {
-        gameObject.SetActive(false);
+        gameEventPrefab.SetActive(false);
+    }
+
+    private void HandleDateChanged(GameDate updatedDate)
+    {
+        CreateEventNotifications();
+        Debug.Log("Heard date change in game event manager");
+    }
+
+    private void CreateEventNotifications()
+    {
+        ClearNotifications();
+
+        // Initialize sequence
+        Sequence notificationSequence = DOTween.Sequence();
+
+        foreach (GameEventData eventData in sm.GetTodaysEvents())
+        {
+            // Create & setup event notification
+            GameObject newEventNotificationPrefab = Instantiate(eventNotificationPrefab, notificationsPanel, false);
+            EventNotification newEventNotification = newEventNotificationPrefab.GetComponent<EventNotification>();
+            newEventNotification.SetupEventNotification(eventData);
+            // Debug.Log($"created event: {eventData.title}");
+
+            // Append tween to sequence
+            notificationSequence.Append
+            (
+                newEventNotificationPrefab.transform.DOPunchScale(Vector2.one * strength,
+                duration, 
+                vibrato,
+                elasticity)
+                .OnStart(newEventNotification.ShowNotification)
+            );
+        }
+
+        // Play sequence
+        notificationSequence.Play();
+    }
+
+    private void ClearNotifications()
+    {
+        for (int i = notificationsPanel.childCount - 1; i >= 0; i--)
+        {
+            Transform child = notificationsPanel.GetChild(i);
+            child.SetParent(null);
+            Destroy(child.gameObject);
+        }
+    }
+
+    public void OnTriggerGameEvent(GameEventData data)
+    {
+        if (gameEventPrefab != null)
+        {
+            SetupEvent(data);
+            gameEventPrefab.SetActive(true);
+        }
     }
 }

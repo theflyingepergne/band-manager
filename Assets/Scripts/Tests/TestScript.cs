@@ -13,6 +13,7 @@ public class TestSongGenerator : MonoBehaviour
     [SerializeField] private bool autoGenerateTestSongs;
 
     [Header("GameObjects")]
+    [SerializeField] private GameEventManager gameEventManager;
     [SerializeField] private GameObject gameEventPrefab;
     [SerializeField] private GameObject calendarCanvas;
 
@@ -58,9 +59,6 @@ public class TestSongGenerator : MonoBehaviour
             // we could change the method so it only fades in and another script could call fade out
             FadeInFadeOut();
         }
-
-
-
     }
 
     void GenerateTestSongs()
@@ -95,11 +93,9 @@ public class TestSongGenerator : MonoBehaviour
 
     void TriggerGameEvent()
     {
-        if (gameEventPrefab != null)
+        if (gameEventManager != null)
         {
-            GameEventManager gameEventManager = gameEventPrefab.GetComponent<GameEventManager>();
             gameEventManager.SetupEvent(gameEventDatabase.GetRandomEvent());
-
             gameEventPrefab.SetActive(!gameEventPrefab.activeSelf);
         }
     }

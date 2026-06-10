@@ -19,7 +19,6 @@ public class EndDay : MonoBehaviour, IClickable
     public void ClickedEndDay()
     {
         // Debug.Log("Ended day");
-        DateManager.Instance.ChangeDate(1);
         canvasEndDay.SetActive(false);
         // Debug.Log($"Current Date: {DateManager.Instance.date.GetDateAsString()}");
         FadeInFadeOut();
@@ -37,6 +36,8 @@ public class EndDay : MonoBehaviour, IClickable
 
         // Use Task.Delay (milliseconds) to hold
         await Task.Delay(500);
+        
+        DateManager.Instance.ChangeDate(1);
 
         // Fade back in
         await CameraFade.Instance.DoCameraFade(0f);

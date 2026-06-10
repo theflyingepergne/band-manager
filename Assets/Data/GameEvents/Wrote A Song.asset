@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameEventData
   isFixedDate: 1
   date:
-    day: 2
-    month: 2
+    day: 31
+    month: 1
     year: 1979
   title: Inspiration has struck!
   description: One of the band members has written a song. How adorable! I'll put

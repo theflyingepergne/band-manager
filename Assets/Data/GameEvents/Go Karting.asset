@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1ffe2ac32d514137a1397c28846fef0, type: 3}
   m_Name: Go Karting
   m_EditorClassIdentifier: Assembly-CSharp::GameEventData
-  isFixedDate: 0
+  isFixedDate: 1
   date:
-    day: 0
-    month: 0
-    year: 0
+    day: 31
+    month: 1
+    year: 1979
   title: '"We want to go Go Karting"'
   description: The band are bored of racing each other on foot and have decided they
     want to see who is the fastest at the local indoor Go Karting dome.
