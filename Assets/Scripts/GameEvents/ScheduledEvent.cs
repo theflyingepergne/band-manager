@@ -1,7 +1,10 @@
-using UnityEngine;
-
+[System.Serializable]
 public class ScheduledEvent
 {
-    public GameEventData gameEventData;
+    public string eventID;
     public GameDate date;
+    public bool isCompleted;
+
+    [System.NonSerialized]
+    public GameEventData gameEventData;
 }

@@ -52,9 +52,16 @@ public class ScheduleManager
     {
         foreach (GameEventData gameEventData in allGameEvents)
         {
-            // For each GameEvent, create a ScheduledEvent with either the fixed date or generate random date
-            ScheduledEvent scheduledEvent = new() { gameEventData = gameEventData };
+            // Create a fresh tracking instance
+            ScheduledEvent scheduledEvent = new();
 
+            // Connect the live asset reference for gameplay use right now
+            scheduledEvent.gameEventData = gameEventData;
+
+            // Record its file name so the Save/Load system can find it later!
+            scheduledEvent.eventID = gameEventData.name;
+
+            // Assign the date to the TRACKING instance, leaving the asset untouched
             if (gameEventData.isFixedDate)
             {
                 scheduledEvent.date = gameEventData.date;
@@ -66,6 +73,17 @@ public class ScheduleManager
 
             scheduledEvents.Add(scheduledEvent);
         }
+    }
+
+    public void ScheduleNewEvent(GameEventData gameEventData, GameDate date)
+    {
+        // Trying out a different way of initializing object
+        scheduledEvents.Add(new ScheduledEvent
+        {
+            gameEventData = gameEventData,
+            eventID = gameEventData.name,
+            date = date
+        });
     }
 
     public List<GameEventData> GetTodaysEvents()

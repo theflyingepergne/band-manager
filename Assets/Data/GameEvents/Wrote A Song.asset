@@ -26,4 +26,10 @@ MonoBehaviour:
     choiceOutcomeDescription: Another money maker to add to the collection hehe
     StatChanges: []
     CustomEvents:
-    - {fileID: 11400000, guid: a98c52e5a094940fe97be7881de89238, type: 2}
+    - rid: 1683647232616956148
+  references:
+    version: 2
+    RefIds:
+    - rid: 1683647232616956148
+      type: {class: WriteSongEvent, ns: , asm: Assembly-CSharp}
+      data: 

@@ -32,9 +32,25 @@ MonoBehaviour:
       heads.\""
     StatChanges: []
     CustomEvents:
-    - {fileID: 0}
+    - rid: 1683647232616956152
   - choiceLabel: Ignore
     choiceOutcomeDescription: 
     StatChanges: []
     CustomEvents:
-    - {fileID: 11400000, guid: ce70df2eb3f8144a385f6daad835ebf1, type: 2}
+    - rid: 1683647232616956151
+  references:
+    version: 2
+    RefIds:
+    - rid: 1683647232616956151
+      type: {class: CloseEvent, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 1683647232616956152
+      type: {class: BookFutureGig, ns: , asm: Assembly-CSharp}
+      data:
+        gameEventData: {fileID: 11400000, guid: fd50bb09376319743a4af05c603b891a, type: 2}
+        date:
+          day: 7
+          month: 0
+          year: 0
+        fromTodaysDate: 1
+        venueData: {fileID: 11400000, guid: 5e3cd3926f8bf40409643f12021b22d3, type: 2}

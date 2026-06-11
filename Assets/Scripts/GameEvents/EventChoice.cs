@@ -7,5 +7,7 @@ public class EventChoice
     public string choiceLabel;
     [TextArea] public string choiceOutcomeDescription;
     public List<StatChange> StatChanges; // If no stat changes, leave empty
-    public List<CustomGameEventData> CustomEvents; // drag in custom events
+
+    [SerializeReference, SubclassSelector]
+    public List<CustomGameEvent> CustomEvents; // drag in custom events
 }
