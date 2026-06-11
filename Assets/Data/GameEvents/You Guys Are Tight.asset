@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameEventData
   isFixedDate: 1
   date:
-    day: 2
+    day: 1
     month: 2
     year: 1979
   title: Open for us

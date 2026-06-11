@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameEventData
   isFixedDate: 1
   date:
-    day: 31
+    day: 30
     month: 1
     year: 1979
   title: CDeez Bands

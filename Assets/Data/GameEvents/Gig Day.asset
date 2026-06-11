@@ -14,18 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameEventData
   isFixedDate: 1
   date:
-    day: 31
-    month: 1
-    year: 1979
+    day: 0
+    month: 0
+    year: 0
   title: It's Gig Day
   description: Alright, this is what all the preparation has been for! Let's hop
     into the van and decide on the final setlist and absolutely melt some minds.
   sprite: {fileID: 21300000, guid: 1e50682e310544a8495eba08cad48fa0, type: 3}
   choices:
-  - choiceLabel: 
+  - choiceLabel: Rock on!
     choiceOutcomeDescription: 
     StatChanges: []
-    CustomEvents: []
+    CustomEvents:
+    - rid: 1683647232616956154
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 1683647232616956154
+      type: {class: CloseEvent, ns: , asm: Assembly-CSharp}
+      data: 

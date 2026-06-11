@@ -10,17 +10,17 @@ public class BookFutureGig : CustomGameEvent
     public bool fromTodaysDate;
     public VenueData venueData;
 
-    //---Local References---//
-    DateManager dm;
-
-
     public override void Execute()
     {
-        dm = DateManager.Instance;
-        // if (fromTodaysDate == true)
-        // {
-        //     GameDate futureDate = new(date.day + dm.date.day, date.month + dm.date.month;
-        // }
-        ScheduleManager.Instance.ScheduleNewEvent(gameEventData, date);
+        if (fromTodaysDate == true)
+        {
+            // If choosing a date 'fromTodaysDate', just add how many days in the future - not months
+            GameDate futureDate = DateManager.Instance.date.AddDays(date.day);
+            ScheduleManager.Instance.ScheduleNewEvent(gameEventData, futureDate);
+        }
+        else
+        {
+            ScheduleManager.Instance.ScheduleNewEvent(gameEventData, date);
+        }
     }
 }
