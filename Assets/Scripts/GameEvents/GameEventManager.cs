@@ -29,8 +29,18 @@ public class GameEventManager : Singleton<GameEventManager>
     [SerializeField] private int elasticity = 1;
 
     //---Events---//
-    private void OnEnable() => DateManager.OnDateChanged += HandleDateChanged;
-    private void OnDisable() => DateManager.OnDateChanged -= HandleDateChanged;
+    private void OnEnable()
+    {
+        DateManager.OnDateChanged += HandleDateChanged;
+        CameraFade.OnFadeInComplete += HandleFadeInComplete;
+    } 
+
+    private void OnDisable()
+    {
+        DateManager.OnDateChanged -= HandleDateChanged;
+        CameraFade.OnFadeInComplete -= HandleFadeInComplete;
+
+    }
 
     //---Local References---//
     ScheduleManager sm;
@@ -40,8 +50,8 @@ public class GameEventManager : Singleton<GameEventManager>
     {
         sm = ScheduleManager.Instance;
 
-        CreateEventNotifications();
-        SetupEvent(gameEventData);
+        // CreateEventNotifications();
+        // SetupEvent(gameEventData);
     }
 
     public void SetupEvent(GameEventData data)
@@ -114,7 +124,6 @@ public class GameEventManager : Singleton<GameEventManager>
             }
         }
 
-        // Clear EventChoiceButtons
         ClearEventChoiceButtons();
 
         // Set event description to chosen EventChoice outcome
@@ -141,10 +150,15 @@ public class GameEventManager : Singleton<GameEventManager>
         gameEventPrefab.SetActive(false);
     }
 
+    //---Event Notifications---//
     private void HandleDateChanged(GameDate updatedDate)
     {
         CreateEventNotifications();
-        Debug.Log("Heard date change in game event manager");
+    }
+
+    private void HandleFadeInComplete()
+    {
+        CreateEventNotifications();
     }
 
     private void CreateEventNotifications()
@@ -187,6 +201,7 @@ public class GameEventManager : Singleton<GameEventManager>
         }
     }
 
+    //---Called by clicking on event notification---//
     public void OnTriggerGameEvent(GameEventData data)
     {
         if (gameEventPrefab != null)
