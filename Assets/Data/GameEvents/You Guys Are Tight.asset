@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1ffe2ac32d514137a1397c28846fef0, type: 3}
+  m_Name: You Guys Are Tight
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventData
+  isFixedDate: 1
+  date:
+    day: 2
+    month: 2
+    year: 1979
+  title: Open for us
+  description: 'One of the band members for up-and-coming art-rock trio "Whispering
+    Feet" was at our last show and liked the cut of our gib!
+
+
+    They''ve asked
+    us if we can open for them next week at the Cavern Club.'
+  sprite: {fileID: 21300000, guid: 1e50682e310544a8495eba08cad48fa0, type: 3}
+  choices:
+  - choiceLabel: We're there!
+    choiceOutcomeDescription: "Whispering Feet: \"Righteous, we'll see you guys there.
+      The rest of the band will be wearing undersized clothes and papier-m\xE2ch\xE9
+      heads.\""
+    StatChanges: []
+    CustomEvents:
+    - {fileID: 0}
+  - choiceLabel: Ignore
+    choiceOutcomeDescription: 
+    StatChanges: []
+    CustomEvents:
+    - {fileID: 11400000, guid: ce70df2eb3f8144a385f6daad835ebf1, type: 2}
