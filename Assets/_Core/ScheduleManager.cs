@@ -86,15 +86,15 @@ public class ScheduleManager
         });
     }
 
-    public List<GameEventData> GetTodaysEvents()
+    public List<ScheduledEvent> GetTodaysEvents()
     {
-        List<GameEventData> todaysEvents = new();
+        List<ScheduledEvent> todaysEvents = new();
 
         foreach (ScheduledEvent s in scheduledEvents)
         {
-            if (s.date.isSameDate(date))
+            if (s.date.isSameDate(date) && s.isCompleted == false)
             {
-                todaysEvents.Add(s.gameEventData);
+                todaysEvents.Add(s);
             }
         }
 

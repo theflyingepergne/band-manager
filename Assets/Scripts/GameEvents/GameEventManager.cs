@@ -153,7 +153,7 @@ public class GameEventManager : Singleton<GameEventManager>
     //---Event Notifications---//
     private void HandleDateChanged(GameDate updatedDate)
     {
-        CreateEventNotifications();
+        // CreateEventNotifications();
     }
 
     private void HandleFadeInComplete()
@@ -168,12 +168,12 @@ public class GameEventManager : Singleton<GameEventManager>
         // Initialize sequence
         Sequence notificationSequence = DOTween.Sequence();
 
-        foreach (GameEventData eventData in sm.GetTodaysEvents())
+        foreach (ScheduledEvent scheduledEvent in sm.GetTodaysEvents())
         {
             // Create & setup event notification
             GameObject newEventNotificationPrefab = Instantiate(eventNotificationPrefab, notificationsPanel, false);
             EventNotification newEventNotification = newEventNotificationPrefab.GetComponent<EventNotification>();
-            newEventNotification.SetupEventNotification(eventData);
+            newEventNotification.SetupEventNotification(scheduledEvent);
             // Debug.Log($"created event: {eventData.title}");
 
             // Append tween to sequence

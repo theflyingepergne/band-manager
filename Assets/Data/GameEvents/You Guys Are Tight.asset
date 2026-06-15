@@ -17,7 +17,7 @@ MonoBehaviour:
     day: 1
     month: 2
     year: 1979
-  title: Open for us
+  title: You Guys Are Tight!
   description: 'One of the band members for up-and-coming art-rock trio "Whispering
     Feet" was at our last show and liked the cut of our gib!
 
@@ -49,7 +49,7 @@ MonoBehaviour:
       data:
         gameEventData: {fileID: 11400000, guid: fd50bb09376319743a4af05c603b891a, type: 2}
         date:
-          day: 7
+          day: 1
           month: 0
           year: 0
         fromTodaysDate: 1
