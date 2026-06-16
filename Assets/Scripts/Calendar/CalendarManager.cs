@@ -123,14 +123,14 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
         GameObject newCalendarNotePrefab = Instantiate(calendarNotePrefab, notesContainer, false);
         TMP_Text newCalendarNoteTMP_Text = newCalendarNotePrefab.GetComponentInChildren<TMP_Text>();
 
-        if (inspectDate.isBeforeDate(date))
-        {
-            newCalendarNoteTMP_Text.fontStyle = FontStyles.Strikethrough;
-        }
-        else
-        {
-            newCalendarNoteTMP_Text.fontStyle = FontStyles.Normal;
-        }
+        // if (inspectDate.isBeforeDate(date))
+        // {
+        //     newCalendarNoteTMP_Text.fontStyle = FontStyles.Strikethrough;
+        // }
+        // else
+        // {
+        //     newCalendarNoteTMP_Text.fontStyle = FontStyles.Normal;
+        // }
 
         // Set note text
         newCalendarNoteTMP_Text.text = text;
