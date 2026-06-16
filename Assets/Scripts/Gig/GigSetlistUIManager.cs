@@ -24,7 +24,7 @@ public class GigSetlistUIManager : Singleton<GigSetlistUIManager>
     {
         base.Awake();
 
-        // Init local refs
+        // Cache local refs
         bm = BandManager.Instance;
     }
 

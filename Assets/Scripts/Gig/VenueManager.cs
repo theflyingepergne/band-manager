@@ -2,26 +2,21 @@ using UnityEngine;
 
 public class VenueManager : Singleton<VenueManager>
 {
-    ScheduleManager sm;
     // is it gig day?
     // 
     // if yes, start gig
     // if no, show bartender and start dialogue
     private void Start()
     {
-        sm = ScheduleManager.Instance;
-        
-        // GigSetlistUIManager.Instance.SetupGigUI();
+        var (anyGigs, gig) = ScheduleManager.Instance.CheckAnyGigsToday();
 
-
-        if (sm.CheckGigToday() == true)
+        if (anyGigs)
         {
             // start gig
-            Debug.Log("It's gig day!");
             GigSetlistUIManager.Instance.SetupGigUI();
-
+            gig.isCompleted = true;
         }
-        else
+        else // if
         {
             // book future gig
             Debug.Log("No gig today");

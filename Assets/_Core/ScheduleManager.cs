@@ -25,8 +25,8 @@ public class ScheduleManager
 
         // Initialize lists
         Instance.allGameEvents = new List<GameEventData>();
-        Instance.allVenues = new List<VenueData>();
         Instance.scheduledEvents = new List<ScheduledEvent>();
+        Instance.allVenues = new List<VenueData>();
         Instance.scheduledGigs = new List<ScheduledGig>();
 
         // Pull date from dateManager
@@ -43,6 +43,7 @@ public class ScheduleManager
         Instance.ScheduleEvents();
     }
 
+    //---Loading Databases---//
     private void LoadGameEventDatabase()
     {
         // Load GameEventDatabase from Resources/GameEvents folder
@@ -62,7 +63,7 @@ public class ScheduleManager
 
     private void LoadVenueDatabase()
     {
-        // Load GameEventDatabase from Resources/GameEvents folder
+        // Load GameEventDatabase from Resources/Databases folder
         VenueDatabase database = Resources.Load<VenueDatabase>("Databases/VenueDatabase");
 
         if (database != null && database.venues != null)
@@ -77,18 +78,19 @@ public class ScheduleManager
         }
     }
 
+    //---Scheduling Game Events---//
     private void ScheduleEvents()
     {
         foreach (GameEventData gameEventData in allGameEvents)
         {
-            // Create a fresh tracking instance
+            // Create a saveable scheduledEvent instance
             ScheduledEvent scheduledEvent = new()
             {
                 gameEventData = gameEventData,
                 eventID = gameEventData.name
             };
 
-            // Assign the date to the TRACKING instance, leaving the asset untouched
+            // Assign any random dates
             if (gameEventData.isFixedDate)
             {
                 scheduledEvent.date = gameEventData.date;
@@ -128,6 +130,7 @@ public class ScheduleManager
         return todaysEvents;
     }
 
+    //---Scheduling Gigs---//
     public void ScheduleNewGig(VenueData venue, GameDate date)
     {
         scheduledGigs.Add(new ScheduledGig
@@ -138,20 +141,23 @@ public class ScheduleManager
         });
     }
 
-    public bool CheckGigToday()
+    public (bool anyGigs, ScheduledGig scheduledGig) CheckAnyGigsToday()
     {
         foreach (ScheduledGig gig in scheduledGigs)
         {
-            if (bm.destinationVenue == gig.venueData && gig.date.isSameDate(date))
+            if (bm.destinationVenue == gig.venueData
+                && gig.date.isSameDate(date)
+                && gig.isCompleted == false)
             {
-                return true;
+                return (true, gig);
             }
         }
 
         // If we complete the loop, there must be no gigs today
-        return false;
+        return (false, null);
     }
 
+    //---Dates---//
     private GameDate GenerateRandomDate()
     {
         int randomMonth = Random.Range(dm.date.month, dm.date.month + 2);

@@ -30,7 +30,7 @@ public class GigDirector : Singleton<GigDirector>
     {
         base.Awake();
 
-        // Init local refs
+        // Cache local refs
         bm = BandManager.Instance;
         gSUIM = GigSetlistUIManager.Instance;
     }
