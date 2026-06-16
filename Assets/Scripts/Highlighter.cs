@@ -5,7 +5,7 @@ using DG.Tweening;
 public class Highlighter : MonoBehaviour, IHoverable
 {
     //---References---//
-    [SerializeField] private Color highlightedColour = new Color(255f, 0f, 0f, 175f);
+    [SerializeField] private Color32 highlightedColour = new Color32(191, 0, 0, 175);
     [SerializeField] private float duration = 0.1f;
 
     //---Local References---//

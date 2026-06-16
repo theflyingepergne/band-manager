@@ -193,6 +193,7 @@ GameObject:
   - component: {fileID: 7076435123663986745}
   - component: {fileID: 3186861329475116324}
   - component: {fileID: 4357871091157508534}
+  - component: {fileID: 4445773888435345740}
   m_Layer: 0
   m_Name: Calendar_Icon
   m_TagString: Untagged
@@ -332,8 +333,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17c7b7a3b8a2b42eeb6655a3b4267108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Highlighter
-  highlightedColour: {r: 255, g: 0, b: 0, a: 175}
+  highlightedColour:
+    serializedVersion: 2
+    rgba: 4278190271
   duration: 0.1
+--- !u!114 &4445773888435345740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1014283130136077841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcfa44584af2c4874931b430085af8c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CalendarIcon
+  calendarCanvas: {fileID: 0}
+  numTextMesh: {fileID: 1549485787900264382}
 --- !u!1 &3517142859360264281
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,7 +360,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6240894767830510195}
-  - component: {fileID: 7087663675101730490}
   m_Layer: 0
   m_Name: Calendar_Icon
   m_TagString: Untagged
@@ -361,7 +377,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.65, y: 0.65, z: 0.65}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1740546898794229199}
@@ -369,19 +385,6 @@ Transform:
   - {fileID: 4584957240646786532}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7087663675101730490
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3517142859360264281}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcfa44584af2c4874931b430085af8c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CalendarIcon
-  calendarCanvas: {fileID: 0}
 --- !u!1 &7532031916306311292
 GameObject:
   m_ObjectHideFlags: 0

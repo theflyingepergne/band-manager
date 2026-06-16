@@ -1069,25 +1069,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 261609279}
   m_CullTransparentMesh: 1
---- !u!1 &312981791 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1014283130136077841, guid: e5ceb0c0a6ac74fdc83c5c74485fb7c1, type: 3}
-  m_PrefabInstance: {fileID: 4442232023414393483}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &312981796
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 312981791}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcfa44584af2c4874931b430085af8c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CalendarIcon
-  calendarCanvas: {fileID: 1094315599}
-  numTextMesh: {fileID: 550533049}
 --- !u!1 &440783302
 GameObject:
   m_ObjectHideFlags: 0
@@ -1309,17 +1290,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3090593790593587005, guid: 860388272eb7d42b3b2c8f92dcd294c0, type: 3}
   m_PrefabInstance: {fileID: 14423717}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &550533049 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1549485787900264382, guid: e5ceb0c0a6ac74fdc83c5c74485fb7c1, type: 3}
-  m_PrefabInstance: {fileID: 4442232023414393483}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshPro
 --- !u!1 &579243548
 GameObject:
   m_ObjectHideFlags: 0
@@ -3672,37 +3642,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Calendar_Root
       objectReference: {fileID: 0}
-    - target: {fileID: 4357871091157508534, guid: e5ceb0c0a6ac74fdc83c5c74485fb7c1, type: 3}
-      propertyPath: highlightedColour.b
-      value: 0.21560162
-      objectReference: {fileID: 0}
-    - target: {fileID: 4357871091157508534, guid: e5ceb0c0a6ac74fdc83c5c74485fb7c1, type: 3}
-      propertyPath: highlightedColour.g
-      value: 0.21560162
-      objectReference: {fileID: 0}
-    - target: {fileID: 4357871091157508534, guid: e5ceb0c0a6ac74fdc83c5c74485fb7c1, type: 3}
-      propertyPath: highlightedColour.r
-      value: 0.8018868
-      objectReference: {fileID: 0}
-    - target: {fileID: 6240894767830510195, guid: e5ceb0c0a6ac74fdc83c5c74485fb7c1, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.65
-      objectReference: {fileID: 0}
-    - target: {fileID: 6240894767830510195, guid: e5ceb0c0a6ac74fdc83c5c74485fb7c1, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.65
-      objectReference: {fileID: 0}
-    - target: {fileID: 6240894767830510195, guid: e5ceb0c0a6ac74fdc83c5c74485fb7c1, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.65
-      objectReference: {fileID: 0}
+    - target: {fileID: 4445773888435345740, guid: e5ceb0c0a6ac74fdc83c5c74485fb7c1, type: 3}
+      propertyPath: calendarCanvas
+      value: 
+      objectReference: {fileID: 1094315599}
     - target: {fileID: 6240894767830510195, guid: e5ceb0c0a6ac74fdc83c5c74485fb7c1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.28
+      value: -6.46
       objectReference: {fileID: 0}
     - target: {fileID: 6240894767830510195, guid: e5ceb0c0a6ac74fdc83c5c74485fb7c1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.37
+      value: 4.411
       objectReference: {fileID: 0}
     - target: {fileID: 6240894767830510195, guid: e5ceb0c0a6ac74fdc83c5c74485fb7c1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3736,12 +3686,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7087663675101730490, guid: e5ceb0c0a6ac74fdc83c5c74485fb7c1, type: 3}
-      propertyPath: calendarCanvas
-      value: 
-      objectReference: {fileID: 1094315599}
-    m_RemovedComponents:
-    - {fileID: 7087663675101730490, guid: e5ceb0c0a6ac74fdc83c5c74485fb7c1, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -3751,9 +3696,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7532031916306311292, guid: e5ceb0c0a6ac74fdc83c5c74485fb7c1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 1014283130136077841, guid: e5ceb0c0a6ac74fdc83c5c74485fb7c1, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 312981796}
   m_SourcePrefab: {fileID: 100100000, guid: e5ceb0c0a6ac74fdc83c5c74485fb7c1, type: 3}
 --- !u!1001 &6704015791155334284
 PrefabInstance:
@@ -4476,17 +4418,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 175906148764472223, guid: e71b107713cb547e7985c7a816bf3094, type: 3}
+      propertyPath: highlightedColour.rgba
+      value: 4278190271
+      objectReference: {fileID: 0}
     - target: {fileID: 2880119272614222558, guid: e71b107713cb547e7985c7a816bf3094, type: 3}
       propertyPath: m_Name
       value: Travel_Icon
       objectReference: {fileID: 0}
     - target: {fileID: 6898008074771985572, guid: e71b107713cb547e7985c7a816bf3094, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898008074771985572, guid: e71b107713cb547e7985c7a816bf3094, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898008074771985572, guid: e71b107713cb547e7985c7a816bf3094, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898008074771985572, guid: e71b107713cb547e7985c7a816bf3094, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.34
+      value: -5.41
       objectReference: {fileID: 0}
     - target: {fileID: 6898008074771985572, guid: e71b107713cb547e7985c7a816bf3094, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.58
+      value: 4.37
       objectReference: {fileID: 0}
     - target: {fileID: 6898008074771985572, guid: e71b107713cb547e7985c7a816bf3094, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4519,10 +4477,6 @@ PrefabInstance:
     - target: {fileID: 6898008074771985572, guid: e71b107713cb547e7985c7a816bf3094, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9137108981087426427, guid: e71b107713cb547e7985c7a816bf3094, type: 3}
-      propertyPath: sceneToLoad
-      value: Map
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

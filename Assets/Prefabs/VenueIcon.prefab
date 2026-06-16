@@ -143,6 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b76e8f00ea3942688f4af372ba873d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VenueIcon
+  venueInfoPanel: {fileID: 0}
   venueData: {fileID: 11400000, guid: 53eb553f37e094706a09f61e006926f4, type: 2}
 --- !u!114 &5736712887157657904
 MonoBehaviour:
@@ -156,5 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17c7b7a3b8a2b42eeb6655a3b4267108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VenueIcon
-  highlightedColour: {r: 1, g: 0, b: 0, a: 1}
+  highlightedColour:
+    serializedVersion: 2
+    rgba: 4278190271
   duration: 0.1
