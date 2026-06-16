@@ -18,6 +18,7 @@ public class CalendarDay : MonoBehaviour
     [SerializeField] private int vibrato = 1;
     [SerializeField] private int elasticity = 1;
 
+    public List<ScheduledEvent> scheduledEvents = new();
     public string eventTextBlock { get; private set; }
     public GameDate date { get; private set; }
 
@@ -26,7 +27,7 @@ public class CalendarDay : MonoBehaviour
     Button button;
 
     //---Events---//
-    public static System.Action<string, GameDate> OnInspectDay;
+    public static System.Action<List<ScheduledEvent>> OnInspectDay;
 
     private void OnEnable()
     {
@@ -38,27 +39,23 @@ public class CalendarDay : MonoBehaviour
     public void SetupDay(GameDate setupDate, List<ScheduledEvent> events)
     {
         date = setupDate;
+        scheduledEvents = events;
 
         // Use day (from calendarManager) as day number
         dayNo.text = date.day.ToString();
 
-        // If date is in the past, strikethrough text
-        if (setupDate.isBeforeDate(date))
-        {
-            eventText.fontStyle = FontStyles.Strikethrough;
-        }
-        else
-        {
-            eventText.fontStyle = FontStyles.Normal;
-        }
 
         // If list of events is not null, add each event title to eventTextBlock
         if (events != null)
         {
             foreach (ScheduledEvent e in events)
             {
+                TMP_Text newLine = Instantiate(eventText, transform, false);
+                SetFontStyle(e, newLine);
+
+                newLine.text = "- " + e.gameEventData.title;
                 // create a text block of event names
-                eventTextBlock += "- " + e.gameEventData.title + "\n";
+                // eventTextBlock += "- " + e.gameEventData.title + "\n";
             }
         }
 
@@ -83,6 +80,19 @@ public class CalendarDay : MonoBehaviour
         }
     }
 
+    private void SetFontStyle(ScheduledEvent scheduledEvent, TMP_Text text)
+    {
+        // If date is in the past OR complete, strikethrough text
+        if (scheduledEvent.date.isBeforeDate(date) || scheduledEvent.isCompleted)
+        {
+            text.fontStyle = FontStyles.Strikethrough | FontStyles.Bold;
+        }
+        else
+        {
+            text.fontStyle = FontStyles.Bold;
+        }
+    }
+
     private void OnDisable()
     {
         if (currentDayMarkerTween.IsActive())
@@ -95,9 +105,9 @@ public class CalendarDay : MonoBehaviour
     public void OnDayClicked()
     {
         // Only invoke event if CalendarDay has text
-        if (eventTextBlock != null)
+        if (scheduledEvents.Count > 0)
         {
-            OnInspectDay?.Invoke(eventText.text, date);
+            OnInspectDay?.Invoke(scheduledEvents);
         }
         Debug.Log($"Pressed button day: {dayNo.text}");
     }

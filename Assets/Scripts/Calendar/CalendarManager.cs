@@ -90,7 +90,7 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
             if (calendarDay.date.isSameDate(date))
             {
                 // Use its eventTextBlock to populate the notes
-                HandleInspectDay(calendarDay.eventTextBlock, calendarDay.date);
+                HandleInspectDay(eventsToAdd);
             }
         }
 
@@ -115,28 +115,38 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
         SetupCalendar();
     }
 
-    private void HandleInspectDay(string text, GameDate inspectDate)
+    private void HandleInspectDay(List<ScheduledEvent> eventsToAdd)
     {
         ClearNotes();
 
         // Instantiate CalendarNote
-        GameObject newCalendarNotePrefab = Instantiate(calendarNotePrefab, notesContainer, false);
-        TMP_Text newCalendarNoteTMP_Text = newCalendarNotePrefab.GetComponentInChildren<TMP_Text>();
+        foreach (ScheduledEvent e in eventsToAdd)
+        {
+            GameObject newCalendarNotePrefab = Instantiate(calendarNotePrefab, notesContainer, false);
+            TMP_Text newCalendarNoteTMP_Text = newCalendarNotePrefab.GetComponentInChildren<TMP_Text>();
 
-        // if (inspectDate.isBeforeDate(date))
-        // {
-        //     newCalendarNoteTMP_Text.fontStyle = FontStyles.Strikethrough;
-        // }
-        // else
-        // {
-        //     newCalendarNoteTMP_Text.fontStyle = FontStyles.Normal;
-        // }
+            SetFontStyle(e, newCalendarNoteTMP_Text);
+            
+            // Set note text
+            newCalendarNoteTMP_Text.text = "- " + e.gameEventData.title;
 
-        // Set note text
-        newCalendarNoteTMP_Text.text = text;
+            // Setup tween using TextMeshPro transform rather than prefab transform
+            SetupTween(newCalendarNoteTMP_Text);
 
-        // Setup tween using TextMeshPro transform rather than prefab transform
-        SetupTween(newCalendarNoteTMP_Text);
+        }
+    }
+
+    private void SetFontStyle(ScheduledEvent e, TMP_Text t)
+    {
+        // If date is in the past OR complete, strikethrough text
+        if (e.date.isBeforeDate(date) || e.isCompleted)
+        {
+            t.fontStyle = FontStyles.Strikethrough | FontStyles.Bold;
+        }
+        else
+        {
+            t.fontStyle = FontStyles.Bold;
+        }
     }
 
     private void SetupTween(TMP_Text text)
