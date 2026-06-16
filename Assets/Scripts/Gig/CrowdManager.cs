@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class CrowdManager : MonoBehaviour
 {
@@ -7,15 +6,15 @@ public class CrowdManager : MonoBehaviour
     [SerializeField] private GameObject crowdMember;
     [SerializeField] private int rows = 5;
     [SerializeField] private int columns = 10;
-    [SerializeField] private Vector2 spacing = new Vector2(1.5f, 1.2f);
-    [SerializeField] private Vector2 randomOffset = new Vector2(0.3f, 0.1f);
+    [SerializeField] private Vector2 spacing = new(1.5f, 1.2f);
+    [SerializeField] private Vector2 randomOffset = new(0.3f, 0.1f);
 
     void Start()
     {
-        SpawnCrowd();
+        // SpawnCrowd();
     }
 
-    void SpawnCrowd()
+    public void SpawnCrowd()
     {
         for (int x = 0; x < columns; x++)
         {

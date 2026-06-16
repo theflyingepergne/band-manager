@@ -12,15 +12,21 @@ public class BookFutureGig : CustomGameEvent
 
     public override void Execute()
     {
+        GameDate futureDate;
+
         if (fromTodaysDate == true)
         {
             // If choosing a date 'fromTodaysDate', just add how many days in the future - not months
-            GameDate futureDate = DateManager.Instance.date.AddDays(date.day);
-            ScheduleManager.Instance.ScheduleNewEvent(gameEventData, futureDate);
+            futureDate = DateManager.Instance.date.AddDays(date.day);
         }
         else
         {
-            ScheduleManager.Instance.ScheduleNewEvent(gameEventData, date);
+            futureDate = date;
         }
+
+        // Schedule both an event AND the gig
+        // This will create an event pop-up and tell the venue there is a gig that day
+        ScheduleManager.Instance.ScheduleNewEvent(gameEventData, futureDate);
+        ScheduleManager.Instance.ScheduleNewGig(venueData, futureDate);
     }
 }

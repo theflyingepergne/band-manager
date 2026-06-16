@@ -17,23 +17,28 @@ public class GigDirector : Singleton<GigDirector>
 
     [Header("Prefabs")]
     [SerializeField] private GameObject vibeBarPrefab;
+    [SerializeField] private CrowdManager crowdManager;
 
 
     //---Local References---//
     private BandManager bm;
     private GigSetlistUIManager gSUIM;
-    private List<GameObject> vibeBars = new List<GameObject>();
+    private List<GameObject> vibeBars = new();
 
     //---Methods---//
-    private void Start()
+    protected override void Awake()
     {
+        base.Awake();
+
         // Init local refs
         bm = BandManager.Instance;
         gSUIM = GigSetlistUIManager.Instance;
     }
 
-    public void StartGig()
+public void StartGig()
     {
+        
+        crowdManager.SpawnCrowd();
         StartCoroutine(RunGigSequence());
     }
 
@@ -71,6 +76,8 @@ public class GigDirector : Singleton<GigDirector>
     public void SetupAllVibeBars()
     {
         vibeBars.Clear();
+
+        if (gSUIM == null) gSUIM = GigSetlistUIManager.Instance;
 
         foreach (SongEntry song in gSUIM.setlist)
         {

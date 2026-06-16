@@ -7,10 +7,13 @@ public class ScheduleManager
 
     //---References---//
     public List<GameEventData> allGameEvents;
+    public List<VenueData> allVenues;
     public List<ScheduledEvent> scheduledEvents;
+    public List<ScheduledGig> scheduledGigs;
 
     //---Local References---//
     DateManager dm;
+    BandManager bm;
     GameDate date;
 
     //---Methods---//
@@ -22,30 +25,56 @@ public class ScheduleManager
 
         // Initialize lists
         Instance.allGameEvents = new List<GameEventData>();
+        Instance.allVenues = new List<VenueData>();
         Instance.scheduledEvents = new List<ScheduledEvent>();
+        Instance.scheduledGigs = new List<ScheduledGig>();
 
         // Pull date from dateManager
         Instance.dm = DateManager.Instance;
+        Instance.bm = BandManager.Instance;
         Instance.date = Instance.dm.date;
 
         // Listen for date changes
         DateManager.OnDateChanged += Instance.HandleDateChanged;
 
+        Instance.LoadGameEventDatabase();
+        Instance.LoadVenueDatabase();
+
+        Instance.ScheduleEvents();
+    }
+
+    private void LoadGameEventDatabase()
+    {
         // Load GameEventDatabase from Resources/GameEvents folder
-        GameEventDatabase database = Resources.Load<GameEventDatabase>("GameEvents/GameEventDatabase");
+        GameEventDatabase database = Resources.Load<GameEventDatabase>("Databases/GameEventDatabase");
 
         if (database != null && database.events != null)
         {
             // Copy GameEventData list from GameEventDatabase
             Instance.allGameEvents.AddRange(database.events);
-            Debug.Log($"ScheduleManager initialized and loaded {Instance.allGameEvents.Count} events from the database asset.");
+            Debug.Log($"ScheduleManager initialized and loaded {Instance.allGameEvents.Count} events from the database.");
         }
         else
         {
             Debug.LogError("ScheduleManager Error: Could not find 'GameEventDatabase' asset in a Resources folder!");
         }
+    }
 
-        Instance.ScheduleEvents();
+    private void LoadVenueDatabase()
+    {
+        // Load GameEventDatabase from Resources/GameEvents folder
+        VenueDatabase database = Resources.Load<VenueDatabase>("Databases/VenueDatabase");
+
+        if (database != null && database.venues != null)
+        {
+            // Copy GameEventData list from GameEventDatabase
+            Instance.allVenues.AddRange(database.venues);
+            Debug.Log($"ScheduleManager initialized and loaded {Instance.allVenues.Count} venues from the database.");
+        }
+        else
+        {
+            Debug.LogError("ScheduleManager Error: Could not find 'VenueDatabase' asset in a Resources folder!");
+        }
     }
 
     private void ScheduleEvents()
@@ -53,13 +82,11 @@ public class ScheduleManager
         foreach (GameEventData gameEventData in allGameEvents)
         {
             // Create a fresh tracking instance
-            ScheduledEvent scheduledEvent = new();
-
-            // Connect the live asset reference for gameplay use right now
-            scheduledEvent.gameEventData = gameEventData;
-
-            // Record its file name so the Save/Load system can find it later!
-            scheduledEvent.eventID = gameEventData.name;
+            ScheduledEvent scheduledEvent = new()
+            {
+                gameEventData = gameEventData,
+                eventID = gameEventData.name
+            };
 
             // Assign the date to the TRACKING instance, leaving the asset untouched
             if (gameEventData.isFixedDate)
@@ -77,7 +104,6 @@ public class ScheduleManager
 
     public void ScheduleNewEvent(GameEventData gameEventData, GameDate date)
     {
-        // Trying out a different way of initializing object
         scheduledEvents.Add(new ScheduledEvent
         {
             gameEventData = gameEventData,
@@ -98,8 +124,32 @@ public class ScheduleManager
             }
         }
 
-        Debug.Log($"Found {todaysEvents.Count} events today");
+        // Debug.Log($"Found {todaysEvents.Count} events today");
         return todaysEvents;
+    }
+
+    public void ScheduleNewGig(VenueData venue, GameDate date)
+    {
+        scheduledGigs.Add(new ScheduledGig
+        {
+            venueData = venue,
+            venueID = venue.name,
+            date = date
+        });
+    }
+
+    public bool CheckGigToday()
+    {
+        foreach (ScheduledGig gig in scheduledGigs)
+        {
+            if (bm.destinationVenue == gig.venueData && gig.date.isSameDate(date))
+            {
+                return true;
+            }
+        }
+
+        // If we complete the loop, there must be no gigs today
+        return false;
     }
 
     private GameDate GenerateRandomDate()

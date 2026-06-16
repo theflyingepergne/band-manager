@@ -5,25 +5,36 @@ public class GigSetlistUIManager : Singleton<GigSetlistUIManager>
 {
     //---References---//
     [Header("UI References")]
+    [SerializeField] private GameObject setlistPanel;
+    [SerializeField] private GameObject vibeBarWrapper;
     [SerializeField] private RectTransform setlistSongList;
     [SerializeField] private Vector3 pointerAdjustment = new (150f, 0f, 0f);
 
     [Header("Prefabs")]
     [SerializeField] private GameObject gigSetlistSongWrapper;
     [SerializeField] private GameObject currentSongPointerPrefab;
+    [SerializeField] private GameObject homeNoGig;
     private GameObject currentSongPointer;
 
     //---Local references--//
-    public List<SongEntry> setlist = new List<SongEntry>();
+    public List<SongEntry> setlist = new();
     private BandManager bm;
 
-    public void Start()
+    protected override void Awake()
     {
+        base.Awake();
+
         // Init local refs
         bm = BandManager.Instance;
+    }
 
-        ClearSetlistWrapper();
+    public void SetupGigUI()
+    {
         PopulateSetlistPanel(GetSetlist());
+
+        setlistPanel.SetActive(true);
+        vibeBarWrapper.SetActive(true);
+        homeNoGig.SetActive(false);
 
         GigDirector.Instance.SetupAllVibeBars();
         GigDirector.Instance.StartGig();
@@ -41,18 +52,10 @@ public class GigSetlistUIManager : Singleton<GigSetlistUIManager>
         return setlist;
     }
 
-    public void ClearSetlistWrapper()
-    {
-        for (int i = setlistSongList.childCount - 1; i >= 0; i--)
-        {
-            Transform child = setlistSongList.GetChild(i);
-            child.SetParent(null);
-            Destroy(child.gameObject);
-        }
-    }
-
     public void PopulateSetlistPanel(List<SongEntry> songs)
     {
+        ClearSetlistWrapper();
+
         int i = 0;
 
         // Display the setlist in the UI
@@ -71,6 +74,16 @@ public class GigSetlistUIManager : Singleton<GigSetlistUIManager>
             {
                 Debug.Log("Couldnt find song wrapper manager for some reason");
             }
+        }
+    }
+
+    public void ClearSetlistWrapper()
+    {
+        for (int i = setlistSongList.childCount - 1; i >= 0; i--)
+        {
+            Transform child = setlistSongList.GetChild(i);
+            child.SetParent(null);
+            Destroy(child.gameObject);
         }
     }
 
