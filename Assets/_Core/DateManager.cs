@@ -5,7 +5,7 @@ public class DateManager
     public static DateManager Instance { get; private set; }
 
     //---Date---//
-    public GameDate date = new GameDate(30, 1, 1979);
+    public GameDate date = new( 30, 1, 1979 );
 
     //---Events---//
     public static System.Action<GameDate> OnDateChanged;

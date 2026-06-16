@@ -19,7 +19,6 @@ public class CalendarDay : MonoBehaviour
     [SerializeField] private int elasticity = 1;
 
     public List<ScheduledEvent> scheduledEvents = new();
-    public string eventTextBlock { get; private set; }
     public GameDate date { get; private set; }
 
     //---Local References---//
@@ -45,7 +44,7 @@ public class CalendarDay : MonoBehaviour
         dayNo.text = date.day.ToString();
 
 
-        // If list of events is not null, add each event title to eventTextBlock
+        // If list of events is not null, add new line for each event
         if (events != null)
         {
             foreach (ScheduledEvent e in events)
@@ -53,14 +52,10 @@ public class CalendarDay : MonoBehaviour
                 TMP_Text newLine = Instantiate(eventText, transform, false);
                 SetFontStyle(e, newLine);
 
+                // set event title as text
                 newLine.text = "- " + e.gameEventData.title;
-                // create a text block of event names
-                // eventTextBlock += "- " + e.gameEventData.title + "\n";
             }
         }
-
-        // Display finished eventTextBlock 
-        eventText.text = eventTextBlock;
 
         // If CalendarDay == date.day, show currentDayMarker
         if (date.isSameDate(DateManager.Instance.date))
