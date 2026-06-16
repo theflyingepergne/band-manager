@@ -67,6 +67,7 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
         {
             // Create CalendarDay prefabs and parent to Calendar gridContainer
             GameObject newCalendarDay = Instantiate(calendarDayPrefab, gridContainer, false);
+            CalendarDay calendarDay = newCalendarDay.GetComponent<CalendarDay>();
 
             // Initialize empty list of scheduledEvents to populate with eventsToAdd
             List<ScheduledEvent> eventsToAdd = new();
@@ -83,13 +84,13 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
             }
 
             // Populate CalendarDay with eventsToAdd
-            newCalendarDay.GetComponent<CalendarDay>().SetupDay(new GameDate(d, date.month, date.year), eventsToAdd);
+            calendarDay.SetupDay(new GameDate(d, date.month, date.year), eventsToAdd);
 
             // When we create the CalendarDay which has the current date...
-            if (newCalendarDay.GetComponent<CalendarDay>().date.isSameDate(date))
+            if (calendarDay.date.isSameDate(date))
             {
                 // Use its eventTextBlock to populate the notes
-                HandleInspectDay(newCalendarDay.GetComponent<CalendarDay>().eventTextBlock);
+                HandleInspectDay(calendarDay.eventTextBlock, calendarDay.date);
             }
         }
 
@@ -114,13 +115,22 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
         SetupCalendar();
     }
 
-    private void HandleInspectDay(string text)
+    private void HandleInspectDay(string text, GameDate inspectDate)
     {
         ClearNotes();
 
         // Instantiate CalendarNote
         GameObject newCalendarNotePrefab = Instantiate(calendarNotePrefab, notesContainer, false);
         TMP_Text newCalendarNoteTMP_Text = newCalendarNotePrefab.GetComponentInChildren<TMP_Text>();
+
+        if (inspectDate.isBeforeDate(date))
+        {
+            newCalendarNoteTMP_Text.fontStyle = FontStyles.Strikethrough;
+        }
+        else
+        {
+            newCalendarNoteTMP_Text.fontStyle = FontStyles.Normal;
+        }
 
         // Set note text
         newCalendarNoteTMP_Text.text = text;

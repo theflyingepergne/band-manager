@@ -26,7 +26,7 @@ public class CalendarDay : MonoBehaviour
     Button button;
 
     //---Events---//
-    public static System.Action<string> OnInspectDay;
+    public static System.Action<string, GameDate> OnInspectDay;
 
     private void OnEnable()
     {
@@ -41,6 +41,16 @@ public class CalendarDay : MonoBehaviour
 
         // Use day (from calendarManager) as day number
         dayNo.text = date.day.ToString();
+
+        // If date is in the past, strikethrough text
+        if (setupDate.isBeforeDate(date))
+        {
+            eventText.fontStyle = FontStyles.Strikethrough;
+        }
+        else
+        {
+            eventText.fontStyle = FontStyles.Normal;
+        }
 
         // If list of events is not null, add each event title to eventTextBlock
         if (events != null)
@@ -87,7 +97,7 @@ public class CalendarDay : MonoBehaviour
         // Only invoke event if CalendarDay has text
         if (eventTextBlock != null)
         {
-            OnInspectDay?.Invoke(eventText.text);
+            OnInspectDay?.Invoke(eventText.text, date);
         }
         Debug.Log($"Pressed button day: {dayNo.text}");
     }
