@@ -60,6 +60,9 @@ TagManager:
   - name: UI_Foreground
     uniqueID: 2091290839
     locked: 0
+  - name: UI_Dialogue
+    uniqueID: 3539744849
+    locked: 0
   m_RenderingLayers:
   - Default
   - Light Layer 1
