@@ -56,11 +56,19 @@ public class VenueInfoPanel : MonoBehaviour
     public async void ClickedGoButton()
     {
         BandManager.Instance.SetVenue(currentVenue);
+        var (anyGigs, gig) = ScheduleManager.Instance.CheckAnyGigsToday();
 
         await CameraFade.Instance.DoCameraFade(1);
-        SceneManager.LoadScene("Transit");
-        Debug.Log($"Travelling to {currentVenue.name}");
-        // await Task.Delay(200);
+
+        if (anyGigs)
+        {
+            SceneManager.LoadScene("Transit");
+        }
+        else
+        {
+            SceneManager.LoadScene("Venue");
+            Debug.Log($"Travelling to {currentVenue.name}");
+        }
     }
 
     public void ClickedCancelButton()
