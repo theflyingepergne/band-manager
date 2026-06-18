@@ -126,6 +126,7 @@ MonoBehaviour:
   duration: 0.4
   vibrato: 1
   elasticity: 1
+  scheduledEvents: []
 --- !u!114 &422071865391725891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,7 +275,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12
+  m_fontSize: 8
   m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -289,7 +290,7 @@ MonoBehaviour:
   m_wordSpacing: -10
   m_lineSpacing: 1
   m_lineSpacingMax: 0
-  m_paragraphSpacing: 40
+  m_paragraphSpacing: 20
   m_charWidthMaxAdj: 0
   m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4

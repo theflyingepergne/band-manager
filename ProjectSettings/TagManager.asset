@@ -63,6 +63,9 @@ TagManager:
   - name: UI_Dialogue
     uniqueID: 3539744849
     locked: 0
+  - name: CameraFade
+    uniqueID: 567917565
+    locked: 0
   m_RenderingLayers:
   - Default
   - Light Layer 1

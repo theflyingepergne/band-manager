@@ -43,6 +43,7 @@ public class CalendarDay : MonoBehaviour
         // Use day (from calendarManager) as day number
         dayNo.text = date.day.ToString();
 
+        ClearEventText();
 
         // If list of events is not null, add new line for each event
         if (events != null)
@@ -50,6 +51,7 @@ public class CalendarDay : MonoBehaviour
             foreach (ScheduledEvent e in events)
             {
                 TMP_Text newLine = Instantiate(eventText, transform, false);
+                newLine.gameObject.SetActive(true);
                 SetFontStyle(e, newLine);
 
                 // set event title as text
@@ -105,5 +107,11 @@ public class CalendarDay : MonoBehaviour
             OnInspectDay?.Invoke(scheduledEvents);
         }
         Debug.Log($"Pressed button day: {dayNo.text}");
+    }
+
+    private void ClearEventText()
+    {
+        // Deactivate the default, testing text so it don't take up space
+        eventText.gameObject.SetActive(false);
     }
 }

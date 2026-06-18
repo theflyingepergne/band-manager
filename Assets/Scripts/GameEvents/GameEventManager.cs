@@ -39,7 +39,6 @@ public class GameEventManager : Singleton<GameEventManager>
     {
         DateManager.OnDateChanged -= HandleDateChanged;
         CameraFade.OnFadeInComplete -= HandleFadeInComplete;
-
     }
 
     //---Local References---//
@@ -49,9 +48,6 @@ public class GameEventManager : Singleton<GameEventManager>
     private void Start()
     {
         sm = ScheduleManager.Instance;
-
-        // CreateEventNotifications();
-        // SetupEvent(gameEventData);
     }
 
     public void SetupEvent(GameEventData data)

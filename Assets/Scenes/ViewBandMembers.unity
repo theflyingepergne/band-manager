@@ -3638,9 +3638,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1014283130136077841, guid: e5ceb0c0a6ac74fdc83c5c74485fb7c1, type: 3}
+      propertyPath: m_Name
+      value: Sprite
+      objectReference: {fileID: 0}
     - target: {fileID: 3517142859360264281, guid: e5ceb0c0a6ac74fdc83c5c74485fb7c1, type: 3}
       propertyPath: m_Name
-      value: Calendar_Root
+      value: Calendar_Icon
       objectReference: {fileID: 0}
     - target: {fileID: 4445773888435345740, guid: e5ceb0c0a6ac74fdc83c5c74485fb7c1, type: 3}
       propertyPath: calendarCanvas
@@ -3705,6 +3709,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 163360856655040682, guid: 466f426cd3b3b1644ba2470c88f79578, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 254210032037535079, guid: 466f426cd3b3b1644ba2470c88f79578, type: 3}
       propertyPath: m_Name
       value: Canvas_Calendar

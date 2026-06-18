@@ -153,6 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   canvasGroupBlack: {fileID: 1237453954238643756}
   fadeDuration: 0.5
+  fadeInOnStart: 1
 --- !u!1 &6459564507207256654
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,7 +289,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 2091290839
+  m_SortingLayerID: 567917565
   m_SortingOrder: 999
   m_TargetDisplay: 0
 --- !u!114 &9074480888479487804
