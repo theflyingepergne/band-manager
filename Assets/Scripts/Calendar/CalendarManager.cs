@@ -56,7 +56,7 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
         ClearNotes();
     }
 
-    private void SetupCalendar()
+    public void SetupCalendar()
     {
         date = dm.date;
         scheduledEvents = sm.scheduledEvents;
@@ -119,22 +119,25 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
 
     private void HandleInspectDay(CalendarDay calendarDay, List<ScheduledEvent> eventsToAdd)
     {
-        ClearNotes();
-
-        // Instantiate CalendarNote
-        foreach (ScheduledEvent e in eventsToAdd)
+        if (eventsToAdd.Count > 0)
         {
-            GameObject newCalendarNotePrefab = Instantiate(calendarNotePrefab, notesContainer, false);
-            TMP_Text newCalendarNoteTMP_Text = newCalendarNotePrefab.GetComponentInChildren<TMP_Text>();
+            ClearNotes();
 
-            SetFontStyle(e, newCalendarNoteTMP_Text);
-            
-            // Set note text
-            newCalendarNoteTMP_Text.text = "- " + e.gameEventData.title;
+            foreach (ScheduledEvent e in eventsToAdd)
+            {
+                // Create calendarNote
+                GameObject newCalendarNotePrefab = Instantiate(calendarNotePrefab, notesContainer, false);
+                TMP_Text newCalendarNoteTMP_Text = newCalendarNotePrefab.GetComponentInChildren<TMP_Text>();
 
-            // Setup tween using TextMeshPro transform rather than prefab transform
-            SetupTween(newCalendarNoteTMP_Text);
+                SetFontStyle(e, newCalendarNoteTMP_Text);
 
+                // Set note text
+                newCalendarNoteTMP_Text.text = "- " + e.gameEventData.title;
+
+                // Setup tween using TextMeshPro transform rather than prefab transform
+                SetupTween(newCalendarNoteTMP_Text);
+
+            }
         }
     }
 
@@ -199,8 +202,8 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
     {
         if (type == "BookGig")
         {
+            // start booking gig
             GetComponent<Canvas>().enabled = true;
-            Debug.Log("Starting booking mode");
         }
     }
 }

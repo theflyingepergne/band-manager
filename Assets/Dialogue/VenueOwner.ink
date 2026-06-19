@@ -8,7 +8,7 @@
     ... "Well? When??"  // shows after player finished choosing date
     ** [...Is {chosen_date} ok?]
         {
-            - chosen_date == "'never'": <i>The owner sighs.<i/>\\n"Obviously not. Thanks for wasting my time by the way."
+            - chosen_date == "'never'": <i>The owner sighs.</i>\\n"Obviously not. Thanks for wasting my time by the way."
             - else: "Works for me."
         }
         

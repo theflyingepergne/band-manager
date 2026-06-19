@@ -70,6 +70,6 @@ public struct GameDate
     public readonly string GetAbbreviatedMonthAsString(GameDate other)
     {
         string monthText = MonthList.Months[other.month].Name;
-        return monthText.Length > 4 ? monthText.Substring(0, 3) : monthText;
+        return monthText.Length > 4 ? monthText[0..3] : monthText;
     } 
 }
