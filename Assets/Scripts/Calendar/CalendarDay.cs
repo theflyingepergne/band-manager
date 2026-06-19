@@ -60,7 +60,7 @@ public class CalendarDay : MonoBehaviour
         }
 
         // If CalendarDay == date.day, show currentDayMarker
-        if (localDate.isSameDate(DateManager.Instance.date))
+        if (localDate.IsSameDate(DateManager.Instance.date))
         {
             currentDayMarker.SetActive(true);
             currentDayMarkerTween = currentDayMarker.transform.DOPunchScale
@@ -80,7 +80,7 @@ public class CalendarDay : MonoBehaviour
     private void SetFontStyle(ScheduledEvent scheduledEvent, TMP_Text text)
     {
         // If date is in the past OR complete, strikethrough text
-        if (scheduledEvent.date.isBeforeDate(localDate) || scheduledEvent.isCompleted)
+        if (scheduledEvent.date.IsBeforeDate(localDate) || scheduledEvent.isCompleted)
         {
             text.fontStyle = FontStyles.Strikethrough | FontStyles.Bold;
         }

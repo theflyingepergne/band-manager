@@ -6,6 +6,7 @@ public class CalendarIcon : MonoBehaviour, IClickable
     //---References---//
     [Header("Game Objects")]
     [SerializeField] private Canvas calendarCanvas;
+    [SerializeField] private TextMeshPro monthTextMesh;
     [SerializeField] private TextMeshPro numTextMesh;
 
     //---Local References---//
@@ -27,6 +28,8 @@ public class CalendarIcon : MonoBehaviour, IClickable
 
     private void HandleDateChanged(GameDate date)
     {
+        // Set month text as abbreviate month
+        monthTextMesh.text = date.GetAbbreviatedMonthAsString(date);
         numTextMesh.text = date.day.ToString();
     }
 }

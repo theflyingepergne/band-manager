@@ -15,7 +15,7 @@ public struct GameDate
     }
 
     // The logic lives here now, returning a fresh, valid GameDate
-    public GameDate AddDays(int changeAmount)
+    public readonly GameDate AddDays(int changeAmount)
     {
         // Copy current values to local variables for manipulation
         int d = day + changeAmount;
@@ -52,12 +52,12 @@ public struct GameDate
         return new GameDate(d, m, y);
     }
 
-    public bool isSameDate(GameDate other)
+    public readonly bool IsSameDate(GameDate other)
     {
         return day == other.day && month == other.month && year == other.year;
     }
 
-    public bool isBeforeDate(GameDate other)
+    public readonly bool IsBeforeDate(GameDate other)
     {
         return day < other.day || month < other.month || year < other.year;
     }
@@ -66,4 +66,10 @@ public struct GameDate
     {
         return $"{day}/{month}/{year}";
     }
+
+    public readonly string GetAbbreviatedMonthAsString(GameDate other)
+    {
+        string monthText = MonthList.Months[other.month].Name;
+        return monthText.Length > 4 ? monthText.Substring(0, 3) : monthText;
+    } 
 }

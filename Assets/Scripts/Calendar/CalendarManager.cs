@@ -43,7 +43,6 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
         DateManager.OnDateChanged += HandleDateChanged;
         CalendarDay.OnInspectDay += HandleInspectDay;
         DialogueManager.OnDialogueTagEncountered += HandleDialogueTag;
-        Debug.Log("listening for book gig");
 
         SetupCalendar();
     }
@@ -53,7 +52,6 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
         DateManager.OnDateChanged -= HandleDateChanged;
         CalendarDay.OnInspectDay -= HandleInspectDay;
         DialogueManager.OnDialogueTagEncountered -= HandleDialogueTag;
-
 
         ClearNotes();
     }
@@ -91,7 +89,7 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
             calendarDay.SetupDay(new GameDate(d, date.month, date.year), eventsToAdd);
 
             // When we create the CalendarDay which has the current date...
-            if (calendarDay.localDate.isSameDate(date))
+            if (calendarDay.localDate.IsSameDate(date))
             {
                 // Use its eventsToAdd to populate the notes
                 HandleInspectDay(calendarDay, eventsToAdd);
@@ -143,7 +141,7 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
     private void SetFontStyle(ScheduledEvent e, TMP_Text t)
     {
         // If date is in the past OR complete, strikethrough text
-        if (e.date.isBeforeDate(date) || e.isCompleted)
+        if (e.date.IsBeforeDate(date) || e.isCompleted)
         {
             t.fontStyle = FontStyles.Strikethrough | FontStyles.Bold;
         }

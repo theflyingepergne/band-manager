@@ -120,7 +120,7 @@ public class ScheduleManager
 
         foreach (ScheduledEvent s in scheduledEvents)
         {
-            if (s.date.isSameDate(date) && s.isCompleted == false)
+            if (s.date.IsSameDate(date) && s.isCompleted == false)
             {
                 todaysEvents.Add(s);
             }
@@ -146,7 +146,7 @@ public class ScheduleManager
         foreach (ScheduledGig gig in scheduledGigs)
         {
             if (bm.destinationVenue == gig.venueData
-                && gig.date.isSameDate(date)
+                && gig.date.IsSameDate(date)
                 && gig.isCompleted == false)
             {
                 return (true, gig);

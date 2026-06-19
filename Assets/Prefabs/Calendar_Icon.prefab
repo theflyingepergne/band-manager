@@ -139,7 +139,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 16
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -350,6 +350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CalendarIcon
   calendarCanvas: {fileID: 0}
+  monthTextMesh: {fileID: 0}
   numTextMesh: {fileID: 1549485787900264382}
 --- !u!1 &3517142859360264281
 GameObject:
