@@ -4,8 +4,9 @@ using TMPro;
 using Ink.Runtime;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
-public class DialogueManager : MonoBehaviour, IPointerClickHandler
+public class DialogueManager : Singleton<DialogueManager>, IPointerClickHandler
 {
     //---References---//
     [Header("Core Dialogue")]
@@ -25,10 +26,16 @@ public class DialogueManager : MonoBehaviour, IPointerClickHandler
     //---Local References---//
     private Story story;
 
+    //---Events---//
+    public static System.Action<string, string> OnDialogueTagEncountered;
+
+    private void OnEnable() => CalendarDay.OnInspectDay += HandleInspectDay;
+    private void OnDisable() => CalendarDay.OnInspectDay -= HandleInspectDay;
+
+
     //---Methods---//
     public void BeginDialogue()
     {
-        gameObject.SetActive(true);
         story = new Story(inkJsonAsset.text);
 
         dialogueText.text = "";
@@ -48,6 +55,8 @@ public class DialogueManager : MonoBehaviour, IPointerClickHandler
         {
             dialogueText.text = story.Continue();
             continueText.SetActive(true);
+
+            HandleLineTags(story.currentTags);
         }
 
         // Display any choices
@@ -108,5 +117,36 @@ public class DialogueManager : MonoBehaviour, IPointerClickHandler
         {
             AdvanceDialogue();
         }
+    }
+
+    private void HandleLineTags(List<string> tags)
+    {
+        foreach (string tag in tags)
+        {
+            // If tag contains a colon, second tag is the parameter
+            if (tag.Contains(":"))
+            {
+                // Split the string at the colon into an array of strings
+                // "PlaySound:Slide" becomes ["PlaySound", "Slide"]
+                string[] splitTag = tag.Split(':');
+
+                string type = splitTag[0];       // e.g "PlaySound"
+                string parameter = splitTag[1];  // e.g "Boing" sound name
+
+                // Broadcast it to the rest of your game!
+                OnDialogueTagEncountered?.Invoke(type, parameter);
+            }
+            else
+            {
+                // If there's no colon, pass the whole tag & leave the parameter blank
+                OnDialogueTagEncountered?.Invoke(tag, "");
+            }
+        }
+    }
+
+    private void HandleInspectDay(CalendarDay calendarDay, List<ScheduledEvent> events)
+    {
+        GameDate chosenDate = calendarDay.localDate;
+        story.variablesState["chosen_date"] = chosenDate.GetDateAsString();
     }
 }

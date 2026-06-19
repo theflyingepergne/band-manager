@@ -42,6 +42,8 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
 
         DateManager.OnDateChanged += HandleDateChanged;
         CalendarDay.OnInspectDay += HandleInspectDay;
+        DialogueManager.OnDialogueTagEncountered += HandleDialogueTag;
+        Debug.Log("listening for book gig");
 
         SetupCalendar();
     }
@@ -50,7 +52,9 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
     {
         DateManager.OnDateChanged -= HandleDateChanged;
         CalendarDay.OnInspectDay -= HandleInspectDay;
-        
+        DialogueManager.OnDialogueTagEncountered -= HandleDialogueTag;
+
+
         ClearNotes();
     }
 
@@ -87,10 +91,10 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
             calendarDay.SetupDay(new GameDate(d, date.month, date.year), eventsToAdd);
 
             // When we create the CalendarDay which has the current date...
-            if (calendarDay.date.isSameDate(date))
+            if (calendarDay.localDate.isSameDate(date))
             {
-                // Use its eventTextBlock to populate the notes
-                HandleInspectDay(eventsToAdd);
+                // Use its eventsToAdd to populate the notes
+                HandleInspectDay(calendarDay, eventsToAdd);
             }
         }
 
@@ -115,7 +119,7 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
         SetupCalendar();
     }
 
-    private void HandleInspectDay(List<ScheduledEvent> eventsToAdd)
+    private void HandleInspectDay(CalendarDay calendarDay, List<ScheduledEvent> eventsToAdd)
     {
         ClearNotes();
 
@@ -189,7 +193,16 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
         // close calendar if we click off of it
         if (eventData.pointerCurrentRaycast.gameObject == BG)
         {
-            gameObject.SetActive(false);
+            GetComponent<Canvas>().enabled = false;
+        }
+    }
+
+    public void HandleDialogueTag(string type, string parameter)
+    {
+        if (type == "BookGig")
+        {
+            GetComponent<Canvas>().enabled = true;
+            Debug.Log("Starting booking mode");
         }
     }
 }

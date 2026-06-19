@@ -19,14 +19,14 @@ public class CalendarDay : MonoBehaviour
     [SerializeField] private int elasticity = 1;
 
     public List<ScheduledEvent> scheduledEvents = new();
-    public GameDate date { get; private set; }
+    public GameDate localDate { get; private set; }
 
     //---Local References---//
     Tween currentDayMarkerTween;
     Button button;
 
     //---Events---//
-    public static System.Action<List<ScheduledEvent>> OnInspectDay;
+    public static System.Action<CalendarDay, List<ScheduledEvent>> OnInspectDay;
 
     private void OnEnable()
     {
@@ -37,11 +37,11 @@ public class CalendarDay : MonoBehaviour
 
     public void SetupDay(GameDate setupDate, List<ScheduledEvent> events)
     {
-        date = setupDate;
+        localDate = setupDate;
         scheduledEvents = events;
 
         // Use day (from calendarManager) as day number
-        dayNo.text = date.day.ToString();
+        dayNo.text = localDate.day.ToString();
 
         ClearEventText();
 
@@ -60,7 +60,7 @@ public class CalendarDay : MonoBehaviour
         }
 
         // If CalendarDay == date.day, show currentDayMarker
-        if (date.isSameDate(DateManager.Instance.date))
+        if (localDate.isSameDate(DateManager.Instance.date))
         {
             currentDayMarker.SetActive(true);
             currentDayMarkerTween = currentDayMarker.transform.DOPunchScale
@@ -80,7 +80,7 @@ public class CalendarDay : MonoBehaviour
     private void SetFontStyle(ScheduledEvent scheduledEvent, TMP_Text text)
     {
         // If date is in the past OR complete, strikethrough text
-        if (scheduledEvent.date.isBeforeDate(date) || scheduledEvent.isCompleted)
+        if (scheduledEvent.date.isBeforeDate(localDate) || scheduledEvent.isCompleted)
         {
             text.fontStyle = FontStyles.Strikethrough | FontStyles.Bold;
         }
@@ -104,7 +104,7 @@ public class CalendarDay : MonoBehaviour
         // Only invoke event if CalendarDay has text
         if (scheduledEvents.Count > 0)
         {
-            OnInspectDay?.Invoke(scheduledEvents);
+            OnInspectDay?.Invoke(this, scheduledEvents);
         }
         Debug.Log($"Pressed button day: {dayNo.text}");
     }

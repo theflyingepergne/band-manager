@@ -5,7 +5,7 @@ public class CalendarIcon : MonoBehaviour, IClickable
 {
     //---References---//
     [Header("Game Objects")]
-    [SerializeField] private GameObject calendarCanvas;
+    [SerializeField] private Canvas calendarCanvas;
     [SerializeField] private TextMeshPro numTextMesh;
 
     //---Local References---//
@@ -22,7 +22,7 @@ public class CalendarIcon : MonoBehaviour, IClickable
 
     public void OnClicked()
     {
-        calendarCanvas.SetActive(!calendarCanvas.activeSelf);
+        calendarCanvas.enabled = true;
     }
 
     private void HandleDateChanged(GameDate date)
