@@ -3181,6 +3181,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1380164823}
     - target: {fileID: 5808053624919055227, guid: 3513169d5f3934ed99498ac28bfbfd99, type: 3}
+      propertyPath: inkJsonAsset
+      value: 
+      objectReference: {fileID: 4900000, guid: 9d478dab602614356bd9b6164558a07f, type: 3}
+    - target: {fileID: 5808053624919055227, guid: 3513169d5f3934ed99498ac28bfbfd99, type: 3}
       propertyPath: dialogueBorder
       value: 
       objectReference: {fileID: 846968425}

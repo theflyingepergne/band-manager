@@ -24,13 +24,21 @@ public class DialogueManager : Singleton<DialogueManager>, IPointerClickHandler
     [SerializeField] private float duration = 1f;
 
     //---Local References---//
+    private List<string> trackedVariables = new();
     private Story story;
 
     //---Events---//
     public static System.Action<string, string> OnDialogueTagEncountered;
 
-    private void OnEnable() => CalendarDay.OnInspectDay += HandleInspectDay;
-    private void OnDisable() => CalendarDay.OnInspectDay -= HandleInspectDay;
+    private void OnEnable()
+    {
+        CalendarDay.OnInspectDay += HandleInspectDay;
+    }
+    private void OnDisable()
+    {
+        CalendarDay.OnInspectDay -= HandleInspectDay;
+        RemoveVariableTracking();
+    }
 
 
     //---Methods---//
@@ -38,12 +46,13 @@ public class DialogueManager : Singleton<DialogueManager>, IPointerClickHandler
     {
         story = new Story(inkJsonAsset.text);
 
+        AddVariableTracking();
         dialogueText.text = "";
 
         // Initialize sequence, AdvanceDialogue when it's finished
         Sequence sequence = DOTween.Sequence().OnComplete(AdvanceDialogue);
-            sequence.Append(venueOwner.transform.DOMoveX(4.96f, duration));
-            sequence.Append(dialogueBorder.DOAnchorPosY(50f, duration));
+        sequence.Append(venueOwner.transform.DOMoveX(4.96f, duration));
+        sequence.Append(dialogueBorder.DOAnchorPosY(50f, duration));
         sequence.Play();
     }
 
@@ -148,5 +157,28 @@ public class DialogueManager : Singleton<DialogueManager>, IPointerClickHandler
     {
         GameDate chosenDate = calendarDay.localDate;
         story.variablesState["chosen_date"] = chosenDate.GetDateAsString();
+    }
+
+    //---Listening for ink variable changes---//
+    private void AddVariableTracking()
+    {
+        story.ObserveVariable("chosen_date", OnDateChosen);
+    }
+
+    private void RemoveVariableTracking()
+    {
+        story.RemoveVariableObserver(OnDateChosen);
+    }
+
+    private void OnDateChosen(string varName, object value)
+    {
+        string chosenDateString = value as string;
+        GameDate chosenDate = new();
+        chosenDate = chosenDate.ConvertStringToDate(chosenDateString);
+
+        if (chosenDate.IsAfterDate(DateManager.Instance.date))
+        {
+            story.variablesState["should_accept_booking"] = true;
+        }
     }
 }

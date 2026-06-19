@@ -101,12 +101,7 @@ public class CalendarDay : MonoBehaviour
 
     public void OnDayClicked()
     {
-        // Only invoke event if CalendarDay has text
-        // if (scheduledEvents.Count > 0)
-        // {
-            OnInspectDay?.Invoke(this, scheduledEvents);
-        // }
-        // Debug.Log($"Pressed button day: {dayNo.text}");
+        OnInspectDay?.Invoke(this, scheduledEvents);
     }
 
     private void ClearEventText()

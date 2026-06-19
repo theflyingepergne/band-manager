@@ -8,6 +8,7 @@ public class VenueManager : Singleton<VenueManager>
     private void OnEnable() => CameraFade.OnFadeInComplete += HandleFadeInComplete;
     private void OnDisable() => CameraFade.OnFadeInComplete -= HandleFadeInComplete;
 
+    // After fade in, should we: start gig, talk to venue owner or watch another band play?
     private void HandleFadeInComplete()
     {
         var (anyGigs, gig) = ScheduleManager.Instance.CheckAnyGigsToday();

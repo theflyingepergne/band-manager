@@ -48,7 +48,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 254210032037535079}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 0}
@@ -107,6 +107,7 @@ MonoBehaviour:
   notesContainer: {fileID: 5895134141256192534}
   calendarDayPrefab: {fileID: 3397132626328432716, guid: 90551f626cea9a540af52f8b7cb3dc90, type: 3}
   calendarNotePrefab: {fileID: 3422742120017539637, guid: 557fcf3ce9f21594cabd403e826b0fa8, type: 3}
+  bookGigEventData: {fileID: 11400000, guid: fd50bb09376319743a4af05c603b891a, type: 2}
   strengthX: 0.2
   strengthY: 0.6
   duration: 0.5
@@ -1571,10 +1572,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 6802529111544541985}
     m_Modifications:
     - target: {fileID: 422071865391725891, guid: 90551f626cea9a540af52f8b7cb3dc90, type: 3}
-      propertyPath: m_Colors.m_NormalColor.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 422071865391725891, guid: 90551f626cea9a540af52f8b7cb3dc90, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 4008695556151830662}
@@ -1584,11 +1581,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1606496009659860580, guid: 90551f626cea9a540af52f8b7cb3dc90, type: 3}
       propertyPath: m_FillCenter
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3397132626328432716, guid: 90551f626cea9a540af52f8b7cb3dc90, type: 3}
       propertyPath: m_Name
       value: CalendarDay
+      objectReference: {fileID: 0}
+    - target: {fileID: 3874804157163611936, guid: 90551f626cea9a540af52f8b7cb3dc90, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6085972640107693547, guid: 90551f626cea9a540af52f8b7cb3dc90, type: 3}
       propertyPath: m_Pivot.x
@@ -1696,27 +1697,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8299130654677603209, guid: 90551f626cea9a540af52f8b7cb3dc90, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8299130654677603209, guid: 90551f626cea9a540af52f8b7cb3dc90, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8299130654677603209, guid: 90551f626cea9a540af52f8b7cb3dc90, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 63
       objectReference: {fileID: 0}
     - target: {fileID: 8299130654677603209, guid: 90551f626cea9a540af52f8b7cb3dc90, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 28.93
       objectReference: {fileID: 0}
     - target: {fileID: 8299130654677603209, guid: 90551f626cea9a540af52f8b7cb3dc90, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 41.5
       objectReference: {fileID: 0}
     - target: {fileID: 8299130654677603209, guid: 90551f626cea9a540af52f8b7cb3dc90, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -53.665
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

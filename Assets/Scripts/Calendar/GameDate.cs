@@ -1,4 +1,4 @@
-using UnityEngine;
+using TMPro;
 
 [System.Serializable]
 public struct GameDate
@@ -14,7 +14,6 @@ public struct GameDate
         this.year = year;
     }
 
-    // The logic lives here now, returning a fresh, valid GameDate
     public readonly GameDate AddDays(int changeAmount)
     {
         // Copy current values to local variables for manipulation
@@ -52,6 +51,7 @@ public struct GameDate
         return new GameDate(d, m, y);
     }
 
+    //---Compare---//
     public readonly bool IsSameDate(GameDate other)
     {
         return day == other.day && month == other.month && year == other.year;
@@ -62,6 +62,12 @@ public struct GameDate
         return day < other.day || month < other.month || year < other.year;
     }
 
+    public readonly bool IsAfterDate(GameDate other)
+    {
+        return day > other.day || month > other.month || year > other.year;
+    }
+
+    //---As String---//
     public readonly string GetDateAsString()
     {
         return $"{day}/{month}/{year}";
@@ -71,5 +77,17 @@ public struct GameDate
     {
         string monthText = MonthList.Months[other.month].Name;
         return monthText.Length > 4 ? monthText[0..3] : monthText;
-    } 
+    }
+
+    public readonly GameDate ConvertStringToDate(string dateString)
+    {
+        string[] dateParts = dateString.Split('/');
+        GameDate outDate = new
+        (
+            outDate.day = int.Parse(dateParts[0]),
+            outDate.month = int.Parse(dateParts[1]),
+            outDate.year = int.Parse(dateParts[2])
+        );
+        return outDate;
+    }
 }

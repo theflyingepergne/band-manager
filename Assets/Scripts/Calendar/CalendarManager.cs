@@ -19,6 +19,9 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
     [SerializeField] private GameObject calendarDayPrefab;
     [SerializeField] private GameObject calendarNotePrefab;
 
+    [Header("Scriptable Objects")]
+    [SerializeField] private GameEventData bookGigEventData;
+
     [Header("Notes Tween controls")]
     [SerializeField] private float strengthX = 1.4f;
     [SerializeField] private float strengthY = 1.4f;
@@ -27,6 +30,7 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
     [SerializeField] private int elasticity = 1;
 
     public GameDate date = new(1, 1, 1979);
+    private GameDate lastInspectedDate;
 
     //---Local References---//
     DateManager dm;
@@ -119,6 +123,8 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
 
     private void HandleInspectDay(CalendarDay calendarDay, List<ScheduledEvent> eventsToAdd)
     {
+        lastInspectedDate = calendarDay.localDate;
+
         if (eventsToAdd.Count > 0)
         {
             ClearNotes();
@@ -135,7 +141,7 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
                 newCalendarNoteTMP_Text.text = "- " + e.gameEventData.title;
 
                 // Setup tween using TextMeshPro transform rather than prefab transform
-                SetupTween(newCalendarNoteTMP_Text);
+                // SetupTween(newCalendarNoteTMP_Text);
 
             }
         }
@@ -204,6 +210,14 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
         {
             // start booking gig
             GetComponent<Canvas>().enabled = true;
+        }
+
+        if (type == "AcceptGigDate")
+        {
+            VenueData venue = BandManager.Instance.destinationVenue;
+
+            ScheduleManager.Instance.ScheduleNewEvent(bookGigEventData, lastInspectedDate);
+            ScheduleManager.Instance.ScheduleNewGig(venue, lastInspectedDate);
         }
     }
 }
