@@ -2,6 +2,7 @@
 public class ScheduledEvent
 {
     public string eventID;
+    public string eventTitle;
     public GameDate date;
     public bool isCompleted;
 

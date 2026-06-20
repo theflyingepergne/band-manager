@@ -55,7 +55,7 @@ public class CalendarDay : MonoBehaviour
                 SetFontStyle(e, newLine);
 
                 // set event title as text
-                newLine.text = "- " + e.gameEventData.title;
+                newLine.text = "- " + e.eventTitle;
             }
         }
 

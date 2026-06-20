@@ -142,7 +142,7 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
                 SetFontStyle(e, newCalendarNoteTMP_Text);
 
                 // Set note text
-                newCalendarNoteTMP_Text.text = "- " + e.gameEventData.title;
+                newCalendarNoteTMP_Text.text = "- " + e.eventTitle;
 
                 // Setup tween using TextMeshPro transform rather than prefab transform
                 // SetupTween(newCalendarNoteTMP_Text);
@@ -225,7 +225,7 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
         {
             VenueData venue = BandManager.Instance.destinationVenue;
 
-            ScheduleManager.Instance.ScheduleNewEvent(bookGigEventData, lastInspectedDate);
+            ScheduleManager.Instance.ScheduleNewEvent(bookGigEventData, lastInspectedDate, $"Gig at {venue.name}");
             ScheduleManager.Instance.ScheduleNewGig(venue, lastInspectedDate);
         }
     }

@@ -87,7 +87,8 @@ public class ScheduleManager
             ScheduledEvent scheduledEvent = new()
             {
                 gameEventData = gameEventData,
-                eventID = gameEventData.name
+                eventID = gameEventData.name,
+                eventTitle = gameEventData.title,
             };
 
             // Assign any random dates
@@ -104,11 +105,12 @@ public class ScheduleManager
         }
     }
 
-    public void ScheduleNewEvent(GameEventData gameEventData, GameDate date)
+    public void ScheduleNewEvent(GameEventData gameEventData, GameDate date, string eventTitle = "")
     {
         scheduledEvents.Add(new ScheduledEvent
         {
             gameEventData = gameEventData,
+            eventTitle = string.IsNullOrEmpty(eventTitle) ? gameEventData.title : eventTitle,
             eventID = gameEventData.name,
             date = date
         });

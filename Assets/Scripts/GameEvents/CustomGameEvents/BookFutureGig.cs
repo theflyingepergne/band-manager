@@ -26,7 +26,7 @@ public class BookFutureGig : CustomGameEvent
 
         // Schedule both an event AND the gig
         // This will create an event pop-up and tell the venue there is a gig that day
-        ScheduleManager.Instance.ScheduleNewEvent(gameEventData, futureDate);
+        ScheduleManager.Instance.ScheduleNewEvent(gameEventData, futureDate, $"Gig at {venueData.name}");
         ScheduleManager.Instance.ScheduleNewGig(venueData, futureDate);
     }
 }
