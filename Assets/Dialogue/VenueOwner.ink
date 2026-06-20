@@ -1,22 +1,23 @@
 ﻿VAR chosen_date = "'never'"
 VAR should_accept_booking = false
-VAR decline_reason = ""
+VAR decline_reason = "<style=desc>The owner sighs.</style>\\n<style=speech>Yeah, so you have to actually choose a date if you want to book a gig."
 
-<i>The owner looks at you with a cool grin.</i>\\n"What can I do you for?" # Test
-->book_or_leave
+<style=desc>The owner looks at you with a cool grin.</style>\\n
+<><style=speech>What can I do you for? ->book_or_leave
+
 === book_or_leave ===
 + [I'd like to book a gig]
-    "Ok, when?"
+    <style=speech>Ok, when?
     ... # BookGig       // prompts player to choose date from calendar
-    ... "Well? When??"  // shows after player finished choosing date
+    ... <style=speech>Well? When??  // shows after player finished choosing date
     ++ [...Is <i>{chosen_date}</i> ok?]
         {
-            - should_accept_booking : "Works for me." # AcceptGigDate ->DONE
+            - should_accept_booking : <style=speech>Works for me. # AcceptGigDate ->DONE
             - else : {decline_reason}
         }
-"How about we try this again and you give me a real answer this time?" ->book_or_leave
+<style=speech>How about we try this again and you give me a real answer this time? ->book_or_leave
 ->END
 
 + [Uh... Nevermind! <i>*runs away nervously*]
-    "What the heck..."
+    <style=speech>What the heck...
 ->DONE

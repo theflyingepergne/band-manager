@@ -24,7 +24,7 @@ public class CalendarIcon : MonoBehaviour, IClickable
     public void OnClicked()
     {
         calendarCanvas.enabled = true;
-        calendarCanvas.GetComponent<CalendarManager>().SetupCalendar();
+        calendarCanvas.GetComponent<CalendarManager>().OpenCalendar();
     }
 
     private void HandleDateChanged(GameDate date)

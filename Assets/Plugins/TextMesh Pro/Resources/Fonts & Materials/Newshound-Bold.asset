@@ -32,7 +32,7 @@ MonoBehaviour:
     m_SubscriptSize: 0.5
     m_UnderlineOffset: -15.7699995
     m_UnderlineThickness: 8.3
-    m_StrikethroughOffset: 16.8
+    m_StrikethroughOffset: 30
     m_StrikethroughThickness: 8.3
     m_TabWidth: 33
   m_Material: {fileID: 2208980696650583147}

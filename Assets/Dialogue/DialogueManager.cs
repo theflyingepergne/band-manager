@@ -177,21 +177,21 @@ public class DialogueManager : Singleton<DialogueManager>, IPointerClickHandler
         if (anyGigs)
         {
             // can't book gig if there are already gigs scheduled on chosenDate
-            string declineReason = "<i>The owner sighs.</i>\\n'You're already playing a gig on that day.'";
+            string declineReason = "<style=desc>The owner sighs.</style>\\n<style=speech>You're already playing a gig on that day.";
             story.variablesState["decline_reason"] = declineReason;
             return;
         }
         else if (chosenDate.IsBeforeDate(DateManager.Instance.date))
         {
             // can't book gig if the date we've chosen is in the past
-            string declineReason = "<i>The owner sighs.</i>\\n'Obviously not, that date is in the past. Thanks for wasting my time by the way.'";
+            string declineReason = "<style=desc>The owner sighs.</style>\\n<style=speech>Obviously not, that date is in the past.";
             story.variablesState["decline_reason"] = declineReason;
             return;
         }
         else if (BandManager.Instance.destinationVenue == null)
         {
             // can't book gig if we haven't chosen a venue
-            string declineReason = "<i>The owner sighs.</i>\\n'You haven't chosen a venue... How did you even do that?'";
+            string declineReason = "<style=desc>The owner sighs.</style>\\n<style=speech>You haven't chosen a venue... How did you even do that?";
             story.variablesState["decline_reason"] = declineReason;
             return;
         }
@@ -200,6 +200,5 @@ public class DialogueManager : Singleton<DialogueManager>, IPointerClickHandler
             // if all other checks are false, we can book the gig
             story.variablesState["should_accept_booking"] = true;
         }
-
     }
 }

@@ -47,8 +47,6 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
         DateManager.OnDateChanged += HandleDateChanged;
         CalendarDay.OnInspectDay += HandleInspectDay;
         DialogueManager.OnDialogueTagEncountered += HandleDialogueTag;
-
-        SetupCalendar();
     }
 
     private void OnDisable()
@@ -60,7 +58,13 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
         ClearNotes();
     }
 
-    public void SetupCalendar()
+    public void OpenCalendar()
+    {
+        GetComponent<Canvas>().enabled = true;
+        SetupCalendar();
+    }
+
+    private void SetupCalendar()
     {
         date = dm.date;
         scheduledEvents = sm.scheduledEvents;
@@ -200,8 +204,13 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
         // close calendar if we click off of it
         if (eventData.pointerCurrentRaycast.gameObject == BG)
         {
-            GetComponent<Canvas>().enabled = false;
+            CloseCalendar();
         }
+    }
+
+    public void CloseCalendar()
+    {
+        GetComponent<Canvas>().enabled = false;
     }
 
     public void HandleDialogueTag(string type, string parameter)
@@ -209,7 +218,7 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
         if (type == "BookGig")
         {
             // start booking gig
-            GetComponent<Canvas>().enabled = true;
+            OpenCalendar();
         }
 
         if (type == "AcceptGigDate")
