@@ -8,7 +8,7 @@ public class GameEventManager : Singleton<GameEventManager>
 {
     //---References---//
     [Header("Data")]
-    [SerializeField] private GameEventData gameEventData;
+    [SerializeField] private ScheduledEvent scheduledEvent;
 
     [Header("UI References")]
     [SerializeField] private TextMeshProUGUI eventTitle;
@@ -50,18 +50,14 @@ public class GameEventManager : Singleton<GameEventManager>
         sm = ScheduleManager.Instance;
     }
 
-    public void SetupEvent(GameEventData data)
+    public void SetupEvent(ScheduledEvent data)
     {
-        // If no data was passed in, use default gameEventData
-        if (data != null)
-        {
-            gameEventData = data;
-        }
-
+        scheduledEvent = data;
+        
         // Setup title, description and sprite
-        eventTitle.text = gameEventData.title;
-        eventDescription.text = gameEventData.description;
-        eventSprite.GetComponent<SpriteRenderer>().sprite = gameEventData.sprite;
+        eventTitle.text = scheduledEvent.title;
+        eventDescription.text = scheduledEvent.gameEventData.description;
+        eventSprite.GetComponent<SpriteRenderer>().sprite = scheduledEvent.gameEventData.sprite;
 
         SetupEventChoiceButtons();
     }
@@ -72,7 +68,7 @@ public class GameEventManager : Singleton<GameEventManager>
         ClearEventChoiceButtons();
 
         // Create a button for each choice
-        foreach (EventChoice choice in gameEventData.choices)
+        foreach (EventChoice choice in scheduledEvent.gameEventData.choices)
         {
             GameObject eCBP = Instantiate(eventChoiceButtonPrefab, eventChoiceWrapper, false);
             eCBP.GetComponentInChildren<TextMeshProUGUI>().text = choice.choiceLabel;
@@ -98,7 +94,7 @@ public class GameEventManager : Singleton<GameEventManager>
     public void OnChoiceSelected(EventChoice chosen)
     {
         // Prepare text player will see after picking a choice
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new();
         sb.AppendLine($"{chosen.choiceOutcomeDescription}\n");
 
         // Perform any stat changes
@@ -198,7 +194,7 @@ public class GameEventManager : Singleton<GameEventManager>
     }
 
     //---Called by clicking on event notification---//
-    public void OnTriggerGameEvent(GameEventData data)
+    public void OnTriggerGameEvent(ScheduledEvent data)
     {
         if (gameEventPrefab != null)
         {

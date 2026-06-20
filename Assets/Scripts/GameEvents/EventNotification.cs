@@ -19,7 +19,7 @@ public class EventNotification : MonoBehaviour
     public void SetupEventNotification(ScheduledEvent data)
     {
         scheduledEvent = data;
-        button.onClick.AddListener(() => GameEventManager.Instance.OnTriggerGameEvent(data.gameEventData));
+        button.onClick.AddListener(() => GameEventManager.Instance.OnTriggerGameEvent(data));
         button.onClick.AddListener(() => DestroyNotification());
 
     }

@@ -142,7 +142,7 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
                 SetFontStyle(e, newCalendarNoteTMP_Text);
 
                 // Set note text
-                newCalendarNoteTMP_Text.text = "- " + e.eventTitle;
+                newCalendarNoteTMP_Text.text = "- " + e.title;
 
                 // Setup tween using TextMeshPro transform rather than prefab transform
                 // SetupTween(newCalendarNoteTMP_Text);

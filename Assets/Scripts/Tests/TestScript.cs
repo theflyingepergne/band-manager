@@ -33,10 +33,10 @@ public class TestSongGenerator : MonoBehaviour
             GenerateTestSongs();
         }
 
-        if (Keyboard.current.eKey.wasPressedThisFrame)
-        {
-            TriggerGameEvent();
-        }
+        // if (Keyboard.current.eKey.wasPressedThisFrame)
+        // {
+        //     TriggerGameEvent();
+        // }
 
         if (Keyboard.current.cKey.wasPressedThisFrame)
         {
@@ -91,14 +91,15 @@ public class TestSongGenerator : MonoBehaviour
         BandManager.Instance.PrepareSetlist();
     }
 
-    void TriggerGameEvent()
-    {
-        if (gameEventManager != null)
-        {
-            gameEventManager.SetupEvent(gameEventDatabase.GetRandomEvent());
-            gameEventPrefab.SetActive(!gameEventPrefab.activeSelf);
-        }
-    }
+// testing events is broken atm. need to change to scheduled event
+    // void TriggerGameEvent()
+    // {
+    //     if (gameEventManager != null)
+    //     {
+    //         gameEventManager.SetupEvent(gameEventDatabase.GetRandomEvent());
+    //         gameEventPrefab.SetActive(!gameEventPrefab.activeSelf);
+    //     }
+    // }
 
     void ToggleCalendar()
     {
