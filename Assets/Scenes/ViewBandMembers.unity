@@ -2646,7 +2646,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameEventManager
   persistAcrossScenes: 0
-  gameEventData: {fileID: 11400000, guid: 5ec4e5a04f7b84c56a966d5159cc7e75, type: 2}
+  scheduledEvent:
+    eventID: 
+    title: 
+    description: 
+    date:
+      day: 0
+      month: 0
+      year: 0
+    isCompleted: 0
   eventTitle: {fileID: 174568623}
   eventDescription: {fileID: 1384607484}
   eventSprite: {fileID: 975793708}

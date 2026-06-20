@@ -24,7 +24,7 @@ public class DialogueManager : Singleton<DialogueManager>, IPointerClickHandler
     [SerializeField] private float duration = 1f;
 
     //---Local References---//
-    private List<string> trackedVariables = new();
+    private readonly List<string> trackedVariables = new();
     private GameDate chosenDate;
     private Story story;
 
@@ -92,7 +92,7 @@ public class DialogueManager : Singleton<DialogueManager>, IPointerClickHandler
             // If there's no more story and no more choices, exit dialogue
             GameObject choiceButton = Instantiate(dialogueChoiceButtonPrefab, dialogueChoicesPanel, false);
 
-            choiceButton.GetComponentInChildren<TMP_Text>().text = "[Leave]";
+            choiceButton.GetComponentInChildren<TMP_Text>().text = "[End Conversation]";
 
             choiceButton.GetComponent<Button>().onClick.AddListener(() => EndDialogue());
         }

@@ -17,13 +17,13 @@ public class VenueManager : Singleton<VenueManager>
         {
             // start gig
             GigSetlistUIManager.Instance.SetupGigUI();
-            gig.isCompleted = true;
+            ScheduleManager.Instance.MarkGigAsComplete(gig);
         }
         else // if
         {
             // start book future gig dialogue
             dialogueManager.BeginDialogue();
-            Debug.Log("No gig today");
+            // Debug.Log("No gig today");
         }
         // else watch band
     }

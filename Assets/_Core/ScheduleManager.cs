@@ -124,6 +124,11 @@ public class ScheduleManager
         });
     }
 
+    public void MarkEventAsComplete(ScheduledEvent scheduledEvent)
+    {
+        scheduledEvent.isCompleted = true;
+    }
+
     public List<ScheduledEvent> GetTodaysEvents()
     {
         List<ScheduledEvent> todaysEvents = new();
@@ -165,6 +170,20 @@ public class ScheduleManager
 
         // If we complete the loop, there must be no gigs today
         return (false, null);
+    }
+
+    public void MarkGigAsComplete(ScheduledGig gig)
+    {
+        gig.isCompleted = true;
+
+        // find the event on the same day as the gig
+        foreach (ScheduledEvent e in GetTodaysEvents())
+        {
+            if (e.eventID == "Gig Day")
+            {
+                MarkEventAsComplete(e);
+            }
+        }
     }
 
     //---Dates---//
