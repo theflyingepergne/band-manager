@@ -56,7 +56,7 @@ public class VenueInfoPanel : MonoBehaviour
     public async void ClickedGoButton()
     {
         BandManager.Instance.SetVenue(currentVenue);
-        var (anyGigs, gig) = ScheduleManager.Instance.CheckAnyGigsToday();
+        var (anyGigs, gig) = ScheduleManager.Instance.CheckAnyGigsOnDay(DateManager.Instance.date);
 
         await CameraFade.Instance.DoCameraFade(1);
 

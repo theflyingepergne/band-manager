@@ -11,7 +11,7 @@ public class VenueManager : Singleton<VenueManager>
     // After fade in, should we: start gig, talk to venue owner or watch another band play?
     private void HandleFadeInComplete()
     {
-        var (anyGigs, gig) = ScheduleManager.Instance.CheckAnyGigsToday();
+        var (anyGigs, gig) = ScheduleManager.Instance.CheckAnyGigsOnDay(DateManager.Instance.date);
 
         if (anyGigs)
         {

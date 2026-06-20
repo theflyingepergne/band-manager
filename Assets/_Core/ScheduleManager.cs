@@ -141,12 +141,12 @@ public class ScheduleManager
         });
     }
 
-    public (bool anyGigs, ScheduledGig scheduledGig) CheckAnyGigsToday()
+    public (bool anyGigs, ScheduledGig scheduledGig) CheckAnyGigsOnDay(GameDate queryDate)
     {
         foreach (ScheduledGig gig in scheduledGigs)
         {
             if (bm.destinationVenue == gig.venueData
-                && gig.date.IsSameDate(date)
+                && gig.date.IsSameDate(queryDate)
                 && gig.isCompleted == false)
             {
                 return (true, gig);

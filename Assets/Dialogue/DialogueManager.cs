@@ -25,6 +25,7 @@ public class DialogueManager : Singleton<DialogueManager>, IPointerClickHandler
 
     //---Local References---//
     private List<string> trackedVariables = new();
+    private GameDate chosenDate;
     private Story story;
 
     //---Events---//
@@ -155,7 +156,7 @@ public class DialogueManager : Singleton<DialogueManager>, IPointerClickHandler
 
     private void HandleInspectDay(CalendarDay calendarDay, List<ScheduledEvent> events)
     {
-        GameDate chosenDate = calendarDay.localDate;
+        chosenDate = calendarDay.localDate;
         story.variablesState["chosen_date"] = chosenDate.GetDateAsString();
     }
 
@@ -172,13 +173,33 @@ public class DialogueManager : Singleton<DialogueManager>, IPointerClickHandler
 
     private void OnDateChosen(string varName, object value)
     {
-        string chosenDateString = value as string;
-        GameDate chosenDate = new();
-        chosenDate = chosenDate.ConvertStringToDate(chosenDateString);
-
-        if (chosenDate.IsAfterDate(DateManager.Instance.date))
+        var (anyGigs, gig) = ScheduleManager.Instance.CheckAnyGigsOnDay(chosenDate);
+        if (anyGigs)
         {
+            // can't book gig if there are already gigs scheduled on chosenDate
+            string declineReason = "<i>The owner sighs.</i>\\n'You're already playing a gig on that day.'";
+            story.variablesState["decline_reason"] = declineReason;
+            return;
+        }
+        else if (chosenDate.IsBeforeDate(DateManager.Instance.date))
+        {
+            // can't book gig if the date we've chosen is in the past
+            string declineReason = "<i>The owner sighs.</i>\\n'Obviously not, that date is in the past. Thanks for wasting my time by the way.'";
+            story.variablesState["decline_reason"] = declineReason;
+            return;
+        }
+        else if (BandManager.Instance.destinationVenue == null)
+        {
+            // can't book gig if we haven't chosen a venue
+            string declineReason = "<i>The owner sighs.</i>\\n'You haven't chosen a venue... How did you even do that?'";
+            story.variablesState["decline_reason"] = declineReason;
+            return;
+        }
+        else
+        {
+            // if all other checks are false, we can book the gig
             story.variablesState["should_accept_booking"] = true;
         }
+
     }
 }
