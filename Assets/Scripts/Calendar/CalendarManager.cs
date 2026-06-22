@@ -38,6 +38,9 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
     Tween notesTween;
     List<ScheduledEvent> scheduledEvents;
 
+    //---Events---//
+    public static System.Action<bool> OnChangeCalendarVisibility;
+
     //---Methods---//
     private void OnEnable()
     {
@@ -61,7 +64,14 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
     public void OpenCalendar()
     {
         GetComponent<Canvas>().enabled = true;
+        OnChangeCalendarVisibility?.Invoke(true);
         SetupCalendar();
+    }
+
+    public void CloseCalendar()
+    {
+        GetComponent<Canvas>().enabled = false;
+        OnChangeCalendarVisibility?.Invoke(false);
     }
 
     private void SetupCalendar()
@@ -206,11 +216,6 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
         {
             CloseCalendar();
         }
-    }
-
-    public void CloseCalendar()
-    {
-        GetComponent<Canvas>().enabled = false;
     }
 
     public void HandleDialogueTag(string type, string parameter)

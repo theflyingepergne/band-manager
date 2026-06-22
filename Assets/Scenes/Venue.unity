@@ -3132,6 +3132,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -495
       objectReference: {fileID: 0}
+    - target: {fileID: 5629784318291407176, guid: 3513169d5f3934ed99498ac28bfbfd99, type: 3}
+      propertyPath: quickSkip
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5629784318291407176, guid: 3513169d5f3934ed99498ac28bfbfd99, type: 3}
+      propertyPath: sendDoneDelay
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 5629784318291407176, guid: 3513169d5f3934ed99498ac28bfbfd99, type: 3}
+      propertyPath: charactersPerSecond
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 5629784318291407176, guid: 3513169d5f3934ed99498ac28bfbfd99, type: 3}
+      propertyPath: interpunctuationDelay
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 5808053624919055227, guid: 3513169d5f3934ed99498ac28bfbfd99, type: 3}
       propertyPath: duration
       value: 0.2

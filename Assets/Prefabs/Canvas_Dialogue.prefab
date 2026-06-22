@@ -212,6 +212,7 @@ GameObject:
   - component: {fileID: 3606478128193821463}
   - component: {fileID: 8288300033161438713}
   - component: {fileID: 5795935875963639809}
+  - component: {fileID: 5629784318291407176}
   m_Layer: 5
   m_Name: DialogueText
   m_TagString: Untagged
@@ -358,6 +359,23 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: 1
   m_LayoutPriority: 1
+--- !u!114 &5629784318291407176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5795990605056083870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db9300a9ea38a490d830412c8bdd34df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TypewriterEffect
+  charactersPerSecond: 20
+  interpunctuationDelay: 0.5
+  quickSkip: 0
+  skipSpeedup: 5
+  sendDoneDelay: 0.25
 --- !u!1 &7363367379728459799
 GameObject:
   m_ObjectHideFlags: 0
