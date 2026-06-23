@@ -7,6 +7,7 @@ public class TypewriterEffect : MonoBehaviour
 {
     //---References---//
     [Header("Typewriter Settings")]
+    [SerializeField] private bool autoPlay = false;
     [SerializeField] private float charactersPerSecond = 35;
     [SerializeField] private float interpunctuationDelay = 0.3f;
 
@@ -21,6 +22,7 @@ public class TypewriterEffect : MonoBehaviour
 
     //---Local References---//
     private TMP_Text _textBox;
+    private string text;
 
     private int _currentVisibleCharacterIndex;
     private Coroutine _typewriterCoroutine;
@@ -34,7 +36,7 @@ public class TypewriterEffect : MonoBehaviour
     public event System.Action CompleteTextRevealed;
     public event System.Action<char> CharacterRevealed;
 
-    //---Methods---//
+    //---Initialisation---//
     private void Awake()
     {
         _textBox = GetComponent<TMP_Text>();
@@ -45,6 +47,18 @@ public class TypewriterEffect : MonoBehaviour
         _textboxFullEventDelay = new WaitForSeconds(sendDoneDelay);
     }
 
+    private void OnEnable()
+    {
+        if (_textBox != null) text = _textBox.text;
+
+        if (autoPlay)
+        {
+            _textBox.text = "";
+            StartTypewriter(text);
+        }
+    }
+
+    //---Typewriter---//
     public void StartTypewriter(string newText)
     {
         if (_typewriterCoroutine != null)

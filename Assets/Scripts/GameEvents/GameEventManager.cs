@@ -2,6 +2,7 @@ using System.Text;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class GameEventManager : Singleton<GameEventManager>
@@ -16,6 +17,7 @@ public class GameEventManager : Singleton<GameEventManager>
     [SerializeField] private GameObject eventSprite;
     [SerializeField] private RectTransform eventChoiceWrapper;
     [SerializeField] private RectTransform notificationsPanel;
+    [SerializeField] private TypewriterEffect typewriter;
 
     [Header("Prefabs")]
     [SerializeField] private GameObject gameEventPrefab;
@@ -28,12 +30,15 @@ public class GameEventManager : Singleton<GameEventManager>
     [SerializeField] private int vibrato = 1;
     [SerializeField] private int elasticity = 1;
 
+    //---Local References---//
+    private bool selectedChoice = false;
+
     //---Events---//
     private void OnEnable()
     {
         DateManager.OnDateChanged += HandleDateChanged;
         CameraFade.OnFadeInComplete += HandleFadeInComplete;
-    } 
+    }
 
     private void OnDisable()
     {
@@ -50,16 +55,68 @@ public class GameEventManager : Singleton<GameEventManager>
         sm = ScheduleManager.Instance;
     }
 
+    //---Called by clicking on event notification---//
+    public void OnTriggerGameEvent(ScheduledEvent data)
+    {
+        if (gameEventPrefab != null)
+        {
+            selectedChoice = false;
+            gameEventPrefab.SetActive(true);
+            SetupEvent(data);
+        }
+    }
+
+    public void CloseEventWindow()
+    {
+        typewriter.CompleteTextRevealed -= HandleCompleteTextRevealed;
+        gameEventPrefab.SetActive(false);
+    }
+
     public void SetupEvent(ScheduledEvent data)
     {
         scheduledEvent = data;
-        
+
         // Setup title, description and sprite
         eventTitle.text = scheduledEvent.title;
         eventDescription.text = scheduledEvent.gameEventData.description;
         eventSprite.GetComponent<SpriteRenderer>().sprite = scheduledEvent.gameEventData.sprite;
 
-        SetupEventChoiceButtons();
+        ClearEventChoiceButtons();
+
+        typewriter.CompleteTextRevealed += HandleCompleteTextRevealed;
+        typewriter.StartTypewriter(eventDescription.text);
+    }
+
+    private void Update()
+    {
+        if (Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            if (typewriter != null)
+            {
+                // If typewriter is typing, the click should pass down to the typewriter to speed up/skip
+                if (typewriter.IsTyping)
+                {
+                    typewriter.Skip(true);
+                    return;
+                }
+            }
+        }
+    }
+
+    private void HandleCompleteTextRevealed()
+    {
+        // if seenChoices == false {show choices}
+        // else {show close button}
+        if (!selectedChoice)
+        {
+            // if there are choices to show after typing description
+            SetupEventChoiceButtons();
+        }
+        else
+        {
+            // Create close button and add it to wrapper
+            CreateCloseButton();
+        }
     }
 
     private void SetupEventChoiceButtons()
@@ -93,6 +150,7 @@ public class GameEventManager : Singleton<GameEventManager>
     //---Setup after picking choice---//
     public void OnChoiceSelected(EventChoice chosen)
     {
+        selectedChoice = true;
         // Prepare text player will see after picking a choice
         StringBuilder sb = new();
         sb.AppendLine($"{chosen.choiceOutcomeDescription}\n");
@@ -121,9 +179,7 @@ public class GameEventManager : Singleton<GameEventManager>
         // Set event description to chosen EventChoice outcome
         // as well as any stat changes
         eventDescription.text = sb.ToString();
-
-        // Create close button and add it to wrapper
-        CreateCloseButton();
+        typewriter.StartTypewriter(eventDescription.text);
     }
 
     private void CreateCloseButton()
@@ -135,11 +191,6 @@ public class GameEventManager : Singleton<GameEventManager>
         // Close window on click
         Button btn = c.GetComponentInChildren<Button>();
         btn.onClick.AddListener(() => CloseEventWindow());
-    }
-
-    public void CloseEventWindow()
-    {
-        gameEventPrefab.SetActive(false);
     }
 
     //---Event Notifications---//
@@ -172,7 +223,7 @@ public class GameEventManager : Singleton<GameEventManager>
             notificationSequence.Append
             (
                 newEventNotificationPrefab.transform.DOPunchScale(Vector2.one * strength,
-                duration, 
+                duration,
                 vibrato,
                 elasticity)
                 .OnStart(newEventNotification.ShowNotification)
@@ -190,16 +241,6 @@ public class GameEventManager : Singleton<GameEventManager>
             Transform child = notificationsPanel.GetChild(i);
             child.SetParent(null);
             Destroy(child.gameObject);
-        }
-    }
-
-    //---Called by clicking on event notification---//
-    public void OnTriggerGameEvent(ScheduledEvent data)
-    {
-        if (gameEventPrefab != null)
-        {
-            SetupEvent(data);
-            gameEventPrefab.SetActive(true);
         }
     }
 }
