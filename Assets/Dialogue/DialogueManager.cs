@@ -5,7 +5,6 @@ using Ink.Runtime;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
-using NUnit.Framework;
 
 public class DialogueManager : Singleton<DialogueManager>
 {
@@ -25,43 +24,41 @@ public class DialogueManager : Singleton<DialogueManager>
     [SerializeField] private float duration = 1f;
 
     //---Local References---//
-    private GameDate chosenDate;
+    public GameDate chosenDate;
     private Story story;
     private TypewriterEffect typewriter;
-    public bool isBookingGig = false;
+    private bool isBookingGig = false;
     private bool HasChoices => dialogueChoicesPanel.childCount > 0;
-
 
     //---Events---//
     public static System.Action<string, string> OnDialogueTagEncountered;
 
+    //---Init Methods---//
     private void OnEnable()
     {
         CalendarDay.OnInspectDay += HandleInspectDay;
         CalendarManager.OnChangeCalendarVisibility += HandleCalendarVisibilityState;
-        TypewriterEffect.CompleteTextRevealed += HandleCompleteTextRevealed;
     }
+    
     private void OnDisable()
     {
         CalendarDay.OnInspectDay -= HandleInspectDay;
         CalendarManager.OnChangeCalendarVisibility -= HandleCalendarVisibilityState;
-        TypewriterEffect.CompleteTextRevealed -= HandleCompleteTextRevealed;
-        if (story != null) story.UnbindExternalFunction("check_booking_status");
     }
 
-    //---Methods---//
     public void BeginDialogue()
     {
-        // init story and TypewriterEffect.cs
+        // init story, listen for externals functions
         story = new Story(inkJsonAsset.text);
-
-        /// listen for ink external function
         story.BindExternalFunction("check_booking_status", () =>
         {
             EvaluateBookingGig();
         });
 
+        // init typewriter, listen for when text is finished typing
         typewriter = dialogueText.GetComponent<TypewriterEffect>();
+        typewriter.CompleteTextRevealed += HandleCompleteTextRevealed;
+
 
         // clear text box
         dialogueText.text = "";
@@ -81,12 +78,13 @@ public class DialogueManager : Singleton<DialogueManager>
         sequence.Play().OnComplete(AdvanceDialogue);
     }
 
+    //---Dialogue---//
     public void AdvanceDialogue()
     {
         // clear any choice buttons for safety
         ClearChoiceButtons();
 
-        // hide "Click to ontinue" while text is being typewritten
+        // hide "Click to ontinue" while text is being typed
         DisplayContinueText(false);
 
         // if there are more lines to the story, process next line
@@ -133,17 +131,9 @@ public class DialogueManager : Singleton<DialogueManager>
             if (typewriter != null)
             {
                 // 2. If it's typing, the click should pass down to the typewriter to speed up/skip
-                if (typewriter.isTyping)
+                if (typewriter.IsTyping)
                 {
-                    // This replaces the internal Update click detection that was in TypewriterEffect
-                    if (!typewriter.currentlySkipping)
-                    {
-                        // Call a public method or handle via an explicit reference change.
-                        // We can invoke it directly since it's public.
-                        typewriter.Skip(true);
-                        // Note: Since Skip(bool doSkip) is private/protected in your code, 
-                        // make sure you change 'private void Skip(bool doSkip)' to 'public void Skip(bool doSkip)' in TypewriterEffect.cs!
-                    }
+                    typewriter.Skip(true);
                     return;
                 }
 
@@ -160,16 +150,9 @@ public class DialogueManager : Singleton<DialogueManager>
 
     private void HandleCompleteTextRevealed()
     {
-        // show "Click to continue" text
         DisplayContinueText(true);
-
-        // handle any line tags
         ProcessLineTags(story.currentTags);
-
-        // clear any choice buttons
         ClearChoiceButtons();
-
-        // display any choices
         DisplayAnyChoices();
     }
 
@@ -179,6 +162,16 @@ public class DialogueManager : Singleton<DialogueManager>
         continueText.SetActive(visible);
     }
 
+    private void EndDialogue()
+    {
+        // unbind from events
+        typewriter.CompleteTextRevealed -= HandleCompleteTextRevealed;
+        story.UnbindExternalFunction("check_booking_status");
+
+        gameObject.SetActive(false);
+    }
+
+    //---Dialogue Choices---//
     private void DisplayAnyChoices()
     {
         // If there are any choices...
@@ -213,11 +206,6 @@ public class DialogueManager : Singleton<DialogueManager>
         }
     }
 
-    private void EndDialogue()
-    {
-        gameObject.SetActive(false);
-    }
-
     private void OnChoiceSelected(int index)
     {
         story.ChooseChoiceIndex(index);
@@ -229,12 +217,15 @@ public class DialogueManager : Singleton<DialogueManager>
     private void ClearChoiceButtons()
     {
         int childCount = dialogueChoicesPanel.transform.childCount;
+
+        // destroy each child starting from the end
         for (int i = childCount - 1; i >= 0; --i)
         {
             Destroy(dialogueChoicesPanel.transform.GetChild(i).gameObject);
         }
     }
 
+    //---Dialogue Tags---//
     private void ProcessLineTags(List<string> tags)
     {
         foreach (string tag in tags)
@@ -264,6 +255,10 @@ public class DialogueManager : Singleton<DialogueManager>
     private void HandleCalendarVisibilityState(bool visible)
     {
         isBookingGig = visible;
+
+        // if we hear the event and it is false, we've closed the calendar after choosing a date
+        // therefore advance the dialogue rather than letting player see dialogue they've already seen
+        if (!isBookingGig) AdvanceDialogue();
     }
 
     private void HandleInspectDay(CalendarDay calendarDay, List<ScheduledEvent> events)
@@ -275,23 +270,34 @@ public class DialogueManager : Singleton<DialogueManager>
     private void EvaluateBookingGig()
     {
         var (anyGigs, gig) = ScheduleManager.Instance.CheckAnyGigsOnDay(chosenDate);
-        if (anyGigs)
+
+        if (chosenDate.IsSameDate(new GameDate(0, 0, 0)))
         {
+            // if we didn't select a date
+            story.variablesState["decline_reason"] = "<style=desc>The owner sighs.</style>\\n<style=speech>Yeah, so you have to actually choose a date if you want to book a gig.</style>";
+            story.variablesState["should_accept_booking"] = false;
+        }
+        else if (anyGigs)
+        {
+            // if there are  any gigs that day
             story.variablesState["decline_reason"] = "<style=desc>The owner sighs.</style>\n<style=speech>You're already playing a gig on that day.";
             story.variablesState["should_accept_booking"] = false;
         }
         else if (chosenDate.IsBeforeDate(DateManager.Instance.date))
         {
+            // if chosen date is in the past
             story.variablesState["decline_reason"] = "<style=desc>The owner sighs.</style>\n<style=speech>Obviously not, that date is in the past.";
             story.variablesState["should_accept_booking"] = false;
         }
         else if (BandManager.Instance.destinationVenue == null)
         {
+            // if player didn't choose a venue
             story.variablesState["decline_reason"] = "<style=desc>The owner sighs.</style>\n<style=speech>You haven't chosen a venue... How did you even do that?";
             story.variablesState["should_accept_booking"] = false;
         }
         else
         {
+            // accept booking
             story.variablesState["should_accept_booking"] = true;
         }
     }

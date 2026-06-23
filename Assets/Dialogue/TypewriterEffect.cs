@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using TMPro;
 
 [RequireComponent(typeof(TMP_Text))]
@@ -12,12 +11,10 @@ public class TypewriterEffect : MonoBehaviour
     [SerializeField] private float interpunctuationDelay = 0.3f;
 
     public bool currentlySkipping = false;
-
-    // CHANGED: Property dynamically checks if typing is active instead of relying on a flaky manual boolean flag
-    public bool isTyping => _textBox != null && _textBox.maxVisibleCharacters < _textBox.textInfo.characterCount;
+    public bool IsTyping => _textBox != null && _textBox.maxVisibleCharacters < _textBox.textInfo.characterCount;
 
     [Header("Skip options")]
-    [SerializeField] private bool quickSkip = false; // Turned off by default since you want the normal speedup skip
+    [SerializeField] private bool quickSkip = false;
     [SerializeField][Min(1)] private int skipSpeedup = 5;
 
     [SerializeField][Range(0.1f, 0.5f)] private float sendDoneDelay = 0.05f;
@@ -34,8 +31,8 @@ public class TypewriterEffect : MonoBehaviour
     private WaitForSeconds _textboxFullEventDelay;
 
     //---Events---//
-    public static event System.Action CompleteTextRevealed;
-    public static event System.Action<char> CharacterRevealed;
+    public event System.Action CompleteTextRevealed;
+    public event System.Action<char> CharacterRevealed;
 
     //---Methods---//
     private void Awake()
@@ -56,7 +53,7 @@ public class TypewriterEffect : MonoBehaviour
         _textBox.text = newText;
         _textBox.ForceMeshUpdate();
 
-        currentlySkipping = false; // Reset skip state for the fresh sentence
+        currentlySkipping = false;
         _textBox.maxVisibleCharacters = 0;
         _currentVisibleCharacterIndex = 0;
 
@@ -75,14 +72,14 @@ public class TypewriterEffect : MonoBehaviour
             {
                 _textBox.maxVisibleCharacters = textInfo.characterCount;
                 yield return _textboxFullEventDelay;
-                currentlySkipping = false; // Safety fallback reset
+                currentlySkipping = false;
                 CompleteTextRevealed?.Invoke();
                 yield break;
             }
 
             char character = textInfo.characterInfo[_currentVisibleCharacterIndex].character;
 
-            // Jump text formatting tags instantly
+            // ignore style tags
             if (character == '<')
             {
                 while (_currentVisibleCharacterIndex < textInfo.characterCount &&
@@ -118,10 +115,10 @@ public class TypewriterEffect : MonoBehaviour
 
     public void Skip(bool doSkip = false)
     {
-        // 1. Guard Clause: If we are already speeding through, ignore further inputs
+        // If we are already speeding through, ignore further inputs
         if (currentlySkipping) return;
 
-        // 2. Normal Skip Speedup path
+        // If we are skipping
         if (!quickSkip || !doSkip)
         {
             currentlySkipping = true;
@@ -129,7 +126,7 @@ public class TypewriterEffect : MonoBehaviour
             return;
         }
 
-        // 3. Quick Skip Instant Completion path
+        // Quick Skip Instant Completion path
         if (_typewriterCoroutine != null)
         {
             StopCoroutine(_typewriterCoroutine);
@@ -142,7 +139,7 @@ public class TypewriterEffect : MonoBehaviour
 
     private IEnumerator SkipSpeedupReset()
     {
-        // Wait gracefully until the typewriter finishes the line entirely before lowering the speed flag
+        // Wait until the typewriter finishes the line before setting currentlySkipping to false
         yield return new WaitUntil(() => _textBox.maxVisibleCharacters >= _textBox.textInfo.characterCount);
         currentlySkipping = false;
     }

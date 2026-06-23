@@ -67,17 +67,17 @@ public class VenueInfoPanel : MonoBehaviour
         else
         {
             SceneManager.LoadScene("Venue");
-            Debug.Log($"Travelling to {currentVenue.name}");
+            // Debug.Log($"Travelling to {currentVenue.name}");
         }
     }
 
-    public void ClickedCancelButton()
+    public void CloseVenueInfoPanel()
     {
         gameObject.SetActive(false);
     }
 
     private void HandleClickOnEmptySpace()
     {
-        ClickedCancelButton();
+        CloseVenueInfoPanel();
     }
 }

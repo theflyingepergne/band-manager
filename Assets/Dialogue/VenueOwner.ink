@@ -4,7 +4,7 @@ EXTERNAL check_booking_status()
 //---Variables---//
 VAR chosen_date = "'never'"
 VAR should_accept_booking = false
-VAR decline_reason = "<style=desc>The owner sighs.</style>\\n<style=speech>Yeah, so you have to actually choose a date if you want to book a gig."
+VAR decline_reason = ""
 
 //---story start---//
 <style=desc>You open the door and find yourself in a dingy, grotty live music bar.
@@ -18,8 +18,8 @@ VAR decline_reason = "<style=desc>The owner sighs.</style>\\n<style=speech>Yeah,
 + [I'd like to book a gig]
     <style=speech>Ok, when?" # BookGig // prompts player to choose date from calendar
     <style=speech>Have you settled on a date?"    // shows after player finished choosing date
-    ++ [...Is <i>{chosen_date}</i> ok?]
-        ~ check_booking_status()
+    ++ [...Is <i>'{chosen_date}'</i> ok?]
+        ~ check_booking_status() // consult DialogueManager for which response to choose
         {
             - should_accept_booking : <style=speech>Works for me." # AcceptGigDate ->DONE
             - else : {decline_reason}

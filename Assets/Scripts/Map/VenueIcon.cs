@@ -16,16 +16,11 @@ public class VenueIcon : MonoBehaviour, IClickable
         {
             isOnLeftHandSide = true;
             venueInfoPanel.SetPanelPosition(isOnLeftHandSide);
-
-            Debug.Log("I'm on the left hand side of the screen");
         }
         else
         {
             isOnLeftHandSide = false;
             venueInfoPanel.SetPanelPosition(isOnLeftHandSide);
-
-            Debug.Log("I'm on the right hand side of the screen");
-
         }
 
         // OnClicked, activate UI and tell it what to show
