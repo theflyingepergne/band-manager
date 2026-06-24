@@ -110,7 +110,12 @@ public class TypewriterEffect : MonoBehaviour
 
             _textBox.maxVisibleCharacters = _currentVisibleCharacterIndex + 1;
 
-            if (!currentlySkipping && (character == '.' || character == ','))
+            if (!currentlySkipping &&
+            (  character == '.'
+            || character == ','
+            || character == '!'
+            || character == '?'
+            ))
             {
                 yield return _punctuationDelay;
             }

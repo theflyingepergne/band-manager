@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Text;
 using DG.Tweening;
 using TMPro;
@@ -34,6 +35,9 @@ public class GameEventManager : Singleton<GameEventManager>
     private bool selectedChoice = false;
 
     //---Events---//
+    private List<System.Action> pendingStatChange = new();
+    private List<System.Action> pendingCustomGameEvents = new();
+
     private void OnEnable()
     {
         DateManager.OnDateChanged += HandleDateChanged;
@@ -114,9 +118,29 @@ public class GameEventManager : Singleton<GameEventManager>
         }
         else
         {
-            // Create close button and add it to wrapper
+            ProcessStatChanges();
+            ProcessCustomGameEvents();
             CreateCloseButton();
         }
+    }
+
+    private void ProcessStatChanges()
+    {
+        foreach (var statChange in pendingStatChange)
+        {
+            statChange?.Invoke();
+        }
+        pendingStatChange.Clear();
+
+    }
+
+    private void ProcessCustomGameEvents()
+    {
+        foreach (var customGameEvent in pendingCustomGameEvents)
+        {
+            customGameEvent?.Invoke();
+        }
+        pendingCustomGameEvents.Clear();
     }
 
     private void SetupEventChoiceButtons()
@@ -155,22 +179,24 @@ public class GameEventManager : Singleton<GameEventManager>
         StringBuilder sb = new();
         sb.AppendLine($"{chosen.choiceOutcomeDescription}\n");
 
-        // Perform any stat changes
         if (chosen.StatChanges.Count > 0)
         {
             foreach (var statChange in chosen.StatChanges)
             {
-                statChange.ApplyStatChange();
+                // Queue up any stat changes
+                pendingStatChange.Add(statChange.ApplyStatChange);
+
+                // Add stat changes to description
                 sb.AppendLine(statChange.GetStatText());
             }
         }
 
-        // Run any custom game events
         if (chosen.CustomEvents.Count > 0)
         {
             foreach (var customEvent in chosen.CustomEvents)
             {
-                customEvent.Execute();
+                // Queue up any custom game events
+                pendingCustomGameEvents.Add(customEvent.Execute);
             }
         }
 
