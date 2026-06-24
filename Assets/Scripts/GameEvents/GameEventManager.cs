@@ -152,7 +152,10 @@ public class GameEventManager : Singleton<GameEventManager>
         foreach (EventChoice choice in scheduledEvent.gameEventData.choices)
         {
             GameObject eCBP = Instantiate(eventChoiceButtonPrefab, eventChoiceWrapper, false);
-            eCBP.GetComponentInChildren<TextMeshProUGUI>().text = choice.choiceLabel;
+            TextMeshProUGUI choiceButtonTextMesh = eCBP.GetComponentInChildren<TextMeshProUGUI>();
+
+            SetButtonTextAlignment(choiceButtonTextMesh, scheduledEvent.gameEventData.choices.Count);
+            choiceButtonTextMesh.text = choice.choiceLabel;
 
             // Call OnChoiceSelected on button click
             Button btn = eCBP.GetComponent<Button>();
@@ -202,7 +205,7 @@ public class GameEventManager : Singleton<GameEventManager>
 
         ClearEventChoiceButtons();
 
-        // Set event description to chosen EventChoice outcome
+        // tell typewriter to type EventChoice outcome
         // as well as any stat changes
         eventDescription.text = sb.ToString();
         typewriter.StartTypewriter(eventDescription.text);
@@ -212,7 +215,10 @@ public class GameEventManager : Singleton<GameEventManager>
     {
         // Create button
         GameObject c = Instantiate(eventChoiceButtonPrefab, eventChoiceWrapper, false);
-        c.GetComponentInChildren<TextMeshProUGUI>().text = "[Close]";
+        TextMeshProUGUI closeButtonTextMesh = c.GetComponentInChildren<TextMeshProUGUI>();
+
+        SetButtonTextAlignment(closeButtonTextMesh);
+        closeButtonTextMesh.text = "[Close]";
 
         // Close window on click
         Button btn = c.GetComponentInChildren<Button>();
@@ -268,5 +274,20 @@ public class GameEventManager : Singleton<GameEventManager>
             child.SetParent(null);
             Destroy(child.gameObject);
         }
+    }
+
+    private void SetButtonTextAlignment(TextMeshProUGUI buttonTextMesh, int numSiblings = 1)
+    {
+        // if there is only 1 button, align center
+        // else, align left
+        if (numSiblings > 1)
+        {
+            buttonTextMesh.alignment = TextAlignmentOptions.Left;
+        }
+        else
+        {
+            buttonTextMesh.alignment = TextAlignmentOptions.Center;
+        }
+
     }
 }
