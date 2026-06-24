@@ -35,19 +35,19 @@ public class GameEventManager : Singleton<GameEventManager>
     private bool selectedChoice = false;
 
     //---Events---//
-    private List<System.Action> pendingStatChange = new();
-    private List<System.Action> pendingCustomGameEvents = new();
+    private readonly List<System.Action> pendingStatChange = new();
+    private readonly List<System.Action> pendingCustomGameEvents = new();
 
     private void OnEnable()
     {
-        DateManager.OnDateChanged += HandleDateChanged;
         CameraFade.OnFadeInComplete += HandleFadeInComplete;
+        CameraFade.OnFadeOutComplete += HandleFadeOutComplete;
     }
 
     private void OnDisable()
     {
-        DateManager.OnDateChanged -= HandleDateChanged;
         CameraFade.OnFadeInComplete -= HandleFadeInComplete;
+        CameraFade.OnFadeOutComplete -= HandleFadeOutComplete;
     }
 
     //---Local References---//
@@ -212,7 +212,7 @@ public class GameEventManager : Singleton<GameEventManager>
     {
         // Create button
         GameObject c = Instantiate(eventChoiceButtonPrefab, eventChoiceWrapper, false);
-        c.GetComponentInChildren<TextMeshProUGUI>().text = "Close";
+        c.GetComponentInChildren<TextMeshProUGUI>().text = "[Close]";
 
         // Close window on click
         Button btn = c.GetComponentInChildren<Button>();
@@ -220,9 +220,9 @@ public class GameEventManager : Singleton<GameEventManager>
     }
 
     //---Event Notifications---//
-    private void HandleDateChanged(GameDate updatedDate)
+    private void HandleFadeOutComplete()
     {
-        // CreateEventNotifications();
+        ClearNotifications();
     }
 
     private void HandleFadeInComplete()

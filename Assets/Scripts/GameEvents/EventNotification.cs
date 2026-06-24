@@ -34,7 +34,6 @@ public class EventNotification : MonoBehaviour
         sm.MarkEventAsComplete(scheduledEvent);
         gameObject.SetActive(false);
         gameObject.transform.SetParent(null);
-        // TODO: tell schedule manager the event has been completed - maybe set date to 0/0/0?
         Destroy(gameObject);
     }
 }

@@ -16,6 +16,8 @@ public class CameraFade : MonoBehaviour
 
     //---Events---//
     public static System.Action OnFadeInComplete;
+    public static System.Action OnFadeOutComplete;
+
 
     //---Methods---//
     private void Awake()
@@ -63,5 +65,22 @@ public class CameraFade : MonoBehaviour
             // Clean up if we faded out completely
             canvasGroupBlack.gameObject.SetActive(false);
         }
+        else
+        {
+            // If we've faded out, tell everyone who cares that we've finished fading out
+            OnFadeOutComplete?.Invoke();
+        }
+    }
+
+    public async void FadeInFadeOut()
+    {
+        // Fade to black
+        await CameraFade.Instance.DoCameraFade(1f);
+
+        // Use Task.Delay (milliseconds) to hold
+        await Task.Delay(500);
+
+        // Fade back in
+        await CameraFade.Instance.DoCameraFade(0f);
     }
 }
