@@ -49,14 +49,14 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
 
         DateManager.OnDateChanged += HandleDateChanged;
         CalendarDay.OnInspectDay += HandleInspectDay;
-        DialogueManager.OnDialogueTagEncountered += HandleDialogueTag;
+        DialogueManager.OnAfterTypingDialogueEvent += HandleDialogueEvent;
     }
 
     private void OnDisable()
     {
         DateManager.OnDateChanged -= HandleDateChanged;
         CalendarDay.OnInspectDay -= HandleInspectDay;
-        DialogueManager.OnDialogueTagEncountered -= HandleDialogueTag;
+        DialogueManager.OnAfterTypingDialogueEvent -= HandleDialogueEvent;
 
         ClearNotes();
     }
@@ -218,20 +218,25 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    public void HandleDialogueTag(string type, string parameter)
+    public void HandleDialogueEvent(string eventName, string eventParameter)
     {
-        if (type == "BookGig")
+        switch (eventName)
         {
-            // start booking gig
-            OpenCalendar();
-        }
+            case "start_booking_gig":
+                // start booking gig
+                OpenCalendar();
+                break;
+            
+            case "accept_booking":
+                // book gig
+                VenueData venue = BandManager.Instance.destinationVenue;
 
-        if (type == "AcceptGigDate")
-        {
-            VenueData venue = BandManager.Instance.destinationVenue;
-
-            ScheduleManager.Instance.ScheduleNewEvent(bookGigEventData, lastInspectedDate, $"Gig at {venue.name}");
-            ScheduleManager.Instance.ScheduleNewGig(venue, lastInspectedDate);
+                ScheduleManager.Instance.ScheduleNewEvent(bookGigEventData, lastInspectedDate, $"Gig at {venue.name}");
+                ScheduleManager.Instance.ScheduleNewGig(venue, lastInspectedDate);
+                break;
+            
+            default:
+                return;
         }
     }
 }

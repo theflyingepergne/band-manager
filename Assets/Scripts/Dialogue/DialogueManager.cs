@@ -29,31 +29,42 @@ public class DialogueManager : Singleton<DialogueManager>
     private TypewriterEffect typewriter;
     private bool isBookingGig = false;
     private bool HasChoices => dialogueChoicesPanel.childCount > 0;
+    private Animator venueOwnerAnimator;
 
     //---Events---//
     public static System.Action<string, string> OnDialogueTagEncountered;
+    public static System.Action<string, string> OnDialogueEventTriggered;
+    public static System.Action<string, string> OnAfterTypingDialogueEvent;
+    private readonly List<System.Action> pendingDialogueEvents = new();
+
 
     //---Init Methods---//
     private void OnEnable()
     {
         CalendarDay.OnInspectDay += HandleInspectDay;
         CalendarManager.OnChangeCalendarVisibility += HandleCalendarVisibilityState;
+
+        venueOwnerAnimator = venueOwner.GetComponentInChildren<Animator>();
     }
-    
+
     private void OnDisable()
     {
         CalendarDay.OnInspectDay -= HandleInspectDay;
         CalendarManager.OnChangeCalendarVisibility -= HandleCalendarVisibilityState;
+
     }
 
     public void BeginDialogue()
     {
         // init story, listen for externals functions
         story = new Story(inkJsonAsset.text);
-        story.BindExternalFunction("check_booking_status", () =>
+        story.BindExternalFunction("trigger_dialogue_event", (string eventName, string eventParameter) =>
         {
-            EvaluateBookingGig();
+            OnDialogueEventTriggered?.Invoke(eventName, eventParameter);
         });
+
+        OnDialogueEventTriggered += HandleDialogueEvent;
+
 
         // init typewriter, listen for when text is finished typing
         typewriter = dialogueText.GetComponent<TypewriterEffect>();
@@ -65,6 +76,17 @@ public class DialogueManager : Singleton<DialogueManager>
 
         // setup (and play) animation
         SetupStartingAnimation();
+    }
+
+    private void EndDialogue()
+    {
+        // unbind from events
+        typewriter.CompleteTextRevealed -= HandleCompleteTextRevealed;
+        OnDialogueEventTriggered -= HandleDialogueEvent;
+
+        story.UnbindExternalFunction("trigger_dialogue_event");
+
+        gameObject.SetActive(false);
     }
 
     private void SetupStartingAnimation()
@@ -92,6 +114,9 @@ public class DialogueManager : Singleton<DialogueManager>
         {
             // store ref to next line of story
             string nextLine = story.Continue();
+
+            // process line tags at START of typewriter typing
+            ProcessLineTags(story.currentTags);
 
             // if we've attached a TypewriterEffect.cs, startTypewriter
             if (typewriter != null)
@@ -151,7 +176,7 @@ public class DialogueManager : Singleton<DialogueManager>
     private void HandleCompleteTextRevealed()
     {
         DisplayContinueText(true);
-        ProcessLineTags(story.currentTags);
+        ProcessQueuedDialogueEvents();
         ClearChoiceButtons();
         DisplayAnyChoices();
     }
@@ -160,15 +185,6 @@ public class DialogueManager : Singleton<DialogueManager>
     {
         // "Click to Continue" text
         continueText.SetActive(visible);
-    }
-
-    private void EndDialogue()
-    {
-        // unbind from events
-        typewriter.CompleteTextRevealed -= HandleCompleteTextRevealed;
-        story.UnbindExternalFunction("check_booking_status");
-
-        gameObject.SetActive(false);
     }
 
     //---Dialogue Choices---//
@@ -225,7 +241,7 @@ public class DialogueManager : Singleton<DialogueManager>
         }
     }
 
-    //---Dialogue Tags---//
+    //---Dialogue Events---//
     private void ProcessLineTags(List<string> tags)
     {
         foreach (string tag in tags)
@@ -251,6 +267,37 @@ public class DialogueManager : Singleton<DialogueManager>
         }
     }
 
+    private void HandleDialogueEvent(string eventName, string eventParameter)
+    {
+        switch (eventName)
+        {
+            case "start_booking_gig":
+                if (eventParameter == "after_typing")
+                {
+                    // queue for after text complete
+                    pendingDialogueEvents.Add(() => OnAfterTypingDialogueEvent?.Invoke(eventName, eventParameter));
+                }
+                // else, some kind of fallback...
+                break;
+
+            case "check_booking":
+                EvaluateBookingGig();
+                break;
+
+            default:
+                return;
+        }
+    }
+
+    private void ProcessQueuedDialogueEvents()
+    {
+        foreach (var dialogueEvent in pendingDialogueEvents)
+        {
+            dialogueEvent?.Invoke();
+        }
+        pendingDialogueEvents.Clear();
+    }
+
     //---Booking Gigs---//
     private void HandleCalendarVisibilityState(bool visible)
     {
@@ -269,6 +316,7 @@ public class DialogueManager : Singleton<DialogueManager>
 
     private void EvaluateBookingGig()
     {
+        Debug.Log("triggering event NOW");
         var (anyGigs, gig) = ScheduleManager.Instance.CheckAnyGigsOnDay(chosenDate);
 
         if (chosenDate.IsSameDate(new GameDate(0, 0, 0)))

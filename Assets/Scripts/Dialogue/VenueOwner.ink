@@ -1,5 +1,5 @@
 ﻿//---External Functions---//
-EXTERNAL check_booking_status()
+EXTERNAL trigger_dialogue_event(eventName, eventParameter)
 
 //---Variables---//
 VAR chosen_date = "'never'"
@@ -16,17 +16,22 @@ VAR decline_reason = ""
 
 === book_or_leave ===
 + [I'd like to book a gig]
-    <style=speech>Ok, when?" # BookGig // prompts player to choose date from calendar
-    <style=speech>Have you settled on a date?"    // shows after player finished choosing date
+    ~trigger_dialogue_event("start_booking_gig", "after_typing")    // prompts player to choose date from calendar
+    <style=speech>Ok, when?"
+
+    <style=speech>Have you settled on a date?"          // shows after player finished choosing date
     ++ [...Is <i>'{chosen_date}'</i> ok?]
-        ~ check_booking_status() // consult DialogueManager for which response to choose
+        ~ trigger_dialogue_event("check_booking", "") // consult DialogueManager for which response to choose
         {
-            - should_accept_booking : <style=speech>Works for me." # AcceptGigDate ->DONE
-            - else : {decline_reason}
+            - should_accept_booking : <style=speech>Works for me."
+                ~trigger_dialogue_event("accept_booking", "")
+                ->DONE
+
+            - else : {decline_reason} #Confused:true
         }
-<style=speech>How about we try this again and you give me a real answer this time?" ->book_or_leave
+<style=speech>How about we try this again and you give me a real answer this time?" #Confused:false ->book_or_leave
 ->END
 
 + [Uh... Nevermind! <i>*runs away nervously*]
-    <style=speech>What the heck..."
+    <style=speech>What the heck..." #Confused:true
 ->DONE
