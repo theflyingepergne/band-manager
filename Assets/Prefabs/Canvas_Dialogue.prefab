@@ -307,7 +307,7 @@ MonoBehaviour:
   m_characterSpacing: 0
   m_characterHorizontalScale: 1
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: 10
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -371,8 +371,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db9300a9ea38a490d830412c8bdd34df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TypewriterEffect
+  autoPlay: 0
   charactersPerSecond: 20
   interpunctuationDelay: 0.5
+  currentlySkipping: 0
   quickSkip: 0
   skipSpeedup: 5
   sendDoneDelay: 0.25
@@ -475,7 +477,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 4
   m_VerticalAlignment: 1024
   m_textAlignment: 65535
@@ -658,6 +660,10 @@ MonoBehaviour:
   venueOwner: {fileID: 0}
   dialogueBorder: {fileID: 0}
   duration: 1
+  chosenDate:
+    day: 0
+    month: 0
+    year: 0
 --- !u!1 &7911337670619960223
 GameObject:
   m_ObjectHideFlags: 0

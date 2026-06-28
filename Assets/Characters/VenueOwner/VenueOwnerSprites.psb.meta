@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 68be6a5c656e94496a037c72e2969c2e
+guid: 8bf301053a8014ed0bf7729948a469b3
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -83,7 +83,7 @@ ScriptedImporter:
       y: 0
       width: 0
       height: 0
-    spriteID: 8dd26d78bb0d94d7b87f23ecd66af73b
+    spriteID: 73893bd0237ef4584a91fe3b03014871
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -95,19 +95,19 @@ ScriptedImporter:
     spritePosition: {x: 0, y: 0}
   multiSpriteImportData: []
   layeredSpriteImportData:
-  - name: VenueOwnerIdle_0
+  - name: 01_confused
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
       serializedVersion: 2
-      x: 0
-      y: 614
-      width: 218
-      height: 307
-    spriteID: 430bcc8f561af4225a20ecf89567afd5
+      x: 230
+      y: 318
+      width: 217
+      height: 263
+    spriteID: e89025ee153d54e93969baea70ae69d8
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -115,21 +115,21 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 0, y: 614}
-    spritePosition: {x: 0, y: 0}
-  - name: VenueOwnerIdle_1
+    uvTransform: {x: 230, y: 318}
+    spritePosition: {x: 152, y: 93}
+  - name: 01_happy
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
       serializedVersion: 2
-      x: 0
-      y: 307
-      width: 218
-      height: 307
-    spriteID: bbbbf9d2718544344a022d51751af303
+      x: 230
+      y: 4
+      width: 217
+      height: 306
+    spriteID: 3db75fe54fe4f481a99e28e0232ec24a
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -137,21 +137,21 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 0, y: 307}
-    spritePosition: {x: 0, y: 0}
-  - name: VenueOwnerIdle_2
+    uvTransform: {x: 230, y: 4}
+    spritePosition: {x: 152, y: 93}
+  - name: 01_low
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
       serializedVersion: 2
-      x: 0
-      y: 0
-      width: 218
+      x: 4
+      y: 4
+      width: 217
       height: 307
-    spriteID: 2ee59ceac9bb546829d1a0366cc2d849
+    spriteID: 05f54df372c33470b9898df95d878651
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -159,21 +159,21 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-    spritePosition: {x: 0, y: 0}
-  - name: VenueOwnerIdle_3
+    uvTransform: {x: 4, y: 4}
+    spritePosition: {x: 152, y: 93}
+  - name: 02_high
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
       serializedVersion: 2
-      x: 218
-      y: 0
-      width: 218
+      x: 4
+      y: 319
+      width: 217
       height: 307
-    spriteID: e2a3b119dd9f54b44ab25ea9be03e1af
+    spriteID: 002392349885b438fad440b38f8575bf
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -181,8 +181,30 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 218, y: 0}
-    spritePosition: {x: 0, y: 0}
+    uvTransform: {x: 4, y: 319}
+    spritePosition: {x: 152, y: 93}
+  - name: 03_mid
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 634
+      width: 217
+      height: 307
+    spriteID: 5869a61a9084c454a8e78b76bc02c65b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 634}
+    spritePosition: {x: 152, y: 93}
   spriteImportData: []
   rigSpriteImportData: []
   sharedRigSpriteImportData: []
@@ -201,37 +223,13 @@ ScriptedImporter:
     characterGroups: []
     pivot: {x: 0, y: 0}
     boneReadOnly: 0
-  platformSettings:
-  - name: DefaultTexturePlatform
-    overridden: 0
-    ignorePlatformSupport: 0
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
-  - name: Standalone
-    overridden: 0
-    ignorePlatformSupport: 0
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
+  platformSettings: []
   mosaicLayers: 1
   characterMode: 1
   documentPivot: {x: 0, y: 0}
   documentAlignment: 7
   importHiddenLayers: 0
-  layerMappingOption: 0
+  layerMappingOption: 2
   generatePhysicsShape: 0
   paperDollMode: 0
   keepDupilcateSpriteName: 1
@@ -243,7 +241,7 @@ ScriptedImporter:
   transparencySortMode: 0
   transparencySortAxis: {x: 0, y: 0, z: 1}
   tileTemplate: {instanceID: 0}
-  padding: 0
+  padding: 4
   spriteSizeExpand: 0
   skeletonAssetReferenceID: 
   pipeline: {instanceID: 0}
@@ -252,33 +250,25 @@ ScriptedImporter:
     categories: []
   spritePackingTag: 
   resliceFromLayer: 0
-  pSDLayerImportSetting:
-  - spriteId: f8c3d362b72e140c7ae5fea44efc2bfc
-    name: 01_confused
-    layerId: 24
-    flatten: 0
-    isGroup: 0
-    importLayer: 1
-  - spriteId: 9bc94feb4914840e18394f3104525e0c
-    name: 01_low
-    layerId: 6
-    flatten: 0
-    isGroup: 0
-    importLayer: 1
-  - spriteId: 1bc554b7e1a3f4a65a117dc789042d40
-    name: 02_high
-    layerId: 12
-    flatten: 0
-    isGroup: 0
-    importLayer: 1
+  pSDLayerImportSetting: []
   psdLayers:
   - name: 01_confused
     spriteName: 01_confused
     isGroup: 0
     parentIndex: -1
-    spriteID: f8c3d362b72e140c7ae5fea44efc2bfc
+    spriteID: e89025ee153d54e93969baea70ae69d8
     layerID: 24
-    mosaicPosition: {x: 218, y: 0}
+    mosaicPosition: {x: 230, y: 318}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: 01_happy
+    spriteName: 01_happy
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 3db75fe54fe4f481a99e28e0232ec24a
+    layerID: 26
+    mosaicPosition: {x: 230, y: 4}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -286,9 +276,9 @@ ScriptedImporter:
     spriteName: 01_low
     isGroup: 0
     parentIndex: -1
-    spriteID: 9bc94feb4914840e18394f3104525e0c
+    spriteID: 05f54df372c33470b9898df95d878651
     layerID: 6
-    mosaicPosition: {x: 0, y: 0}
+    mosaicPosition: {x: 4, y: 4}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -296,9 +286,9 @@ ScriptedImporter:
     spriteName: 02_high
     isGroup: 0
     parentIndex: -1
-    spriteID: 1bc554b7e1a3f4a65a117dc789042d40
+    spriteID: 002392349885b438fad440b38f8575bf
     layerID: 12
-    mosaicPosition: {x: 0, y: 307}
+    mosaicPosition: {x: 4, y: 319}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -306,9 +296,9 @@ ScriptedImporter:
     spriteName: 03_mid
     isGroup: 0
     parentIndex: -1
-    spriteID: 2bc5fd6408b044e12bdcec245304bf47
+    spriteID: 5869a61a9084c454a8e78b76bc02c65b
     layerID: 18
-    mosaicPosition: {x: 0, y: 614}
+    mosaicPosition: {x: 4, y: 634}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -316,7 +306,7 @@ ScriptedImporter:
     spriteName: 
     isGroup: 0
     parentIndex: -1
-    spriteID: 51b5dd8104adf4a898d3501dc211f1aa
+    spriteID: ea05c9b83e5b142c2bf7b628995c8ef3
     layerID: 23
     mosaicPosition: {x: 0, y: 0}
     flatten: 0

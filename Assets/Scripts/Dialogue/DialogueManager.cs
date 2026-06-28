@@ -322,25 +322,25 @@ public class DialogueManager : Singleton<DialogueManager>
         if (chosenDate.IsSameDate(new GameDate(0, 0, 0)))
         {
             // if we didn't select a date
-            story.variablesState["decline_reason"] = "<style=desc>The owner sighs.</style>\\n<style=speech>Yeah, so you have to actually choose a date if you want to book a gig.</style>";
+            story.variablesState["decline_reason"] = "<style=desc>The owner sighs.</style>\\nYeah, so you have to actually choose a date if you want to book a gig.";
             story.variablesState["should_accept_booking"] = false;
         }
         else if (anyGigs)
         {
             // if there are  any gigs that day
-            story.variablesState["decline_reason"] = "<style=desc>The owner sighs.</style>\n<style=speech>You're already playing a gig on that day.";
+            story.variablesState["decline_reason"] = "<style=desc>The owner sighs.</style>\\nYou're already playing a gig on that day.";
             story.variablesState["should_accept_booking"] = false;
         }
         else if (chosenDate.IsBeforeDate(DateManager.Instance.date))
         {
             // if chosen date is in the past
-            story.variablesState["decline_reason"] = "<style=desc>The owner sighs.</style>\n<style=speech>Obviously not, that date is in the past.";
+            story.variablesState["decline_reason"] = "<style=desc>The owner sighs.</style>\\nObviously not, that date is in the past.";
             story.variablesState["should_accept_booking"] = false;
         }
         else if (BandManager.Instance.destinationVenue == null)
         {
             // if player didn't choose a venue
-            story.variablesState["decline_reason"] = "<style=desc>The owner sighs.</style>\n<style=speech>You haven't chosen a venue... How did you even do that?";
+            story.variablesState["decline_reason"] = "<style=desc>The owner sighs.</style>\\nYou haven't chosen a venue... How did you even do that?";
             story.variablesState["should_accept_booking"] = false;
         }
         else
