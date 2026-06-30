@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,13 +16,11 @@ public class NewRecruitManager : MonoBehaviour
     [SerializeField] private RectTransform recruitDismissPanel;
 
     //---Events---//
-    // Close other recruit panel options if one is opened
-    public static Action<NewRecruitManager> OnAnyPanelOpened;
+    public static System.Action<NewRecruitManager> OnAnyPanelOpened;
     void OnEnable() => OnAnyPanelOpened += CloseIfNotThis;
     void OnDisable() => OnAnyPanelOpened -= CloseIfNotThis;
 
     //---Methods---//
-
     void Start()
     {
         recruitSprite.sprite = data.memberSprite;

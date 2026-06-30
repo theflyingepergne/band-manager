@@ -19,6 +19,8 @@ public static class GameBootstrapper
 
         ScheduleManager.Initialize();
 
+        RecruitmentManager.Initialize();
+
         Debug.Log("--- Game Boot Sequence Complete ---");
     }
 }

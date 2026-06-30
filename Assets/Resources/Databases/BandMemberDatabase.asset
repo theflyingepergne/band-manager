@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 316d4f2a6ae204b898df41c2230032f1, type: 3}
+  m_Name: BandMemberDatabase
+  m_EditorClassIdentifier: Assembly-CSharp::BandMemberDatabase
+  recruitableBandMembers:
+  - {fileID: 11400000, guid: 8d82f51ae66b1644d8ea8f32ef3fc0b3, type: 2}
+  - {fileID: 11400000, guid: 928462e6cabc94b498b1780c745b2905, type: 2}
+  - {fileID: 11400000, guid: 55cabd3e86b9b4e6aa034cb94d84f076, type: 2}
+  - {fileID: 11400000, guid: 5ffe2af8e2066480e9b432d67c5c99c0, type: 2}
+  - {fileID: 11400000, guid: 2fd93f56d0f6ae94c98e2736c0b1f8e4, type: 2}
+  - {fileID: 11400000, guid: c9c753844da2d564e81687eebe1220fd, type: 2}

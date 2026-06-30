@@ -6,9 +6,9 @@ public class BandManager
     public static BandManager Instance { get; private set; }
 
     //---References---//
-    public List<BandMemberData> bandMembers = new List<BandMemberData>();
-    public List<SongEntry> songCollection = new List<SongEntry>();
-    public List<SongEntry> activeSetlist = new List<SongEntry>();
+    public List<BandMemberData> bandMembers = new();
+    public List<SongEntry> songCollection = new();
+    public List<SongEntry> activeSetlist = new();
     public VenueData destinationVenue;
 
     //---Stats---//

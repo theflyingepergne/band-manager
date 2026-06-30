@@ -7,32 +7,30 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "BandMemberData", menuName = "Scriptable Objects/BandMemberData")]
 public class BandMemberData : ScriptableObject
 {
-    //-- Setting out Band Member Data
-    //-- Name
+    //---Name---//
     public string memberName;
 
-    //-- Instruments
-    [SerializeField] public List<InstrumentData> instruments;
+    //---Instruments---//
+    public List<InstrumentData> instruments;
 
-    //-- Talent Level
-    [Range(0, 10)]                              // This will allow us to set the talent level in the inspector with a slider from 0 to 10
+    //---Talent Level---//
+    [Range(0, 10)]                              // Create inspector slider from 0 to 10
     [SerializeField] private int _talentLevel;  // allow us to set the talent level in the inspector
     [CreateProperty]                            // Point the Property to that variable
-    public int talentLevel 
+    public int talentLevel
     { 
         get => _talentLevel; 
         set => _talentLevel = value; 
     }
 
-    //-- Sprite
     public Sprite memberSprite;
 
-    //-- Genres
-    [SerializeField] public List<GenreData> genres;
-    
-    //-- Traits
-    [SerializeField] public List<string> traits;
+    //---Genres
+    public List<GenreData> genres;
 
-    //-- Songs
-    public List<SongEntry> songsWritten = new List<SongEntry>();
+    //---Traits---//
+    public List<string> traits;
+
+    //---Songs---//
+    public List<SongEntry> songsWritten = new();
 }

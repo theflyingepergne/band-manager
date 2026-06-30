@@ -6,15 +6,15 @@ public class ScheduleManager
     public static ScheduleManager Instance { get; private set; }
 
     //---References---//
-    public List<GameEventData> allGameEvents;
-    public List<VenueData> allVenues;
-    public List<ScheduledEvent> scheduledEvents;
-    public List<ScheduledGig> scheduledGigs;
+    public List<ScheduledEvent> scheduledEvents = new();
+    public List<ScheduledGig> scheduledGigs = new();
 
     //---Local References---//
-    DateManager dm;
-    BandManager bm;
-    GameDate date;
+    private readonly List<GameEventData> allGameEvents = new();
+    private readonly List<VenueData> allVenues = new();
+    private DateManager dm;
+    private BandManager bm;
+    private GameDate date;
 
     //---Methods---//
     public static void Initialize()
@@ -22,13 +22,7 @@ public class ScheduleManager
         Instance = new ScheduleManager();
         Debug.Log("Initialized ScheduleManager");
         // TODO: load scheduledEvents from SaveLoadSystem
-
-        // Initialize lists
-        Instance.allGameEvents = new List<GameEventData>();
-        Instance.scheduledEvents = new List<ScheduledEvent>();
-        Instance.allVenues = new List<VenueData>();
-        Instance.scheduledGigs = new List<ScheduledGig>();
-
+        
         // Pull date from dateManager
         Instance.dm = DateManager.Instance;
         Instance.bm = BandManager.Instance;

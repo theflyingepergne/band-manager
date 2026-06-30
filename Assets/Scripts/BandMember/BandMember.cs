@@ -72,7 +72,7 @@ public class BandMember : MonoBehaviour, IClickable
         string newSongName = $"{data.memberName}'s Song";
         float newSongScore = Random.Range(0f, 100f);
 
-        SongEntry newSongEntry = new SongEntry(newSongName, data, newSongScore);
+        SongEntry newSongEntry = new(newSongName, data, newSongScore);
 
         // // 1. Initialize the lists so they are valid
         // newSongData.songGenres = new List<GenreData>();
