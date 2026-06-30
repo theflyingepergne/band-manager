@@ -49,14 +49,14 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
 
         DateManager.OnDateChanged += HandleDateChanged;
         CalendarDay.OnInspectDay += HandleInspectDay;
-        DialogueManager.OnAfterTypingDialogueEvent += HandleDialogueEvent;
+        DialogueManager.OnDialogueEventTriggered += HandleDialogueEvent;
     }
 
     private void OnDisable()
     {
         DateManager.OnDateChanged -= HandleDateChanged;
         CalendarDay.OnInspectDay -= HandleInspectDay;
-        DialogueManager.OnAfterTypingDialogueEvent -= HandleDialogueEvent;
+        DialogueManager.OnDialogueEventTriggered -= HandleDialogueEvent;
 
         ClearNotes();
     }

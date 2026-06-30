@@ -646,9 +646,8 @@ GameObject:
   - component: {fileID: 8695274446400146585}
   - component: {fileID: 3476289000922298272}
   - component: {fileID: 4219764798368603382}
-  - component: {fileID: 5808053624919055227}
   m_Layer: 5
-  m_Name: Canvas_Dialogue
+  m_Name: DialogueCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -737,31 +736,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &5808053624919055227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7618435418560147176}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9c8a7ad5db3a4b06a8f933065f528a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueManager
-  persistAcrossScenes: 0
-  inkJsonAsset: {fileID: 4900000, guid: 9d478dab602614356bd9b6164558a07f, type: 3}
-  dialogueText: {fileID: 8288300033161438713}
-  continueText: {fileID: 7363367379728459799}
-  dialogueChoicesPanel: {fileID: 8094536482985729360}
-  dialogueChoiceButtonPrefab: {fileID: 4822006274610406991, guid: 37b28412a08ef4813acb930cca1b3318, type: 3}
-  venueOwner: {fileID: 0}
-  dialogueBorder: {fileID: 2405470284982060718}
-  duration: 0.2
-  chosenDate:
-    day: 0
-    month: 0
-    year: 0
 --- !u!1 &7911337670619960223
 GameObject:
   m_ObjectHideFlags: 0

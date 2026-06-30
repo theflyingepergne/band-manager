@@ -478,7 +478,7 @@ GameObject:
   - component: {fileID: 4487892847242142952}
   - component: {fileID: 1619253291378555590}
   m_Layer: 0
-  m_Name: stairs
+  m_Name: Stairs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

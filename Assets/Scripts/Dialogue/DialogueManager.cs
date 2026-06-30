@@ -1,4 +1,3 @@
-using DG.Tweening;
 using UnityEngine;
 using TMPro;
 using Ink.Runtime;
@@ -6,177 +5,118 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
 
+// Keep core dialogue loop mechanics here
 public class DialogueManager : Singleton<DialogueManager>
 {
-    //---References---//
+    //---References (Changed to protected so child classes can see them)---//
     [Header("Core Dialogue")]
-    [SerializeField] private TextAsset inkJsonAsset;
-    [SerializeField] private TMP_Text dialogueText;
-    [SerializeField] private GameObject continueText;
+    [SerializeField] protected TextAsset inkJsonAsset;
+    [SerializeField] protected TMP_Text dialogueText;
+    [SerializeField] protected GameObject continueText;
 
     [Header("UI")]
-    [SerializeField] private RectTransform dialogueChoicesPanel;
-    [SerializeField] private GameObject dialogueChoiceButtonPrefab;
-
-    [Header("Animation")]
-    [SerializeField] private GameObject venueOwner;
-    [SerializeField] private RectTransform dialogueBorder;
-    [SerializeField] private float duration = 1f;
+    [SerializeField] protected RectTransform dialogueChoicesPanel;
+    [SerializeField] protected GameObject dialogueChoiceButtonPrefab;
 
     //---Local References---//
-    public GameDate chosenDate;
-    private Story story;
+    protected Story story;
     private TypewriterEffect typewriter;
-    private bool isBookingGig = false;
     private bool HasChoices => dialogueChoicesPanel.childCount > 0;
-    private Animator venueOwnerAnimator;
+    private bool isProcessingQueuedEvents;
 
     //---Events---//
     public static System.Action<string, string> OnDialogueTagEncountered;
     public static System.Action<string, string> OnDialogueEventTriggered;
-    public static System.Action<string, string> OnAfterTypingDialogueEvent;
+    // public static System.Action<string, string> OnAfterTypingDialogueEvent;
     private readonly List<System.Action> pendingDialogueEvents = new();
 
-
     //---Init Methods---//
-    private void OnEnable()
+    protected virtual void OnEnable(){}
+
+    protected virtual void OnDisable(){}
+
+    public virtual void BeginDialogue()
     {
-        CalendarDay.OnInspectDay += HandleInspectDay;
-        CalendarManager.OnChangeCalendarVisibility += HandleCalendarVisibilityState;
-
-        venueOwnerAnimator = venueOwner.GetComponentInChildren<Animator>();
-    }
-
-    private void OnDisable()
-    {
-        CalendarDay.OnInspectDay -= HandleInspectDay;
-        CalendarManager.OnChangeCalendarVisibility -= HandleCalendarVisibilityState;
-
-    }
-
-    public void BeginDialogue()
-    {
-        // init story, listen for externals functions
         story = new Story(inkJsonAsset.text);
         story.BindExternalFunction("trigger_dialogue_event", (string eventName, string eventParameter) =>
         {
-            OnDialogueEventTriggered?.Invoke(eventName, eventParameter);
+            EvaluateDialogueEvent(eventName, eventParameter);
         });
 
-        OnDialogueEventTriggered += HandleDialogueEvent;
-
-
-        // init typewriter, listen for when text is finished typing
         typewriter = dialogueText.GetComponent<TypewriterEffect>();
         typewriter.CompleteTextRevealed += HandleCompleteTextRevealed;
 
-
-        // clear text box
         dialogueText.text = "";
 
-        // setup (and play) animation
         SetupStartingAnimation();
     }
 
-    private void EndDialogue()
+    protected virtual void EndDialogue()
     {
-        // unbind from events
         typewriter.CompleteTextRevealed -= HandleCompleteTextRevealed;
-        OnDialogueEventTriggered -= HandleDialogueEvent;
-
+        OnDialogueEventTriggered -= EvaluateDialogueEvent;
         story.UnbindExternalFunction("trigger_dialogue_event");
-
         gameObject.SetActive(false);
     }
 
-    private void SetupStartingAnimation()
+    // Marked virtual so different NPC types can do different intro transitions
+    protected virtual void SetupStartingAnimation()
     {
-        // Initialize sequence
-        Sequence sequence = DOTween.Sequence();
-        sequence.Append(venueOwner.transform.DOMoveX(4.96f, duration));
-        sequence.Append(dialogueBorder.DOAnchorPosY(50f, duration));
-
-        // when sequence is finished playing, AdvanceDialogue
-        sequence.Play().OnComplete(AdvanceDialogue);
+        AdvanceDialogue();
     }
 
-    //---Dialogue---//
+    //---Dialogue Loop---//
     public void AdvanceDialogue()
     {
-        // clear any choice buttons for safety
         ClearChoiceButtons();
-
-        // hide "Click to ontinue" while text is being typed
         DisplayContinueText(false);
 
-        // if there are more lines to the story, process next line
         if (story.canContinue)
         {
-            // store ref to next line of story
             string nextLine = story.Continue();
-
-            // process line tags at START of typewriter typing
             ProcessLineTags(story.currentTags);
 
-            // if we've attached a TypewriterEffect.cs, startTypewriter
-            if (typewriter != null)
-            {
-                // tell typewriter what to type
-                typewriter.StartTypewriter(nextLine);
-            }
-
-            // if there's no TypewriterEffect.cs, continue story
+            if (typewriter != null) typewriter.StartTypewriter(nextLine);
             else
             {
-                // set text box text to next line of story
                 dialogueText.text = nextLine;
                 HandleCompleteTextRevealed();
             }
         }
-
-        // if there is no more text but choices are waiting
         else if (story.currentChoices.Count > 0)
         {
             HandleCompleteTextRevealed();
         }
     }
 
-    private void Update()
+    protected virtual void Update()
     {
-        // if there's no story (like when playing a gig) do nothing
         if (story == null) return;
 
-        // Check for the single left-click input here
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            // 1. Guard: If the player is currently interacting with the calendar, freeze everything
-            if (isBookingGig) return;
             if (HasChoices) return;
+            if (IsDialoguePaused()) return; // Virtual check for child classes to pause input
 
-            if (typewriter != null)
+            if (typewriter != null && typewriter.IsTyping)
             {
-                // 2. If it's typing, the click should pass down to the typewriter to speed up/skip
-                if (typewriter.IsTyping)
-                {
-                    typewriter.Skip(true);
-                    return;
-                }
-
-                // 3. If it's NOT typing, the click advances the story line
-                AdvanceDialogue();
+                typewriter.Skip(true);
+                return;
             }
-            else
-            {
-                // Fallback if there is no typewriter component
-                AdvanceDialogue();
-            }
+            AdvanceDialogue();
         }
+    }
+
+    // A hook for child classes to freeze input
+    protected virtual bool IsDialoguePaused()
+    {
+        return false;
     }
 
     private void HandleCompleteTextRevealed()
     {
         DisplayContinueText(true);
-        ProcessQueuedDialogueEvents();
+        FlushQueuedDialogueEvents();
         ClearChoiceButtons();
         DisplayAnyChoices();
     }
@@ -241,7 +181,7 @@ public class DialogueManager : Singleton<DialogueManager>
         }
     }
 
-    //---Dialogue Events---//
+    //---Dialogue Tags---//
     private void ProcessLineTags(List<string> tags)
     {
         foreach (string tag in tags)
@@ -267,86 +207,46 @@ public class DialogueManager : Singleton<DialogueManager>
         }
     }
 
-    private void HandleDialogueEvent(string eventName, string eventParameter)
+    //---Dialogue Events---//
+    protected void EvaluateDialogueEvent(string eventName, string eventParameter)
     {
-        switch (eventName)
+        if (eventParameter == "after_typing" && !isProcessingQueuedEvents)
         {
-            case "start_booking_gig":
-                if (eventParameter == "after_typing")
-                {
-                    // queue for after text complete
-                    pendingDialogueEvents.Add(() => OnAfterTypingDialogueEvent?.Invoke(eventName, eventParameter));
-                }
-                // else, some kind of fallback...
-                break;
+            // If event specifically asks to wait, and we aren't currently flushing the queue,
+            // Queue a lambda that will re-run this method, but mark it to fire immediately next time
+            pendingDialogueEvents.Add(() => EvaluateDialogueEvent(eventName, ""));
+        }
+        else
+        {
+            // Tell child to run custom logic
+            HandleDialogueEvent(eventName, eventParameter);
 
-            case "check_booking":
-                EvaluateBookingGig();
-                break;
-
-            default:
-                return;
+            // Broadcast event to subscribers
+            OnDialogueEventTriggered?.Invoke(eventName, eventParameter);
         }
     }
 
-    private void ProcessQueuedDialogueEvents()
+    protected virtual void HandleDialogueEvent(string eventName, string eventParameter)
     {
+        // Override logic in child classes
+    }
+
+    private void FlushQueuedDialogueEvents()
+    {
+        isProcessingQueuedEvents = true;
+
         foreach (var dialogueEvent in pendingDialogueEvents)
         {
             dialogueEvent?.Invoke();
         }
+
         pendingDialogueEvents.Clear();
+        isProcessingQueuedEvents = false;
     }
 
-    //---Booking Gigs---//
-    private void HandleCalendarVisibilityState(bool visible)
+    protected virtual void QueueDialogueEvent(string eventName, string eventParameter)
     {
-        isBookingGig = visible;
-
-        // if we hear the event and it is false, we've closed the calendar after choosing a date
-        // therefore advance the dialogue rather than letting player see dialogue they've already seen
-        if (!isBookingGig) AdvanceDialogue();
-    }
-
-    private void HandleInspectDay(CalendarDay calendarDay, List<ScheduledEvent> events)
-    {
-        chosenDate = calendarDay.localDate;
-        story.variablesState["chosen_date"] = chosenDate.GetDateAsString();
-    }
-
-    private void EvaluateBookingGig()
-    {
-        Debug.Log("triggering event NOW");
-        var (anyGigs, gig) = ScheduleManager.Instance.CheckAnyGigsOnDay(chosenDate);
-
-        if (chosenDate.IsSameDate(new GameDate(0, 0, 0)))
-        {
-            // if we didn't select a date
-            story.variablesState["decline_reason"] = "<style=desc>The owner sighs.</style>\\nYeah, so you have to actually choose a date if you want to book a gig.";
-            story.variablesState["should_accept_booking"] = false;
-        }
-        else if (anyGigs)
-        {
-            // if there are  any gigs that day
-            story.variablesState["decline_reason"] = "<style=desc>The owner sighs.</style>\\nYou're already playing a gig on that day.";
-            story.variablesState["should_accept_booking"] = false;
-        }
-        else if (chosenDate.IsBeforeDate(DateManager.Instance.date))
-        {
-            // if chosen date is in the past
-            story.variablesState["decline_reason"] = "<style=desc>The owner sighs.</style>\\nObviously not, that date is in the past.";
-            story.variablesState["should_accept_booking"] = false;
-        }
-        else if (BandManager.Instance.destinationVenue == null)
-        {
-            // if player didn't choose a venue
-            story.variablesState["decline_reason"] = "<style=desc>The owner sighs.</style>\\nYou haven't chosen a venue... How did you even do that?";
-            story.variablesState["should_accept_booking"] = false;
-        }
-        else
-        {
-            // accept booking
-            story.variablesState["should_accept_booking"] = true;
-        }
+        Debug.Log("Queued event " + eventName);
+        pendingDialogueEvents.Add(() => OnDialogueEventTriggered?.Invoke(eventName, eventParameter));
     }
 }
