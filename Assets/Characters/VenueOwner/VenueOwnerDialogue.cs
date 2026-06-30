@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class VenueOwnerDialogue : DialogueManager
 {
+    //---References---//
     [Header("Venue Owner Refs")]
     [SerializeField] private GameObject venueOwner;
     [SerializeField] private RectTransform dialogueBorder;
@@ -11,9 +12,11 @@ public class VenueOwnerDialogue : DialogueManager
     [Header("Intro Animation Config")]
     [SerializeField] private float duration = 1f;
 
+    //---Local References---//
     private GameDate chosenDate;
     private bool isBookingGig = false;
 
+    //---Init Methods---//
     protected override void OnEnable()
     {
         base.OnEnable(); // Runs parent's OnEnable if anything is there
@@ -30,7 +33,7 @@ public class VenueOwnerDialogue : DialogueManager
         CalendarManager.OnChangeCalendarVisibility -= HandleCalendarVisibilityState;
     }
 
-    // Overriding the intro animation to do the DOTween sequence
+    // Override intro animation
     protected override void SetupStartingAnimation()
     {
         Sequence sequence = DOTween.Sequence();
@@ -40,12 +43,13 @@ public class VenueOwnerDialogue : DialogueManager
         sequence.Play().OnComplete(AdvanceDialogue);
     }
 
-    // Overriding the safety guard for dialogue inputs
+    // Override "Click to continue" input
     protected override bool IsDialoguePaused()
     {
         return isBookingGig;
     }
 
+    // Override unique event logic
     protected override void HandleDialogueEvent(string eventName, string eventParameter)
     {
         switch (eventName)
@@ -59,21 +63,25 @@ public class VenueOwnerDialogue : DialogueManager
         }
     }
 
-    //---Booking Gigs Logic (Completely isolated here)---//
+    //---Booking Gigs Logic---//
     private void HandleCalendarVisibilityState(bool visible)
     {
+        // Use the visibility of the Calendar to decide whether to pause
+        // "Click to continue" input
         isBookingGig = visible;
         if (!isBookingGig) AdvanceDialogue();
     }
 
     private void HandleInspectDay(CalendarDay calendarDay, List<ScheduledEvent> events)
     {
+        // Clicking on a day (Inspecting Day) chooses date to book gig
         chosenDate = calendarDay.localDate;
         story.variablesState["chosen_date"] = chosenDate.GetDateAsString(); // Accessible because 'story' is protected
     }
 
     private void EvaluateBookingGig()
     {
+        // give response based on chosenDate
         var (anyGigs, gig) = ScheduleManager.Instance.CheckAnyGigsOnDay(chosenDate);
 
         if (chosenDate.IsSameDate(new GameDate(0, 0, 0)))

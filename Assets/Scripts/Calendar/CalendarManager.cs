@@ -29,19 +29,20 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
     [SerializeField] private int vibrato = 1;
     [SerializeField] private int elasticity = 1;
 
+    [Header("Date")]
     public GameDate date = new(1, 1, 1979);
-    private GameDate lastInspectedDate;
-
+    
     //---Local References---//
-    DateManager dm;
-    ScheduleManager sm;
-    Tween notesTween;
-    List<ScheduledEvent> scheduledEvents;
+    private DateManager dm;
+    private ScheduleManager sm;
+    private Tween notesTween;
+    private List<ScheduledEvent> scheduledEvents;
+    private GameDate lastInspectedDate;
 
     //---Events---//
     public static System.Action<bool> OnChangeCalendarVisibility;
 
-    //---Methods---//
+    //---Init Methods---//
     private void OnEnable()
     {
         dm = DateManager.Instance;
@@ -61,6 +62,7 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
         ClearNotes();
     }
 
+    //---Visibility---//
     public void OpenCalendar()
     {
         GetComponent<Canvas>().enabled = true;
@@ -129,6 +131,7 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
         }
     }
 
+    //---Calendar Events---//
     private void HandleDateChanged(GameDate updatedDate)
     {
         date = updatedDate;
@@ -161,6 +164,7 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
         }
     }
 
+    //---Cosmetic---//
     private void SetFontStyle(ScheduledEvent e, TMP_Text t)
     {
         // If date is in the past OR complete, strikethrough text
@@ -185,6 +189,7 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
             );
     }
 
+    //---Notes---//
     private void ClearNotes()
     {
         if (notesContainer.childCount > 0)
@@ -209,6 +214,7 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
         }
     }
 
+    //---Input---//
     public void OnPointerClick(PointerEventData eventData)
     {
         // close calendar if we click off of it
@@ -218,17 +224,16 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
         }
     }
 
+    //---Dialogue Events---//
     public void HandleDialogueEvent(string eventName, string eventParameter)
     {
         switch (eventName)
         {
             case "start_booking_gig":
-                // start booking gig
                 OpenCalendar();
                 break;
             
             case "accept_booking":
-                // book gig
                 VenueData venue = BandManager.Instance.destinationVenue;
 
                 ScheduleManager.Instance.ScheduleNewEvent(bookGigEventData, lastInspectedDate, $"Gig at {venue.name}");

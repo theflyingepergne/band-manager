@@ -6,14 +6,16 @@ VAR chosen_date = "'never'"
 VAR should_accept_booking = false
 VAR decline_reason = ""
 
-//---Story Start---//
+//---Story Start : setting the scene---//
 <style=desc>You open the door and find yourself in a dingy, grotty live music bar.
 <style=desc>Your managerial instincts tell you to leave as soon as possible...
 <> But you're sure the band will be happy to play here!
 
+//---Venue Owner appears---//
 <style=desc>The owner emerges from behind the bar.\\n</style>
 <>Hey, we're not open for a little while yet. What's up? ->book_or_leave
 
+//---Book Gig or Leave Choices---//
 === book_or_leave ===
 + [I'd like to book a gig]
     ~trigger_dialogue_event("start_booking_gig", "after_typing")
@@ -35,10 +37,11 @@ VAR decline_reason = ""
             - else : {decline_reason} #Confused:true
         }
 
-// Loop dialogue
+//---Loop Dialogue---//
 How about we try this again and you give me a real answer this time? #Confused:false ->book_or_leave
 ->END
 
+//---End Dialogue---//
 + [Uh... Nevermind! <i>*runs away nervously*]
     What the heck... #Confused:true
     ->DONE

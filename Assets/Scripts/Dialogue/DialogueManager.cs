@@ -5,7 +5,6 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
 
-// Keep core dialogue loop mechanics here
 public class DialogueManager : Singleton<DialogueManager>
 {
     //---References (Changed to protected so child classes can see them)---//
@@ -27,12 +26,10 @@ public class DialogueManager : Singleton<DialogueManager>
     //---Events---//
     public static System.Action<string, string> OnDialogueTagEncountered;
     public static System.Action<string, string> OnDialogueEventTriggered;
-    // public static System.Action<string, string> OnAfterTypingDialogueEvent;
     private readonly List<System.Action> pendingDialogueEvents = new();
 
     //---Init Methods---//
     protected virtual void OnEnable(){}
-
     protected virtual void OnDisable(){}
 
     public virtual void BeginDialogue()
@@ -59,7 +56,7 @@ public class DialogueManager : Singleton<DialogueManager>
         gameObject.SetActive(false);
     }
 
-    // Marked virtual so different NPC types can do different intro transitions
+    // Marked virtual so child classes can do different starting animations
     protected virtual void SetupStartingAnimation()
     {
         AdvanceDialogue();
@@ -89,6 +86,7 @@ public class DialogueManager : Singleton<DialogueManager>
         }
     }
 
+    //---Clicking to continue---//
     protected virtual void Update()
     {
         if (story == null) return;
