@@ -1,45 +1,19 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
+/*=================================================================*\
+    this class will be responsible for instantiating all possible
+    band members that can be recruited
 
-//==================================================================//
-//  this class will be responsible for instantiating all possible   //
-//  band members that can be recruited                              //
-//                                                                  //
-//  this class will keep track of progress with recruitable band    //
-//  members                                                         //
-//==================================================================//
-
-/*
-    each day, 3 recruitable band members will appear in the RecruitBandMembers scene
-
-    clicking on them will begin dialogue with them
-
-    talking to them via certain choices will satisfy certain conditions
-
-    if the sum of these conditions is over a 'joinThreshold',
-    they will ask you if they can join the band or vice versa
-
-    accepting will add them to the list of BandMembers in BandManager
-
-    declining will either add them back to the pool of recruitable band members
-    or they will be like "fuck u i don't need u" and join another band
-
-    there will be a chance to see this band playing at a venue (random chance)
-    
-    in this case, the aforementioned joinThreshold will be higher but the recruitment
-    process can be started again
-
-    each time the recruitment process is started with the same recruitable band member
-    the joinThreshold will be higher
-
-    number of fans can make it easier to reach a recruitable band member's joinThreshold
-*/
+    this class will keep track of progress with recruitable band
+    members
+\*=================================================================*/
 
 public class RecruitmentManager
 {
-    public static RecruitmentManager Instance { get; private set; }
     //---References---//
+    public static RecruitmentManager Instance { get; private set; }
     public Dictionary<string, RecruitableBandMember> allRecruitableBandMembers = new();
 
     //---Local References---//
@@ -76,6 +50,7 @@ public class RecruitmentManager
     {
         foreach (BandMemberData data in allBandMembers)
         {
+            // Instantiate recruitableBandMember class using BandMemberData
             RecruitableBandMember recruitableBandMember = new()
             {
                 id = data.name,
@@ -86,6 +61,7 @@ public class RecruitmentManager
                 recruitThreshold = Random.Range(60, 65)
             };
 
+            // Add recruitableBandMember to list
             allRecruitableBandMembers.Add(recruitableBandMember.id, recruitableBandMember);
         }
     }
@@ -104,6 +80,32 @@ public class RecruitmentManager
         else
         {
             Debug.LogError("Could not find recruitable band member");
+            return null;
+        }
+    }
+
+    public RecruitableBandMember GetRandomRecruitableBandMember(List<string> excludedIds = null)
+    {
+        // get all keys
+        IEnumerable<string> validKeys = allRecruitableBandMembers.Keys;
+
+        if (excludedIds != null || excludedIds.Count > 0)
+        {
+            // keep only the validKeys that do not contain excludedIds
+            validKeys = validKeys.Where(id => !excludedIds.Contains(id));
+        }
+        
+        // create a temporary array which we can use to get random indexes
+        string[] keys = validKeys.ToArray();
+
+        if (keys.Length > 0)
+        {
+            // if the keys array > 0, return a random recruitableBandMember
+            return allRecruitableBandMembers[keys[Random.Range(0, keys.Length)]];
+        }
+        else
+        {
+            // otherwise return null
             return null;
         }
     }

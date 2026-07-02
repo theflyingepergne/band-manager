@@ -6,10 +6,12 @@ public class EndDay : MonoBehaviour, IClickable
     //---References---//
     [SerializeField] private GameObject canvasEndDay;
 
+    //---Local References---//
+    private bool doChangeDate = false;
+
     //---Events---//
     private void OnEnable() => CameraFade.OnFadeOutComplete += HandleFadeOutComplete;
     private void OnDisable() => CameraFade.OnFadeOutComplete -= HandleFadeOutComplete;
-
 
     //---Methods---//
     public void OnClicked()
@@ -23,13 +25,18 @@ public class EndDay : MonoBehaviour, IClickable
 
     public void ClickedEndDay()
     {
+        doChangeDate = true;
         canvasEndDay.SetActive(false);
         CameraFade.Instance.FadeInFadeOut();
     }
 
     private void HandleFadeOutComplete()
     {
-        DateManager.Instance.ChangeDate(1);
+        if (doChangeDate)
+        {
+            DateManager.Instance.ChangeDate(1);
+            doChangeDate = false;
+        }
     }
 
     public void ClickedCancel()

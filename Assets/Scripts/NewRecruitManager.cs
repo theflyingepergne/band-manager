@@ -17,28 +17,37 @@ public class NewRecruitManager : MonoBehaviour
 
     //---Events---//
     public static System.Action<NewRecruitManager> OnAnyPanelOpened;
-    void OnEnable() => OnAnyPanelOpened += CloseIfNotThis;
-    void OnDisable() => OnAnyPanelOpened -= CloseIfNotThis;
 
-    //---Methods---//
-    void Start()
+    //---Init Methods---//
+    private void OnEnable()
     {
-        recruitSprite.sprite = data.memberSprite;
-        recruitName.text = data.memberName;
-        recruitInstruments.text = $"Plays {data.instruments[0].instrumentName}";
-        recruitTraits.text = $"Seems {data.traits[0]}...";
-
-        SetRecruitDismissPanelVisibile(false);
+        OnAnyPanelOpened += CloseIfNotThis;
+        SetRecruitDismissPanelVisible(false);
     }
 
+    private void OnDisable()
+    {
+        OnAnyPanelOpened -= CloseIfNotThis;
+    }
+
+    //---Methods---//
+    public void SetupNewRecruit(RecruitableBandMember data)
+    {
+        recruitSprite.sprite = data.sprite;
+        recruitName.text = data.name;
+        // recruitInstruments.text = $"Plays {data.instruments[0].instrumentName}";
+        // recruitTraits.text = $"Seems {data.traits[0]}...";
+    }
+
+    //---Recruit Dismiss Panel---//
     public void ToggleRecruitDismissPanel()
     {
         OnAnyPanelOpened?.Invoke(this);
 
-        SetRecruitDismissPanelVisibile(!recruitDismissPanel.gameObject.activeSelf);
+        SetRecruitDismissPanelVisible(!recruitDismissPanel.gameObject.activeSelf);
     }
 
-    private void SetRecruitDismissPanelVisibile(bool visible)
+    private void SetRecruitDismissPanelVisible(bool visible)
     {
         recruitDismissPanel.gameObject.SetActive(visible);
     }
@@ -58,7 +67,7 @@ public class NewRecruitManager : MonoBehaviour
     {
         if (openedManager != this)
         {
-            SetRecruitDismissPanelVisibile(false);
+            SetRecruitDismissPanelVisible(false);
         }
     }
 }
