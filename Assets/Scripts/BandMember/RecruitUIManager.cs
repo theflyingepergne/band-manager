@@ -42,14 +42,14 @@ public class RecruitUIManager : MonoBehaviour
 
         for (int i = 0; i < 3; i++)
         {
-            RecruitableBandMember recruitable = rm.GetRandomRecruitableBandMember(currentIds);
+            BandMemberInstance bMI = rm.GetRandomBandMemberInstance(currentIds);
 
             GameObject newRecruit = Instantiate(newRecruitPrefab, recruitBandMemberPanel, false);
             NewRecruitManager newRecruitManager = newRecruit.GetComponent<NewRecruitManager>();
 
-            newRecruitManager.SetupNewRecruit(recruitable);
+            newRecruitManager.SetupNewRecruit(bMI);
             
-            currentIds.Add(recruitable.id);
+            currentIds.Add(bMI.id);
         }
     }
 

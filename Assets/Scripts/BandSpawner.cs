@@ -15,6 +15,6 @@ public abstract class BandSpawner : MonoBehaviour
         }
     }
 
-    // This is the "Blank Space" that children must fill in
-    protected abstract void SpawnMember(BandMemberData data, int index);
+    // Overridden in children
+    protected abstract void SpawnMember(BandMemberInstance data, int index);
 }

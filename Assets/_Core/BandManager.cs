@@ -6,7 +6,7 @@ public class BandManager
     public static BandManager Instance { get; private set; }
 
     //---References---//
-    public List<BandMemberData> bandMembers = new();
+    public List<BandMemberInstance> bandMembers = new();
     public List<SongEntry> songCollection = new();
     public List<SongEntry> activeSetlist = new();
     public VenueData destinationVenue;
@@ -51,12 +51,12 @@ public class BandManager
     }
 
     //---Band Member Methods---//
-    public void RecruitMember(BandMemberData data)
+    public void RecruitMember(BandMemberInstance data)
     {
         if (!bandMembers.Contains(data))
         {
             bandMembers.Add(data);
-            // Debug.Log($"Hired {data.name}! {bandMembers.Count} band members");
+            Debug.Log($"Hired {data.name}! {bandMembers.Count} band members");
         }
         else
         {
@@ -77,7 +77,7 @@ public class BandManager
     {
         // Init vars
         string songName;
-        BandMemberData bandMember;
+        BandMemberInstance bandMember;
         float newSongScore = Random.Range(60f, 100f);
 
         if (bandMembers != null && bandMembers.Count > 0)
@@ -85,16 +85,16 @@ public class BandManager
             // pick a random band member to supply song data
             int i = Random.Range(0, bandMembers.Count);
             bandMember = bandMembers[i];
-            songName = $"{bandMember.memberName}'s song";
+            songName = $"{bandMember.name}'s song";
 
         }
         else
         {
             songName = "Default song name";
-            bandMember = ScriptableObject.CreateInstance<BandMemberData>();
+            bandMember = new();
         }
 
-        SongEntry newSong = new SongEntry(songName, bandMember, newSongScore);
+        SongEntry newSong = new(songName, bandMember, newSongScore);
         AddSongToCollection(newSong);
     }
 
@@ -104,8 +104,8 @@ public class BandManager
         if (songCollection.Count > 0)
         {
             // init temporary lists of songEntries
-            List<SongEntry> selectedSongs = new List<SongEntry>();
-            List<SongEntry> shuffled = new List<SongEntry>(songCollection);
+            List<SongEntry> selectedSongs = new();
+            List<SongEntry> shuffled = new(songCollection);
 
             // shuffle the elements in the 'shuffled' list
             for (int i = 0; i < shuffled.Count; i++)

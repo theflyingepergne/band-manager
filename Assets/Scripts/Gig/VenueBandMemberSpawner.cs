@@ -5,7 +5,7 @@ public class VenueBandMemberSpawner : BandSpawner
 {
     [SerializeField] private Transform[] stageAnchors;
 
-    protected override void SpawnMember(BandMemberData data, int index)
+    protected override void SpawnMember(BandMemberInstance data, int index)
     {
         if (index >= stageAnchors.Length) return;
 
@@ -18,6 +18,6 @@ public class VenueBandMemberSpawner : BandSpawner
         sbm.transform.localPosition = Vector3.zero;
         sbm.transform.localRotation = Quaternion.identity;
         
-        sbm.GetComponent<BandMember>().PopulateBandMemberData(data);
+        sbm.GetComponent<BandMember>().PopulateBandMemberInstance(data);
     }
 }

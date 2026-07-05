@@ -6,7 +6,7 @@ public class TestSongGenerator : MonoBehaviour
 {
     //---References---//
     [Header("Data")]
-    [SerializeField] private BandMemberData bandMemberData;
+    [SerializeField] private BandMemberInstance bandMemberData;
     [SerializeField] private GameEventDatabase gameEventDatabase;
 
     [Header("Config")]

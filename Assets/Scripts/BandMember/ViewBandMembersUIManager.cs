@@ -29,16 +29,16 @@ public class ViewBandMembersUIManager : Singleton<ViewBandMembersUIManager>
         ShowBandMemberDetails(false, null);
     }
 
-    public void ShowBandMemberDetails(bool isActive = false, BandMemberData data = null)
+    public void ShowBandMemberDetails(bool isActive = false, BandMemberInstance data = null)
     {
         // Populate it with the data from the BandMemberData
         if (data != null)
         {
-            nameText.text = data.memberName;
-            genresText.text = string.Join(", ", data.genres.ConvertAll(g => g.genreName));
+            nameText.text = data.name;
+            // genresText.text = string.Join(", ", data.genres.ConvertAll(g => g.genreName));
             talentBarFillImage.fillAmount = data.talentLevel / 10f;
-            instrumentsText.text = string.Join(", ", data.instruments.ConvertAll(i => i.instrumentName));
-            traitsText.text = string.Join(", ", data.traits);
+            // instrumentsText.text = string.Join(", ", data.instruments.ConvertAll(i => i.instrumentName));
+            // traitsText.text = string.Join(", ", data.traits);
         }
 
         // Toggle detais panel

@@ -4,16 +4,16 @@ using UnityEngine.UI;
 public class NewRecruitManager : MonoBehaviour
 {
     //---References---//
-    [Header("Data")]
-    [SerializeField] private BandMemberData data;
-
-    [Header("UI References")]
+    [Header("UI")]
     [SerializeField] private GameObject newRecruitPrefab;
     [SerializeField] private Image recruitSprite;
     [SerializeField] private TMP_Text recruitName;
     [SerializeField] private TMP_Text recruitInstruments;
     [SerializeField] private TMP_Text recruitTraits;
     [SerializeField] private RectTransform recruitDismissPanel;
+
+    //---Local References---//
+    private BandMemberInstance data;
 
     //---Events---//
     public static System.Action<NewRecruitManager> OnAnyPanelOpened;
@@ -31,8 +31,9 @@ public class NewRecruitManager : MonoBehaviour
     }
 
     //---Methods---//
-    public void SetupNewRecruit(RecruitableBandMember data)
+    public void SetupNewRecruit(BandMemberInstance newData)
     {
+        data = newData;
         recruitSprite.sprite = data.sprite;
         recruitName.text = data.name;
         // recruitInstruments.text = $"Plays {data.instruments[0].instrumentName}";

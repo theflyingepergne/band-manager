@@ -14,7 +14,7 @@ public class RecruitmentManager
 {
     //---References---//
     public static RecruitmentManager Instance { get; private set; }
-    public Dictionary<string, RecruitableBandMember> allRecruitableBandMembers = new();
+    public Dictionary<string, BandMemberInstance> allBandMemberInstances = new();
 
     //---Local References---//
     private readonly List<BandMemberData> allBandMembers = new();
@@ -25,19 +25,19 @@ public class RecruitmentManager
         Instance = new();
         Debug.Log("Initialized RecruitmentManager");
 
-        Instance.LoadRecruitableBandMemberDatabase();
+        Instance.LoadBandMemberInstanceDatabase();
 
-        Instance.SetupRecruitableBandMembers();
+        Instance.SetupBandMemberInstances();
     }
 
-    private void LoadRecruitableBandMemberDatabase()
+    private void LoadBandMemberInstanceDatabase()
     {
         BandMemberDatabase database = Resources.Load<BandMemberDatabase>("Databases/BandMemberDatabase");
 
-        if (database != null && database.recruitableBandMembers != null)
+        if (database != null && database.BandMemberInstances != null)
         {
             // Copy BandMemberData list from BandMemberDatabase
-            Instance.allBandMembers.AddRange(database.recruitableBandMembers);
+            Instance.allBandMembers.AddRange(database.BandMemberInstances);
             Debug.Log($"RecruitmentManager initialized and loaded {Instance.allBandMembers.Count} band members from the database.");
         }
         else
@@ -46,12 +46,13 @@ public class RecruitmentManager
         }
     }
 
-    private void SetupRecruitableBandMembers()
+    //---Setup---//
+    private void SetupBandMemberInstances()
     {
         foreach (BandMemberData data in allBandMembers)
         {
-            // Instantiate recruitableBandMember class using BandMemberData
-            RecruitableBandMember recruitableBandMember = new()
+            // Instantiate BandMemberInstance class using BandMemberData
+            BandMemberInstance BandMemberInstance = new()
             {
                 id = data.name,
                 name = data.memberName,
@@ -61,19 +62,21 @@ public class RecruitmentManager
                 recruitThreshold = Random.Range(60, 65)
             };
 
-            // Add recruitableBandMember to list
-            allRecruitableBandMembers.Add(recruitableBandMember.id, recruitableBandMember);
+            // Add BandMemberInstance to list
+            allBandMemberInstances.Add(BandMemberInstance.id, BandMemberInstance);
         }
     }
 
+    //---Alterations---//
     public void AdjustRecruitmentThreshold(string id, float amount)
     {
-        GetRecruitableBandMember(id).AdjustRecruitmentThreshold(amount);
+        GetBandMemberInstance(id).AdjustRecruitmentThreshold(amount);
     }
 
-    private RecruitableBandMember GetRecruitableBandMember(string id)
+    //--Getters---//
+    private BandMemberInstance GetBandMemberInstance(string id)
     {
-        if (allRecruitableBandMembers.TryGetValue(id, out var result))
+        if (allBandMemberInstances.TryGetValue(id, out var result))
         {
             return result;
         }
@@ -84,10 +87,10 @@ public class RecruitmentManager
         }
     }
 
-    public RecruitableBandMember GetRandomRecruitableBandMember(List<string> excludedIds = null)
+    public BandMemberInstance GetRandomBandMemberInstance(List<string> excludedIds = null)
     {
         // get all keys
-        IEnumerable<string> validKeys = allRecruitableBandMembers.Keys;
+        IEnumerable<string> validKeys = allBandMemberInstances.Keys;
 
         if (excludedIds != null || excludedIds.Count > 0)
         {
@@ -100,8 +103,8 @@ public class RecruitmentManager
 
         if (keys.Length > 0)
         {
-            // if the keys array > 0, return a random recruitableBandMember
-            return allRecruitableBandMembers[keys[Random.Range(0, keys.Length)]];
+            // if the keys array > 0, return a random BandMemberInstance
+            return allBandMemberInstances[keys[Random.Range(0, keys.Length)]];
         }
         else
         {

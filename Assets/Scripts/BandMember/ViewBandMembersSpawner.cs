@@ -2,16 +2,16 @@ using UnityEngine;
 
 public class ViewBandMembersSpawner : BandSpawner
 {
-    [SerializeField] private Vector2 spawnArea = new Vector2(9.5f, 5.1f);
-    [SerializeField] protected Vector3 scale = new Vector3(0.5f, 0.5f, 0.5f);
+    [SerializeField] private Vector2 spawnArea = new(9.5f, 5.1f);
+    [SerializeField] protected Vector3 scale = new(0.5f, 0.5f, 0.5f);
 
 
-    protected override void SpawnMember(BandMemberData data, int index)
+    protected override void SpawnMember(BandMemberInstance data, int index)
     {
-        Vector3 randomPos = new Vector3(Random.Range(-spawnArea.x, spawnArea.x), Random.Range(-spawnArea.y, spawnArea.y), 0);
+        Vector3 randomPos = new(Random.Range(-spawnArea.x, spawnArea.x), Random.Range(-spawnArea.y, spawnArea.y), 0);
         GameObject spawnedBandMember = Instantiate(bandMemberPrefab, randomPos, Quaternion.identity);
 
-        spawnedBandMember.GetComponent<BandMember>().PopulateBandMemberData(data);
+        spawnedBandMember.GetComponent<BandMember>().PopulateBandMemberInstance(data);
         spawnedBandMember.transform.localScale = scale;
 
         // Add ambulation

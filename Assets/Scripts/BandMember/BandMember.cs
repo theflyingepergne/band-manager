@@ -3,7 +3,7 @@ using UnityEngine;
 public class BandMember : MonoBehaviour, IClickable
 {
     //---References---//
-    [SerializeField] public BandMemberData bandMemberData;
+    public BandMemberInstance bandMemberInstance;
     private bool isBeingViewed = false;
 
     //---Events---//
@@ -14,13 +14,13 @@ public class BandMember : MonoBehaviour, IClickable
     //---Methods---//
     public void Start()
     {
-        PopulateBandMemberData(bandMemberData);
+        PopulateBandMemberInstance(bandMemberInstance);
     }
 
-    public void PopulateBandMemberData(BandMemberData data)
+    public void PopulateBandMemberInstance(BandMemberInstance data)
     {
-        bandMemberData = data;
-        GetComponent<SpriteRenderer>().sprite = data.memberSprite;
+        bandMemberInstance = data;
+        GetComponent<SpriteRenderer>().sprite = data.sprite;
     }
 
     public void OnClicked()
@@ -28,7 +28,7 @@ public class BandMember : MonoBehaviour, IClickable
         if (isBeingViewed == true)
         {
             // If we are already looking at the band member, close the panel
-            ViewBandMembersUIManager.Instance.ShowBandMemberDetails(false, bandMemberData);
+            ViewBandMembersUIManager.Instance.ShowBandMemberDetails(false, bandMemberInstance);
 
             // If the band member can ambulate, let them resume ambulating
             if (TryGetComponent<Ambulate>(out Ambulate amb))
@@ -41,10 +41,10 @@ public class BandMember : MonoBehaviour, IClickable
         else
         {
             // If we are not already looking at band member, open the panel
-            ViewBandMembersUIManager.Instance.ShowBandMemberDetails(true, bandMemberData);
+            ViewBandMembersUIManager.Instance.ShowBandMemberDetails(true, bandMemberInstance);
 
             // TEST: Write a song for this band member when clicked
-            WriteSong(bandMemberData);
+            WriteSong(bandMemberInstance);
 
             // If band member can ambulate, stop them from moving
             if (TryGetComponent<Ambulate>(out Ambulate amb))
@@ -67,9 +67,9 @@ public class BandMember : MonoBehaviour, IClickable
         isBeingViewed = false;
     }
 
-    public void WriteSong(BandMemberData data)
+    public void WriteSong(BandMemberInstance data)
     {
-        string newSongName = $"{data.memberName}'s Song";
+        string newSongName = $"{data.name}'s Song";
         float newSongScore = Random.Range(0f, 100f);
 
         SongEntry newSongEntry = new(newSongName, data, newSongScore);

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 316d4f2a6ae204b898df41c2230032f1, type: 3}
   m_Name: BandMemberDatabase
   m_EditorClassIdentifier: Assembly-CSharp::BandMemberDatabase
-  recruitableBandMembers:
+  BandMemberInstances:
   - {fileID: 11400000, guid: 8d82f51ae66b1644d8ea8f32ef3fc0b3, type: 2}
   - {fileID: 11400000, guid: 928462e6cabc94b498b1780c745b2905, type: 2}
   - {fileID: 11400000, guid: 55cabd3e86b9b4e6aa034cb94d84f076, type: 2}

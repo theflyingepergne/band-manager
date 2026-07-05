@@ -5,7 +5,7 @@ public class SongEntry
 {
     [Header("Info")]
     public string songName = "It's a song";
-    public BandMemberData author;
+    public BandMemberInstance author;
     // public List<GenreData> songGenres;
     // public List<InstrumentData> songInstruments;
 
@@ -14,7 +14,7 @@ public class SongEntry
     // Eventually songScore will be a calculated value
     // Add things here that will be used to calculate songScore
     
-    public SongEntry(string name, BandMemberData bandMember, float score)
+    public SongEntry(string name, BandMemberInstance bandMember, float score)
     {
         songName = name;
         author = bandMember;
