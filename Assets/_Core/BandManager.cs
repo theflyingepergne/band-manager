@@ -6,10 +6,13 @@ public class BandManager
     public static BandManager Instance { get; private set; }
 
     //---References---//
-    public List<BandMemberInstance> bandMembers = new();
+    public Dictionary<string, BandMemberInstance> bandMembers = new();
     public List<SongEntry> songCollection = new();
     public List<SongEntry> activeSetlist = new();
     public VenueData destinationVenue;
+
+    //---Local References---//
+    private RecruitmentManager rm;
 
     //---Stats---//
     public float money = 100f;
@@ -25,6 +28,8 @@ public class BandManager
         Debug.Log("Initialized BandManager");
         // TODO: Load stats from SaveLoadSystem
         // Instance.LoadCoreStats();
+
+        Instance.rm = RecruitmentManager.Instance;
     }
 
     //---Stat Methods---//
@@ -51,16 +56,24 @@ public class BandManager
     }
 
     //---Band Member Methods---//
-    public void RecruitMember(BandMemberInstance data)
+    public void RecruitMember(string id)
     {
-        if (!bandMembers.Contains(data))
+        // Try get bandMemberInstance from RecruitmentManager
+        BandMemberInstance member = rm.GetBandMemberInstance(id);
+
+        if (member != null)
         {
-            bandMembers.Add(data);
-            Debug.Log($"Hired {data.name}! {bandMembers.Count} band members");
+            // if they exist, recruit them
+            member.isRecruited = true;
+            member.wasRecruited = true;
+
+            bandMembers.Add(id, member);
+            
+            Debug.Log($"Hired {member.name}!");
         }
         else
         {
-            Debug.Log("Error, no data found during hire");
+            Debug.LogError("No BandMemberInstance found");
         }
     }
 
@@ -83,10 +96,9 @@ public class BandManager
         if (bandMembers != null && bandMembers.Count > 0)
         {
             // pick a random band member to supply song data
-            int i = Random.Range(0, bandMembers.Count);
-            bandMember = bandMembers[i];
+            var (id, member) = rm.GetRandomBandMemberInstance().Value;
+            bandMember = member;
             songName = $"{bandMember.name}'s song";
-
         }
         else
         {

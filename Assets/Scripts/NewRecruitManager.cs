@@ -5,7 +5,6 @@ public class NewRecruitManager : MonoBehaviour
 {
     //---References---//
     [Header("UI")]
-    [SerializeField] private GameObject newRecruitPrefab;
     [SerializeField] private Image recruitSprite;
     [SerializeField] private TMP_Text recruitName;
     [SerializeField] private TMP_Text recruitInstruments;
@@ -13,6 +12,7 @@ public class NewRecruitManager : MonoBehaviour
     [SerializeField] private RectTransform recruitDismissPanel;
 
     //---Local References---//
+    private string id;
     private BandMemberInstance data;
 
     //---Events---//
@@ -31,9 +31,10 @@ public class NewRecruitManager : MonoBehaviour
     }
 
     //---Methods---//
-    public void SetupNewRecruit(BandMemberInstance newData)
+    public void SetupNewRecruit(string newID)
     {
-        data = newData;
+        id = newID;
+        data = RecruitmentManager.Instance.GetBandMemberInstance(id);
         recruitSprite.sprite = data.sprite;
         recruitName.text = data.name;
         // recruitInstruments.text = $"Plays {data.instruments[0].instrumentName}";
@@ -55,13 +56,13 @@ public class NewRecruitManager : MonoBehaviour
 
     public void Recruit()
     {
-        BandManager.Instance?.RecruitMember(data);
-        Destroy(newRecruitPrefab);
+        BandManager.Instance.RecruitMember(id);
+        Destroy(gameObject);
     }
 
     public void Dismiss()
     {
-        Destroy(newRecruitPrefab);
+        Destroy(gameObject);
     }
 
     private void CloseIfNotThis(NewRecruitManager openedManager)

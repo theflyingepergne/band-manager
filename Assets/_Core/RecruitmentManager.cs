@@ -74,7 +74,7 @@ public class RecruitmentManager
     }
 
     //--Getters---//
-    private BandMemberInstance GetBandMemberInstance(string id)
+    public BandMemberInstance GetBandMemberInstance(string id)
     {
         if (allBandMemberInstances.TryGetValue(id, out var result))
         {
@@ -87,30 +87,22 @@ public class RecruitmentManager
         }
     }
 
-    public BandMemberInstance GetRandomBandMemberInstance(List<string> excludedIds = null)
+    public (string id, BandMemberInstance member)? GetRandomBandMemberInstance(List<string> excludedIds = null)
     {
-        // get all keys
-        IEnumerable<string> validKeys = allBandMemberInstances.Keys;
+        IEnumerable<KeyValuePair<string, BandMemberInstance>> candidates = allBandMemberInstances;
 
-        if (excludedIds != null || excludedIds.Count > 0)
+        if (excludedIds != null && excludedIds.Count > 0)
         {
-            // keep only the validKeys that do not contain excludedIds
-            validKeys = validKeys.Where(id => !excludedIds.Contains(id));
+            candidates = candidates.Where(pair => !excludedIds.Contains(pair.Key));
         }
-        
-        // create a temporary array which we can use to get random indexes
-        string[] keys = validKeys.ToArray();
 
-        if (keys.Length > 0)
-        {
-            // if the keys array > 0, return a random BandMemberInstance
-            return allBandMemberInstances[keys[Random.Range(0, keys.Length)]];
-        }
-        else
-        {
-            // otherwise return null
-            return null;
-        }
+        var array = candidates.ToArray();
+
+        if (array.Length == 0) return null;
+
+        var chosen = array[Random.Range(0, array.Length)];
+
+        return (chosen.Key, chosen.Value);
     }
 }
 

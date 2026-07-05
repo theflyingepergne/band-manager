@@ -8,6 +8,8 @@ public class BandMemberInstance
     public string name;
     public int talentLevel;
     public Sprite sprite;
+    // genres
+    // instruments
 
     //---Recruitment vars---//
     public bool isRecruited = false;

@@ -13,7 +13,6 @@ public class ScheduleManager
     private readonly List<GameEventData> allGameEvents = new();
     private readonly List<VenueData> allVenues = new();
     private DateManager dm;
-    private BandManager bm;
     private GameDate date;
 
     //---Methods---//
@@ -25,7 +24,6 @@ public class ScheduleManager
         
         // Pull date from dateManager
         Instance.dm = DateManager.Instance;
-        Instance.bm = BandManager.Instance;
         Instance.date = Instance.dm.date;
 
         // Listen for date changes
@@ -154,7 +152,7 @@ public class ScheduleManager
     {
         foreach (ScheduledGig gig in scheduledGigs)
         {
-            if (bm.destinationVenue == gig.venueData
+            if (BandManager.Instance.destinationVenue == gig.venueData
                 && gig.date.IsSameDate(queryDate)
                 && gig.isCompleted == false)
             {

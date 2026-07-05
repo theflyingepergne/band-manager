@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class RecruitUIManager : MonoBehaviour
@@ -38,18 +39,23 @@ public class RecruitUIManager : MonoBehaviour
     {
         ClearRecruitmentPanel();
 
-        List<string> currentIds = new();
+        List<string> currentIds = BandManager.Instance.bandMembers.Keys.ToList();
 
         for (int i = 0; i < 3; i++)
         {
-            BandMemberInstance bMI = rm.GetRandomBandMemberInstance(currentIds);
+            var result = rm.GetRandomBandMemberInstance(currentIds);
+
+            // if there are no more available band members, stop loop
+            if (result == null) break;
+            
+            var (id, member) = result.Value;
 
             GameObject newRecruit = Instantiate(newRecruitPrefab, recruitBandMemberPanel, false);
             NewRecruitManager newRecruitManager = newRecruit.GetComponent<NewRecruitManager>();
 
-            newRecruitManager.SetupNewRecruit(bMI);
-            
-            currentIds.Add(bMI.id);
+            newRecruitManager.SetupNewRecruit(id);
+
+            currentIds.Add(id);
         }
     }
 
