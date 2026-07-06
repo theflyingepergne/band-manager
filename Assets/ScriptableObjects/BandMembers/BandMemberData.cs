@@ -25,12 +25,12 @@ public class BandMemberData : ScriptableObject
 
     public Sprite memberSprite;
 
-    //---Genres
+    //---Genres---//
     public List<GenreData> genres;
 
     //---Traits---//
     public List<string> traits;
 
     //---Songs---//
-    public List<SongEntry> songsWritten = new();
+    public List<SongEntry> songsWritten;
 }

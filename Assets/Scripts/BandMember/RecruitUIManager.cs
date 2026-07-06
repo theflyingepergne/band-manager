@@ -14,6 +14,7 @@ public class RecruitUIManager : MonoBehaviour
     //---Local References---//
     private RecruitmentManager rm;
 
+    //---Methods---//
     void Awake()
     {
         rm = RecruitmentManager.Instance;
