@@ -1,5 +1,11 @@
 {
   "dependencies": {
+    "ayellowpaper.serialized-dictionary": {
+      "version": "file:ayellowpaper.serialized-dictionary",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.mackysoft.serializereference-extensions": {
       "version": "https://github.com/mackysoft/Unity-SerializeReferenceExtensions.git?path=Assets/MackySoft/MackySoft.SerializeReferenceExtensions",
       "depth": 0,

@@ -69,32 +69,12 @@ public class BandMember : MonoBehaviour, IClickable
 
     public void WriteSong(BandMemberInstance data)
     {
-        string newSongName = $"{data.name}'s Song";
-        float newSongScore = Random.Range(0f, 100f);
-
-        SongEntry newSongEntry = new(newSongName, data, newSongScore);
-
-        // // 1. Initialize the lists so they are valid
-        // newSongData.songGenres = new List<GenreData>();
-        // newSongData.songInstruments = new List<InstrumentData>();
-
-        // // 2. Pick a random Genre (if the member has any)
-        // if (data.genres != null && data.genres.Count > 0)
-        // {
-        //     int randomIndex = Random.Range(0, data.genres.Count);
-        //     newSongData.songGenres.Add(data.genres[randomIndex]);
-        // }
-
-        // // 3. Pick a random Instrument (if the member has any)
-        // if (data.instruments != null && data.instruments.Count > 0)
-        // {
-        //     int randomIndex = Random.Range(0, data.instruments.Count);
-        //     newSongData.songInstruments.Add(data.instruments[randomIndex]);
-        // }
+        SongEntry newSongEntry = new(
+            $"{data.name}'s Song",
+            data,
+            data.genreAffinities,
+            Random.Range(0f, 100f));
 
         BandManager.Instance.AddSongToCollection(newSongEntry);
-
-        // Debug.Log(newSongEntry.songName);
-        // Debug.Log("Song score = " + newSongEntry.songScore);
     }
 }

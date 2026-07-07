@@ -18,20 +18,68 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1da549d331342a042ada5e266da5728c, type: 2}
   _talentLevel: 1
   memberSprite: {fileID: 21300000, guid: 4c99eb2b31a671049b05f3e148ec39a1, type: 3}
-  genres:
-  - {fileID: 11400000, guid: 48e9c2379bfb64b2bbede20232808946, type: 2}
-  - {fileID: 11400000, guid: a7ef8e7ffbfa14b7c80ce20b7b108a69, type: 2}
+  genreAffinities:
+    Values:
+      _serializedList:
+      - Key: 4
+        Value: 10
+      - Key: 10
+        Value: -5
+      - Key: 2
+        Value: 9
+      - Key: 5
+        Value: 5
+  recruitThreshold: 0
   traits:
   - Gorgeous
   - Funny
   - Short Temper
   songsWritten:
-  - songName: Eddie Murphy's Song
-    author: {fileID: 0}
-    songScore: 95.74275
-  - songName: Eddie Murphy's Song
-    author: {fileID: 0}
-    songScore: 61.92464
-  - songName: Eddie Murphy's Song
-    author: {fileID: 0}
-    songScore: 61.837204
+  - name: 
+    author:
+      id: 
+      name: 
+      talentLevel: 0
+      sprite: {fileID: 0}
+      genreAffinities:
+        Values:
+          _serializedList: []
+      isRecruited: 0
+      wasRecruited: 0
+      recruitThreshold: 0
+    genreWeights:
+      Values:
+        _serializedList: []
+    score: 0
+  - name: 
+    author:
+      id: 
+      name: 
+      talentLevel: 0
+      sprite: {fileID: 0}
+      genreAffinities:
+        Values:
+          _serializedList: []
+      isRecruited: 0
+      wasRecruited: 0
+      recruitThreshold: 0
+    genreWeights:
+      Values:
+        _serializedList: []
+    score: 0
+  - name: 
+    author:
+      id: 
+      name: 
+      talentLevel: 0
+      sprite: {fileID: 0}
+      genreAffinities:
+        Values:
+          _serializedList: []
+      isRecruited: 0
+      wasRecruited: 0
+      recruitThreshold: 0
+    genreWeights:
+      Values:
+        _serializedList: []
+    score: 0

@@ -68,7 +68,7 @@ public class GigSetlistUIManager : Singleton<GigSetlistUIManager>
 
             if (songManager != null)
             {
-                songManager.SetupSong(i, song.songName);
+                songManager.SetupSong(i, song.name);
             }
             else
             {

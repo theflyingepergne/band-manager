@@ -41,7 +41,7 @@ public class PrepareSetlistSongManager : MonoBehaviour, IBeginDragHandler, IDrag
 
         if (data != null)
         {
-            songName.text = data.songName;
+            songName.text = data.name;
         }
         else
         {

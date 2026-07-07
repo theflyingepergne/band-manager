@@ -1,0 +1,19 @@
+public enum Genre
+{
+    Blues,
+    Classical,
+    Disco,
+    Folk,
+    Funk,
+    Jazz,
+    Pop,
+    Psychedelic,
+    Punk,
+    Rock,
+    Metal,
+    NewWave,
+    Techno,
+    Dance,
+    House,
+    HipHop
+}

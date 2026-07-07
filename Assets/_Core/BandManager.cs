@@ -82,7 +82,7 @@ public class BandManager
     {
         songCollection.Add(song);
         // Debug.Log($"Added {song.songName}! {songCollection.Count} songs in collection");
-        Debug.Log($"Added {song.songName}, score = {song.songScore}");
+        Debug.Log($"Added {song.name}, score = {song.score}");
     }
 
     //---Game Event Methods---//
@@ -91,6 +91,7 @@ public class BandManager
         // Init vars
         string songName;
         BandMemberInstance bandMember;
+        GenreWeights genreWeights;
         float newSongScore = Random.Range(60f, 100f);
 
         if (bandMembers != null && bandMembers.Count > 0)
@@ -98,15 +99,23 @@ public class BandManager
             // pick a random band member to supply song data
             var (id, member) = rm.GetRandomBandMemberInstance().Value;
             bandMember = member;
+            genreWeights = bandMember.genreAffinities;
             songName = $"{bandMember.name}'s song";
         }
         else
         {
             songName = "Default song name";
             bandMember = new();
+            genreWeights = new((Genre.Rock, 10f));
+
         }
 
-        SongEntry newSong = new(songName, bandMember, newSongScore);
+        SongEntry newSong = new(
+            songName,
+            bandMember,
+            genreWeights,
+            newSongScore);
+        
         AddSongToCollection(newSong);
     }
 

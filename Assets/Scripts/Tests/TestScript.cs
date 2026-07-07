@@ -70,20 +70,21 @@ public class TestSongGenerator : MonoBehaviour
         {
             "Bleed English",
             "The Geeta",
-            "Sweetness",
-            "Hear You Me",
-            "Authority Song",
             "My Gus Theory",
-            "A Praise Chorus",
             "Lucky Pedro Mint",
-            "Work",
-            "Always Be Andy"
+            "Always Be Andy",
+            "Hip to be Obedient"
         };
 
         for (int i = 0; i < titles.Length; i++)
         {
             float newSongScore = Random.Range(60f, 100f);
-            SongEntry newSong = new SongEntry(titles[i], bandMemberData, newSongScore);
+            SongEntry newSong = new(
+                titles[i],
+                bandMemberData,
+                bandMemberData.genreAffinities,
+                newSongScore);
+
             BandManager.Instance.AddSongToCollection(newSong);
         }
 

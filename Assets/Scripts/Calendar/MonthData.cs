@@ -14,19 +14,19 @@ public static class MonthList
 {
     public static readonly MonthData[] Months =
     {
-        new MonthData("Month = 0", 0),
-        new MonthData("January", 31),
-        new MonthData("February", 28),
-        new MonthData("March", 31),
-        new MonthData("April", 30),
-        new MonthData("May", 31),
-        new MonthData("June", 30),
-        new MonthData("July", 31),
-        new MonthData("August", 31),
-        new MonthData("September", 30),
-        new MonthData("October", 31),
-        new MonthData("November", 30),
-        new MonthData("December", 31)
+        new("Month = 0", 0),
+        new("January", 31),
+        new("February", 28),
+        new("March", 31),
+        new("April", 30),
+        new("May", 31),
+        new("June", 30),
+        new("July", 31),
+        new("August", 31),
+        new("September", 30),
+        new("October", 31),
+        new("November", 30),
+        new("December", 31)
     };
     // to use:
     // month = MonthList.Months[1]

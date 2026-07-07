@@ -44,7 +44,7 @@ public class GigReport : MonoBehaviour
             foreach (SongEntry song in gSUIM.setlist)
             {
                 // Add song score to song score total
-                songScoreTotal += song.songScore;
+                songScoreTotal += song.score;
             }
             return songScoreTotal;
         }

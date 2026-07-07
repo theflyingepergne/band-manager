@@ -95,7 +95,7 @@ public void StartGig()
 
         // Setup vibeBar
         GigVibeBar vibeBarScript = vibeBar.GetComponent<GigVibeBar>();
-        vibeBarScript.SetupBar(song.songScore, GigDirector.Instance.songDuration);
+        vibeBarScript.SetupBar(song.score, GigDirector.Instance.songDuration);
 
         // Debug.Log(song.songName);
         return vibeBar;

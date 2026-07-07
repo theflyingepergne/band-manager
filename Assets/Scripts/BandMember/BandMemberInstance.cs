@@ -8,7 +8,7 @@ public class BandMemberInstance
     public string name;
     public int talentLevel;
     public Sprite sprite;
-    // genres
+    public GenreWeights genreAffinities;
     // instruments
 
     //---Recruitment vars---//

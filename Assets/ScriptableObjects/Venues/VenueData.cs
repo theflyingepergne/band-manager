@@ -12,7 +12,7 @@ public class VenueData : ScriptableObject
     [SerializeField] public float distance;
 
     [Header("Gig Info")]
-    [SerializeField] public List<GenreData> genres;
+    [SerializeField] public Dictionary<Genre, float> genres;
     [SerializeField] public int capacity;
     [SerializeField] public float bookingFee;
     [SerializeField] public float basePay;

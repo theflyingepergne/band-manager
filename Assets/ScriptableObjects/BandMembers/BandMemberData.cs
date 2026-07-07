@@ -1,4 +1,3 @@
-// Scriptable Object to hold data for each band member
 using System;
 using System.Collections.Generic;
 using Unity.Properties;
@@ -26,9 +25,15 @@ public class BandMemberData : ScriptableObject
     public Sprite memberSprite;
 
     //---Genres---//
-    public List<GenreData> genres;
+    public GenreWeights genreAffinities;
+    // affinities vs weights
+    // same thing, different names:
+    // affinities = the effect ON something
+    // weights = the weights they HAVE (calculated by affinities)
 
     //---Traits---//
+    [Range(0, 1)]
+    public float recruitThreshold;
     public List<string> traits;
 
     //---Songs---//

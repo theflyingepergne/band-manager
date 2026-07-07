@@ -58,8 +58,8 @@ public class RecruitmentManager
                 name = data.memberName,
                 talentLevel = data.talentLevel,
                 sprite = data.memberSprite,
-
-                recruitThreshold = Random.Range(60, 65)
+                genreAffinities = data.genreAffinities,
+                recruitThreshold = data.recruitThreshold,
             };
 
             // Add BandMemberInstance to list
