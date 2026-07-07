@@ -18,30 +18,34 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e3afe060d6108024bbaa372bae18e4bd, type: 2}
   _talentLevel: 3
   memberSprite: {fileID: 21300000, guid: 9f766c9a835ac5743af45f3fb9197d2d, type: 3}
-  genreWeights:
+  genreAffinities:
     Values:
       _serializedList:
       - Key: 1
-        Value: 6
+        Value: 8
       - Key: 5
-        Value: 6
-      - Key: 9
-        Value: 5
+        Value: 7
+      - Key: 13
+        Value: 3
+  recruitThreshold: 0
   traits:
   - Charismatic
   - Pragmatic
   - Late
   songsWritten:
-  - songName: Joanna Lumley's Song
+  - name: 
     author:
       id: 
       name: 
       talentLevel: 0
       sprite: {fileID: 0}
-      genreWeights:
+      genreAffinities:
         Values:
           _serializedList: []
       isRecruited: 0
       wasRecruited: 0
       recruitThreshold: 0
-    songScore: 58.815067
+    genreWeights:
+      Values:
+        _serializedList: []
+    score: 0

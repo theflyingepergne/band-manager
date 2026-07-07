@@ -1,3 +1,4 @@
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,6 +10,7 @@ public class NewRecruitManager : MonoBehaviour
     [SerializeField] private Image recruitSprite;
     [SerializeField] private TMP_Text recruitName;
     [SerializeField] private TMP_Text recruitInstruments;
+    [SerializeField] private TMP_Text recruitGenres;
     [SerializeField] private TMP_Text recruitTraits;
     [SerializeField] private RectTransform recruitDismissPanel;
 
@@ -39,6 +41,22 @@ public class NewRecruitManager : MonoBehaviour
         recruitSprite.sprite = data.sprite;
         recruitName.text = data.name;
         // recruitInstruments.text = $"Plays {data.instruments[0].instrumentName}";
+        var favouriteGenre = data.genreAffinities.
+            GetDominantGenres().
+            First();
+        
+        if (favouriteGenre.Value > 5)
+        {
+            recruitGenres.text = $"Loves {favouriteGenre.Key}";
+        }
+        else if (5 >= favouriteGenre.Value && favouriteGenre.Value > 0)
+        {
+            recruitGenres.text = $"Likes {favouriteGenre.Key}";
+        }
+        else
+        {
+            recruitGenres.text = $"Doesn't like {favouriteGenre.Key}";
+        }
         // recruitTraits.text = $"Seems {data.traits[0]}...";
     }
 

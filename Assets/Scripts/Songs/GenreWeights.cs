@@ -32,6 +32,11 @@ public class GenreWeights
         SetWeight(genre, currentWeight);
     }
 
+    public string[] GetGenresAsStrings()
+    {
+        return Values.Select(g => g.Key.ToString()).ToArray();
+    }
+
     public Dictionary<Genre, float> GetDominantGenres()
     {
         return Values

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
 
 public class ViewBandMembersUIManager : Singleton<ViewBandMembersUIManager>
 {
@@ -35,7 +36,7 @@ public class ViewBandMembersUIManager : Singleton<ViewBandMembersUIManager>
         if (data != null)
         {
             nameText.text = data.name;
-            // genresText.text = string.Join(", ", data.genres.ConvertAll(g => g.genreName));
+            genresText.text = string.Join(", ", data.genreAffinities.GetGenresAsStrings());
             talentBarFillImage.fillAmount = data.talentLevel / 10f;
             // instrumentsText.text = string.Join(", ", data.instruments.ConvertAll(i => i.instrumentName));
             // traitsText.text = string.Join(", ", data.traits);
@@ -50,6 +51,5 @@ public class ViewBandMembersUIManager : Singleton<ViewBandMembersUIManager>
         {
             BandMemberDetailsPanel.gameObject.SetActive(false);
         }
-
     }
 }

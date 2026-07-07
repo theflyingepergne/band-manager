@@ -18,43 +18,50 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c551a6b860782f548987801332244ef8, type: 2}
   _talentLevel: 8
   memberSprite: {fileID: 21300000, guid: a2bc76d151ece47fdb75326aa1aa33a1, type: 3}
-  genreWeights:
+  genreAffinities:
     Values:
       _serializedList:
-      - Key: 10
-        Value: 8
       - Key: 9
         Value: 10
-      - Key: 8
-        Value: 4
+      - Key: 10
+        Value: 10
+      - Key: 7
+        Value: 5
+  recruitThreshold: 0
   traits:
   - Wild
   - Salacious
   - Funny
   songsWritten:
-  - songName: Jack Black's Song
+  - name: 
     author:
       id: 
       name: 
       talentLevel: 0
       sprite: {fileID: 0}
-      genreWeights:
+      genreAffinities:
         Values:
           _serializedList: []
       isRecruited: 0
       wasRecruited: 0
       recruitThreshold: 0
-    songScore: 56.19475
-  - songName: Jack Black's Song
+    genreWeights:
+      Values:
+        _serializedList: []
+    score: 0
+  - name: 
     author:
       id: 
       name: 
       talentLevel: 0
       sprite: {fileID: 0}
-      genreWeights:
+      genreAffinities:
         Values:
           _serializedList: []
       isRecruited: 0
       wasRecruited: 0
       recruitThreshold: 0
-    songScore: 91.074646
+    genreWeights:
+      Values:
+        _serializedList: []
+    score: 0
