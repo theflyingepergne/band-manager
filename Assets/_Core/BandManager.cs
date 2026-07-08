@@ -107,14 +107,14 @@ public class BandManager
             songName = "Default song name";
             bandMember = new();
             genreWeights = new((Genre.Rock, 10f));
-
         }
 
         SongEntry newSong = new(
             songName,
             bandMember,
             genreWeights,
-            newSongScore);
+            newSongScore
+        );
         
         AddSongToCollection(newSong);
     }

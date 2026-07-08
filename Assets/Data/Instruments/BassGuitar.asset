@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51a2b2e98b7f6a24ea64eb5a6700b9da, type: 3}
   m_Name: BassGuitar
   m_EditorClassIdentifier: Assembly-CSharp::InstrumentData
-  instrumentName: Bass Guitar
-  instrumentSprite: {fileID: 21300000, guid: 9802a0741417698478e9314f2e3c8733, type: 3}
+  instrumentName: 
+  sprite: {fileID: 21300000, guid: 9802a0741417698478e9314f2e3c8733, type: 3}
   description: The greatest and coolest instrument on earth
   difficultyLevel: 2
-  genres:
-  - Rock
-  - Jazz
-  - Funk
+  genreAffinities:
+    Values:
+      _serializedList: []
   instrumentTraits:
   - Great for rhythm
   - Bad for solos
+  - Strings can break

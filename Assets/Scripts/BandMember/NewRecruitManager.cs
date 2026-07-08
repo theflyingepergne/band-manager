@@ -1,4 +1,3 @@
-using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -34,30 +33,44 @@ public class NewRecruitManager : MonoBehaviour
     }
 
     //---Methods---//
+    public void ShowNewRecruit()
+    {
+        gameObject.SetActive(true);
+    }
+
     public void SetupNewRecruit(string newID)
     {
         id = newID;
         data = RecruitmentManager.Instance.GetBandMemberInstance(id);
         recruitSprite.sprite = data.sprite;
         recruitName.text = data.name;
-        // recruitInstruments.text = $"Plays {data.instruments[0].instrumentName}";
-        var favouriteGenre = data.genreAffinities.
-            GetDominantGenres().
-            First();
-        
-        if (favouriteGenre.Value > 5)
+        recruitInstruments.text = $"Plays {data.instruments[Random.Range(0, data.instruments.Count - 1)].instrumentName}";
+        FormatGenreAffinityText();
+        // recruitTraits.text = $"Seems {data.traits[0]}...";
+    }
+
+    private void FormatGenreAffinityText()
+    {
+        // Pick a random genre
+        var randomGenre = data.genreAffinities.GetRandomGenre();
+
+        // Format text
+        if (randomGenre.Value > 5)
         {
-            recruitGenres.text = $"Loves {favouriteGenre.Key}";
+            recruitGenres.text = $"Loves {randomGenre.Key}";
         }
-        else if (5 >= favouriteGenre.Value && favouriteGenre.Value > 0)
+        else if (5 >= randomGenre.Value && randomGenre.Value > 0)
         {
-            recruitGenres.text = $"Likes {favouriteGenre.Key}";
+            recruitGenres.text = $"Likes {randomGenre.Key}";
+        }
+        else if (0 >= randomGenre.Value && randomGenre.Value > -5)
+        {
+            recruitGenres.text = $"Doesn't like {randomGenre.Key}";
         }
         else
         {
-            recruitGenres.text = $"Doesn't like {favouriteGenre.Key}";
+            recruitGenres.text = $"Hates {randomGenre.Key}";
         }
-        // recruitTraits.text = $"Seems {data.traits[0]}...";
     }
 
     //---Recruit Dismiss Panel---//

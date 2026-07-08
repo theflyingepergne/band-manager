@@ -12,12 +12,12 @@ public class VenueBandMemberSpawner : BandSpawner
         Transform anchor = stageAnchors[index];
         
         // Set anchor as the parent
-        GameObject sbm = Instantiate(bandMemberPrefab, anchor);
+        GameObject bandMember = Instantiate(bandMemberPrefab, anchor);
         
         // Set local position/rotation to zero
-        sbm.transform.localPosition = Vector3.zero;
-        sbm.transform.localRotation = Quaternion.identity;
+        bandMember.transform.localPosition = Vector3.zero;
+        bandMember.transform.localRotation = Quaternion.identity;
         
-        sbm.GetComponent<BandMember>().PopulateBandMemberInstance(data);
+        bandMember.GetComponent<BandMember>().PopulateBandMemberInstance(data);
     }
 }

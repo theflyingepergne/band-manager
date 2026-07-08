@@ -33,6 +33,7 @@ public class GameEventManager : Singleton<GameEventManager>
 
     //---Local References---//
     private bool selectedChoice = false;
+    private Sequence notificationSequence;
 
     //---Events---//
     private readonly List<System.Action> pendingStatChange = new();
@@ -109,8 +110,8 @@ public class GameEventManager : Singleton<GameEventManager>
 
     private void HandleCompleteTextRevealed()
     {
-        // if seenChoices == false {show choices}
-        // else {show close button}
+        // if selectedChoice == false, show choices
+        // else, show close button
         if (!selectedChoice)
         {
             // if there are choices to show after typing description
@@ -241,7 +242,7 @@ public class GameEventManager : Singleton<GameEventManager>
         ClearNotifications();
 
         // Initialize sequence
-        Sequence notificationSequence = DOTween.Sequence();
+        notificationSequence = DOTween.Sequence();
 
         foreach (ScheduledEvent scheduledEvent in sm.GetTodaysEvents())
         {
@@ -268,6 +269,9 @@ public class GameEventManager : Singleton<GameEventManager>
 
     private void ClearNotifications()
     {
+        notificationSequence?.Kill();
+        notificationSequence = null;
+
         for (int i = notificationsPanel.childCount - 1; i >= 0; i--)
         {
             Transform child = notificationsPanel.GetChild(i);

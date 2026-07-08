@@ -1570,12 +1570,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1089960906}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.36208, y: 0.77215, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1873888465}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &1197440838 stripped
 Camera:
@@ -2860,7 +2860,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1873888465}
   m_Layer: 0
-  m_Name: ---Managers
+  m_Name: ---Managers---
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2883,6 +2883,7 @@ Transform:
   - {fileID: 2082406574}
   - {fileID: 992438138}
   - {fileID: 537102080}
+  - {fileID: 1089960908}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1911910451
@@ -3727,7 +3728,6 @@ SceneRoots:
   - {fileID: 1088909034}
   - {fileID: 1336424880}
   - {fileID: 1749731983}
-  - {fileID: 1089960908}
   - {fileID: 1911910454}
   - {fileID: 1426419729}
   - {fileID: 1873888465}

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using AYellowpaper.SerializedCollections;
+using UnityEngine;
 
 [System.Serializable]
 public class GenreWeights
@@ -42,5 +43,11 @@ public class GenreWeights
         return Values
             .OrderByDescending(pair => pair.Value)
             .ToDictionary(pair => pair.Key, pair => pair.Value);
+    }
+
+    public KeyValuePair<Genre, float> GetRandomGenre()
+    {
+        return Values
+            .ElementAt(Random.Range(0, Values.Count - 1));
     }
 }

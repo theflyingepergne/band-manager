@@ -52,15 +52,7 @@ public class RecruitmentManager
         foreach (BandMemberData data in allBandMembers)
         {
             // Instantiate BandMemberInstance class using BandMemberData
-            BandMemberInstance BandMemberInstance = new()
-            {
-                id = data.name,
-                name = data.memberName,
-                talentLevel = data.talentLevel,
-                sprite = data.memberSprite,
-                genreAffinities = data.genreAffinities,
-                recruitThreshold = data.recruitThreshold,
-            };
+            BandMemberInstance BandMemberInstance = new(data);
 
             // Add BandMemberInstance to list
             allBandMemberInstances.Add(BandMemberInstance.id, BandMemberInstance);
