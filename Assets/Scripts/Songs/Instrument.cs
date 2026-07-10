@@ -2,22 +2,14 @@ using UnityEngine;
 
 public class Instrument: MonoBehaviour
 {
-    //---References---//
-    public string id;
-
     //---Local References---//
-    private InstrumentInstance data;
+    private InstrumentInstance instrumentInstance;
 
     //---Methods---//
-    void Start()
+    void SetupInstrument(InstrumentInstance data)
     {
-        SetupInstrument(id);
-    }
-
-    void SetupInstrument(string id)
-    {
-        data = InstrumentManager.Instance.GetInstrumentInstance(id);
-        Sprite sprite = data.sprite;
+        instrumentInstance = data;
+        Sprite sprite = instrumentInstance.sprite;
         GetComponent<SpriteRenderer>().sprite = sprite;
     }
 }

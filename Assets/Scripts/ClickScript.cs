@@ -5,10 +5,16 @@ using UnityEngine.EventSystems;
 public class ClickScript : MonoBehaviour
 {
     //---References---//
-    private Collider2D lastHitCollider;
+    private Collider2D lastHitCollider = null;
+    private Camera mainCamera;
 
     //---Events---//
     public static System.Action OnClickEmptySpace; // empty space as in no Collider2D
+
+    void Awake()
+    {
+        mainCamera = Camera.main;
+    }
 
     void Update()
     {
@@ -23,7 +29,7 @@ public class ClickScript : MonoBehaviour
         }
 
         // Perform Raycast
-        RaycastHit2D hit2D = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(mousePos), Vector2.zero);
+        RaycastHit2D hit2D = Physics2D.Raycast(mainCamera.ScreenToWorldPoint(mousePos), Vector2.zero);
         Collider2D current = hit2D.collider;
 
         ProcessHoveringOverSomething(current);
@@ -37,7 +43,8 @@ public class ClickScript : MonoBehaviour
         {
             if (current != null)
             {
-                current.GetComponent<IClickable>()?.OnClicked();
+                var clicked = current.GetComponent<IClickable>();
+                clicked?.OnClicked();
             }
             else
             {

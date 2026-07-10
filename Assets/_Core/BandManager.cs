@@ -81,8 +81,7 @@ public class BandManager
     public void AddSongToCollection(SongEntry song)
     {
         songCollection.Add(song);
-        // Debug.Log($"Added {song.songName}! {songCollection.Count} songs in collection");
-        Debug.Log($"Added {song.name}, score = {song.score}");
+        // Debug.Log($"Added {song.name}, score = {song.score}");
     }
 
     //---Game Event Methods---//

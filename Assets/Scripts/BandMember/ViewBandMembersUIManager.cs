@@ -6,7 +6,7 @@ public class ViewBandMembersUIManager : Singleton<ViewBandMembersUIManager>
 {
     //---References---//
     [Header("UI References")]
-    [SerializeField] private RectTransform BandMemberDetailsPanel;    
+    [SerializeField] private GameObject BandMemberDetailsPanel;
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private TMP_Text genresText;
     [SerializeField] private Image talentBarFillImage;
@@ -21,15 +21,15 @@ public class ViewBandMembersUIManager : Singleton<ViewBandMembersUIManager>
     void Start()
     {
         // Hide the details panel on start
-        ShowBandMemberDetails(false);
-    }
-    
-    private void HandleClickEmptySpace()
-    {
-        ShowBandMemberDetails(false, null);
+        HideBandMemberDetails();
     }
 
-    public void ShowBandMemberDetails(bool isActive = false, BandMemberInstance data = null)
+    private void HandleClickEmptySpace()
+    {
+        HideBandMemberDetails();
+    }
+
+    public void ShowBandMemberDetails(BandMemberInstance data = null)
     {
         // Populate it with the data from the BandMemberData
         if (data != null)
@@ -41,14 +41,11 @@ public class ViewBandMembersUIManager : Singleton<ViewBandMembersUIManager>
             // traitsText.text = string.Join(", ", data.traits);
         }
 
-        // Toggle detais panel
-        if (isActive)
-        {
-            BandMemberDetailsPanel.gameObject.SetActive(true);
-        }
-        else
-        {
-            BandMemberDetailsPanel.gameObject.SetActive(false);
-        }
+        BandMemberDetailsPanel.SetActive(true);
+    }
+
+    public void HideBandMemberDetails()
+    {
+        BandMemberDetailsPanel.SetActive(false);
     }
 }

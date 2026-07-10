@@ -4,12 +4,10 @@ public class BandMember : MonoBehaviour, IClickable
 {
     //---References---//
     public BandMemberInstance bandMemberInstance;
-    private bool isBeingViewed = false;
 
     //---Events---//
     void OnEnable() => ClickScript.OnClickEmptySpace += HandleClickEmptySpace;
     void OnDisable() => ClickScript.OnClickEmptySpace -= HandleClickEmptySpace;
-
 
     //---Methods---//
     public void Start()
@@ -20,53 +18,41 @@ public class BandMember : MonoBehaviour, IClickable
     public void PopulateBandMemberInstance(BandMemberInstance data)
     {
         bandMemberInstance = data;
-        GetComponent<SpriteRenderer>().sprite = data.sprite;
+        GetComponent<SpriteRenderer>().sprite = bandMemberInstance.sprite;
     }
 
+    //---Selection---//
     public void OnClicked()
     {
-        if (isBeingViewed == true)
-        {
-            // If we are already looking at the band member, close the panel
-            ViewBandMembersUIManager.Instance.ShowBandMemberDetails(false, bandMemberInstance);
-
-            // If the band member can ambulate, let them resume ambulating
-            if (TryGetComponent<Ambulate>(out Ambulate amb))
-            {
-                amb.doMove = true;
-            }
-
-            isBeingViewed = !isBeingViewed;
-        }
-        else
-        {
-            // If we are not already looking at band member, open the panel
-            ViewBandMembersUIManager.Instance.ShowBandMemberDetails(true, bandMemberInstance);
-
-            // TEST: Write a song for this band member when clicked
-            WriteSong(bandMemberInstance);
-
-            // If band member can ambulate, stop them from moving
-            if (TryGetComponent<Ambulate>(out Ambulate amb))
-            {
-                amb.doMove = false;
-            }
-
-            isBeingViewed = !isBeingViewed;
-        }
-
+        SelectionManager.Instance.Select(this);
     }
 
     private void HandleClickEmptySpace()
     {
-        if (TryGetComponent<Ambulate>(out Ambulate amb))
-        {
-            amb.doMove = true;
-        }
-
-        isBeingViewed = false;
+        SelectionManager.Instance.ClearSelection();
     }
 
+    public void OnSelected()
+    {
+        ViewBandMembersUIManager.Instance.ShowBandMemberDetails(bandMemberInstance);
+
+        if (TryGetComponent(out Ambulate amb))
+            amb.doMove = false;
+
+        WriteSong(bandMemberInstance);
+
+        Debug.Log($"Viewing {bandMemberInstance.name}");
+    }
+
+    public void OnDeselected()
+    {
+        ViewBandMembersUIManager.Instance.HideBandMemberDetails();
+
+        if (TryGetComponent(out Ambulate amb))
+            amb.doMove = true;
+    }
+
+    //---Song Writing---//
     public void WriteSong(BandMemberInstance data)
     {
         SongEntry newSongEntry = new(

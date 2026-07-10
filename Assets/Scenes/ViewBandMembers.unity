@@ -222,6 +222,7 @@ GameObject:
   m_Component:
   - component: {fileID: 19738080}
   - component: {fileID: 19738079}
+  - component: {fileID: 19738081}
   m_Layer: 0
   m_Name: ClickScript
   m_TagString: Untagged
@@ -256,6 +257,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &19738081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 19738078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9499d827d0bf34d0da3a4285cdadf43e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SelectionManager
+  persistAcrossScenes: 0
 --- !u!1001 &34320385
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3250,7 +3264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ViewBandMembersUIManager
   persistAcrossScenes: 0
-  BandMemberDetailsPanel: {fileID: 825928517}
+  BandMemberDetailsPanel: {fileID: 825928516}
   nameText: {fileID: 115322707}
   genresText: {fileID: 1275949758}
   talentBarFillImage: {fileID: 261609281}
@@ -4280,6 +4294,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: House
       objectReference: {fileID: 0}
+    - target: {fileID: 1942176716608871911, guid: f8fa7c30d4f474d90906a37775b607f0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2303927359123782157, guid: f8fa7c30d4f474d90906a37775b607f0, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2628740638034291070, guid: f8fa7c30d4f474d90906a37775b607f0, type: 3}
       propertyPath: m_TargetGraphic
       value: 
@@ -4408,6 +4430,10 @@ PrefabInstance:
       propertyPath: m_PixelsPerUnitMultiplier
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 3166137960140318732, guid: f8fa7c30d4f474d90906a37775b607f0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3698692570848937097, guid: f8fa7c30d4f474d90906a37775b607f0, type: 3}
       propertyPath: m_SizeDelta.y
       value: -10
@@ -4462,6 +4488,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4622765143575695177, guid: f8fa7c30d4f474d90906a37775b607f0, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5160573935504684419, guid: f8fa7c30d4f474d90906a37775b607f0, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5717976916972832808, guid: f8fa7c30d4f474d90906a37775b607f0, type: 3}
