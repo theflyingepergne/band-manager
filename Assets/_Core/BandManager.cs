@@ -21,6 +21,7 @@ public class BandManager
 
     //---Events---//
     public static System.Action<StatType, float> OnStatChanged;
+    public static System.Action<BandMemberInstance> OnBandMemberRecruitmentChanged;
 
     public static void Initialize()
     {
@@ -68,7 +69,8 @@ public class BandManager
             member.wasRecruited = true;
 
             bandMembers.Add(id, member);
-            
+            OnBandMemberRecruitmentChanged?.Invoke(member);
+
             Debug.Log($"Hired {member.name}!");
         }
         else

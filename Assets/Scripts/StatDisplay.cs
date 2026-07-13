@@ -8,6 +8,9 @@ public class StatDisplay : MonoBehaviour
     [SerializeField] public StatType thisStat;
     [SerializeField] private TMP_Text statText;
 
+    private BandManager bm;
+    private Tweener tween;
+
     //---Events---//
     void OnEnable() => BandManager.OnStatChanged += HandleStatChanged;
     void OnDisable() => BandManager.OnStatChanged -= HandleStatChanged;
@@ -15,7 +18,7 @@ public class StatDisplay : MonoBehaviour
     //---Methods---//
     private void Start()
     {
-        BandManager bm = BandManager.Instance;
+        bm = BandManager.Instance;
 
         // Initialise UI with values directly from bm
         switch (thisStat)
@@ -35,13 +38,25 @@ public class StatDisplay : MonoBehaviour
 
     private void HandleStatChanged(StatType stat, float amount)
     {
-        // When stats change, update UI text
+        // When stats change, update UI text, play animation
         if (thisStat == stat)
         {
             DisplayStatText(FormatStatText(stat, amount), amount);
-            statText.transform.DOPunchScale(Vector2.one * 1.2f, 0.2f);
+
+            SetupTween();
         }
-        // Debug.Log("changed stat in UI");
+    }
+
+    private void SetupTween()
+    {
+        if (tween != null && tween.IsActive())
+        {
+            tween.Kill();
+        }
+
+        statText.transform.localScale = Vector3.one;
+
+        tween = statText.transform.DOPunchScale(Vector2.one * 1.2f, 0.25f);
     }
 
     private string FormatStatText(StatType stat, float amount)

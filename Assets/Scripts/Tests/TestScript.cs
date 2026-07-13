@@ -126,6 +126,14 @@ public class TestSongGenerator : MonoBehaviour
         // Fade back in
         await CameraFade.Instance.DoCameraFade(0f);
     }
+
+    private void AlterTrait()
+    {
+        foreach (var m in BandManager.Instance.bandMembers)
+        {
+            // alter trait logic
+        }
+    }
 }
 
 

@@ -13,12 +13,22 @@ MonoBehaviour:
   m_Name: Guitar
   m_EditorClassIdentifier: Assembly-CSharp::InstrumentData
   instrumentName: Electric Guitar
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 207582a067dee724baabda1c71668eaf, type: 3}
   description: For show offs and virtuosos
-  difficultyLevel: 3
+  difficultyLevel: 4
   genreAffinities:
     Values:
-      _serializedList: []
+      _serializedList:
+      - Key: 9
+        Value: 10
+      - Key: 5
+        Value: 6
+      - Key: 3
+        Value: 6
+      - Key: 0
+        Value: 10
+      - Key: 10
+        Value: 10
   instrumentTraits:
   - Ok for rhythm
   - Great for solos

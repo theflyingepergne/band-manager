@@ -31,9 +31,7 @@ MonoBehaviour:
         Value: 5
   recruitThreshold: 0
   traits:
-  - Gorgeous
-  - Funny
-  - Short Temper
+  - {fileID: 11400000, guid: b4922b39212184ce0b6f995d956eaab8, type: 2}
   songsWritten:
   - name: 
     author:
@@ -44,6 +42,7 @@ MonoBehaviour:
       genreAffinities:
         Values:
           _serializedList: []
+      instruments: []
       isRecruited: 0
       wasRecruited: 0
       recruitThreshold: 0
@@ -60,6 +59,7 @@ MonoBehaviour:
       genreAffinities:
         Values:
           _serializedList: []
+      instruments: []
       isRecruited: 0
       wasRecruited: 0
       recruitThreshold: 0
@@ -76,6 +76,7 @@ MonoBehaviour:
       genreAffinities:
         Values:
           _serializedList: []
+      instruments: []
       isRecruited: 0
       wasRecruited: 0
       recruitThreshold: 0

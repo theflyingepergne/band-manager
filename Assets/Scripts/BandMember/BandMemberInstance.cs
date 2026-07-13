@@ -12,6 +12,7 @@ public class BandMemberInstance
     public Sprite sprite;
     public GenreWeights genreAffinities;
     public List<InstrumentInstance> instruments;
+    public List<TraitInstance> traits;
 
     //---Recruitment vars---//
     public bool isRecruited = false;
@@ -33,6 +34,11 @@ public class BandMemberInstance
         // convert instruments
         instruments = data.instruments
             .Select(i => new InstrumentInstance(i))
+            .ToList();
+
+        // convert traits
+        traits = data.traits
+            .Select(t => new TraitInstance(t, this))
             .ToList();
     }
 

@@ -6,6 +6,18 @@ public class StatChange
     public StatType stat;
     public float amount; // Can be negative or positive
 
+    //---Constructor---//
+    public StatChange
+    (
+        StatType newStat = StatType.Money,
+        float newAmount = 0f
+    )
+    {
+        stat = newStat;
+        amount = newAmount;
+    }
+
+    //---Methods---//
     public void SetupStatChange(StatType newStat, float newAmount)
     {
         stat = newStat;

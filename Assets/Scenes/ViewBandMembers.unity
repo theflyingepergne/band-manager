@@ -3211,6 +3211,7 @@ MonoBehaviour:
       Values:
         _serializedList: []
     instruments: []
+    traits: []
     isRecruited: 0
     wasRecruited: 0
     recruitThreshold: 0

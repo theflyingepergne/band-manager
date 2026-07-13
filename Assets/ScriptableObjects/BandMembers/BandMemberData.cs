@@ -34,7 +34,7 @@ public class BandMemberData : ScriptableObject
     //---Traits---//
     [Range(0, 1)]
     public float recruitThreshold;
-    public List<string> traits;
+    public List<TraitData> traits;
 
     //---Songs---//
     public List<SongEntry> songsWritten;

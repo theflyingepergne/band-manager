@@ -9,16 +9,26 @@ public class BandMember : MonoBehaviour, IClickable
     void OnEnable() => ClickScript.OnClickEmptySpace += HandleClickEmptySpace;
     void OnDisable() => ClickScript.OnClickEmptySpace -= HandleClickEmptySpace;
 
-    //---Methods---//
-    public void Start()
-    {
-        PopulateBandMemberInstance(bandMemberInstance);
-    }
-
+    //---Init Methods---//
     public void PopulateBandMemberInstance(BandMemberInstance data)
     {
         bandMemberInstance = data;
+
+        // Debug.Log($"Populating {bandMemberInstance.name}...");
         GetComponent<SpriteRenderer>().sprite = bandMemberInstance.sprite;
+
+        foreach ( var trait in bandMemberInstance.traits)
+        {
+            trait.InitializeConditions();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        foreach (var trait in bandMemberInstance.traits)
+        {
+            trait.DeinitializeConditions();
+        }
     }
 
     //---Selection---//
@@ -41,7 +51,7 @@ public class BandMember : MonoBehaviour, IClickable
 
         WriteSong(bandMemberInstance);
 
-        Debug.Log($"Viewing {bandMemberInstance.name}");
+        // Debug.Log($"Viewing {bandMemberInstance.name}");
     }
 
     public void OnDeselected()

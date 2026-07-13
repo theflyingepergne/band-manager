@@ -13,12 +13,16 @@ MonoBehaviour:
   m_Name: Bassoon
   m_EditorClassIdentifier: Assembly-CSharp::InstrumentData
   instrumentName: Bassoon
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 216b893a41d708441855d7ebc3cfccd6, type: 3}
   description: Bass woodwind instrument to penetrate the soul
   difficultyLevel: 5
   genreAffinities:
     Values:
-      _serializedList: []
+      _serializedList:
+      - Key: 1
+        Value: 10
+      - Key: 5
+        Value: 8
   instrumentTraits:
   - Great for rhythm
   - Great for solos

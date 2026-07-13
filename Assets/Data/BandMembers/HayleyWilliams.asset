@@ -31,7 +31,5 @@ MonoBehaviour:
         Value: -2
   recruitThreshold: 0
   traits:
-  - Cool
-  - Political
-  - Gorgeous
+  - {fileID: 11400000, guid: b4922b39212184ce0b6f995d956eaab8, type: 2}
   songsWritten: []
