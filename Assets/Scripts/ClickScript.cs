@@ -67,4 +67,9 @@ public class ClickScript : MonoBehaviour
             lastHitCollider = current;
         }
     }
+
+    public void ClickOnEmptySpace()
+    {
+        OnClickEmptySpace?.Invoke();
+    }
 }
