@@ -16,7 +16,7 @@ public class TraitInstance
     public List<CustomTraitCondition> traitConditions;
     public List<CustomTraitLogic> traitLogics;
 
-    private string systemTime;
+    // private string systemTime;
 
     //---Constructor---//
     public TraitInstance(TraitData data = null, BandMemberInstance bandMemberInstance = null)
@@ -31,12 +31,13 @@ public class TraitInstance
         traitConditions = data.traitConditions.Select(c => Cloner.CloneFields(c)).ToList();
         traitLogics = data.traitLogics.Select(l => Cloner.CloneFields(l)).ToList();
 
-        systemTime = System.DateTime.Now.ToString();
+        // systemTime = System.DateTime.Now.ToString();
     }
 
     public void InitializeConditions()
     {
-        Debug.Log($"{owner.name}'s trait at {systemTime}");
+        // Debug.Log($"{owner.name}'s trait at {systemTime}");
+
         foreach (var condition in traitConditions)
         {
             condition.Initialize(owner, this);
@@ -58,7 +59,7 @@ public class TraitInstance
         foreach (var logic in traitLogics)
         {
             logic.Execute(owner);
-            Debug.Log($"Executing {logic} belonging to {owner.name}");
+            // Debug.Log($"Executing {logic} belonging to {owner.name}");
         }
     }
 }

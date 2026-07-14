@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 80407610623f742eb9f7f8aad77bbc6b, type: 3}
-  m_Name: SocialButterfly
+  m_Name: SocialButterfly 10
   m_EditorClassIdentifier: Assembly-CSharp::TraitData
   traitName: Social Butterfly
   description: This band member loves to talk to people whenever they get the chance.

@@ -31,5 +31,5 @@ MonoBehaviour:
         Value: -2
   recruitThreshold: 0
   traits:
-  - {fileID: 11400000, guid: b4922b39212184ce0b6f995d956eaab8, type: 2}
+  - {fileID: 11400000, guid: 4625ed3d3673f4d89a860e6bb981198f, type: 2}
   songsWritten: []

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using AYellowpaper.SerializedCollections;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "VenueData", menuName = "Venues/VenueData")]
@@ -12,7 +12,7 @@ public class VenueData : ScriptableObject
     [SerializeField] public float distance;
 
     [Header("Gig Info")]
-    [SerializeField] public Dictionary<Genre, float> genres;
+    [SerializeField] public SerializedDictionary<Genre, float> genreAffinities;
     [SerializeField] public int capacity;
     [SerializeField] public float bookingFee;
     [SerializeField] public float basePay;
