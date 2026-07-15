@@ -98,7 +98,7 @@ public class BandManager
         if (bandMembers != null && bandMembers.Count > 0)
         {
             // pick a random band member to supply song data
-            var (id, member) = rm.GetRandomBandMemberInstance().Value;
+            var (id, member) = rm.GetRandomBandMemberInstance(null, bandMembers).Value;
             bandMember = member;
             genreWeights = bandMember.genreAffinities;
             songName = $"{bandMember.name}'s song";

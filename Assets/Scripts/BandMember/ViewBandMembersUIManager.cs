@@ -15,6 +15,10 @@ public class ViewBandMembersUIManager : Singleton<ViewBandMembersUIManager>
     [SerializeField] private TMP_Text traitsText;
     [SerializeField] private Button talkButton;
     [SerializeField] private Button closeButton;
+    [SerializeField] private RectTransform instrumentsPanel;
+
+    [Header("Prefabs")]
+    [SerializeField] private GameObject instrumentPanel;
 
     //---Events---//
     void OnEnable() => ClickScript.OnClickEmptySpace += HandleClickEmptySpace;
@@ -43,9 +47,36 @@ public class ViewBandMembersUIManager : Singleton<ViewBandMembersUIManager>
             talentBarFillImage.fillAmount = data.talentLevel / 10f;
             instrumentsText.text = string.Join(", ", data.instruments.ConvertAll(i => i.instrumentName));
             traitsText.text = string.Join(", ", data.traits.ConvertAll(t => t.traitName));
+
+            PopulateInstrumentsPanel(data);
         }
 
         BandMemberDetailsPanel.SetActive(true);
+    }
+
+    private void PopulateInstrumentsPanel(BandMemberInstance data)
+    {
+        ClearInstrumentsPanel();
+
+        foreach (var i in data.instruments)
+        {
+            GameObject newInstrumentPanel = Instantiate(instrumentPanel, instrumentsPanel, false);
+            newInstrumentPanel
+                .transform
+                .GetChild(0)
+                // .GetComponentInChildren<Image>().sprite = i.sprite;
+                .GetComponent<Image>().sprite = i.sprite;
+
+        }
+    }
+
+    private void ClearInstrumentsPanel()
+    {
+        for (int i = instrumentsPanel.childCount - 1; i >= 0; i--)
+        {
+            Destroy(instrumentsPanel.GetChild(i).gameObject);
+        }
+
     }
 
     public void HideBandMemberDetails()

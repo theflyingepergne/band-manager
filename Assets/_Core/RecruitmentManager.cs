@@ -79,9 +79,11 @@ public class RecruitmentManager
         }
     }
 
-    public (string id, BandMemberInstance member)? GetRandomBandMemberInstance(List<string> excludedIds = null)
+    public (string id, BandMemberInstance member)? GetRandomBandMemberInstance(List<string> excludedIds = null, Dictionary<string, BandMemberInstance> bandMemberInstancePool = null)
     {
-        IEnumerable<KeyValuePair<string, BandMemberInstance>> candidates = allBandMemberInstances;
+        // if we input a dictionary of bandMemberInstances, choose get a random band member instance from that pool
+        // otherwise, get a random instance from allBandMemberInstances
+        IEnumerable<KeyValuePair<string, BandMemberInstance>> candidates = bandMemberInstancePool ?? allBandMemberInstances;
 
         if (excludedIds != null && excludedIds.Count > 0)
         {
