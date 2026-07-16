@@ -66,7 +66,6 @@ public class RecruitUIManager : MonoBehaviour
             NewRecruitManager newRecruitManager = newRecruit.GetComponent<NewRecruitManager>();
             newRecruitManager.SetupNewRecruit(id);
 
-
             newRecruitSequence.Append
             (
                 newRecruit.transform.DOPunchScale(Vector2.one * strength,
@@ -89,7 +88,9 @@ public class RecruitUIManager : MonoBehaviour
 
         for (int i = recruitBandMemberPanel.transform.childCount - 1; i >= 0; i--)
         {
-            Destroy(recruitBandMemberPanel.transform.GetChild(i).gameObject);
+            Transform child = recruitBandMemberPanel.GetChild(i);
+            child.SetParent(null);
+            Destroy(child.gameObject);
         }
     }
 }

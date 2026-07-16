@@ -30,3 +30,4 @@ MonoBehaviour:
   traits:
   - {fileID: 11400000, guid: b4922b39212184ce0b6f995d956eaab8, type: 2}
   songsWritten: []
+  inkRecruitmentDialogue: {fileID: 4900000, guid: 150040000e92242f582ed7121aa687d1, type: 3}

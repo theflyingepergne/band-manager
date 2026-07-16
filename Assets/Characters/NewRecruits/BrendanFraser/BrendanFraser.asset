@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: BrendanFraser
   m_EditorClassIdentifier: Assembly-CSharp::BandMemberData
   memberName: Brendan Fraser
+  memberSprite: {fileID: 21300000, guid: 537487bec9868f24c961a0ba6ddb9e7b, type: 3}
+  songsWritten: []
+  _talentLevel: 10
   instruments:
   - {fileID: 11400000, guid: 598ded0cc8fe84744b909cf44cec4bc6, type: 2}
   - {fileID: 11400000, guid: c551a6b860782f548987801332244ef8, type: 2}
-  _talentLevel: 10
-  memberSprite: {fileID: 21300000, guid: 537487bec9868f24c961a0ba6ddb9e7b, type: 3}
   genreAffinities:
     Values:
       _serializedList:
@@ -27,7 +28,7 @@ MonoBehaviour:
         Value: 6
       - Key: 8
         Value: 5
-  recruitThreshold: 0
   traits:
   - {fileID: 11400000, guid: 4625ed3d3673f4d89a860e6bb981198f, type: 2}
-  songsWritten: []
+  recruitThreshold: 0
+  inkRecruitmentDialogue: {fileID: 4900000, guid: 8a11c5da0001a493c82a23c5bdb6187e, type: 3}

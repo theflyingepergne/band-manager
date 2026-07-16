@@ -10,7 +10,7 @@ public class VenueOwnerDialogue : DialogueManager
     [SerializeField] private RectTransform dialogueBorder;
 
     [Header("Intro Animation Config")]
-    [SerializeField] private float duration = 1f;
+    [SerializeField] private float duration = 0.25f;
 
     //---Local References---//
     private GameDate chosenDate;
@@ -36,8 +36,9 @@ public class VenueOwnerDialogue : DialogueManager
     // Override intro animation
     protected override void SetupStartingAnimation()
     {
-        Sequence sequence = DOTween.Sequence();
-        sequence.Append(venueOwner.transform.DOMoveX(4.96f, duration));
+        sequence = DOTween.Sequence();
+        sequence.SetAutoKill(false);
+        sequence.Append(venueOwner.transform.DOMoveX(-8f, duration).SetRelative(true));
         sequence.Append(dialogueBorder.DOAnchorPosY(50f, duration));
 
         sequence.Play().OnComplete(AdvanceDialogue);

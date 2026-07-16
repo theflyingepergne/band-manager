@@ -15,6 +15,7 @@ public class BandMemberInstance
     public List<TraitInstance> traits;
 
     //---Recruitment vars---//
+    public TextAsset inkRecruitmentDialogue;
     public bool isRecruited = false;
     public bool wasRecruited = false;
     public float recruitThreshold;
@@ -40,6 +41,8 @@ public class BandMemberInstance
         traits = data.traits
             .Select(t => new TraitInstance(t, this))
             .ToList();
+
+        inkRecruitmentDialogue = data.inkRecruitmentDialogue;
     }
 
     //---Methods---//

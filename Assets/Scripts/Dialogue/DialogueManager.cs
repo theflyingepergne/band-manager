@@ -4,6 +4,7 @@ using Ink.Runtime;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
+using DG.Tweening;
 
 public class DialogueManager : Singleton<DialogueManager>
 {
@@ -19,6 +20,7 @@ public class DialogueManager : Singleton<DialogueManager>
 
     //---Local References---//
     protected Story story;
+    protected Sequence sequence;
     private TypewriterEffect typewriter;
     private bool HasChoices => dialogueChoicesPanel.childCount > 0;
     private bool isProcessingQueuedEvents;
@@ -44,6 +46,7 @@ public class DialogueManager : Singleton<DialogueManager>
         typewriter.CompleteTextRevealed += HandleCompleteTextRevealed;
 
         dialogueText.text = "";
+        ClearChoiceButtons();
 
         SetupStartingAnimation();
     }
@@ -52,8 +55,13 @@ public class DialogueManager : Singleton<DialogueManager>
     {
         typewriter.CompleteTextRevealed -= HandleCompleteTextRevealed;
         OnDialogueEventTriggered -= EvaluateDialogueEvent;
+
         story.UnbindExternalFunction("trigger_dialogue_event");
-        gameObject.SetActive(false);
+
+        sequence.Complete();
+        sequence.PlayBackwards();
+
+        // gameObject.SetActive(false);
     }
 
     // Marked virtual so child classes can do different starting animations

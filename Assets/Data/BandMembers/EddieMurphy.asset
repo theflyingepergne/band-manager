@@ -43,6 +43,8 @@ MonoBehaviour:
         Values:
           _serializedList: []
       instruments: []
+      traits: []
+      inkRecruitmentDialogue: {fileID: 0}
       isRecruited: 0
       wasRecruited: 0
       recruitThreshold: 0
@@ -60,6 +62,8 @@ MonoBehaviour:
         Values:
           _serializedList: []
       instruments: []
+      traits: []
+      inkRecruitmentDialogue: {fileID: 0}
       isRecruited: 0
       wasRecruited: 0
       recruitThreshold: 0
@@ -77,6 +81,8 @@ MonoBehaviour:
         Values:
           _serializedList: []
       instruments: []
+      traits: []
+      inkRecruitmentDialogue: {fileID: 0}
       isRecruited: 0
       wasRecruited: 0
       recruitThreshold: 0
@@ -84,3 +90,4 @@ MonoBehaviour:
       Values:
         _serializedList: []
     score: 0
+  inkRecruitmentDialogue: {fileID: 4900000, guid: 150040000e92242f582ed7121aa687d1, type: 3}

@@ -16,11 +16,16 @@ public class NewRecruitManager : MonoBehaviour
     //---Local References---//
     private string id;
     private BandMemberInstance data;
+    private NewRecruitDialogue newRecruitDialogue;
 
     //---Events---//
     public static System.Action<NewRecruitManager> OnAnyPanelOpened;
 
     //---Init Methods---//
+    void Awake()
+    {
+        newRecruitDialogue = FindAnyObjectByType<NewRecruitDialogue>();
+    }
     private void OnEnable()
     {
         OnAnyPanelOpened += CloseIfNotThis;
@@ -99,6 +104,11 @@ public class NewRecruitManager : MonoBehaviour
     {
         BandManager.Instance.RecruitMember(id);
         Destroy(gameObject);
+    }
+
+    public void StartDialogue()
+    {
+        newRecruitDialogue.PrepareDialogue(data.inkRecruitmentDialogue, data.sprite, this);
     }
 
     public void Dismiss()
