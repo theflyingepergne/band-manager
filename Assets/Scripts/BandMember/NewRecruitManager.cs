@@ -51,7 +51,7 @@ public class NewRecruitManager : MonoBehaviour
         recruitName.text = data.name;
         recruitInstruments.text = $"Plays {data.instruments[Random.Range(0, data.instruments.Count - 1)].instrumentName}";
         FormatGenreAffinityText();
-        // recruitTraits.text = $"Seems {data.traits[0]}...";
+        recruitTraits.text = $"{data.traits[0].traitName}";
     }
 
     private void FormatGenreAffinityText()
