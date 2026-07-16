@@ -29,6 +29,8 @@ public class DialogueManager : Singleton<DialogueManager>
     public static System.Action<string, string> OnDialogueTagEncountered;
     public static System.Action<string, string> OnDialogueEventTriggered;
     private readonly List<System.Action> pendingDialogueEvents = new();
+    private readonly List<System.Action> afterDialogueEvents = new();
+
 
     //---Init Methods---//
     protected virtual void OnEnable(){}
@@ -59,9 +61,8 @@ public class DialogueManager : Singleton<DialogueManager>
         story.UnbindExternalFunction("trigger_dialogue_event");
 
         sequence.Complete();
+        sequence.OnRewind(AfterDialogueEvents);
         sequence.PlayBackwards();
-
-        // gameObject.SetActive(false);
     }
 
     // Marked virtual so child classes can do different starting animations
@@ -222,6 +223,10 @@ public class DialogueManager : Singleton<DialogueManager>
             // Queue a lambda that will re-run this method, but mark it to fire immediately next time
             pendingDialogueEvents.Add(() => EvaluateDialogueEvent(eventName, ""));
         }
+        else if (eventParameter == "after_dialogue" && !isProcessingQueuedEvents)
+        {
+            afterDialogueEvents.Add(() => EvaluateDialogueEvent(eventName, ""));
+        }
         else
         {
             // Tell child to run custom logic
@@ -247,6 +252,19 @@ public class DialogueManager : Singleton<DialogueManager>
         }
 
         pendingDialogueEvents.Clear();
+        isProcessingQueuedEvents = false;
+    }
+
+    private void AfterDialogueEvents()
+    {
+        isProcessingQueuedEvents = true;
+
+        foreach (var dialogueEvent in afterDialogueEvents)
+        {
+            dialogueEvent?.Invoke();
+        }
+
+        afterDialogueEvents.Clear();
         isProcessingQueuedEvents = false;
     }
 

@@ -16,8 +16,8 @@ Ahoy-hoy, {recruitName} speaking. May I ask who is calling?
             Hm...
             Sounds great! Count me in.
             ++++ [Sweet! This is gunna be great]
+                ~ trigger_dialogue_event("recruit", "after_dialogue")
                 Totally!
-                ~ trigger_dialogue_event("recruit", "after_typing")
                 ->DONE
 
 + [Oops sorry, wrong number]
