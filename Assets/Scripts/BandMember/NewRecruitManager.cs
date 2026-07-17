@@ -1,3 +1,4 @@
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,6 +13,9 @@ public class NewRecruitManager : MonoBehaviour
     [SerializeField] private TMP_Text recruitGenres;
     [SerializeField] private TMP_Text recruitTraits;
     [SerializeField] private RectTransform recruitDismissPanel;
+
+    [Header("Tween Config")]
+    [SerializeField] private float duration = 0.2f;
 
     //---Local References---//
     private string id;
@@ -103,7 +107,16 @@ public class NewRecruitManager : MonoBehaviour
     public void Recruit()
     {
         BandManager.Instance.RecruitMember(id);
-        Destroy(gameObject);
+        // transform.DOScale(Vector2.zero, duration)
+        //     .SetEase(Ease.InBack)
+        //     .OnComplete(() => Destroy(gameObject));
+        Sequence popOut = DOTween.Sequence();
+        popOut.Append(transform
+            .DOScale(Vector2.zero, duration)
+            .SetEase(Ease.InBack));
+        popOut.AppendInterval(0.2f);
+        popOut.OnComplete(() => Destroy(gameObject));
+        
     }
 
     public void StartDialogue()

@@ -13,23 +13,7 @@ MonoBehaviour:
   m_Name: JackBlack
   m_EditorClassIdentifier: Assembly-CSharp::BandMemberData
   memberName: Jack Black
-  instruments:
-  - {fileID: 11400000, guid: 598ded0cc8fe84744b909cf44cec4bc6, type: 2}
-  - {fileID: 11400000, guid: c551a6b860782f548987801332244ef8, type: 2}
-  _talentLevel: 8
   memberSprite: {fileID: 21300000, guid: a2bc76d151ece47fdb75326aa1aa33a1, type: 3}
-  genreAffinities:
-    Values:
-      _serializedList:
-      - Key: 9
-        Value: 10
-      - Key: 10
-        Value: 10
-      - Key: 7
-        Value: 5
-  recruitThreshold: 0
-  traits:
-  - {fileID: 11400000, guid: b4922b39212184ce0b6f995d956eaab8, type: 2}
   songsWritten:
   - name: 
     author:
@@ -69,4 +53,20 @@ MonoBehaviour:
       Values:
         _serializedList: []
     score: 0
-  inkRecruitmentDialogue: {fileID: 4900000, guid: 150040000e92242f582ed7121aa687d1, type: 3}
+  _talentLevel: 8
+  instruments:
+  - {fileID: 11400000, guid: 598ded0cc8fe84744b909cf44cec4bc6, type: 2}
+  - {fileID: 11400000, guid: c551a6b860782f548987801332244ef8, type: 2}
+  genreAffinities:
+    Values:
+      _serializedList:
+      - Key: 9
+        Value: 10
+      - Key: 10
+        Value: 10
+      - Key: 7
+        Value: 5
+  traits:
+  - {fileID: 11400000, guid: b4922b39212184ce0b6f995d956eaab8, type: 2}
+  recruitThreshold: 0
+  inkRecruitmentDialogue: {fileID: 4900000, guid: 45eb97899c7854032b1d87c51e603693, type: 3}

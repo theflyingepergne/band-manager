@@ -13,25 +13,7 @@ MonoBehaviour:
   m_Name: EddieMurphy
   m_EditorClassIdentifier: Assembly-CSharp::BandMemberData
   memberName: Eddie Murphy
-  instruments:
-  - {fileID: 11400000, guid: c551a6b860782f548987801332244ef8, type: 2}
-  - {fileID: 11400000, guid: 1da549d331342a042ada5e266da5728c, type: 2}
-  _talentLevel: 1
   memberSprite: {fileID: 21300000, guid: 4c99eb2b31a671049b05f3e148ec39a1, type: 3}
-  genreAffinities:
-    Values:
-      _serializedList:
-      - Key: 4
-        Value: 10
-      - Key: 10
-        Value: -5
-      - Key: 2
-        Value: 9
-      - Key: 5
-        Value: 5
-  recruitThreshold: 0
-  traits:
-  - {fileID: 11400000, guid: b4922b39212184ce0b6f995d956eaab8, type: 2}
   songsWritten:
   - name: 
     author:
@@ -90,4 +72,22 @@ MonoBehaviour:
       Values:
         _serializedList: []
     score: 0
-  inkRecruitmentDialogue: {fileID: 4900000, guid: 150040000e92242f582ed7121aa687d1, type: 3}
+  _talentLevel: 1
+  instruments:
+  - {fileID: 11400000, guid: c551a6b860782f548987801332244ef8, type: 2}
+  - {fileID: 11400000, guid: 1da549d331342a042ada5e266da5728c, type: 2}
+  genreAffinities:
+    Values:
+      _serializedList:
+      - Key: 4
+        Value: 10
+      - Key: 10
+        Value: -5
+      - Key: 2
+        Value: 9
+      - Key: 5
+        Value: 5
+  traits:
+  - {fileID: 11400000, guid: b4922b39212184ce0b6f995d956eaab8, type: 2}
+  recruitThreshold: 0
+  inkRecruitmentDialogue: {fileID: 4900000, guid: 131a8d12f29f44ea98f15bfe40762222, type: 3}
