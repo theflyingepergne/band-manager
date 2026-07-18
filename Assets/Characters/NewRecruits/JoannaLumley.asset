@@ -13,23 +13,7 @@ MonoBehaviour:
   m_Name: JoannaLumley
   m_EditorClassIdentifier: Assembly-CSharp::BandMemberData
   memberName: Joanna Lumley
-  instruments:
-  - {fileID: 11400000, guid: cd6d2c9245478814eafdb72255455c18, type: 2}
-  - {fileID: 11400000, guid: e3afe060d6108024bbaa372bae18e4bd, type: 2}
-  _talentLevel: 3
   memberSprite: {fileID: 21300000, guid: 9f766c9a835ac5743af45f3fb9197d2d, type: 3}
-  genreAffinities:
-    Values:
-      _serializedList:
-      - Key: 1
-        Value: 8
-      - Key: 5
-        Value: 7
-      - Key: 13
-        Value: 3
-  recruitThreshold: 0
-  traits:
-  - {fileID: 11400000, guid: 4625ed3d3673f4d89a860e6bb981198f, type: 2}
   songsWritten:
   - name: 
     author:
@@ -46,8 +30,26 @@ MonoBehaviour:
       isRecruited: 0
       wasRecruited: 0
       recruitThreshold: 0
+      inkHomeDialogue: {fileID: 0}
     genreWeights:
       Values:
         _serializedList: []
     score: 0
+  _talentLevel: 3
+  instruments:
+  - {fileID: 11400000, guid: cd6d2c9245478814eafdb72255455c18, type: 2}
+  - {fileID: 11400000, guid: e3afe060d6108024bbaa372bae18e4bd, type: 2}
+  genreAffinities:
+    Values:
+      _serializedList:
+      - Key: 1
+        Value: 8
+      - Key: 5
+        Value: 7
+      - Key: 13
+        Value: 3
+  traits:
+  - {fileID: 11400000, guid: 4625ed3d3673f4d89a860e6bb981198f, type: 2}
+  recruitThreshold: 0
   inkRecruitmentDialogue: {fileID: 4900000, guid: 150040000e92242f582ed7121aa687d1, type: 3}
+  inkHomeDialogue: {fileID: 4900000, guid: 359478f0e83f54f66bd47e52a90aad78, type: 3}

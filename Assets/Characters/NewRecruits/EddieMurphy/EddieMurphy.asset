@@ -30,6 +30,7 @@ MonoBehaviour:
       isRecruited: 0
       wasRecruited: 0
       recruitThreshold: 0
+      inkHomeDialogue: {fileID: 0}
     genreWeights:
       Values:
         _serializedList: []
@@ -49,6 +50,7 @@ MonoBehaviour:
       isRecruited: 0
       wasRecruited: 0
       recruitThreshold: 0
+      inkHomeDialogue: {fileID: 0}
     genreWeights:
       Values:
         _serializedList: []
@@ -68,6 +70,7 @@ MonoBehaviour:
       isRecruited: 0
       wasRecruited: 0
       recruitThreshold: 0
+      inkHomeDialogue: {fileID: 0}
     genreWeights:
       Values:
         _serializedList: []
@@ -91,3 +94,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b4922b39212184ce0b6f995d956eaab8, type: 2}
   recruitThreshold: 0
   inkRecruitmentDialogue: {fileID: 4900000, guid: 131a8d12f29f44ea98f15bfe40762222, type: 3}
+  inkHomeDialogue: {fileID: 4900000, guid: 359478f0e83f54f66bd47e52a90aad78, type: 3}

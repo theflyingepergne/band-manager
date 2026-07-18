@@ -30,6 +30,7 @@ public class NewRecruitManager : MonoBehaviour
     {
         newRecruitDialogue = FindAnyObjectByType<NewRecruitDialogue>();
     }
+    
     private void OnEnable()
     {
         OnAnyPanelOpened += CloseIfNotThis;
@@ -103,22 +104,20 @@ public class NewRecruitManager : MonoBehaviour
         }
     }
 
-    //---Button Methods---//
     public void Recruit()
     {
         BandManager.Instance.RecruitMember(id);
-        // transform.DOScale(Vector2.zero, duration)
-        //     .SetEase(Ease.InBack)
-        //     .OnComplete(() => Destroy(gameObject));
+
+        // pop out animation
         Sequence popOut = DOTween.Sequence();
         popOut.Append(transform
             .DOScale(Vector2.zero, duration)
             .SetEase(Ease.InBack));
         popOut.AppendInterval(0.2f);
         popOut.OnComplete(() => Destroy(gameObject));
-        
     }
 
+    //---Button Methods---//
     public void StartDialogue()
     {
         newRecruitDialogue.PrepareDialogue(data.inkRecruitmentDialogue, data.sprite, this);

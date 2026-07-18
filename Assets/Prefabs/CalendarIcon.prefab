@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3989921556295582300}
   - component: {fileID: 3602787608093300760}
   m_Layer: 0
-  m_Name: Cal
+  m_Name: Month
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -195,7 +195,7 @@ GameObject:
   - component: {fileID: 4357871091157508534}
   - component: {fileID: 4445773888435345740}
   m_Layer: 0
-  m_Name: Calendar_Icon
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -350,7 +350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CalendarIcon
   calendarCanvas: {fileID: 0}
-  monthTextMesh: {fileID: 0}
+  monthTextMesh: {fileID: 3602787608093300760}
   numTextMesh: {fileID: 1549485787900264382}
 --- !u!1 &3517142859360264281
 GameObject:

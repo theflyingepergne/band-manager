@@ -20,35 +20,44 @@ public class ViewBandMembersUIManager : Singleton<ViewBandMembersUIManager>
     [Header("Prefabs")]
     [SerializeField] private GameObject instrumentPanel;
 
+    //---Local References---//
+    private BandMemberInstance bandMemberInstance;
+    private BandMemberDialogue bandMemberDialogue;
+
     //---Events---//
     void OnEnable() => ClickScript.OnClickEmptySpace += HandleClickEmptySpace;
     void OnDisable() => ClickScript.OnClickEmptySpace -= HandleClickEmptySpace;
 
-    //---Method---//
+    //---Init Methods---//
     void Start()
     {
         // Hide the details panel on start
         HideBandMemberDetails();
+        bandMemberDialogue = FindAnyObjectByType<BandMemberDialogue>();
     }
 
+    //---Input---//
     private void HandleClickEmptySpace()
     {
         HideBandMemberDetails();
     }
 
+    //---Setup---//
     public void ShowBandMemberDetails(BandMemberInstance data = null)
     {
-        // Populate it with the data from the BandMemberData
+        // Populate panel with BandMemberInstance data
         if (data != null)
-        {            
-            nameText.text = data.name;
-            sprite.sprite = data.sprite;
-            genresText.text = string.Join(", ", data.genreAffinities.GetGenresAsStrings());
-            talentBarFillImage.fillAmount = data.talentLevel / 10f;
-            instrumentsText.text = string.Join(", ", data.instruments.ConvertAll(i => i.instrumentName));
-            traitsText.text = string.Join(", ", data.traits.ConvertAll(t => t.traitName));
+        {
+            bandMemberInstance = data;
 
-            PopulateInstrumentsPanel(data);
+            nameText.text = bandMemberInstance.name;
+            sprite.sprite = bandMemberInstance.sprite;
+            genresText.text = string.Join(", ", bandMemberInstance.genreAffinities.GetGenresAsStrings());
+            talentBarFillImage.fillAmount = bandMemberInstance.talentLevel / 10f;
+            instrumentsText.text = string.Join(", ", bandMemberInstance.instruments.ConvertAll(i => i.instrumentName));
+            traitsText.text = string.Join(", ", bandMemberInstance.traits.ConvertAll(t => t.traitName));
+
+            PopulateInstrumentsPanel(bandMemberInstance);
         }
 
         BandMemberDetailsPanel.SetActive(true);
@@ -64,9 +73,7 @@ public class ViewBandMembersUIManager : Singleton<ViewBandMembersUIManager>
             newInstrumentPanel
                 .transform
                 .GetChild(0)
-                // .GetComponentInChildren<Image>().sprite = i.sprite;
                 .GetComponent<Image>().sprite = i.sprite;
-
         }
     }
 
@@ -76,11 +83,15 @@ public class ViewBandMembersUIManager : Singleton<ViewBandMembersUIManager>
         {
             Destroy(instrumentsPanel.GetChild(i).gameObject);
         }
-
     }
 
     public void HideBandMemberDetails()
     {
         BandMemberDetailsPanel.SetActive(false);
+    }
+
+    public void Talk()
+    {
+        bandMemberDialogue.PrepareDialogue(bandMemberInstance.inkHomeDialogue);
     }
 }

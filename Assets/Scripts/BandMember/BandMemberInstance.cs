@@ -20,6 +20,9 @@ public class BandMemberInstance
     public bool wasRecruited = false;
     public float recruitThreshold;
 
+    //---Home vars---//
+    public TextAsset inkHomeDialogue;
+
     //---Constructor---//
     public BandMemberInstance(BandMemberData data = null)
     {
@@ -43,10 +46,11 @@ public class BandMemberInstance
             .ToList();
 
         inkRecruitmentDialogue = data.inkRecruitmentDialogue;
-    }
+        inkHomeDialogue = data.inkHomeDialogue;
+}
 
-    //---Methods---//
-    public void AdjustRecruitmentThreshold(float amount)
+//---Methods---//
+public void AdjustRecruitmentThreshold(float amount)
     {
         recruitThreshold -= amount;
     }

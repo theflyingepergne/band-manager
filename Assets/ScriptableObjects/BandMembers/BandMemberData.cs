@@ -34,4 +34,5 @@ public class BandMemberData : ScriptableObject
     [Range(0, 1)]
     public float recruitThreshold;
     public TextAsset inkRecruitmentDialogue;
+    public TextAsset inkHomeDialogue;
 }

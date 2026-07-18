@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: KevinJames
   m_EditorClassIdentifier: Assembly-CSharp::BandMemberData
   memberName: Kevin James
+  memberSprite: {fileID: 21300000, guid: b237e5ce08a9bd64885d521516002676, type: 3}
+  songsWritten: []
+  _talentLevel: 8
   instruments:
   - {fileID: 11400000, guid: 70aa6afb1027d3a41875d82e2bae0002, type: 2}
-  _talentLevel: 8
-  memberSprite: {fileID: 21300000, guid: b237e5ce08a9bd64885d521516002676, type: 3}
   genreAffinities:
     Values:
       _serializedList:
@@ -26,8 +27,8 @@ MonoBehaviour:
         Value: -2
       - Key: 2
         Value: -5
-  recruitThreshold: 0
   traits:
   - {fileID: 11400000, guid: b4922b39212184ce0b6f995d956eaab8, type: 2}
-  songsWritten: []
+  recruitThreshold: 0
   inkRecruitmentDialogue: {fileID: 4900000, guid: 150040000e92242f582ed7121aa687d1, type: 3}
+  inkHomeDialogue: {fileID: 4900000, guid: 359478f0e83f54f66bd47e52a90aad78, type: 3}
