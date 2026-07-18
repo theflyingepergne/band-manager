@@ -76,13 +76,7 @@ public class ScheduleManager
         foreach (GameEventData gameEventData in allGameEvents)
         {
             // Create a saveable scheduledEvent instance
-            ScheduledEvent scheduledEvent = new()
-            {
-                gameEventData = gameEventData,
-                eventID = gameEventData.name,
-                title = gameEventData.title,
-                description = gameEventData.description,
-            };
+            ScheduledEvent scheduledEvent = new(gameEventData);
 
             // Assign any random dates
             if (gameEventData.isFixedDate)
@@ -106,14 +100,14 @@ public class ScheduleManager
         string newDescription = ""
     )
     {
-        scheduledEvents.Add(new ScheduledEvent
-        {
-            gameEventData = gameEventData,
-            title = string.IsNullOrEmpty(newTitle) ? gameEventData.title : newTitle,
-            description = string.IsNullOrEmpty(newDescription) ? gameEventData.description : newDescription,
-            eventID = gameEventData.name,
-            date = date
-        });
+        ScheduledEvent newScheduledEvent = new
+        (
+            gameEventData,
+            date,
+            newTitle,
+            newDescription
+        );
+        scheduledEvents.Add(newScheduledEvent);
     }
 
     public void MarkEventAsComplete(ScheduledEvent scheduledEvent)

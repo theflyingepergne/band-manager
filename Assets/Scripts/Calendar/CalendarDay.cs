@@ -45,11 +45,12 @@ public class CalendarDay : MonoBehaviour
 
         ClearEventText();
 
-        // If list of events is not null, add new line for each event
         if (events != null)
         {
             foreach (ScheduledEvent e in events)
             {
+                if (e.onlyShowOnCompleted && !e.isCompleted) return;
+
                 TMP_Text newLine = Instantiate(eventText, transform, false);
                 newLine.gameObject.SetActive(true);
                 SetFontStyle(e, newLine);

@@ -27,6 +27,7 @@ MonoBehaviour:
     StatChanges: []
     CustomEvents:
     - rid: 1683647232616956148
+  onlyShowOnCompleted: 1
   references:
     version: 2
     RefIds:

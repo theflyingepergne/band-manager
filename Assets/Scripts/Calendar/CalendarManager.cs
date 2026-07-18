@@ -99,7 +99,7 @@ public class CalendarManager : MonoBehaviour, IPointerClickHandler
             // Add it to a list of eventsToAdd
             foreach (ScheduledEvent e in scheduledEvents)
             {
-                if (e.date.day == d && e.date.month == date.month && e.date.year == date.year)
+                if (e.date.day == d && e.date.month == date.month && e.date.year == date.year && (!e.onlyShowOnCompleted || e.isCompleted))
                 {
                     eventsToAdd.Add(e);
                 }

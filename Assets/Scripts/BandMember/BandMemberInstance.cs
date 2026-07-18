@@ -47,10 +47,10 @@ public class BandMemberInstance
 
         inkRecruitmentDialogue = data.inkRecruitmentDialogue;
         inkHomeDialogue = data.inkHomeDialogue;
-}
+    }
 
-//---Methods---//
-public void AdjustRecruitmentThreshold(float amount)
+    //---Methods---//
+    public void AdjustRecruitmentThreshold(float amount)
     {
         recruitThreshold -= amount;
     }

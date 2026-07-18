@@ -14,4 +14,7 @@ public class GameEventData : ScriptableObject
     public Sprite sprite;
 
     public List<EventChoice> choices;
+
+    [Header("Visibility")]
+    public bool onlyShowOnCompleted = false;
 }
