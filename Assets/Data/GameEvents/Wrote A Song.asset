@@ -26,11 +26,11 @@ MonoBehaviour:
     choiceOutcomeDescription: Another money maker to add to the collection hehe
     StatChanges: []
     CustomEvents:
-    - rid: 1683647232616956148
+    - rid: 2509477344579158136
   onlyShowOnCompleted: 1
   references:
     version: 2
     RefIds:
-    - rid: 1683647232616956148
-      type: {class: WriteSongEvent, ns: , asm: Assembly-CSharp}
+    - rid: 2509477344579158136
+      type: {class: WriteRandomSong, ns: , asm: Assembly-CSharp}
       data: 

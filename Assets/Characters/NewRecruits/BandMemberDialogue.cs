@@ -10,6 +10,9 @@ public class BandMemberDialogue : DialogueManager
     [Header("Intro Animation Config")]
     [SerializeField] private float duration = 0.25f;
 
+    //---Local References---//
+    private BandMemberInstance bandMemberInstance;
+
     //---Init Methods---//
     protected override void OnEnable()
     {
@@ -21,11 +24,13 @@ public class BandMemberDialogue : DialogueManager
         base.OnDisable(); // Runs parent's OnDisable
     }
 
-    public void PrepareDialogue(TextAsset inkHomeDialogue)
+    public void PrepareDialogue(TextAsset inkHomeDialogue, BandMemberInstance talkingToBandMember)
     {
-        if (inkHomeDialogue == null)
+        if (inkHomeDialogue == null) Debug.LogError("Missing inkHomeDialogue");
+
+        if (talkingToBandMember != null)
         {
-            Debug.LogError("Missing inkHomeDialogue");
+            bandMemberInstance = talkingToBandMember;
         }
 
         BeginDialogue();
@@ -51,8 +56,27 @@ public class BandMemberDialogue : DialogueManager
     protected override void HandleDialogueEvent(string eventName, string eventParameter)
     {
         switch (eventName)
-        {            
-            case "test":
+        {
+            case "write_song":
+                // set event data
+                GameEventData writeSongEvent = ScheduleManager.Instance.scheduledEvents
+                    .Find(e => e.eventID.Contains("Wrote A Song"))?
+                    .gameEventData;
+                
+                // set date to be 1 - 3 days in the future
+                GameDate futureDate = DateManager.Instance.date.AddDays(Random.Range(1, 3));
+
+                // set event pop-up title
+                string eventTitle = $"{bandMemberInstance.name} wrote a song! ";
+
+                // set description
+
+                ScheduleManager.Instance.ScheduleNewEvent
+                (
+                    writeSongEvent,
+                    futureDate,
+                    eventTitle
+                );
                 break;
 
             default:

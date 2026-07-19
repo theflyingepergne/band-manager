@@ -49,6 +49,8 @@ public class CalendarDay : MonoBehaviour
         {
             foreach (ScheduledEvent e in events)
             {
+                // if the event should only be visible after it is completed, do nothing
+                // after the event is complete, display it on the calendar (crossed out)
                 if (e.onlyShowOnCompleted && !e.isCompleted) return;
 
                 TMP_Text newLine = Instantiate(eventText, transform, false);

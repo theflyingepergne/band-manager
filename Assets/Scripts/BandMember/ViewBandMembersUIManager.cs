@@ -92,6 +92,6 @@ public class ViewBandMembersUIManager : Singleton<ViewBandMembersUIManager>
 
     public void Talk()
     {
-        bandMemberDialogue.PrepareDialogue(bandMemberInstance.inkHomeDialogue);
+        bandMemberDialogue.PrepareDialogue(bandMemberInstance.inkHomeDialogue, bandMemberInstance);
     }
 }

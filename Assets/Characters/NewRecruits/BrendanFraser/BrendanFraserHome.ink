@@ -6,8 +6,11 @@ VAR recruitName = "Brendan"
 VAR playerName = "Andy"
 
 Hey Chief, what's up?
-+ [Oh nothing, just keep doing what you're doing!]
-+ [Nothing, get the hell out of here.]
++ [Write me a song.]
+    ~ trigger_dialogue_event("write_song", "")
+    Ok boss! It'll take me a couple of days
+    ->DONE
 
-- You got it boss!
-->DONE
++ [Nothing, get the hell out of here.]
+    You got it boss!
+    ->DONE

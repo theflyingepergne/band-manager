@@ -1,7 +1,5 @@
-using UnityEngine;
-
 [System.Serializable]
-public class WriteSongEvent : CustomGameEvent
+public class WriteRandomSong : CustomGameEvent
 {
     public override void Execute()
     {
