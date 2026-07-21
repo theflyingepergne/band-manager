@@ -10,6 +10,7 @@ public class BandManager
     public List<SongEntry> songCollection = new();
     public List<SongEntry> activeSetlist = new();
     public VenueData destinationVenue;
+    public string playerName = "Andy";
 
     //---Local References---//
     private RecruitmentManager rm;

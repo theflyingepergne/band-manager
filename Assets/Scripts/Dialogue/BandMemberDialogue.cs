@@ -34,6 +34,12 @@ public class BandMemberDialogue : DialogueManager
         }
 
         BeginDialogue();
+        SetStoryVariables();
+    }
+
+    public void SetStoryVariables()
+    {
+        story.variablesState["recruitName"] = bandMemberInstance.name;
     }
 
     // Override intro animation

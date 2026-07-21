@@ -38,15 +38,26 @@ public class DialogueManager : Singleton<DialogueManager>
 
     public virtual void BeginDialogue()
     {
+        // initialize story
         story = new Story(inkJsonAsset.text);
+
+        // setup global variables
+        if (story.variablesState.GlobalVariableExistsWithName("playerName"))
+        {
+            story.variablesState["playerName"] = BandManager.Instance.playerName;
+        }
+
+        // bind to story events/functions
         story.BindExternalFunction("trigger_dialogue_event", (string eventName, string eventParameter) =>
         {
             EvaluateDialogueEvent(eventName, eventParameter);
         });
 
+        // bind to typewriter events
         typewriter = dialogueText.GetComponent<TypewriterEffect>();
         typewriter.CompleteTextRevealed += HandleCompleteTextRevealed;
 
+        // initialize dialogue UI
         dialogueText.text = "";
         ClearChoiceButtons();
 
