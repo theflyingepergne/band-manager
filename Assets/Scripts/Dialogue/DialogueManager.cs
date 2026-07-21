@@ -33,19 +33,23 @@ public class DialogueManager : Singleton<DialogueManager>
 
 
     //---Init Methods---//
-    protected virtual void OnEnable(){}
-    protected virtual void OnDisable(){}
+    protected virtual void OnEnable() { }
+    protected virtual void OnDisable() { }
 
     public virtual void BeginDialogue()
     {
         // initialize story
-        story = new Story(inkJsonAsset.text);
-
-        // setup global variables
-        if (story.variablesState.GlobalVariableExistsWithName("playerName"))
+        if (inkJsonAsset != null)
         {
-            story.variablesState["playerName"] = BandManager.Instance.playerName;
+            story = new Story(inkJsonAsset.text);
         }
+        else
+        {
+            Debug.LogError("Missing ink text asset. Aborting any dialogue.");
+            return;
+        }
+
+        SetGlobalVariables();
 
         // bind to story events/functions
         story.BindExternalFunction("trigger_dialogue_event", (string eventName, string eventParameter) =>
@@ -62,6 +66,35 @@ public class DialogueManager : Singleton<DialogueManager>
         ClearChoiceButtons();
 
         SetupStartingAnimation();
+    }
+
+    private void SetGlobalVariables()
+    {
+        // Player
+        SetGlobalVariable("playerName", BandManager.Instance.playerName);
+
+        // Stats
+        SetGlobalVariable("money", BandManager.Instance.money);
+        SetGlobalVariable("chemistry", BandManager.Instance.chemistry);
+        SetGlobalVariable("fans", BandManager.Instance.fans);
+    }
+
+    protected void SetGlobalVariable(string variableName, object value)
+    {
+        if (story == null)
+        {
+            Debug.LogError("Missing ink story");
+            return;
+        }
+
+        if (story.variablesState.GlobalVariableExistsWithName(variableName))
+        {
+            story.variablesState[variableName] = value;
+        }
+        else
+        {
+            Debug.LogWarning($"Global variable '{variableName}' is not used in this story");
+        }
     }
 
     protected virtual void EndDialogue()

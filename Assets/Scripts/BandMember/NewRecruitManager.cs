@@ -17,9 +17,10 @@ public class NewRecruitManager : MonoBehaviour
     [Header("Tween Config")]
     [SerializeField] private float duration = 0.2f;
 
+    public BandMemberInstance data;
+
     //---Local References---//
     private string id;
-    private BandMemberInstance data;
     private NewRecruitDialogue newRecruitDialogue;
 
     //---Events---//

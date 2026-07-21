@@ -28,20 +28,31 @@ public class NewRecruitDialogue : DialogueManager
 
     public void PrepareDialogue(TextAsset newRecruitInk, Sprite newRecruitSprite, NewRecruitManager newRecruitManager)
     {
-        if (newRecruitInk != null && newRecruitSprite != null)
+        if (newRecruitInk == null)
         {
-            inkJsonAsset = newRecruitInk;
-            newRecruit.transform
-                .GetChild(0)
-                .GetComponent<SpriteRenderer>().sprite = newRecruitSprite;
-            this.newRecruitManager = newRecruitManager;
-        }
-        else
-        {
-            Debug.LogError("Missing newRecruitInk or neWRecruitSprite");
+            Debug.LogError("Missing newRecruitInk");
+            return;
         }
 
+        if (newRecruitManager == null)
+        {
+            Debug.LogError("Missing newRecruitManager");
+            return;
+        }
+
+        inkJsonAsset = newRecruitInk;
+        newRecruit.transform
+            .GetChild(0)
+            .GetComponent<SpriteRenderer>().sprite = newRecruitSprite;
+        this.newRecruitManager = newRecruitManager;
+
         BeginDialogue();
+        SetStoryVariables();
+    }
+
+    public void SetStoryVariables()
+    {
+        story.variablesState["recruitName"] = newRecruitManager.data.name;
     }
 
     // Override intro animation
@@ -65,7 +76,7 @@ public class NewRecruitDialogue : DialogueManager
     protected override void HandleDialogueEvent(string eventName, string eventParameter)
     {
         switch (eventName)
-        {            
+        {
             case "recruit":
                 newRecruitManager.Recruit();
                 break;

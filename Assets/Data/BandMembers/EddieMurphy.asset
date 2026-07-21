@@ -93,5 +93,5 @@ MonoBehaviour:
   traits:
   - {fileID: 11400000, guid: b4922b39212184ce0b6f995d956eaab8, type: 2}
   recruitThreshold: 0
-  inkRecruitmentDialogue: {fileID: 4900000, guid: 131a8d12f29f44ea98f15bfe40762222, type: 3}
-  inkHomeDialogue: {fileID: 4900000, guid: 359478f0e83f54f66bd47e52a90aad78, type: 3}
+  inkRecruitmentDialogue: {fileID: 4900000, guid: 48f87b118d910d4448c7930e9abe1454, type: 3}
+  inkHomeDialogue: {fileID: 4900000, guid: bdab0fb24102ce44bbe5b1a63bd05816, type: 3}

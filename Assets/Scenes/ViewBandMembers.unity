@@ -4588,7 +4588,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BandMemberDialogue
   persistAcrossScenes: 0
-  inkJsonAsset: {fileID: 4900000, guid: 359478f0e83f54f66bd47e52a90aad78, type: 3}
+  inkJsonAsset: {fileID: 4900000, guid: deba0369cc30e4b409dcd5ba9a340a4a, type: 3}
   dialogueText: {fileID: 945418322}
   continueText: {fileID: 1975819478}
   dialogueChoicesPanel: {fileID: 1772807042}
@@ -4964,6 +4964,7 @@ MonoBehaviour:
       month: 0
       year: 0
     isCompleted: 0
+    onlyShowOnCompleted: 0
   eventTitle: {fileID: 174568623}
   eventDescription: {fileID: 1384607484}
   eventSprite: {fileID: 975793708}

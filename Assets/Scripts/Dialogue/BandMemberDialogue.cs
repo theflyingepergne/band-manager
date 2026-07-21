@@ -26,7 +26,14 @@ public class BandMemberDialogue : DialogueManager
 
     public void PrepareDialogue(TextAsset inkHomeDialogue, BandMemberInstance talkingToBandMember)
     {
-        if (inkHomeDialogue == null) Debug.LogError("Missing inkHomeDialogue");
+        if (inkHomeDialogue != null)
+        {
+            inkJsonAsset = inkHomeDialogue;
+        }
+        else
+        {
+            Debug.LogError("Missing inkHomeDialogue");
+        }
 
         if (talkingToBandMember != null)
         {
@@ -34,12 +41,7 @@ public class BandMemberDialogue : DialogueManager
         }
 
         BeginDialogue();
-        SetStoryVariables();
-    }
-
-    public void SetStoryVariables()
-    {
-        story.variablesState["recruitName"] = bandMemberInstance.name;
+        SetGlobalVariable("recruitName", bandMemberInstance.name);
     }
 
     // Override intro animation
@@ -68,7 +70,7 @@ public class BandMemberDialogue : DialogueManager
                 GameEventData writeSongEvent = ScheduleManager.Instance.scheduledEvents
                     .Find(e => e.eventID.Contains("Wrote A Song"))?
                     .gameEventData;
-                
+
                 // set date to be 1 - 3 days in the future
                 GameDate futureDate = DateManager.Instance.date.AddDays(Random.Range(1, 3));
 

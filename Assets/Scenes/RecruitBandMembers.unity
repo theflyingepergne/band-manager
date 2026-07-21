@@ -1314,7 +1314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShayleyBilliamsDialogue
   persistAcrossScenes: 0
-  inkJsonAsset: {fileID: 4900000, guid: 150040000e92242f582ed7121aa687d1, type: 3}
+  inkJsonAsset: {fileID: 4900000, guid: 7e5f3acabef9f5a4ba13ffc6fe043b3b, type: 3}
   dialogueText: {fileID: 374315599}
   continueText: {fileID: 374315596}
   dialogueChoicesPanel: {fileID: 374315597}
@@ -2050,7 +2050,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 4387447729a2045d1903d85f24ebec04, type: 3}
+  m_Sprite: {fileID: 21300000, guid: dd4929199bf49e942a12481bf9e2016c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

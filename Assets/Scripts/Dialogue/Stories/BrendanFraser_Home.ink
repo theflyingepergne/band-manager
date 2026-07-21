@@ -4,9 +4,6 @@ INCLUDE _Globals.ink
 //---External Functions---//
 EXTERNAL trigger_dialogue_event(eventName, eventParameter)
 
-//---Variables---//
-VAR recruitName = "Brendan"
-
 Hey {playerName}, what's up?
 + [Write me a song.]
     ~ trigger_dialogue_event("write_song", "")
@@ -15,4 +12,5 @@ Hey {playerName}, what's up?
 
 + [Nothing, get the hell out of here.]
     You got it boss!
+    Hey, did you know you have: \\n£{money} \\n{chemistry}% band chemistry \\n{fans} fans
     ->DONE

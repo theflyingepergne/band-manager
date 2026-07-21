@@ -1630,6 +1630,7 @@ MonoBehaviour:
   recruitGenres: {fileID: 6833931346350023527}
   recruitTraits: {fileID: 3603504387365939216}
   recruitDismissPanel: {fileID: 3866848684046679151}
+  duration: 0.2
 --- !u!1 &8267028069844832476
 GameObject:
   m_ObjectHideFlags: 0

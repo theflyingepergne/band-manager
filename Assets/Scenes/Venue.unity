@@ -794,7 +794,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VenueOwnerDialogue
   persistAcrossScenes: 0
-  inkJsonAsset: {fileID: 4900000, guid: 9d478dab602614356bd9b6164558a07f, type: 3}
+  inkJsonAsset: {fileID: 4900000, guid: b1111a6f25e96274eabf691a462bf7e9, type: 3}
   dialogueText: {fileID: 849908909}
   continueText: {fileID: 2062759923}
   dialogueChoicesPanel: {fileID: 201912079}
