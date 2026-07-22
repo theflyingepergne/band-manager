@@ -38,7 +38,15 @@ public class VenueOwnerDialogue : DialogueManager
     {
         sequence = DOTween.Sequence();
         sequence.SetAutoKill(false);
-        sequence.Append(venueOwner.transform.DOMoveX(-8f, duration).SetRelative(true));
+
+        // Grab the MoveDialogueRecipient script off the newRecruit GameObject (or its child)
+        if (venueOwner.TryGetComponent(out MoveDialogueRecipient mover))
+        {
+            // Append the character moving to the talking anchor
+            sequence.Append(mover.MoveToTalkingAnchor(duration));
+        }
+
+        // Slide up the dialogue box border
         sequence.Append(dialogueBorder.DOAnchorPosY(50f, duration));
 
         sequence.Play().OnComplete(AdvanceDialogue);

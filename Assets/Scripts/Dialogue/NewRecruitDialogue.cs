@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 using DG.Tweening;
 
 public class NewRecruitDialogue : DialogueManager
@@ -60,7 +59,15 @@ public class NewRecruitDialogue : DialogueManager
     {
         sequence = DOTween.Sequence();
         sequence.SetAutoKill(false);
-        sequence.Append(newRecruit.transform.DOMoveX(-8f, duration).SetRelative(true));
+
+        // Grab the MoveDialogueRecipient script off the newRecruit GameObject (or its child)
+        if (newRecruit.TryGetComponent(out MoveDialogueRecipient mover))
+        {
+            // Append the character moving to the talking anchor
+            sequence.Append(mover.MoveToTalkingAnchor(duration));
+        }
+
+        // Slide up the dialogue box border
         sequence.Append(dialogueBorder.DOAnchorPosY(50f, duration));
 
         sequence.Play().OnComplete(AdvanceDialogue);

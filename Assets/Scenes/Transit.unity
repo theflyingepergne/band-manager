@@ -1009,7 +1009,7 @@ GameObject:
   - component: {fileID: 630982597}
   - component: {fileID: 630982596}
   m_Layer: 0
-  m_Name: Setlist_Root
+  m_Name: PrepareSetlist_Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1043,14 +1043,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 630982595}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.95, y: -1.32, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.9395561, y: -1.32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1751388321}
   - {fileID: 598145591}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1964299968}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &668477591
 PrefabInstance:
@@ -1582,13 +1582,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 882659763}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.074195474, w: 0.99724376}
-  m_LocalPosition: {x: 5.25, y: -1.46, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.074195474, w: 0.99724376}
+  m_LocalPosition: {x: -3.639556, y: -1.46, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1638475590}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1964299968}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 8.51}
 --- !u!1001 &893794215
 PrefabInstance:
@@ -1762,12 +1762,12 @@ Transform:
   m_GameObject: {fileID: 1188382261}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.019698638, w: 0.999806}
-  m_LocalPosition: {x: 10.64, y: -1.13, z: 0}
+  m_LocalPosition: {x: 1.7504444, y: -1.13, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 387863523}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1964299968}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 2.257}
 --- !u!224 &1236185321 stripped
 RectTransform:
@@ -3001,6 +3001,56 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 291482ef3f795411487ef45113a1db3f, type: 3}
+--- !u!1 &1964299966
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1964299968}
+  - component: {fileID: 1964299967}
+  m_Layer: 0
+  m_Name: SetlistRoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1964299967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1964299966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cb92499d47afb447aa9afcd28391280, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SetScreenPosition
+  paddingFromEdge: 0
+  screenPositionX: 1
+  screenPositionY: 0.5
+--- !u!4 &1964299968
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1964299966}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 630982597}
+  - {fileID: 1188382262}
+  - {fileID: 882659764}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1983770074
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3429,7 +3479,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17c7b7a3b8a2b42eeb6655a3b4267108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Highlighter
-  highlightedColour: {r: 255, g: 0, b: 0, a: 125}
+  highlightedColour:
+    serializedVersion: 2
+    rgba: 4278190271
   duration: 0.1
 --- !u!61 &4522382682951436558
 BoxCollider2D:
@@ -3735,7 +3787,5 @@ SceneRoots:
   - {fileID: 1177756236}
   - {fileID: 314037802}
   - {fileID: 1314156450}
-  - {fileID: 630982597}
-  - {fileID: 1188382262}
-  - {fileID: 882659764}
   - {fileID: 6941809306281936165}
+  - {fileID: 1964299968}
