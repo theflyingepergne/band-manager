@@ -34,12 +34,12 @@ public class BandMember : MonoBehaviour, IClickable
     //---Selection---//
     public void OnClicked()
     {
-        SelectionManager.Instance.Select(this);
+        SelectionManager.Instance?.Select(this);
     }
 
     private void HandleClickEmptySpace()
     {
-        SelectionManager.Instance.ClearSelection();
+        SelectionManager.Instance?.ClearSelection();
     }
 
     public void OnSelected()

@@ -23,6 +23,9 @@ public class PrepareSetlistManager : Singleton<PrepareSetlistManager>, IHoverabl
     [SerializeField] private float tweenSpeed = 0.5f;
     [SerializeField] private Ease easeType = Ease.OutBack;
 
+    [Header("Testing")]
+    public bool ClearTestSongs = true;
+
     //---Local References---//
     private bool isTweening = false;
     private bool currentHoverState = false;
@@ -45,7 +48,10 @@ public class PrepareSetlistManager : Singleton<PrepareSetlistManager>, IHoverabl
 
     public void SetupSetlist()
     {
-        ClearSetlistWrapper();
+        if (ClearTestSongs)
+        {
+            ClearSetlistWrapper();
+        }
 
         // Tell BandManager to pick 6 random songs for activeSetlist
         bm.PrepareSetlist();
@@ -123,7 +129,7 @@ public class PrepareSetlistManager : Singleton<PrepareSetlistManager>, IHoverabl
     public void FinalizeSetlist()
     {
         // call this to "save" the setlist to the bandmanager
-        List<SongEntry> reorderedSetlist = new List<SongEntry>();
+        List<SongEntry> reorderedSetlist = new();
 
         foreach (Transform child in setlistWrapper)
         {
