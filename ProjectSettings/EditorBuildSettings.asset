@@ -24,6 +24,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Venue.unity
     guid: defc47a6a75921447b31c48eea35e370
   - enabled: 1
+    path: Assets/Scenes/Shop.unity
+    guid: b9fa1741d6ec74f9e902c45bb09cd713
+  - enabled: 0
     path: Assets/Plugins/Ink/Demos/Basic Demo/Basic Demo.unity
     guid: 8af1c5cbac5094782904447c9410b35d
   m_configObjects:

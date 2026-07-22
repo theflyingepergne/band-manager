@@ -1035,7 +1035,7 @@ MonoBehaviour:
   hoverAnchor: {fileID: 882659764}
   tweenSpeed: 0.2
   easeType: 26
-  ClearTestSongs: 0
+  ClearTestSongs: 1
 --- !u!4 &630982597
 Transform:
   m_ObjectHideFlags: 0
