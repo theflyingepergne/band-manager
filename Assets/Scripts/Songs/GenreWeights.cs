@@ -38,6 +38,42 @@ public class GenreWeights
         return Values.Select(g => g.Key.ToString()).ToArray();
     }
 
+    public List<string> FormatGenreAffinities(bool formatVerbose = true)
+    {
+        List<string> formattedGenres = new();
+
+        foreach (var keyValuePair in Values)
+        {
+            string formattedGenre;
+
+            // Format text
+            if (keyValuePair.Value > 5)
+            {
+                string prefix = formatVerbose ? "Loves " : "<color=green>+++";
+                formattedGenre = $"{prefix}{keyValuePair.Key}";
+            }
+            else if (5 >= keyValuePair.Value && keyValuePair.Value > 0)
+            {
+                string prefix = formatVerbose ? "Likes " : "<color=green>+";
+                formattedGenre = $"{prefix}{keyValuePair.Key}";
+            }
+            else if (0 >= keyValuePair.Value && keyValuePair.Value > -5)
+            {
+                string prefix = formatVerbose ? "Doesn't like " : "<color=red>-";
+                formattedGenre = $"{prefix}{keyValuePair.Key}";
+            }
+            else
+            {
+                string prefix = formatVerbose ? "Hates " : "<color=red>---";
+                formattedGenre = $"{prefix}{keyValuePair.Key}";
+            }
+
+            formattedGenres.Add(formattedGenre);
+        }
+
+        return formattedGenres;
+    }
+
     public Dictionary<Genre, float> GetDominantGenres()
     {
         return Values

@@ -4795,6 +4795,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4018472306028735041, guid: 3513169d5f3934ed99498ac28bfbfd99, type: 3}
+      propertyPath: m_fontSize
+      value: 28
+      objectReference: {fileID: 0}
     - target: {fileID: 6637962379019533241, guid: 3513169d5f3934ed99498ac28bfbfd99, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -10220,5 +10224,5 @@ SceneRoots:
   - {fileID: 440783305}
   - {fileID: 7481403199125146494}
   - {fileID: 14423717}
-  - {fileID: 596140201}
   - {fileID: 1089357206}
+  - {fileID: 596140201}

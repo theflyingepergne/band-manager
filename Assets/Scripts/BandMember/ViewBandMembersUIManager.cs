@@ -52,7 +52,7 @@ public class ViewBandMembersUIManager : Singleton<ViewBandMembersUIManager>
 
             nameText.text = bandMemberInstance.name;
             sprite.sprite = bandMemberInstance.sprite;
-            genresText.text = string.Join(", ", bandMemberInstance.genreAffinities.GetGenresAsStrings());
+            genresText.text = string.Join(" ", bandMemberInstance.genreAffinities.FormatGenreAffinities(false));
             talentBarFillImage.fillAmount = bandMemberInstance.talentLevel / 10f;
             instrumentsText.text = string.Join(", ", bandMemberInstance.instruments.ConvertAll(i => i.instrumentName));
             traitsText.text = string.Join(", ", bandMemberInstance.traits.ConvertAll(t => t.traitName));

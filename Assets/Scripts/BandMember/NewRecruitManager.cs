@@ -56,32 +56,16 @@ public class NewRecruitManager : MonoBehaviour
         recruitSprite.sprite = data.sprite;
         recruitName.text = data.name;
         recruitInstruments.text = $"Plays {data.instruments[Random.Range(0, data.instruments.Count - 1)].instrumentName}";
-        FormatGenreAffinityText();
+        SetRandomGenreText();
         recruitTraits.text = $"{data.traits[0].traitName}";
     }
 
-    private void FormatGenreAffinityText()
+    private void SetRandomGenreText()
     {
-        // Pick a random genre
-        var randomGenre = data.genreAffinities.GetRandomGenre();
+        var formattedGenres = data.genreAffinities.FormatGenreAffinities();
+        int i = formattedGenres.Count;
 
-        // Format text
-        if (randomGenre.Value > 5)
-        {
-            recruitGenres.text = $"Loves {randomGenre.Key}";
-        }
-        else if (5 >= randomGenre.Value && randomGenre.Value > 0)
-        {
-            recruitGenres.text = $"Likes {randomGenre.Key}";
-        }
-        else if (0 >= randomGenre.Value && randomGenre.Value > -5)
-        {
-            recruitGenres.text = $"Doesn't like {randomGenre.Key}";
-        }
-        else
-        {
-            recruitGenres.text = $"Hates {randomGenre.Key}";
-        }
+        recruitGenres.text = formattedGenres[Random.Range(0, i)];
     }
 
     //---Recruit Dismiss Panel---//
