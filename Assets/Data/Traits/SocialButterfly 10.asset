@@ -19,14 +19,16 @@ MonoBehaviour:
   traitConditions:
   - rid: 2509477097489826235
   traitLogics:
-  - rid: 2509477097489826218
+  - rid: 2509477499089453191
   references:
     version: 2
     RefIds:
-    - rid: 2509477097489826218
-      type: {class: ChangeFanAmount, ns: , asm: Assembly-CSharp}
-      data:
-        amount: 10
     - rid: 2509477097489826235
       type: {class: DateChanged, ns: , asm: Assembly-CSharp}
-      data: 
+      data:
+        doAfterFadeIn: 1
+    - rid: 2509477499089453191
+      type: {class: ChangeStatAmount, ns: , asm: Assembly-CSharp}
+      data:
+        stat: 1
+        amount: 10

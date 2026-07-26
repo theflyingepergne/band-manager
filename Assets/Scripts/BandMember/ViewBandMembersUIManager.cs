@@ -1,12 +1,18 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Text;
+using System.Collections.Generic;
 
-public class ViewBandMembersUIManager : Singleton<ViewBandMembersUIManager>
+public class ViewBandMembersUIManager : MonoBehaviour
 {
     //---References---//
+    public static ViewBandMembersUIManager Instance { get; set; }
+
     [Header("UI References")]
-    [SerializeField] private GameObject BandMemberDetailsPanel;
+    [SerializeField] private GameObject bandMemberDetailsPanel;
+    [SerializeField] private GameObject detailsPanelRight;
+    [SerializeField] private GameObject detailsPanelLeft;
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private Image sprite;
     [SerializeField] private TMP_Text genresText;
@@ -25,10 +31,26 @@ public class ViewBandMembersUIManager : Singleton<ViewBandMembersUIManager>
     private BandMemberDialogue bandMemberDialogue;
 
     //---Events---//
-    void OnEnable() => ClickScript.OnClickEmptySpace += HandleClickEmptySpace;
-    void OnDisable() => ClickScript.OnClickEmptySpace -= HandleClickEmptySpace;
+    void OnEnable()
+    {
+        ClickScript.OnClickEmptySpace += HandleClickEmptySpace;
+        LinkTextInfo.OnLinkHovered += HandleLinkHovered;
+        LinkTextInfo.OnLinkExited += HandleLinkExited;
+    }
+
+    void OnDisable()
+    {
+        ClickScript.OnClickEmptySpace -= HandleClickEmptySpace;
+        LinkTextInfo.OnLinkHovered -= HandleLinkHovered;
+        LinkTextInfo.OnLinkExited -= HandleLinkExited;
+    }
 
     //---Init Methods---//
+    void Awake()
+    {
+        Instance = this;
+    }
+
     void Start()
     {
         // Hide the details panel on start
@@ -55,12 +77,27 @@ public class ViewBandMembersUIManager : Singleton<ViewBandMembersUIManager>
             genresText.text = string.Join(" ", bandMemberInstance.genreAffinities.FormatGenreAffinities(false));
             talentBarFillImage.fillAmount = bandMemberInstance.talentLevel / 10f;
             instrumentsText.text = string.Join(", ", bandMemberInstance.instruments.ConvertAll(i => i.instrumentName));
-            traitsText.text = string.Join(", ", bandMemberInstance.traits.ConvertAll(t => t.traitName));
+            // traitsText.text = string.Join(", ", bandMemberInstance.traits.ConvertAll(t => t.traitName));
+
+            FormatTraitsText();
 
             PopulateInstrumentsPanel(bandMemberInstance);
         }
 
-        BandMemberDetailsPanel.SetActive(true);
+        bandMemberDetailsPanel.SetActive(true);
+    }
+
+    private void FormatTraitsText()
+    {
+        List<string> formattedTraitsText = new();
+
+        for (int i = 0; i < bandMemberInstance.traits.Count; i++)
+        {
+            string t = $"<link=\"{i}\">{bandMemberInstance.traits[i].traitName}</link>";
+            formattedTraitsText.Add(t);
+        }
+
+        traitsText.text = string.Join(", ", formattedTraitsText);
     }
 
     private void PopulateInstrumentsPanel(BandMemberInstance data)
@@ -87,11 +124,27 @@ public class ViewBandMembersUIManager : Singleton<ViewBandMembersUIManager>
 
     public void HideBandMemberDetails()
     {
-        BandMemberDetailsPanel.SetActive(false);
+        bandMemberDetailsPanel.SetActive(false);
     }
 
     public void Talk()
     {
         bandMemberDialogue.PrepareDialogue(bandMemberInstance.inkHomeDialogue, bandMemberInstance);
+    }
+
+    private void HandleLinkHovered(string linkID)
+    {
+        Debug.Log($"Hovering over {linkID}");
+    }
+    
+    private void HandleLinkExited()
+    {
+        ClearTooltip();
+        // Debug.Log("Stopped hovering");
+    }
+
+    private void ClearTooltip()
+    {
+        
     }
 }

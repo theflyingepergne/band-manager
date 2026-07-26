@@ -1,13 +1,14 @@
 [System.Serializable]
-public class ChangeFanAmount : CustomTraitLogic
+public class ChangeStatAmount : CustomTraitLogic
 {
     //---References---//
+    public StatType stat;
     public int amount;
 
     //---Methods---//
     public override void Execute(BandMemberInstance owner)
     {
-        StatChange statChange = new(StatType.Fans, amount);
+        StatChange statChange = new(stat, amount);
 
         BandManager.Instance.ApplyStatChange(statChange);
     }

@@ -2683,7 +2683,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1139863686}
-  - {fileID: 1371222028}
   - {fileID: 1432367169}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4140,6 +4139,7 @@ GameObject:
   - component: {fileID: 991899676}
   - component: {fileID: 991899675}
   - component: {fileID: 991899674}
+  - component: {fileID: 991899677}
   m_Layer: 5
   m_Name: Canvas_DetailsPanel
   m_TagString: Untagged
@@ -4232,6 +4232,31 @@ Canvas:
   m_SortingLayerID: 1577565867
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &991899677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 991899672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cb289d0b7a55244db281b8a47a3c1d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ViewBandMembersUIManager
+  bandMemberDetailsPanel: {fileID: 1228307587}
+  detailsPanelRight: {fileID: 182077857}
+  detailsPanelLeft: {fileID: 185027813}
+  nameText: {fileID: 1665717073}
+  sprite: {fileID: 2066111068}
+  genresText: {fileID: 1744083828}
+  talentBarFillImage: {fileID: 941588780}
+  instrumentsText: {fileID: 668741730}
+  traitsText: {fileID: 1231802431}
+  talkButton: {fileID: 1806325298}
+  closeButton: {fileID: 669121992}
+  instrumentsPanel: {fileID: 2001028372}
+  instrumentPanel: {fileID: 1415767901791170080, guid: bf6d569a101b34cb4976ad95a28b03ed, type: 3}
 --- !u!1 &1014070583
 GameObject:
   m_ObjectHideFlags: 0
@@ -5086,6 +5111,7 @@ GameObject:
   - component: {fileID: 1231802432}
   - component: {fileID: 1231802431}
   - component: {fileID: 1231802433}
+  - component: {fileID: 1231802434}
   m_Layer: 5
   m_Name: TraitsText
   m_TagString: Untagged
@@ -5232,6 +5258,18 @@ MonoBehaviour:
   m_FlexibleWidth: 1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &1231802434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1231802429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e22da65675f3748dfb16946b25815e50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LinkTextInfo
 --- !u!1 &1275949756
 GameObject:
   m_ObjectHideFlags: 0
@@ -5672,62 +5710,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1371222026
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1371222028}
-  - component: {fileID: 1371222027}
-  m_Layer: 0
-  m_Name: ViewBandMembersUIManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1371222027
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1371222026}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cb289d0b7a55244db281b8a47a3c1d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ViewBandMembersUIManager
-  persistAcrossScenes: 0
-  BandMemberDetailsPanel: {fileID: 1228307587}
-  nameText: {fileID: 1665717073}
-  sprite: {fileID: 2066111068}
-  genresText: {fileID: 1744083828}
-  talentBarFillImage: {fileID: 941588780}
-  instrumentsText: {fileID: 668741730}
-  traitsText: {fileID: 1231802431}
-  talkButton: {fileID: 1806325298}
-  closeButton: {fileID: 669121992}
-  instrumentsPanel: {fileID: 2001028372}
-  instrumentPanel: {fileID: 1415767901791170080, guid: bf6d569a101b34cb4976ad95a28b03ed, type: 3}
---- !u!4 &1371222028
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1371222026}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.3568, y: 0.29443, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 596140201}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1383209716
 GameObject:
@@ -6861,7 +6843,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1371222027}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ViewBandMembersUIManager, Assembly-CSharp
         m_MethodName: Talk
         m_Mode: 1

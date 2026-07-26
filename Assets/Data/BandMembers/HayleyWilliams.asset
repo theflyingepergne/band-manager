@@ -32,6 +32,7 @@ MonoBehaviour:
         Value: -2
   traits:
   - {fileID: 11400000, guid: 4625ed3d3673f4d89a860e6bb981198f, type: 2}
+  - {fileID: 11400000, guid: 9c166a4a6c55046b39ef558fc0b699d2, type: 2}
   recruitThreshold: 0
   inkRecruitmentDialogue: {fileID: 4900000, guid: 5bc5c01751cb7e04bb768e7b58a5e021, type: 3}
   inkHomeDialogue: {fileID: 4900000, guid: bdab0fb24102ce44bbe5b1a63bd05816, type: 3}

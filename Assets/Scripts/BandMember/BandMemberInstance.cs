@@ -22,6 +22,8 @@ public class BandMemberInstance
 
     //---Home vars---//
     public TextAsset inkHomeDialogue;
+    public BandMember bandMember = null;
+    public bool isAbsent = false;
 
     //---Constructor---//
     public BandMemberInstance(BandMemberData data = null)

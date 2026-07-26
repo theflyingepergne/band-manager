@@ -13,14 +13,22 @@ public class BandMember : MonoBehaviour, IClickable
     public void PopulateBandMemberInstance(BandMemberInstance data)
     {
         bandMemberInstance = data;
+        bandMemberInstance.bandMember = this;
 
         // Debug.Log($"Populating {bandMemberInstance.name}...");
         GetComponent<SpriteRenderer>().sprite = bandMemberInstance.sprite;
 
-        foreach ( var trait in bandMemberInstance.traits)
+        foreach (var trait in bandMemberInstance.traits)
         {
             trait.InitializeConditions();
         }
+
+        CheckIsAbsent();
+    }
+
+    public void CheckIsAbsent()
+    {
+        gameObject.SetActive(!bandMemberInstance.isAbsent);
     }
 
     private void OnDestroy()
@@ -34,12 +42,12 @@ public class BandMember : MonoBehaviour, IClickable
     //---Selection---//
     public void OnClicked()
     {
-        SelectionManager.Instance?.Select(this);
+        if (SelectionManager.Instance != null) SelectionManager.Instance.Select(this);
     }
 
     private void HandleClickEmptySpace()
     {
-        SelectionManager.Instance?.ClearSelection();
+        if (SelectionManager.Instance != null) SelectionManager.Instance.ClearSelection();
     }
 
     public void OnSelected()
