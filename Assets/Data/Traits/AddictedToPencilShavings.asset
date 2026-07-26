@@ -19,8 +19,8 @@ MonoBehaviour:
 
     WRONG. It''s
     all a ruse to fuel their crippling addiction to pencil shavings. So sad... This
-    band member will occasionally go missing to splurge on pencil shavings.'
-  icon: {fileID: 0}
+    band member will occasionally <color="red">go missing to splurge on pencil shavings.'
+  icon: {fileID: 21300000, guid: dd4929199bf49e942a12481bf9e2016c, type: 3}
   traitConditions:
   - rid: 2509477499089453168
   traitLogics:

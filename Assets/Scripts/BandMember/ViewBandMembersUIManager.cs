@@ -3,25 +3,35 @@ using UnityEngine.UI;
 using TMPro;
 using System.Text;
 using System.Collections.Generic;
+using System.Net.Mail;
+using UnityEditor.Search;
 
 public class ViewBandMembersUIManager : MonoBehaviour
 {
     //---References---//
     public static ViewBandMembersUIManager Instance { get; set; }
 
-    [Header("UI References")]
+    [Header("Panel Right")]
     [SerializeField] private GameObject bandMemberDetailsPanel;
     [SerializeField] private GameObject detailsPanelRight;
-    [SerializeField] private GameObject detailsPanelLeft;
-    [SerializeField] private TMP_Text nameText;
-    [SerializeField] private Image sprite;
     [SerializeField] private TMP_Text genresText;
     [SerializeField] private Image talentBarFillImage;
-    [SerializeField] private TMP_Text instrumentsText;
+    // [SerializeField] private TMP_Text instrumentsText;
     [SerializeField] private TMP_Text traitsText;
     [SerializeField] private Button talkButton;
     [SerializeField] private Button closeButton;
+
+    [Header("Panel Left")]
+    [SerializeField] private GameObject detailsPanelLeft;
+    [SerializeField] private TMP_Text nameText;
+    [SerializeField] private Image sprite;
     [SerializeField] private RectTransform instrumentsPanel;
+
+    [Header("Tooltip")]
+    [SerializeField] private GameObject tooltipContainer;
+    [SerializeField] private TMP_Text tooltipTitle;
+    [SerializeField] private Image tooltipImage;
+    [SerializeField] private TMP_Text tooltipDescription;
 
     [Header("Prefabs")]
     [SerializeField] private GameObject instrumentPanel;
@@ -76,7 +86,7 @@ public class ViewBandMembersUIManager : MonoBehaviour
             sprite.sprite = bandMemberInstance.sprite;
             genresText.text = string.Join(" ", bandMemberInstance.genreAffinities.FormatGenreAffinities(false));
             talentBarFillImage.fillAmount = bandMemberInstance.talentLevel / 10f;
-            instrumentsText.text = string.Join(", ", bandMemberInstance.instruments.ConvertAll(i => i.instrumentName));
+            // instrumentsText.text = string.Join(", ", bandMemberInstance.instruments.ConvertAll(i => i.instrumentName));
             // traitsText.text = string.Join(", ", bandMemberInstance.traits.ConvertAll(t => t.traitName));
 
             FormatTraitsText();
@@ -127,16 +137,31 @@ public class ViewBandMembersUIManager : MonoBehaviour
         bandMemberDetailsPanel.SetActive(false);
     }
 
+    //---Dialogue---//
     public void Talk()
     {
         bandMemberDialogue.PrepareDialogue(bandMemberInstance.inkHomeDialogue, bandMemberInstance);
     }
 
+    //---Tooltip---//
     private void HandleLinkHovered(string linkID)
     {
         Debug.Log($"Hovering over {linkID}");
+        PopulateTooltip(linkID);
     }
-    
+
+    private void PopulateTooltip(string linkID)
+    {
+        if (int.TryParse(linkID, out int i))
+        {
+            var trait = bandMemberInstance.traits[i];
+            tooltipTitle.text = trait.traitName;
+            tooltipImage.sprite = trait.icon;
+            tooltipDescription.text = trait.description;
+            tooltipContainer.SetActive(true);
+        }
+    }
+
     private void HandleLinkExited()
     {
         ClearTooltip();
@@ -145,6 +170,6 @@ public class ViewBandMembersUIManager : MonoBehaviour
 
     private void ClearTooltip()
     {
-        
+        tooltipContainer.SetActive(false);
     }
 }

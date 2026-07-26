@@ -54,7 +54,22 @@
         "ProjectSettings/": true,
         "UserSettings/": true,
         "temp/": true,
-        "Temp/": true
+        "Temp/": true,
+        //---Excluded by me---//
+        "**/Data/":true,
+        "**/Fonts/":true,
+        "**/Plugins/":true,
+        "**/Prefabs/":true,
+        "**/Presets/":true,
+        "**/Resources/":true,
+        "**/Scenes/":true,
+        "Documentation/": true,
+        "Packages/": true,
+        "**/Settings/":true,
+        "**/Sprites/":true,
+        "UIElementsSchema/":true,
+        "src/":true
+        //---End excluded by me---//
     },
     "files.associations": {
         "*.asset": "yaml",
