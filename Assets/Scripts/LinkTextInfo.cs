@@ -4,52 +4,80 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(TMP_Text))]
-public class LinkTextInfo : MonoBehaviour, IPointerMoveHandler, IPointerExitHandler
+public class LinkTextInfo : UIHoverInfo, IPointerMoveHandler
 {
-    //---References---//
     private TMP_Text tmpText;
     private int lastLinkIndex = -1;
 
-    //---Events---//
-    public static event System.Action<string> OnLinkHovered;
-    public static event System.Action OnLinkExited;
-
-    //---Methods---//
-    void Awake()
+    private void Awake()
     {
         tmpText = GetComponent<TMP_Text>();
     }
 
     public void OnPointerMove(PointerEventData pointerEventData)
     {
-        // on move, get the link we are hovering over
-        int linkIndex = TMP_TextUtilities.FindIntersectingLink(tmpText, Mouse.current.position.ReadValue() , Camera.main);
+        int linkIndex = TMP_TextUtilities.FindIntersectingLink(tmpText, Mouse.current.position.ReadValue(), Camera.main);
 
         if (linkIndex != -1)
         {
             if (linkIndex != lastLinkIndex)
             {
-                lastLinkIndex = linkIndex;
+                if (lastLinkIndex != -1)
+                {
+                    SetLinkColor(lastLinkIndex, tmpText.color);
+                }
 
+                lastLinkIndex = linkIndex;
                 TMP_LinkInfo linkInfo = tmpText.textInfo.linkInfo[linkIndex];
 
-                OnLinkHovered?.Invoke(linkInfo.GetLinkID());
+                // Pass the link ID up through base class
+                TriggerHover(linkInfo.GetLinkID());
+                SetLinkColor(linkIndex, Color.yellow);
             }
         }
-        else
+        else if (lastLinkIndex != -1)
         {
-            ClearHover();
+            ResetHover();
         }
     }
 
-    public void OnPointerExit(PointerEventData pointerEventData)
+    public override void OnPointerExit(PointerEventData pointerEventData)
     {
-        ClearHover();
+        ResetHover();
+        base.OnPointerExit(pointerEventData);
     }
 
-    private void ClearHover()
+    private void ResetHover()
     {
-        lastLinkIndex = -1;
-        OnLinkExited?.Invoke();
+        if (lastLinkIndex != -1)
+        {
+            SetLinkColor(lastLinkIndex, tmpText.color);
+            lastLinkIndex = -1;
+        }
+    }
+
+    private void SetLinkColor(int linkIndex, Color32 color)
+    {
+        TMP_LinkInfo linkInfo = tmpText.textInfo.linkInfo[linkIndex];
+
+        for (int i = 0; i < linkInfo.linkTextLength; i++)
+        {
+            int characterIndex = linkInfo.linkTextfirstCharacterIndex + i;
+            TMP_CharacterInfo charInfo = tmpText.textInfo.characterInfo[characterIndex];
+
+            if (!charInfo.isVisible) continue;
+
+            int materialIndex = charInfo.materialReferenceIndex;
+            int vertexIndex = charInfo.vertexIndex;
+
+            Color32[] vertexColors = tmpText.textInfo.meshInfo[materialIndex].colors32;
+
+            vertexColors[vertexIndex + 0] = color;
+            vertexColors[vertexIndex + 1] = color;
+            vertexColors[vertexIndex + 2] = color;
+            vertexColors[vertexIndex + 3] = color;
+        }
+
+        tmpText.UpdateVertexData(TMP_VertexDataUpdateFlags.Colors32);
     }
 }

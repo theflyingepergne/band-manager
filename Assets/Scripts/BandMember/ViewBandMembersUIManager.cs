@@ -1,10 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Text;
 using System.Collections.Generic;
-using System.Net.Mail;
-using UnityEditor.Search;
 
 public class ViewBandMembersUIManager : MonoBehaviour
 {
@@ -16,7 +13,6 @@ public class ViewBandMembersUIManager : MonoBehaviour
     [SerializeField] private GameObject detailsPanelRight;
     [SerializeField] private TMP_Text genresText;
     [SerializeField] private Image talentBarFillImage;
-    // [SerializeField] private TMP_Text instrumentsText;
     [SerializeField] private TMP_Text traitsText;
     [SerializeField] private Button talkButton;
     [SerializeField] private Button closeButton;
@@ -44,15 +40,15 @@ public class ViewBandMembersUIManager : MonoBehaviour
     void OnEnable()
     {
         ClickScript.OnClickEmptySpace += HandleClickEmptySpace;
-        LinkTextInfo.OnLinkHovered += HandleLinkHovered;
-        LinkTextInfo.OnLinkExited += HandleLinkExited;
+        UIHoverInfo.OnHoverStarted += HandleLinkHovered;
+        UIHoverInfo.OnHoverEnded += HandleLinkExited;
     }
 
     void OnDisable()
     {
         ClickScript.OnClickEmptySpace -= HandleClickEmptySpace;
-        LinkTextInfo.OnLinkHovered -= HandleLinkHovered;
-        LinkTextInfo.OnLinkExited -= HandleLinkExited;
+        UIHoverInfo.OnHoverStarted -= HandleLinkHovered;
+        UIHoverInfo.OnHoverEnded -= HandleLinkExited;
     }
 
     //---Init Methods---//
@@ -86,8 +82,6 @@ public class ViewBandMembersUIManager : MonoBehaviour
             sprite.sprite = bandMemberInstance.sprite;
             genresText.text = string.Join(" ", bandMemberInstance.genreAffinities.FormatGenreAffinities(false));
             talentBarFillImage.fillAmount = bandMemberInstance.talentLevel / 10f;
-            // instrumentsText.text = string.Join(", ", bandMemberInstance.instruments.ConvertAll(i => i.instrumentName));
-            // traitsText.text = string.Join(", ", bandMemberInstance.traits.ConvertAll(t => t.traitName));
 
             FormatTraitsText();
 
@@ -103,7 +97,7 @@ public class ViewBandMembersUIManager : MonoBehaviour
 
         for (int i = 0; i < bandMemberInstance.traits.Count; i++)
         {
-            string t = $"<link=\"{i}\">{bandMemberInstance.traits[i].traitName}</link>";
+            string t = $"<link=\"trait_{i}\">{bandMemberInstance.traits[i].traitName}</link>";
             formattedTraitsText.Add(t);
         }
 
@@ -146,26 +140,52 @@ public class ViewBandMembersUIManager : MonoBehaviour
     //---Tooltip---//
     private void HandleLinkHovered(string linkID)
     {
-        Debug.Log($"Hovering over {linkID}");
         PopulateTooltip(linkID);
     }
 
     private void PopulateTooltip(string linkID)
     {
-        if (int.TryParse(linkID, out int i))
+        string[] parts = linkID.Split('_');
+
+        string type = parts[0];
+        int index = int.Parse(parts[1]);
+
+        switch (type)
         {
-            var trait = bandMemberInstance.traits[i];
-            tooltipTitle.text = trait.traitName;
-            tooltipImage.sprite = trait.icon;
-            tooltipDescription.text = trait.description;
-            tooltipContainer.SetActive(true);
+            case "trait":
+                DoTraitTooltip(index);
+                break;
+            case "instrument":
+                DoInstrumentTooltip(index);
+                break;
+            default:
+                return;
         }
+    }
+
+    private void DoTraitTooltip(int i)
+    {
+        var trait = bandMemberInstance.traits[i];
+
+        tooltipTitle.text = trait.traitName;
+        tooltipImage.sprite = trait.icon;
+        tooltipDescription.text = trait.description;
+        tooltipContainer.SetActive(true);
+    }
+
+    private void DoInstrumentTooltip(int i)
+    {
+        var instrument = bandMemberInstance.instruments[i];
+
+        tooltipTitle.text = instrument.instrumentName;
+        tooltipImage.sprite = instrument.sprite;
+        tooltipDescription.text = instrument.description;
+        tooltipContainer.SetActive(true);
     }
 
     private void HandleLinkExited()
     {
         ClearTooltip();
-        // Debug.Log("Stopped hovering");
     }
 
     private void ClearTooltip()
